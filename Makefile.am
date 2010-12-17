@@ -1,0 +1,19 @@
+## Process this file with automake to produce Makefile.in
+
+SUBDIRS = include man src
+
+ACLOCAL_AMFLAGS = -I m4
+
+EXTRA_DIST = \
+	autogen \
+	get-version \
+	$(nil)
+
+DISTCLEANFILES = ChangeLog
+.PHONY: ChangeLog
+
+ChangeLog:
+	git log --stat -C >$@
+
+dist-hook:
+	echo $(VERSION) >$(distdir)/.dist-version
