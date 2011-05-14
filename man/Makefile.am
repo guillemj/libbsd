@@ -27,6 +27,7 @@ dist_man_MANS = \
 	fmtcheck.3 \
 	getmode.3 \
 	getpeereid.3 \
+	getprogname.3 \
 	heapsort.3 \
 	humanize_number.3 \
 	md5.3bsd \
@@ -38,6 +39,7 @@ dist_man_MANS = \
 	reallocf.3 \
 	setmode.3 \
 	setproctitle.3 \
+	setprogname.3 \
 	sradixsort.3 \
 	strlcat.3 \
 	strlcpy.3 \
