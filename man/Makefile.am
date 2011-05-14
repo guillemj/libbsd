@@ -37,6 +37,7 @@ dist_man_MANS = \
 	readpassphrase.3 \
 	reallocf.3 \
 	setmode.3 \
+	setproctitle.3 \
 	sradixsort.3 \
 	strlcat.3 \
 	strlcpy.3 \
