@@ -29,7 +29,7 @@
 int optreset = 0;
 
 int
-bsd_getopt(int argc, char **argv, char *shortopts)
+bsd_getopt(int argc, char * const argv[], const char *shortopts)
 {
 	if (optreset == 1) {
 		optreset = 0;
