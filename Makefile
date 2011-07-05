@@ -128,7 +128,7 @@ CFLAGS ?= -g -Wall -Wextra -Wno-unused-variable
 LDFLAGS ?=
 
 # Internal makefile variables
-MK_CPPFLAGS := -Iinclude/bsd/ \
+MK_CPPFLAGS := -isystem include/bsd/ \
 	-DLIBBSD_OVERLAY -DLIBBSD_DISABLE_DEPRECATED \
 	-D_GNU_SOURCE -D__REENTRANT
 MK_CFLAGS :=
