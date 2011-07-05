@@ -1,6 +1,6 @@
 /*
  * Copyright © 2006 Robert Millan
- * Copyright © 2010-2011 Guillem Jover
+ * Copyright © 2010-2012 Guillem Jover <guillem@hadrons.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -41,6 +41,10 @@ getprogname(void)
 #ifdef __GLIBC__
 	if (__progname == NULL)
 		__progname = program_invocation_short_name;
+#elif defined(HAVE_GETEXECNAME)
+	/* getexecname(3) returns an absolute pathname, normalize it. */
+	if (__progname == NULL)
+		setprogname(getexecname());
 #endif
 
 	return __progname;

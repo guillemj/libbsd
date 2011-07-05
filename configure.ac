@@ -37,6 +37,7 @@ AC_TYPE_SIZE_T
 AC_TYPE_SSIZE_T
 
 # Checks for library functions.
+AC_CHECK_FUNCS([getexecname])
 
 AC_CONFIG_FILES([
 	Makefile
