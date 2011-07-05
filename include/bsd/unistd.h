@@ -49,7 +49,7 @@ extern int optreset;
 #define getopt(argc, argv, optstr) bsd_getopt(argc, argv, optstr)
 #endif
 
-int bsd_getopt(int argc, char * const argv[], const char *shortopts)
+int bsd_getopt(int argc, char * const argv[], const char *shortopts);
 
 mode_t getmode(const void *set, mode_t mode);
 void *setmode(const char *mode_str);
