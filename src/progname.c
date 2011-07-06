@@ -33,7 +33,11 @@
 #include <string.h>
 #include <stdlib.h>
 
+#ifdef HAVE___PROGNAME
+extern const char *__progname;
+#else
 static const char *__progname = NULL;
+#endif
 
 const char *
 getprogname(void)
