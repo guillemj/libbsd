@@ -138,7 +138,7 @@ __aout_fdnlist(fd, list)
 
 	/*
 	 * Map the whole a.out file into our address space.
-	 * We then find the string table withing this area.
+	 * We then find the string table within this area.
 	 * We do not just mmap the string table, as it probably
 	 * does not start at a page boundary - we save ourselves a
 	 * lot of nastiness by mmapping the whole file.
@@ -227,14 +227,14 @@ __elf_is_okay__(ehdr)
 	 * We need to check magic, class size, endianess,
 	 * and version before we look at the rest of the
 	 * Elf_Ehdr structure.  These few elements are
-	 * represented in a machine independant fashion.
+	 * represented in a machine independent fashion.
 	 */
 	if (IS_ELF(*ehdr) &&
 	    ehdr->e_ident[EI_CLASS] == ELF_TARG_CLASS &&
 	    ehdr->e_ident[EI_DATA] == ELF_TARG_DATA &&
 	    ehdr->e_ident[EI_VERSION] == ELF_TARG_VER) {
 
-		/* Now check the machine dependant header */
+		/* Now check the machine dependent header */
 		if (ehdr->e_machine == ELF_TARG_MACH &&
 		    ehdr->e_version == ELF_TARG_VER)
 			retval = 1;
