@@ -184,7 +184,7 @@ $(LIB_SHARED): $(LIB_SHARED_OBJS)
 	$(LINK) \
 	  -shared \
 	  -Wl,-soname -Wl,$(LIB_SONAME) \
-	  -Wl,--version-script=Versions \
+	  -Wl,--version-script=libbsd.map \
 	  -o $@ $^
 
 .PHONY: ChangeLog
