@@ -89,3 +89,7 @@ LIBBSD_0.3 {
 
     fpurge;
 } LIBBSD_0.2;
+
+LIBBSD_0.4 {
+    closefrom;
+} LIBBSD_0.3;

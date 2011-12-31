@@ -54,6 +54,8 @@ int bsd_getopt(int argc, char * const argv[], const char *shortopts);
 mode_t getmode(const void *set, mode_t mode);
 void *setmode(const char *mode_str);
 
+void closefrom(int lowfd);
+
 void setproctitle(const char *fmt, ...);
 
 int getpeereid(int s, uid_t *euid, gid_t *egid);

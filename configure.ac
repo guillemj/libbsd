@@ -25,6 +25,7 @@ AC_PROG_LN_S
 # Checks for libraries.
 
 # Checks for header files.
+AC_CHECK_HEADERS([sys/ndir.h sys/dir.h dir.h dirent.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_UID_T
@@ -36,6 +37,13 @@ AC_TYPE_PID_T
 AC_TYPE_SIZE_T
 AC_TYPE_SSIZE_T
 
+AC_CHECK_DECL([F_CLOSEM],
+              [AC_DEFINE([HAVE_FCNTL_CLOSEM], [1],
+                         [Define to 1 if you have fcntl(F_CLOSEM)])],
+              [],
+              [#include <limits.h>
+               #include <fcntl.h>])
+
 # Checks for library functions.
 AC_MSG_CHECKING([for __progname])
 AC_LINK_IFELSE(
@@ -46,7 +54,7 @@ AC_LINK_IFELSE(
 	 AC_MSG_RESULT([yes])],
 	[AC_MSG_RESULT([no])])
 
-AC_CHECK_FUNCS([getexecname])
+AC_CHECK_FUNCS([dirfd getexecname sysconf])
 
 AC_CONFIG_FILES([
 	Makefile

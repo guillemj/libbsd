@@ -41,6 +41,7 @@ libbsd_la_LDFLAGS = \
 libbsd_la_SOURCES = \
 	arc4random.c \
 	bsd_getopt.c \
+	closefrom.c \
 	dehumanize_number.c \
 	err.c \
 	fgetln.c \
