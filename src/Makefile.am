@@ -44,6 +44,7 @@ libbsd_la_SOURCES = \
 	closefrom.c \
 	dehumanize_number.c \
 	err.c \
+	expand_number.c \
 	fgetln.c \
 	flopen.c \
 	fmtcheck.c \

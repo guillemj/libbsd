@@ -41,6 +41,7 @@
 
 #include <features.h>
 #include <sys/types.h>
+#include <stdint.h>
 
 /* for pidfile.c */
 struct pidfh {
@@ -53,6 +54,7 @@ struct pidfh {
 __BEGIN_DECLS
 int humanize_number(char *buf, size_t len, int64_t bytes,
     const char *suffix, int scale, int flags);
+int expand_number(const char *_buf, uint64_t *_num);
 
 int flopen(const char *_path, int _flags, ...);
 

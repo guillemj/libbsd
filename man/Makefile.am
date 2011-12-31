@@ -21,6 +21,7 @@ dist_man_MANS = \
 	arc4random_uniform.3 \
 	closefrom.3 \
 	dehumanize_number.3 \
+	expand_number.3 \
 	fgetln.3 \
 	flopen.3 \
 	fmtcheck.3 \
