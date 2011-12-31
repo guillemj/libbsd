@@ -6,8 +6,8 @@ LIB_VERSION_MINOR := 3
 LIB_VERSION_MICRO := 0
 LIB_VERSION := $(LIB_VERSION_MAJOR).$(LIB_VERSION_MINOR).$(LIB_VERSION_MICRO)
 
-LIB_PKGCONFIG := $(LIB_NAME).pc
-LIB_PKGCONFIG_OVERLAY := $(LIB_NAME)-overlay.pc
+LIB_PKGCONFIG := src/$(LIB_NAME).pc
+LIB_PKGCONFIG_OVERLAY := src/$(LIB_NAME)-overlay.pc
 LIB_STATIC := $(LIB_NAME).a
 LIB_SHARED_SO := $(LIB_NAME).so
 LIB_SONAME := $(LIB_SHARED_SO).$(LIB_VERSION_MAJOR)
@@ -184,7 +184,7 @@ $(LIB_SHARED): $(LIB_SHARED_OBJS)
 	$(LINK) \
 	  -shared \
 	  -Wl,-soname -Wl,$(LIB_SONAME) \
-	  -Wl,--version-script=libbsd.map \
+	  -Wl,--version-script=src/libbsd.map \
 	  -o $@ $^
 
 .PHONY: ChangeLog
