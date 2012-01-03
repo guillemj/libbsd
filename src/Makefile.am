@@ -8,7 +8,7 @@ AM_CPPFLAGS = \
 	-isystem $(top_srcdir)/include/bsd/ \
 	-include $(top_builddir)/config.h \
 	-DLIBBSD_OVERLAY -DLIBBSD_DISABLE_DEPRECATED \
-	-D_GNU_SOURCE -D__REENTRANT
+	-D__REENTRANT
 
 EXTRA_DIST = \
 	libbsd.map \

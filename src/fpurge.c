@@ -24,8 +24,6 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define _GNU_SOURCE 1
-
 #include <errno.h>
 #include <stdio.h>
 #include <stdio_ext.h>
