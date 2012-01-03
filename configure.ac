@@ -45,6 +45,15 @@ AC_CHECK_DECL([F_CLOSEM],
                #include <fcntl.h>])
 
 # Checks for library functions.
+AC_MSG_CHECKING([for program_invocation_short_name])
+AC_LINK_IFELSE(
+	[AC_LANG_PROGRAM([[#include <errno.h>]],
+	                 [[const char *p = program_invocation_short_name;]])],
+	[AC_DEFINE([HAVE_PROGRAM_INVOCATION_SHORT_NAME], [1],
+	           [Define to 1 if you have program_invocation_short_name])
+	 AC_MSG_RESULT([yes])],
+	[AC_MSG_RESULT([no])])
+
 AC_MSG_CHECKING([for __progname])
 AC_LINK_IFELSE(
 	[AC_LANG_PROGRAM([[]],

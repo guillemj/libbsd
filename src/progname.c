@@ -42,7 +42,7 @@ static const char *__progname = NULL;
 const char *
 getprogname(void)
 {
-#ifdef __GLIBC__
+#if defined(HAVE_PROGRAM_INVOCATION_SHORT_NAME)
 	if (__progname == NULL)
 		__progname = program_invocation_short_name;
 #elif defined(HAVE_GETEXECNAME)
