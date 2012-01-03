@@ -28,7 +28,7 @@
 #include <stdio.h>
 #include <stdio_ext.h>
 
-#ifdef __GLIBC__
+#ifdef HAVE___FPURGE
 int
 fpurge(FILE *fp)
 {
