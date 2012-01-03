@@ -30,7 +30,7 @@
 #include <sys/types.h>
 #include <string.h>
 
-#ifdef __GLIBC__
+#ifdef HAVE_GETLINE
 char *
 fgetln(FILE *stream, size_t *len)
 {
