@@ -26,13 +26,6 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef LIBBSD_STDLIB_H
-#define LIBBSD_STDLIB_H
-
-#include <sys/cdefs.h>
-#include <sys/stat.h>
-#include <stdint.h>
-
 #ifdef LIBBSD_OVERLAY
 #include_next <stdlib.h>
 #else
@@ -45,6 +38,13 @@
 #else
 #include <bsd/libutil.h>
 #endif
+
+#ifndef LIBBSD_STDLIB_H
+#define LIBBSD_STDLIB_H
+
+#include <sys/cdefs.h>
+#include <sys/stat.h>
+#include <stdint.h>
 
 __BEGIN_DECLS
 u_int32_t arc4random();

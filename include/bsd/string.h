@@ -24,17 +24,17 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef LIBBSD_STRING_H
-#define LIBBSD_STRING_H
-
-#include <sys/cdefs.h>
-#include <sys/types.h>
-
 #ifdef LIBBSD_OVERLAY
 #include_next <string.h>
 #else
 #include <string.h>
 #endif
+
+#ifndef LIBBSD_STRING_H
+#define LIBBSD_STRING_H
+
+#include <sys/cdefs.h>
+#include <sys/types.h>
 
 __BEGIN_DECLS
 size_t strlcpy(char *dst, const char *src, size_t siz);

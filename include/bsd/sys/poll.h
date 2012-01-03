@@ -24,14 +24,14 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef LIBBSD_SYS_POLL_H
-#define LIBBSD_SYS_POLL_H
-
 #ifdef LIBBSD_OVERLAY
 #include_next <sys/poll.h>
 #else
 #include <sys/poll.h>
 #endif
+
+#ifndef LIBBSD_SYS_POLL_H
+#define LIBBSD_SYS_POLL_H
 
 #ifndef INFTIM
 #define INFTIM (-1)

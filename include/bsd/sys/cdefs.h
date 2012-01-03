@@ -24,14 +24,14 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef LIBBSD_SYS_CDEFS_H
-#define LIBBSD_SYS_CDEFS_H
-
 #ifdef LIBBSD_OVERLAY
 #include_next <sys/cdefs.h>
 #else
 #include <sys/cdefs.h>
 #endif
+
+#ifndef LIBBSD_SYS_CDEFS_H
+#define LIBBSD_SYS_CDEFS_H
 
 /*
  * Some kFreeBSD headers expect those macros to be set for sanity checks.

@@ -25,17 +25,17 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef LIBBSD_UNISTD_H
-#define LIBBSD_UNISTD_H
-
-#include <sys/cdefs.h>
-#include <sys/stat.h>
-
 #ifdef LIBBSD_OVERLAY
 #include_next <unistd.h>
 #else
 #include <unistd.h>
 #endif
+
+#ifndef LIBBSD_UNISTD_H
+#define LIBBSD_UNISTD_H
+
+#include <sys/cdefs.h>
+#include <sys/stat.h>
 
 #ifndef S_ISTXT
 #define S_ISTXT S_ISVTX

@@ -24,17 +24,17 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef LIBBSD_STDIO_H
-#define LIBBSD_STDIO_H
-
-#include <sys/cdefs.h>
-#include <sys/types.h>
-
 #ifdef LIBBSD_OVERLAY
 #include_next <stdio.h>
 #else
 #include <stdio.h>
 #endif
+
+#ifndef LIBBSD_STDIO_H
+#define LIBBSD_STDIO_H
+
+#include <sys/cdefs.h>
+#include <sys/types.h>
 
 __BEGIN_DECLS
 const char *fmtcheck(const char *, const char *);

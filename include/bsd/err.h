@@ -25,18 +25,18 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#ifdef LIBBSD_OVERLAY
+#include_next <err.h>
+#else
+#include <err.h>
+#endif
+
 #ifndef LIBBSD_ERR_H
 #define LIBBSD_ERR_H
 
 #include <sys/cdefs.h>
 
 #include <stdarg.h>
-
-#ifdef LIBBSD_OVERLAY
-#include_next <err.h>
-#else
-#include <err.h>
-#endif
 
 __BEGIN_DECLS
 extern void warnc (int code, const char *format, ...);

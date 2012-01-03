@@ -24,14 +24,14 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef LIBBSD_SYS_ENDIAN_H
-#define LIBBSD_SYS_ENDIAN_H
-
 #ifdef LIBBSD_OVERLAY
 #include_next <endian.h>
 #else
 #include <endian.h>
 #endif
+
+#ifndef LIBBSD_SYS_ENDIAN_H
+#define LIBBSD_SYS_ENDIAN_H
 
 #ifndef _BYTE_ORDER
 #define _BYTE_ORDER __BYTE_ORDER
