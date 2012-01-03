@@ -36,15 +36,6 @@
 #include <string.h>
 #endif
 
-#ifndef LIBBSD_DISABLE_DEPRECATED
-/* FIXME: Temporary inclusion to avoid API breakage, will be removed soon. */
-#ifdef LIBBSD_OVERLAY
-#include <stdio.h>
-#else
-#include <bsd/stdio.h>
-#endif
-#endif
-
 __BEGIN_DECLS
 size_t strlcpy(char *dst, const char *src, size_t siz);
 size_t strlcat(char *dst, const char *src, size_t siz);

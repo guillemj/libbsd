@@ -41,9 +41,4 @@
 #include <bsd/getopt.h>
 #include <bsd/md5.h>
 
-/* FIXME: Will be removed in the future. */
-#ifndef LIBBSD_DISABLE_DEPRECATED
-#include <time.h>
-#endif
-
 #endif

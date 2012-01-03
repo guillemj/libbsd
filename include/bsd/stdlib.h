@@ -46,17 +46,6 @@
 #include <bsd/libutil.h>
 #endif
 
-/* FIXME: Temporary inclusions to avoid API breakage, will be removed soon. */
-#ifndef LIBBSD_DISABLE_DEPRECATED
-#ifdef LIBBSD_OVERLAY
-#include <stdio.h>
-#include <unistd.h>
-#else
-#include <bsd/stdio.h>
-#include <bsd/unistd.h>
-#endif
-#endif
-
 __BEGIN_DECLS
 u_int32_t arc4random();
 void arc4random_stir();
