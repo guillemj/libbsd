@@ -19,6 +19,7 @@ dist_man_MANS = \
 	arc4random_buf.3 \
 	arc4random_stir.3 \
 	arc4random_uniform.3 \
+	bitstring.3 \
 	closefrom.3 \
 	dehumanize_number.3 \
 	expand_number.3 \
@@ -34,6 +35,7 @@ dist_man_MANS = \
 	mergesort.3 \
 	nlist.3 \
 	pidfile.3 \
+	queue.3bsd \
 	radixsort.3 \
 	readpassphrase.3 \
 	reallocf.3 \
