@@ -47,6 +47,7 @@ dist_man_MANS = \
 	strlcpy.3 \
 	strmode.3 \
 	strtonum.3 \
+	tree.3 \
 	unvis.3 \
 	vis.3 \
 	$(nil)
