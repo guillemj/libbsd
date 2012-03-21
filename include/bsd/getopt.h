@@ -31,7 +31,6 @@
 #include_next <getopt.h>
 #include <unistd.h>
 #else
-#warning "Deprecated header, use <bsd/unistd.h> or <unistd.h> with libbsd-overlay.pc instead."
 #include <getopt.h>
 #include <bsd/unistd.h>
 #endif
