@@ -45,6 +45,7 @@ AC_CONFIG_FILES([
 	src/Makefile
 	src/libbsd.pc
 	src/libbsd-overlay.pc
+	test/Makefile
 ])
 AC_CONFIG_HEADERS([config.h])
 AC_OUTPUT

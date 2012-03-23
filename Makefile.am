@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in
 
-SUBDIRS = include man src
+SUBDIRS = include man src test
 
 ACLOCAL_AMFLAGS = -I m4
 
