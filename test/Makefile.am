@@ -13,6 +13,7 @@ AM_CPPFLAGS = \
 check_PROGRAMS = \
 	headers \
 	overlay \
+	endian \
 	$(nil)
 
 TESTS = $(check_PROGRAMS)
