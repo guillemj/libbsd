@@ -1,3 +1,7 @@
+The following 4-clause BSD licenses are only for man pages, specifically
+for man/arc4random.3, man/tree.3 and man/getprogname.3.
+
+
     Copyright 1997 Niels Provos <provos@physnet.uni-hamburg.de>
     All rights reserved.
 
@@ -58,7 +62,9 @@
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
     THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-    --
+
+The rest of the licenses apply to code and/or man pages.
+
 
     Copyright © 2004-2006, 2008-2011 Guillem Jover
     Copyright © 2005 Hector Garcia Alvarez
