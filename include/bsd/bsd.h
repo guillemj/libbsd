@@ -1,5 +1,5 @@
 /*
- * Copyright © 2004, 2005, 2006 Guillem Jover
+ * Copyright © 2004, 2005, 2006 Guillem Jover <guillem@hadrons.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions

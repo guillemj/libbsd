@@ -1,7 +1,7 @@
 /*
  * Copyright © 2005 Aurelien Jarno
  * Copyright © 2006 Robert Millan
- * Copyright © 2008-2011 Guillem Jover
+ * Copyright © 2008-2011 Guillem Jover <guillem@hadrons.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions

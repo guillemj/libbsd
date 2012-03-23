@@ -1,6 +1,6 @@
 /*
  * Copyright © 2005 Hector Garcia Alvarez
- * Copyright © 2005, 2008, 2009, 2011 Guillem Jover
+ * Copyright © 2005, 2008, 2009, 2011 Guillem Jover <guillem@hadrons.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
