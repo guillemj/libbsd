@@ -12,6 +12,7 @@ AM_CPPFLAGS = \
 
 check_PROGRAMS = \
 	headers \
+	overlay \
 	$(nil)
 
 TESTS = $(check_PROGRAMS)
