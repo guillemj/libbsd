@@ -11,6 +11,7 @@ AM_CPPFLAGS = \
 	-D__REENTRANT
 
 check_PROGRAMS = \
+	headers \
 	$(nil)
 
 TESTS = $(check_PROGRAMS)
