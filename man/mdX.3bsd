@@ -10,7 +10,7 @@
 .\" 	$OpenBSD: mdX.3,v 1.9 2004/08/24 20:10:33 millert Exp $
 .\"
 .Dd April 29, 2004
-.Dt MDX 3
+.Dt MDX 3bsd
 .Os
 .Sh NAME
 .Nm MDXInit ,

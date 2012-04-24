@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 
 EXTRA_DIST = \
-	mdX.3 \
+	mdX.3bsd \
 	$(nil)
 
 CLEANFILES = \
@@ -10,7 +10,7 @@ CLEANFILES = \
 
 SED_MD5_SUBST = -e 's/mdX/md5/g' -e 's/mdY/md4/g' -e 's/MDX/MD5/g'
 
-md5.3bsd: $(srcdir)/mdX.3
+md5.3bsd: $(srcdir)/mdX.3bsd
 	$(AM_V_GEN) sed $(SED_MD5_SUBST) $< > $@
 
 dist_man_MANS = \
