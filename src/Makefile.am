@@ -31,7 +31,7 @@ lib_LTLIBRARIES = libbsd.la
 
 hash/md5hl.c: $(srcdir)/hash/helper.c
 	$(MKDIR_P) hash
-	$(AM_V_GEN) sed -e 's:hashinc:bsd/md5.h:g' -e 's:HASH:MD5:g' $< > $@
+	$(AM_V_GEN) sed -e 's:hashinc:md5.h:g' -e 's:HASH:MD5:g' $< > $@
 
 libbsd_la_DEPENDENCIES = \
 	libbsd.map

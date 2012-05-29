@@ -19,7 +19,7 @@
 
 #include <sys/types.h>
 #include <string.h>
-#include <bsd/md5.h>
+#include <md5.h>
 
 #define PUT_64BIT_LE(cp, value) do {					\
 	(cp)[7] = (value) >> 56;					\
