@@ -73,6 +73,8 @@ libbsd_la_SOURCES = \
 	vis.c \
 	$(nil)
 
+runtimelibdir = $(libdir)
+
 install-exec-hook:
 	if [ "$(libdir)" != "$(runtimelibdir)" ]; then \
 		$(MKDIR_P) $(DESTDIR)$(runtimelibdir); \
