@@ -75,7 +75,7 @@ libbsd_la_SOURCES = \
 
 install-exec-hook:
 	if [ "$(libdir)" != "$(runtimelibdir)" ]; then \
-		mkdir -p $(DESTDIR)$(runtimelibdir); \
+		$(MKDIR_P) $(DESTDIR)$(runtimelibdir); \
 		mv $(DESTDIR)$(libdir)/libbsd*.so.* \
 		   $(DESTDIR)$(runtimelibdir)/; \
 		soname=`readlink $(DESTDIR)$(libdir)/libbsd.so`; \
