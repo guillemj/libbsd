@@ -11,6 +11,9 @@ AM_INIT_AUTOMAKE([1.8 foreign nostdinc])
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])],
                             [AC_SUBST([AM_DEFAULT_VERBOSITY], [1])])
 
+# Check and store if we got user supplied variables
+user_CFLAGS=${CFLAGS-unset}
+
 # Checks for operating system services and capabilities.
 AC_USE_SYSTEM_EXTENSIONS
 AC_SYS_LARGEFILE
@@ -21,6 +24,11 @@ LT_INIT
 AC_PROG_CC
 AC_PROG_INSTALL
 AC_PROG_LN_S
+
+# Set default compiler variables
+if test "$user_CFLAGS" = unset && test "$GCC" = yes; then
+  CFLAGS="$CFLAGS -Wall -Wextra -Wno-unused-variable -Wno-unused-parameter"
+fi
 
 # Checks for libraries.
 
