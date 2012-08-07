@@ -26,6 +26,7 @@ dist_man_MANS = \
 	fgetln.3 \
 	flopen.3 \
 	fmtcheck.3 \
+	fparseln.3 \
 	getmode.3 \
 	getpeereid.3 \
 	getprogname.3 \

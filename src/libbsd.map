@@ -96,6 +96,8 @@ LIBBSD_0.4 {
 } LIBBSD_0.3;
 
 LIBBSD_0.5 {
+    fparseln;
+
     strnstr;
 
     wcslcat;
