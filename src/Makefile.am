@@ -43,6 +43,7 @@ libbsd_la_SOURCES = \
 	err.c \
 	expand_number.c \
 	fgetln.c \
+	fgetwln.c \
 	flopen.c \
 	fmtcheck.c \
 	fparseln.c \

@@ -24,6 +24,7 @@ dist_man_MANS = \
 	dehumanize_number.3 \
 	expand_number.3 \
 	fgetln.3 \
+	fgetwln.3 \
 	flopen.3 \
 	fmtcheck.3 \
 	fparseln.3 \

@@ -24,24 +24,64 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifdef LIBBSD_OVERLAY
-#include_next <wchar.h>
-#else
-#include <wchar.h>
-#endif
-
-#ifndef LIBBSD_WCHAR_H
-#define LIBBSD_WCHAR_H
-
-#include <stddef.h>
 #include <sys/cdefs.h>
-#include <sys/types.h>
 
-__BEGIN_DECLS
-wchar_t *fgetwln(FILE *stream, size_t *len);
+#include <stdlib.h>
+#include <stdio.h>
+#include <wchar.h>
 
-size_t wcslcat(wchar_t *dst, const wchar_t *src, size_t size);
-size_t wcslcpy(wchar_t *dst, const wchar_t *src, size_t size);
-__END_DECLS
+struct filewbuf {
+	FILE *fp;
+	wchar_t *wbuf;
+	size_t len;
+};
 
-#endif
+#define FILEWBUF_INIT_LEN	128
+#define FILEWBUF_POOL_ITEMS	32
+
+static struct filewbuf fb_pool[FILEWBUF_POOL_ITEMS];
+static int fb_pool_cur;
+
+wchar_t *
+fgetwln(FILE *stream, size_t *lenp)
+{
+	struct filewbuf *fb;
+	wint_t wc;
+	size_t wused = 0;
+
+	/* Try to diminish the possibility of several fgetwln() calls being
+	 * used on different streams, by using a pool of buffers per file. */
+	fb = &fb_pool[fb_pool_cur];
+	if (fb->fp != stream && fb->fp != NULL) {
+		fb_pool_cur++;
+		fb_pool_cur %= FILEWBUF_POOL_ITEMS;
+		fb = &fb_pool[fb_pool_cur];
+	}
+	fb->fp = stream;
+
+	while ((wc = fgetwc(stream)) != WEOF) {
+		if (!fb->len || wused > fb->len) {
+			wchar_t *wp;
+
+			if (fb->len)
+				fb->len *= 2;
+			else
+				fb->len = FILEWBUF_INIT_LEN;
+
+			wp = realloc(fb->wbuf, fb->len * sizeof(wchar_t));
+			if (wp == NULL) {
+				wused = 0;
+				break;
+			}
+			fb->wbuf = wp;
+		}
+
+		fb->wbuf[wused++] = wc;
+
+		if (wc == L'\n')
+			break;
+	}
+
+	*lenp = wused;
+	return wused ? fb->wbuf : NULL;
+}
