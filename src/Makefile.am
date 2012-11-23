@@ -68,6 +68,8 @@ libbsd_la_SOURCES = \
 	strtonum.c \
 	unvis.c \
 	vis.c \
+	wcslcat.c \
+	wcslcpy.c \
 	$(nil)
 
 runtimelibdir = $(libdir)

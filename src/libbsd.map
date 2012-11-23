@@ -94,3 +94,8 @@ LIBBSD_0.4 {
     closefrom;
     expand_number;
 } LIBBSD_0.3;
+
+LIBBSD_0.5 {
+    wcslcat;
+    wcslcpy;
+} LIBBSD_0.4;

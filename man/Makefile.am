@@ -50,4 +50,6 @@ dist_man_MANS = \
 	tree.3 \
 	unvis.3 \
 	vis.3 \
+	wcslcat.3 \
+	wcslcpy.3 \
 	$(nil)
