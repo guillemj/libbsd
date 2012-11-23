@@ -46,7 +46,11 @@
 #elif defined(__amd64__)
 
 #define ELF_TARG_MACH	EM_X86_64
+#if defined(__ILP32__)
+#define ELF_TARG_CLASS	ELFCLASS32
+#else
 #define ELF_TARG_CLASS	ELFCLASS64
+#endif
 #define ELF_TARG_DATA	ELFDATA2LSB
 
 #elif defined(__arm__)
