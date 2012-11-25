@@ -71,7 +71,7 @@ AC_LINK_IFELSE(
 	 AC_MSG_RESULT([yes])],
 	[AC_MSG_RESULT([no])])
 
-AC_CHECK_FUNCS([dirfd __fpurge getexecname getline sysconf])
+AC_CHECK_FUNCS([clearenv dirfd __fpurge getexecname getline sysconf])
 
 AC_CONFIG_FILES([
 	Makefile
