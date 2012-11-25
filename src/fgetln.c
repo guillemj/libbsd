@@ -1,6 +1,6 @@
 /*
  * Copyright © 2005 Hector Garcia Alvarez
- * Copyright © 2005, 2008, 2009, 2011 Guillem Jover <guillem@hadrons.org>
+ * Copyright © 2005, 2008-2012 Guillem Jover <guillem@hadrons.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -31,21 +31,41 @@
 #include <string.h>
 
 #ifdef HAVE_GETLINE
+struct filebuf {
+	FILE *fp;
+	char *buf;
+	size_t len;
+};
+
+#define FILEBUF_POOL_ITEMS 32
+
+static struct filebuf fb_pool[FILEBUF_POOL_ITEMS];
+static int fb_pool_cur;
+
 char *
 fgetln(FILE *stream, size_t *len)
 {
-	static char *line = NULL;
-	static size_t line_len = 0;
+	struct filebuf *fb;
 	ssize_t nread;
 
-	nread = getline(&line, &line_len, stream);
+	/* Try to diminish the possibility of several fgetln() calls being
+	 * used on different streams, by using a pool of buffers per file. */
+	fb = &fb_pool[fb_pool_cur];
+	if (fb->fp != stream && fb->fp != NULL) {
+		fb_pool_cur++;
+		fb_pool_cur %= FILEBUF_POOL_ITEMS;
+		fb = &fb_pool[fb_pool_cur];
+	}
+	fb->fp = stream;
+
+	nread = getline(&fb->buf, &fb->len, stream);
 	/* Note: the getdelim/getline API ensures nread != 0. */
 	if (nread == -1) {
 		*len = 0;
 		return NULL;
 	} else {
 		*len = (size_t)nread;
-		return line;
+		return fb->buf;
 	}
 }
 #else
