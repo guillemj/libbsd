@@ -65,6 +65,7 @@ libbsd_la_SOURCES = \
 	strlcat.c \
 	strlcpy.c \
 	strmode.c \
+	strnstr.c \
 	strtonum.c \
 	unvis.c \
 	vis.c \

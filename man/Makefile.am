@@ -45,6 +45,7 @@ dist_man_MANS = \
 	sradixsort.3 \
 	strlcat.3 \
 	strlcpy.3 \
+	strnstr.3 \
 	strmode.3 \
 	strtonum.3 \
 	tree.3 \
