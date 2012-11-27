@@ -12,8 +12,10 @@ check_PROGRAMS = \
 	overlay \
 	endian \
 	fgetln \
+	proctitle \
 	$(nil)
 
 fgetln_LDFLAGS = $(top_builddir)/src/libbsd.la
+proctitle_LDFLAGS = $(top_builddir)/src/libbsd.la
 
 TESTS = $(check_PROGRAMS)

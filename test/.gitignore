@@ -2,3 +2,4 @@ endian
 fgetln
 headers
 overlay
+proctitle
