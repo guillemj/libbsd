@@ -99,11 +99,13 @@ getpeereid(int s, uid_t *euid, gid_t *egid)
 }
 #elif defined(__sun)
 /* Solaris */
+#include <alloca.h>
+#include <ucred.h>
+
 int
 getpeereid(int s, uid_t *euid, gid_t *egid)
 {
-	ucred_t cred_inst;
-	ucred_t *cred = &cred_inst;
+	ucred_t *cred = alloca(ucred_size());
 	int ret;
 
 	ret = getpeerucred(s, &cred);
