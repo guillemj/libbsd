@@ -34,7 +34,7 @@ libbsd_la_DEPENDENCIES = \
 	libbsd.map
 libbsd_la_LDFLAGS = \
 	-Wl,--version-script=$(srcdir)/libbsd.map \
-	-version-number 0:4:2
+	-version-number 0:5:0
 libbsd_la_SOURCES = \
 	arc4random.c \
 	bsd_getopt.c \
