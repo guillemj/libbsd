@@ -6,7 +6,7 @@ AC_CONFIG_SRCDIR([src/fgetln.c])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 
-AM_INIT_AUTOMAKE([1.8 foreign nostdinc])
+AM_INIT_AUTOMAKE([1.8 foreign nostdinc no-dist-gzip dist-xz])
 
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])],
                             [AC_SUBST([AM_DEFAULT_VERBOSITY], [1])])
