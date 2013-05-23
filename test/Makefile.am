@@ -11,6 +11,9 @@ check_PROGRAMS = \
 	headers \
 	overlay \
 	endian \
+	fgetln \
 	$(nil)
+
+fgetln_LDFLAGS = $(top_builddir)/src/libbsd.la
 
 TESTS = $(check_PROGRAMS)
