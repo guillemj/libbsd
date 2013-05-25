@@ -73,8 +73,6 @@ LIBBSD_0.2 {
     pidfile_close;
     pidfile_remove;
 
-    setproctitle;
-
     arc4random_buf;
     arc4random_uniform;
 } LIBBSD_0.1;
@@ -98,6 +96,9 @@ LIBBSD_0.4 {
 LIBBSD_0.5 {
     fgetwln;
     fparseln;
+
+    /* Introduced in 0.2 as a stub, implemented in 0.5. */
+    setproctitle;
 
     strnstr;
 

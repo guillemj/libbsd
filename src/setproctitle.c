@@ -191,7 +191,7 @@ spt_init(int argc, char *argv[], char *envp[])
 #endif
 
 void
-setproctitle(const char *fmt, ...)
+setproctitle_impl(const char *fmt, ...)
 {
 	/* Use buffer in case argv[0] is passed. */
 	char buf[SPT_MAXTITLE + 1];
@@ -243,3 +243,13 @@ setproctitle(const char *fmt, ...)
 		*++nul = '\0';
 	}
 }
+__asm__(".symver setproctitle_impl,setproctitle@@LIBBSD_0.5");
+
+#ifdef HAVE_TYPEOF
+/* The original function introduced in 0.2 was a stub, it only got implemented
+ * in 0.5, make the implementation available in the old version as an alias
+ * for code linking against that version, and change the default to use the
+ * new version, so that new code depends on the implemented version. */
+extern typeof(setproctitle_impl) setproctitle_stub __attribute__((alias("setproctitle_impl")));
+__asm__(".symver setproctitle_stub,setproctitle@LIBBSD_0.2");
+#endif

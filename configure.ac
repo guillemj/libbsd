@@ -38,6 +38,7 @@ AC_CHECK_HEADERS([sys/ndir.h sys/dir.h dir.h dirent.h])
 # Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_UID_T
 AC_C_INLINE
+AC_C_TYPEOF
 AC_TYPE_INT64_T
 AC_TYPE_MODE_T
 AC_TYPE_OFF_T
