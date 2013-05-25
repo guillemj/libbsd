@@ -1,3 +1,4 @@
+/*     $NetBSD: radixsort.c,v 1.18 2009/08/21 20:49:50 dsl Exp $       */
 /*-
  * Copyright (c) 1990, 1993
  *	The Regents of the University of California.  All rights reserved.
@@ -13,7 +14,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 4. Neither the name of the University nor the names of its contributors
+ * 3. Neither the name of the University nor the names of its contributors
  *    may be used to endorse or promote products derived from this software
  *    without specific prior written permission.
  *
@@ -30,11 +31,14 @@
  * SUCH DAMAGE.
  */
 
-#if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)radixsort.c	8.2 (Berkeley) 4/28/95";
-#endif /* LIBC_SCCS and not lint */
 #include <sys/cdefs.h>
-__FBSDID("$FreeBSD$");
+#if defined(LIBC_SCCS) && !defined(lint)
+#if 0
+static char sccsid[] = "@(#)radixsort.c	8.2 (Berkeley) 4/28/95";
+#else
+__RCSID("$NetBSD: radixsort.c,v 1.18 2009/08/21 20:49:50 dsl Exp $");
+#endif
+#endif /* LIBC_SCCS and not lint */
 
 /*
  * Radixsort routines.
@@ -59,11 +63,10 @@ typedef struct {
 	int sn, si;
 } stack;
 
-static inline void simplesort
-(const u_char **, int, int, const u_char *, u_int);
+static inline void simplesort(const u_char **, int, int, const u_char *, u_int);
 static void r_sort_a(const u_char **, int, int, const u_char *, u_int);
-static void r_sort_b(const u_char **, const u_char **, int, int,
-    const u_char *, u_int);
+static void r_sort_b(const u_char **,
+	    const u_char **, int, int, const u_char *, u_int);
 
 #define	THRESHOLD	20		/* Divert to simplesort(). */
 #define	SIZE		512		/* Default stack size. */
@@ -88,13 +91,10 @@ static void r_sort_b(const u_char **, const u_char **, int, int,
 }
 
 int
-radixsort(a, n, tab, endch)
-	const u_char **a, *tab;
-	int n;
-	u_int endch;
+radixsort(const u_char **a, int n, const u_char *tab, u_int endch)
 {
 	const u_char *tr;
-	int c;
+	u_int c;
 	u_char tr0[256];
 
 	SETUP;
@@ -103,14 +103,16 @@ radixsort(a, n, tab, endch)
 }
 
 int
-sradixsort(a, n, tab, endch)
-	const u_char **a, *tab;
-	int n;
-	u_int endch;
+sradixsort(const u_char **a, int n, const u_char *tab, u_int endch)
 {
 	const u_char *tr, **ta;
-	int c;
+	u_int c;
 	u_char tr0[256];
+
+	if (a == NULL) {
+		errno = EFAULT;
+		return (-1);
+	}
 
 	SETUP;
 	if (n < THRESHOLD)
@@ -131,17 +133,13 @@ sradixsort(a, n, tab, endch)
 
 /* Unstable, in-place sort. */
 static void
-r_sort_a(a, n, i, tr, endch)
-	const u_char **a;
-	int n, i;
-	const u_char *tr;
-	u_int endch;
+r_sort_a(const u_char **a, int n, int i, const u_char *tr, u_int endch)
 {
-	static int count[256], nc, bmin;
-	int c;
+	static u_int count[256], nc, bmin;
+	u_int c;
 	const u_char **ak, *r;
 	stack s[SIZE], *sp, *sp0, *sp1, temp;
-	int *cp, bigc;
+	u_int *cp, bigc;
 	const u_char **an, *t, **aj, **top[256];
 
 	/* Set up stack. */
@@ -233,18 +231,15 @@ r_sort_a(a, n, i, tr, endch)
 
 /* Stable sort, requiring additional memory. */
 static void
-r_sort_b(a, ta, n, i, tr, endch)
-	const u_char **a, **ta;
-	int n, i;
-	const u_char *tr;
-	u_int endch;
+r_sort_b(const u_char **a, const u_char **ta, int n, int i, const u_char *tr,
+    u_int endch)
 {
-	static int count[256], nc, bmin;
-	int c;
+	static u_int count[256], nc, bmin;
+	u_int c;
 	const u_char **ak, **ai;
 	stack s[512], *sp, *sp0, *sp1, temp;
 	const u_char **top[256];
-	int *cp, bigc;
+	u_int *cp, bigc;
 
 	sp = s;
 	push(a, n, i);
@@ -304,12 +299,9 @@ r_sort_b(a, ta, n, i, tr, endch)
 	}
 }
 
+/* insertion sort */
 static inline void
-simplesort(a, n, b, tr, endch)	/* insertion sort */
-	const u_char **a;
-	int n, b;
-	const u_char *tr;
-	u_int endch;
+simplesort(const u_char **a, int n, int b, const u_char *tr, u_int endch)
 {
 	u_char ch;
 	const u_char  **ak, **ai, *s, *t;
