@@ -27,7 +27,7 @@ pkgconfig_DATA = \
 lib_LTLIBRARIES = libbsd.la
 
 hash/md5hl.c: $(srcdir)/hash/helper.c
-	$(MKDIR_P) hash
+	$(AM_V_at) $(MKDIR_P) hash
 	$(AM_V_GEN) sed -e 's:hashinc:md5.h:g' -e 's:HASH:MD5:g' $< > $@
 
 libbsd_la_DEPENDENCIES = \
