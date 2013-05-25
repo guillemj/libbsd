@@ -175,7 +175,7 @@ r_sort_a(const u_char **a, int n, int i, const u_char *tr, u_int endch)
 		 * character at position i, move on to the next
 		 * character.
 		 */
-		if (nc == 1 && count[bmin] == n) {
+		if (nc == 1 && count[bmin] == (u_int)n) {
 			push(a, n, i+1);
 			nc = count[bmin] = 0;
 			continue;

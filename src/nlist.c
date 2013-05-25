@@ -100,7 +100,8 @@ __fdnlist(fd, list)
 	int fd;
 	struct nlist *list;
 {
-	int n = -1, i;
+	size_t i;
+	int n = -1;
 
 	for (i = 0; i < sizeof(nlist_fn) / sizeof(nlist_fn[0]); i++) {
 		n = (nlist_fn[i].fn)(fd, list);
