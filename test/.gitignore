@@ -1,5 +1,6 @@
 endian
 fgetln
 headers
+humanize
 overlay
 proctitle

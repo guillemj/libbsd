@@ -11,10 +11,12 @@ check_PROGRAMS = \
 	headers \
 	overlay \
 	endian \
+	humanize \
 	fgetln \
 	proctitle \
 	$(nil)
 
+humanize_LDFLAGS = $(top_builddir)/src/libbsd.la
 fgetln_LDFLAGS = $(top_builddir)/src/libbsd.la
 proctitle_LDFLAGS = $(top_builddir)/src/libbsd.la
 
