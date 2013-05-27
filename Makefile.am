@@ -9,11 +9,8 @@ EXTRA_DIST = \
 	get-version \
 	$(nil)
 
-DISTCLEANFILES = ChangeLog
-.PHONY: ChangeLog
-
-ChangeLog:
-	git log --stat -C >$@
-
 dist-hook:
 	echo $(VERSION) >$(distdir)/.dist-version
+	if [ -d .git ]; then \
+	  git log --stat -C >$(distdir)/ChangeLog; \
+	fi
