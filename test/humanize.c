@@ -58,7 +58,7 @@ main(int argc, char **argv)
 	assert(val == 20971520);
 
 	assert(dehumanize_number("-3G", &val) == 0);
-	assert(val == -3221225472);
+	assert(val == -3221225472LL);
 
 	return 0;
 }
