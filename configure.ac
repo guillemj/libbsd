@@ -53,6 +53,51 @@ AC_CHECK_DECL([F_CLOSEM],
               [#include <limits.h>
                #include <fcntl.h>])
 
+AC_CACHE_CHECK(
+	[for GNU .init_array section support],
+	[libbsd_cv_gnu_init_array_support],
+	[AC_RUN_IFELSE(
+		[AC_LANG_SOURCE(
+[[
+static int rc = 1;
+static void init(int argc) { if (argc == 1) rc = 0; }
+void (*init_func)(int argc) __attribute__((section(".init_array"))) = init;
+int main() { return rc; }
+]]
+		)],
+		[libbsd_cv_gnu_init_array_support=yes],
+		[libbsd_cv_gnu_init_array_support=no],
+		[AC_PREPROC_IFELSE(
+			[AC_LANG_SOURCE(
+[[
+/* Look for a known libc that supports .init_array with the GNU extension
+ * to pass main() arguments to the init functions. */
+#include <stdlib.h>
+#if defined __GLIBC_PREREQ
+#  if __GLIBC_PREREQ(2, 4)
+/* glibc supports GNU .init_array since 2.4. */
+#  else
+#    error glibc does not support GNU .init_array
+#  endif
+#else
+/*
+ * Basic SysV ABI .init_array support, init functions do not get arguments:
+ * - Bionic since its inception.
+ * - uClibc since 0.9.29.
+ */
+#  error unknown whether libc supports GNU .init_array
+#endif
+]]
+			)],
+			[libbsd_cv_gnu_init_array_support=yes],
+			[libbsd_cv_gnu_init_array_support=no])
+		]
+	)]
+)
+if test "$libbsd_cv_gnu_init_array_support" = no; then
+	AC_MSG_ERROR([missing required GNU .init_array section support])
+fi
+
 # Checks for library functions.
 AC_MSG_CHECKING([for program_invocation_short_name])
 AC_LINK_IFELSE(

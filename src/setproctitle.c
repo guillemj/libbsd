@@ -1,6 +1,6 @@
 /*
  * Copyright © 2010 William Ahern
- * Copyright © 2012 Guillem Jover <guillem@hadrons.org>
+ * Copyright © 2012-2013 Guillem Jover <guillem@hadrons.org>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the
@@ -129,7 +129,7 @@ spt_copyargs(int argc, char *argv[])
 	return 0;
 }
 
-static void __attribute__((constructor))
+static void
 spt_init(int argc, char *argv[], char *envp[])
 {
 	char *base, *end, *nul, *tmp;
@@ -185,6 +185,14 @@ spt_init(int argc, char *argv[], char *envp[])
 	SPT.base = base;
 	SPT.end  = end;
 }
+
+/*
+ * Force spt_init() function into the .init_array section instead of expecting
+ * either the compiler to place constructors there or the linker to move them
+ * from .ctors to .init_array.
+ */
+void (*spt_init_func)(int argc, char *argv[], char *envp[])
+	__attribute__((section(".init_array"))) = spt_init;
 
 #ifndef SPT_MAXTITLE
 #define SPT_MAXTITLE 255
