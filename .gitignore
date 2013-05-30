@@ -5,6 +5,8 @@ ChangeLog
 *.o
 *.so*
 *.a
+*.log
+*.trs
 .deps/
 .libs/
 Makefile
