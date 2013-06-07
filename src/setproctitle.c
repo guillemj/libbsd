@@ -76,35 +76,59 @@ spt_clearenv(void)
 }
 
 static int
-spt_copyenv(char *oldenv[])
+spt_copyenv(int envc, char *envp[])
 {
+	char **envcopy;
 	char *eq;
+	int envsize;
 	int i, error;
 
-	if (environ != oldenv)
+	if (environ != envp)
 		return 0;
+
+	/* Make a copy of the old environ array of pointers, in case
+	 * clearenv() or setenv() is implemented to free the internal
+	 * environ array, because we will need to access the old environ
+	 * contents to make the new copy. */
+	envsize = (envc + 1) * sizeof(char *);
+	envcopy = malloc(envsize);
+	if (envcopy == NULL)
+		return errno;
+	memcpy(envcopy, envp, envsize);
 
 	error = spt_clearenv();
 	if (error) {
-		environ = oldenv;
+		environ = envp;
+		free(envcopy);
 		return error;
 	}
 
-	for (i = 0; oldenv[i]; i++) {
-		eq = strchr(oldenv[i], '=');
+	for (i = 0; envcopy[i]; i++) {
+		eq = strchr(envcopy[i], '=');
 		if (eq == NULL)
 			continue;
 
 		*eq = '\0';
-		if (setenv(oldenv[i], eq + 1, 1) < 0)
+		if (setenv(envcopy[i], eq + 1, 1) < 0)
 			error = errno;
 		*eq = '=';
 
 		if (error) {
-			environ = oldenv;
+#ifdef HAVE_CLEARENV
+			/* Because the old environ might not be available
+			 * anymore we will make do with the shallow copy. */
+			environ = envcopy;
+#else
+			environ = envp;
+			free(envcopy);
+#endif
 			return error;
 		}
 	}
+
+	/* Dispose of the shallow copy, now that we've finished transfering
+	 * the old environment. */
+	free(envcopy);
 
 	return 0;
 }
@@ -133,7 +157,7 @@ static void
 spt_init(int argc, char *argv[], char *envp[])
 {
 	char *base, *end, *nul, *tmp;
-	int i, error;
+	int i, envc, error;
 
 	/* Try to make sure we got called with main() arguments. */
 	if (argc < 0)
@@ -159,6 +183,7 @@ spt_init(int argc, char *argv[], char *envp[])
 
 		end = envp[i] + strlen(envp[i]) + 1;
 	}
+	envc = i;
 
 	SPT.arg0 = strdup(argv[0]);
 	if (SPT.arg0 == NULL) {
@@ -173,7 +198,7 @@ spt_init(int argc, char *argv[], char *envp[])
 	}
 	setprogname(tmp);
 
-	error = spt_copyenv(envp);
+	error = spt_copyenv(envc, envp);
 	if (error) {
 		SPT.error = error;
 		return;
