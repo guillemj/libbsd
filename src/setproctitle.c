@@ -135,6 +135,10 @@ spt_init(int argc, char *argv[], char *envp[])
 	char *base, *end, *nul, *tmp;
 	int i, error;
 
+	/* Try to make sure we got called with main() arguments. */
+	if (argc < 0)
+		return;
+
 	base = argv[0];
 	if (base == NULL)
 		return;
