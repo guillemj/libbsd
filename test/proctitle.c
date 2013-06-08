@@ -1,5 +1,5 @@
 /*
- * Copyright © 2012 Guillem Jover <guillem@hadrons.org>
+ * Copyright © 2012-2013 Guillem Jover <guillem@hadrons.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -35,6 +35,7 @@ main(int argc, char **argv)
 {
 	const char newtitle_base[] = "test arg1 arg2";
 	char *newtitle_full;
+	char *envvar;
 
 	setproctitle("-test %s arg2", "arg1");
 	assert(strcmp(argv[0], newtitle_base) == 0);
@@ -43,6 +44,11 @@ main(int argc, char **argv)
 	setproctitle("test %s arg2", "arg1");
 	assert(strcmp(argv[0], newtitle_full) == 0);
 	free(newtitle_full);
+
+	assert(setenv("LIBBSD_TEST", "test value", 1) == 0);
+	envvar = getenv("LIBBSD_TEST");
+	assert(envvar != NULL);
+	assert(strcmp(envvar, "test value") == 0);
 
 	return 0;
 }
