@@ -10,6 +10,7 @@ AM_CPPFLAGS = \
 EXTRA_DIST = \
 	libbsd.map \
 	libbsd.pc.in \
+	libbsd-ctor.pc.in \
 	libbsd-overlay.pc.in \
 	hash/helper.c \
 	$(nil)
@@ -21,10 +22,12 @@ CLEANFILES = \
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = \
 	libbsd.pc \
+	libbsd-ctor.pc \
 	libbsd-overlay.pc \
 	$(nil)
 
 lib_LTLIBRARIES = libbsd.la
+lib_LIBRARIES = libbsd-ctor.a
 
 hash/md5hl.c: $(srcdir)/hash/helper.c
 	$(AM_V_at) $(MKDIR_P) hash
@@ -73,6 +76,10 @@ libbsd_la_SOURCES = \
 	vis.c \
 	wcslcat.c \
 	wcslcpy.c \
+	$(nil)
+
+libbsd_ctor_a_SOURCES = \
+	setproctitle_ctor.c \
 	$(nil)
 
 runtimelibdir = $(libdir)

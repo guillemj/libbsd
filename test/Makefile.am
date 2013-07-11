@@ -18,6 +18,10 @@ check_PROGRAMS = \
 
 humanize_LDFLAGS = $(top_builddir)/src/libbsd.la
 fgetln_LDFLAGS = $(top_builddir)/src/libbsd.la
-proctitle_LDFLAGS = $(top_builddir)/src/libbsd.la
+proctitle_LDFLAGS = \
+	-Wl,-u,libbsd_init_func \
+	$(top_builddir)/src/libbsd-ctor.a \
+	$(top_builddir)/src/libbsd.la \
+	$(nil)
 
 TESTS = $(check_PROGRAMS)

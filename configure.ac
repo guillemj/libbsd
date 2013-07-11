@@ -132,6 +132,7 @@ AC_CONFIG_FILES([
 	man/Makefile
 	src/Makefile
 	src/libbsd.pc
+	src/libbsd-ctor.pc
 	src/libbsd-overlay.pc
 	test/Makefile
 ])

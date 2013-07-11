@@ -33,6 +33,8 @@
 .In sys/types.h
 .In bsd/unistd.h
 .Ft void
+.Fn setproctitle_init "int argc" "char *argv[]" "char *envp[]"
+.Ft void
 .Fn setproctitle "const char *fmt" "..."
 .Sh DESCRIPTION
 The
@@ -40,6 +42,15 @@ The
 library routine sets the process title that appears on the
 .Xr ps 1
 command.
+.Pp
+The
+.Fn setproctitle_init
+library routine only needs to be called (before any call to
+.Fn setproctitle
+and with
+.Fn main
+arguments), if the automatic constructor support has not
+been linked in through the libbsd-ctor pkg-config file.
 .Pp
 The title is set from the executable's name, followed by the
 result of a
@@ -101,6 +112,11 @@ first appeared in
 .Fx 2.2 .
 Other operating systems have
 similar functions.
+.Pp
+The
+.Fn setproctitle_init
+function is a libbsd extension not present on the BSDs, avoid using it
+in portable code.
 .Sh AUTHORS
 .An -nosplit
 .An Peter Wemm Aq peter@FreeBSD.org

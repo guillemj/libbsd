@@ -153,8 +153,8 @@ spt_copyargs(int argc, char *argv[])
 	return 0;
 }
 
-static void
-spt_init(int argc, char *argv[], char *envp[])
+void
+setproctitle_init(int argc, char *argv[], char *envp[])
 {
 	char *base, *end, *nul, *tmp;
 	int i, envc, error;
@@ -214,14 +214,6 @@ spt_init(int argc, char *argv[], char *envp[])
 	SPT.base = base;
 	SPT.end  = end;
 }
-
-/*
- * Force spt_init() function into the .init_array section instead of expecting
- * either the compiler to place constructors there or the linker to move them
- * from .ctors to .init_array.
- */
-void (*spt_init_func)(int argc, char *argv[], char *envp[])
-	__attribute__((section(".init_array"))) = spt_init;
 
 #ifndef SPT_MAXTITLE
 #define SPT_MAXTITLE 255

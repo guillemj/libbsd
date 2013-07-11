@@ -1,6 +1,5 @@
 /*
- * Copyright © 2006 Robert Millan
- * Copyright © 2008-2011 Guillem Jover <guillem@hadrons.org>
+ * Copyright © 2013 Guillem Jover <guillem@hadrons.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -25,44 +24,29 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifdef LIBBSD_OVERLAY
-#include_next <unistd.h>
-#else
 #include <unistd.h>
-#endif
 
-#ifndef LIBBSD_UNISTD_H
-#define LIBBSD_UNISTD_H
+/*
+ * The automatic initialization cannot be part of the main shared library,
+ * because there is no thread-safe way to change the environ global
+ * variable. This is not a problem if the initializaion happens just at
+ * program load time, but becomes one if the shared library is directly or
+ * indirectly dlopen()ed during the execution of the program, which could
+ * have either kept references to the old environ or could change it in
+ * some other thread. This has been observed for example on systems using
+ * Samba NSS modules.
+ *
+ * To avoid any other possible fallout, the constructor is split into a
+ * new static library that needs to be linked explicitly into programs
+ * using setproctitle(). As an additional safety measure the pkg-config
+ * linker flags will mark the program as not allowing to be dlopen()ed
+ * so that we make sure to avoid the problem described above.
+ */
 
-#include <sys/cdefs.h>
-#include <sys/stat.h>
-
-#ifndef S_ISTXT
-#define S_ISTXT S_ISVTX
-#endif
-
-__BEGIN_DECLS
-extern int optreset;
-
-#ifdef LIBBSD_OVERLAY
-#undef getopt
-#define getopt(argc, argv, optstr) bsd_getopt(argc, argv, optstr)
-#endif
-
-int bsd_getopt(int argc, char * const argv[], const char *shortopts);
-
-mode_t getmode(const void *set, mode_t mode);
-void *setmode(const char *mode_str);
-
-void closefrom(int lowfd);
-
-/* Compatibility with sendmail implementations. */
-#define initsetproctitle(c, a, e) setproctitle_init((c), (a), (e))
-
-void setproctitle_init(int argc, char *argv[], char *envp[]);
-void setproctitle(const char *fmt, ...);
-
-int getpeereid(int s, uid_t *euid, gid_t *egid);
-__END_DECLS
-
-#endif
+/*
+ * Force setproctitle_init() function into the .init_array section instead of
+ * expecting either the compiler to place constructors there or the linker to
+ * move them from .ctors to .init_array.
+ */
+void (*libbsd_init_func)(int argc, char *argv[], char *envp[])
+	__attribute__((section(".init_array"))) = setproctitle_init;
