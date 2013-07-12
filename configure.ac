@@ -11,6 +11,13 @@ AM_INIT_AUTOMAKE([1.8 foreign nostdinc no-dist-gzip dist-xz])
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])],
                             [AC_SUBST([AM_DEFAULT_VERBOSITY], [1])])
 
+LIBBSD_ABI_MAJOR=0
+LIBBSD_ABI_MINOR=5
+LIBBSD_ABI_PATCH=2
+
+LIBBSD_ABI="$LIBBSD_ABI_MAJOR:$LIBBSD_ABI_MINOR:$LIBBSD_ABI_PATCH"
+AC_SUBST([LIBBSD_ABI])
+
 # Check and store if we got user supplied variables
 user_CFLAGS=${CFLAGS-unset}
 
