@@ -28,6 +28,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <err.h>
 #include <unistd.h>
 #include <string.h>
 
@@ -41,6 +42,7 @@ static struct {
 	 /* Pointer to original nul character within base. */
 	char *nul;
 
+	bool warned;
 	bool reset;
 	int error;
 } SPT;
@@ -228,8 +230,14 @@ setproctitle_impl(const char *fmt, ...)
 	char *nul;
 	int len;
 
-	if (SPT.base == NULL)
+	if (SPT.base == NULL) {
+		if (!SPT.warned) {
+			warnx("setproctitle not initialized, please either call "
+			      "setproctitle_init() or link against libbsd-ctor.");
+			SPT.warned = true;
+		}
 		return;
+	}
 
 	if (fmt) {
 		if (fmt[0] == '-') {
