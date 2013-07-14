@@ -25,6 +25,7 @@
  */
 
 #include <assert.h>
+#include <errno.h>
 #include <stdlib.h>
 
 int
@@ -59,6 +60,18 @@ main(int argc, char **argv)
 
 	assert(dehumanize_number("-3G", &val) == 0);
 	assert(val == -3221225472LL);
+
+	assert(dehumanize_number("9223372036854775807", &val) == 0);
+	assert(val == INT64_MAX);
+
+	assert(dehumanize_number("9223372036854775808", &val) == -1);
+	assert(errno == ERANGE);
+
+	assert(dehumanize_number("-9223372036854775808", &val) == 0);
+	assert(val == INT64_MIN);
+
+	assert(dehumanize_number("-9223372036854775809", &val) == -1);
+	assert(errno == ERANGE);
 
 	return 0;
 }

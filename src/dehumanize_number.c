@@ -1,5 +1,5 @@
 /*
- * Copyright © 2012 Guillem Jover <guillem@hadrons.org>
+ * Copyright © 2012-2013 Guillem Jover <guillem@hadrons.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -35,8 +35,8 @@
 int
 dehumanize_number(const char *buf, int64_t *num)
 {
-	uint64_t rval;
-	int sign = 1;
+	uint64_t rval, rmax;
+	int sign = +1;
 	int rc;
 
 	/* The current expand_number() implementation uses bit shifts, so
@@ -52,7 +52,13 @@ dehumanize_number(const char *buf, int64_t *num)
 	rc = expand_number(buf, &rval);
 	if (rc < 0)
 		return rc;
-	if (rval == UINT64_MAX && sign == -1) {
+
+	/* The sign has been stripped, so rval has the absolute value.
+	 * Error out, regardless of the sign, if rval is greater than
+	 * abs(INT64_MIN) (== INT64_MAX + 1), or if the sign is positive
+	 * and the value has overflown by one (INT64_MAX + 1). */
+	rmax = INT64_MAX + 1ULL;
+	if (rval > rmax || (rval == rmax && sign == +1)) {
 		errno = ERANGE;
 		return -1;
 	}
