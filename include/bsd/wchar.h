@@ -1,5 +1,5 @@
 /*
- * Copyright © 2012 Guillem Jover <guillem@hadrons.org>
+ * Copyright © 2012-2013 Guillem Jover <guillem@hadrons.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -24,12 +24,18 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if defined(__need_wchar_t) || defined(__need_wint_t) || \
+    defined(__need_mbstate_t)
+#define LIBBSD_WCHAR_H_SKIP
+#endif
+
 #ifdef LIBBSD_OVERLAY
 #include_next <wchar.h>
 #else
 #include <wchar.h>
 #endif
 
+#ifndef LIBBSD_WCHAR_H_SKIP
 #ifndef LIBBSD_WCHAR_H
 #define LIBBSD_WCHAR_H
 
@@ -45,3 +51,5 @@ size_t wcslcpy(wchar_t *dst, const wchar_t *src, size_t size);
 __END_DECLS
 
 #endif
+#endif
+#undef LIBBSD_WCHAR_H_SKIP

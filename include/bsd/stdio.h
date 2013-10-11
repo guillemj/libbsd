@@ -1,5 +1,5 @@
 /*
- * Copyright © 2004, 2005, 2009, 2011 Guillem Jover <guillem@hadrons.org>
+ * Copyright © 2004-2005, 2009, 2011-2013 Guillem Jover <guillem@hadrons.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -24,12 +24,17 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if defined(__need_FILE) || defined(__need___FILE)
+#define LIBBSD_STDIO_H_SKIP
+#endif
+
 #ifdef LIBBSD_OVERLAY
 #include_next <stdio.h>
 #else
 #include <stdio.h>
 #endif
 
+#ifndef LIBBSD_STDIO_H_SKIP
 #ifndef LIBBSD_STDIO_H
 #define LIBBSD_STDIO_H
 
@@ -45,3 +50,5 @@ int fpurge(FILE *fp);
 __END_DECLS
 
 #endif
+#endif
+#undef LIBBSD_STDIO_H_SKIP
