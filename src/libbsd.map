@@ -113,4 +113,13 @@ LIBBSD_0.6 {
 
 LIBBSD_0.7 {
     funopen;
+
+    _time32_to_time;
+    _time_to_time32;
+    _time64_to_time;
+    _time_to_time64;
+    _time_to_long;
+    _long_to_time;
+    _time_to_int;
+    _int_to_time;
 } LIBBSD_0.6;

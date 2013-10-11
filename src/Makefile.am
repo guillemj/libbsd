@@ -73,6 +73,7 @@ libbsd_la_SOURCES = \
 	strmode.c \
 	strnstr.c \
 	strtonum.c \
+	timeconv.c \
 	unvis.c \
 	vis.c \
 	wcslcat.c \
