@@ -110,3 +110,7 @@ LIBBSD_0.6 {
     /* Exported to cope with the constructor+dlopen+threads mess. */
     setproctitle_init;
 } LIBBSD_0.5;
+
+LIBBSD_0.7 {
+    funopen;
+} LIBBSD_0.6;

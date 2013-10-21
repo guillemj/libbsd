@@ -13,11 +13,13 @@ check_PROGRAMS = \
 	endian \
 	humanize \
 	fgetln \
+	funopen \
 	proctitle \
 	$(nil)
 
 humanize_LDFLAGS = $(top_builddir)/src/libbsd.la
 fgetln_LDFLAGS = $(top_builddir)/src/libbsd.la
+funopen_LDFLAGS = $(top_builddir)/src/libbsd.la
 proctitle_LDFLAGS = \
 	-Wl,-u,libbsd_init_func \
 	$(top_builddir)/src/libbsd-ctor.a \

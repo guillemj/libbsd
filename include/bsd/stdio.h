@@ -46,6 +46,23 @@ const char *fmtcheck(const char *, const char *);
 
 char *fgetln(FILE *fp, size_t *lenp);
 
+/*
+ * Note: We diverge from the FreeBSD, OpenBSD and DragonFlyBSD declarations,
+ * because seekfn() there wrongly uses fpos_t, assuming it's an integral
+ * type, and any code using that on a system where fpos_t is a struct
+ * (such as GNU-based systems or NetBSD) will fail to build. In which case,
+ * as the code has to be modified anyway, we might just as well use the
+ * correct declaration here.
+ */
+FILE *funopen(const void *cookie,
+              int (*readfn)(void *cookie, char *buf, int size),
+              int (*writefn)(void *cookie, const char *buf, int size),
+              off_t (*seekfn)(void *cookie, off_t offset, int whence),
+              int (*closefn)(void *cookie));
+
+#define fropen(cookie, fn) funopen(cookie, fn, NULL, NULL, NULL)
+#define fwopen(cookie, fn) funopen(cookie, NULL, fn, NULL, NULL)
+
 int fpurge(FILE *fp);
 __END_DECLS
 
