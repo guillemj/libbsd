@@ -19,6 +19,7 @@ nobase_include_HEADERS = \
 	bsd/stdio.h \
 	bsd/stdlib.h \
 	bsd/string.h \
+	bsd/stringlist.h \
 	bsd/timeconv.h \
 	bsd/unistd.h \
 	bsd/vis.h \

@@ -47,6 +47,7 @@ dist_man_MANS = \
 	setproctitle.3 \
 	setprogname.3 \
 	sradixsort.3 \
+	stringlist.3 \
 	strlcat.3 \
 	strlcpy.3 \
 	strnstr.3 \

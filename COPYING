@@ -207,10 +207,12 @@ The rest of the licenses apply to code and/or man pages.
 
     --
 
-    Copyright © 1997-2000, 2002, 2008 The NetBSD Foundation, Inc.
+    Copyright © 1994, 1997-2000, 2002, 2008 The NetBSD Foundation, Inc.
     All rights reserved.
 
     Some code was contributed to The NetBSD Foundation by Allen Briggs.
+
+    Some code was contributed to The NetBSD Foundation by Luke Mewburn.
 
     Some code is derived from software contributed to The NetBSD Foundation
     by Jason R. Thorpe of the Numerical Aerospace Simulation Facility,
@@ -219,6 +221,9 @@ The rest of the licenses apply to code and/or man pages.
     Some code is derived from software contributed to The NetBSD Foundation
     by Julio M. Merino Vidal, developed as part of Google's Summer of Code
     2005 program.
+
+    Some code is derived from software contributed to The NetBSD Foundation
+    by Christos Zoulas.
 
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions

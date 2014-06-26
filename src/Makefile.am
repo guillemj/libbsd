@@ -71,6 +71,7 @@ libbsd_la_SOURCES = \
 	setproctitle.c \
 	strlcat.c \
 	strlcpy.c \
+	stringlist.c \
 	strmode.c \
 	strnstr.c \
 	strtonum.c \
