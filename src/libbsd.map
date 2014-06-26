@@ -112,6 +112,8 @@ LIBBSD_0.6 {
 } LIBBSD_0.5;
 
 LIBBSD_0.7 {
+    getbsize;
+
     funopen;
 
     _time32_to_time;

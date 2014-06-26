@@ -52,6 +52,7 @@ libbsd_la_SOURCES = \
 	fparseln.c \
 	fpurge.c \
 	funopen.c \
+	getbsize.c \
 	getpeereid.c \
 	hash/md5.c \
 	hash/md5hl.c \

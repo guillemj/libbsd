@@ -29,6 +29,7 @@ dist_man_MANS = \
 	fmtcheck.3 \
 	fparseln.3 \
 	funopen.3 \
+	getbsize.3 \
 	getmode.3 \
 	getpeereid.3 \
 	getprogname.3 \

@@ -70,6 +70,8 @@ void *reallocf(void *ptr, size_t size);
 
 long long strtonum(const char *nptr, long long minval, long long maxval,
                    const char **errstr);
+
+char *getbsize(int *headerlenp, long *blocksizep);
 __END_DECLS
 
 #endif
