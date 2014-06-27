@@ -116,6 +116,8 @@ LIBBSD_0.7 {
 
     funopen;
 
+    reallocarray;
+
     sl_init;
     sl_add;
     sl_free;

@@ -67,6 +67,7 @@ int sradixsort(const unsigned char **base, int nmemb,
                const unsigned char *table, unsigned endbyte);
 
 void *reallocf(void *ptr, size_t size);
+void *reallocarray(void *ptr, size_t nmemb, size_t size);
 
 long long strtonum(const char *nptr, long long minval, long long maxval,
                    const char **errstr);

@@ -66,6 +66,7 @@ libbsd_la_SOURCES = \
 	progname.c \
 	radixsort.c \
 	readpassphrase.c \
+	reallocarray.c \
 	reallocf.c \
 	setmode.c \
 	setproctitle.c \
