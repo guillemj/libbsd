@@ -101,9 +101,8 @@ int main() { return rc; }
 		]
 	)]
 )
-if test "$libbsd_cv_gnu_init_array_support" = no; then
-	AC_MSG_ERROR([missing required GNU .init_array section support])
-fi
+AM_CONDITIONAL([BUILD_LIBBSD_CTOR],
+               [test "$libbsd_cv_gnu_init_array_support" = yes])
 
 # Checks for library functions.
 AC_MSG_CHECKING([for program_invocation_short_name])

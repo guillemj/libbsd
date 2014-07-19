@@ -22,12 +22,17 @@ CLEANFILES = \
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = \
 	libbsd.pc \
-	libbsd-ctor.pc \
 	libbsd-overlay.pc \
 	$(nil)
 
 lib_LTLIBRARIES = libbsd.la
-lib_LIBRARIES = libbsd-ctor.a
+lib_LIBRARIES =
+
+if BUILD_LIBBSD_CTOR
+pkgconfig_DATA += libbsd-ctor.pc
+
+lib_LIBRARIES += libbsd-ctor.a
+endif
 
 hash/md5hl.c: $(srcdir)/hash/helper.c
 	$(AM_V_at) $(MKDIR_P) hash

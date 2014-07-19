@@ -14,12 +14,19 @@ check_PROGRAMS = \
 	humanize \
 	fgetln \
 	funopen \
-	proctitle \
+	proctitle-init \
 	$(nil)
+
+if BUILD_LIBBSD_CTOR
+check_PROGRAMS += proctitle
+endif
 
 humanize_LDFLAGS = $(top_builddir)/src/libbsd.la
 fgetln_LDFLAGS = $(top_builddir)/src/libbsd.la
 funopen_LDFLAGS = $(top_builddir)/src/libbsd.la
+proctitle_init_SOURCES = proctitle.c
+proctitle_init_CPPFLAGS = $(AM_CPPFLAGS) -DTEST_USE_SETPROCTITLE_INIT=1
+proctitle_init_LDFLAGS = $(top_builddir)/src/libbsd.la
 proctitle_LDFLAGS = \
 	-Wl,-u,libbsd_init_func \
 	$(top_builddir)/src/libbsd-ctor.a \

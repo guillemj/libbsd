@@ -31,11 +31,15 @@
 #include <string.h>
 
 int
-main(int argc, char **argv)
+main(int argc, char **argv, char **envp)
 {
 	const char newtitle_base[] = "test arg1 arg2";
 	char *newtitle_full;
 	char *envvar;
+
+#ifdef TEST_USE_SETPROCTITLE_INIT
+	setproctitle_init(argc, argv, envp);
+#endif
 
 	setproctitle("-test %s arg2", "arg1");
 	assert(strcmp(argv[0], newtitle_base) == 0);
