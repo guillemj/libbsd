@@ -47,11 +47,11 @@
 #include <stdint.h>
 
 __BEGIN_DECLS
-u_int32_t arc4random(void);
+uint32_t arc4random(void);
 void arc4random_stir(void);
 void arc4random_addrandom(u_char *dat, int datlen);
 void arc4random_buf(void *_buf, size_t n);
-u_int32_t arc4random_uniform(u_int32_t upper_bound);
+uint32_t arc4random_uniform(uint32_t upper_bound);
 
 int dehumanize_number(const char *str, int64_t *size);
 
