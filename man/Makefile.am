@@ -42,6 +42,7 @@ dist_man_MANS = \
 	queue.3bsd \
 	radixsort.3 \
 	readpassphrase.3 \
+	reallocarray.3 \
 	reallocf.3 \
 	setmode.3 \
 	setproctitle.3 \
