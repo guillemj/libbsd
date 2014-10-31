@@ -16,6 +16,7 @@ check_PROGRAMS = \
 	humanize \
 	fgetln \
 	funopen \
+	fpurge \
 	proctitle-init \
 	$(nil)
 

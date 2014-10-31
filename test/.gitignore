@@ -1,6 +1,7 @@
 endian
 fgetln
 funopen
+fpurge
 headers
 humanize
 overlay

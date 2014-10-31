@@ -24,23 +24,22 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <errno.h>
 #include <stdio.h>
-#include <stdio_ext.h>
 
-#ifdef HAVE___FPURGE
 int
-fpurge(FILE *fp)
+main()
 {
-	if (fp == NULL || fileno(fp) < 0) {
-		errno = EBADF;
-		return EOF;
-	}
+	static FILE fp_bad;
+	FILE *fp;
 
-	__fpurge(fp);
+	if (fpurge(&fp_bad) == 0)
+		return 1;
+
+	fp = fopen("/dev/zero", "r");
+	if (fpurge(fp) < 0)
+		return 1;
+
+	fclose(fp);
 
 	return 0;
 }
-#else
-#error "Function fpurge() needs to be ported."
-#endif
