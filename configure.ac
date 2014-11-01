@@ -40,7 +40,7 @@ fi
 # Checks for libraries.
 
 # Checks for header files.
-AC_CHECK_HEADERS([sys/ndir.h sys/dir.h dir.h dirent.h])
+AC_CHECK_HEADERS([sys/ndir.h sys/dir.h ndir.h dirent.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_UID_T
@@ -123,7 +123,8 @@ AC_LINK_IFELSE(
 	 AC_MSG_RESULT([yes])],
 	[AC_MSG_RESULT([no])])
 
-AC_CHECK_FUNCS([clearenv dirfd fopencookie __fpurge getexecname getline sysconf])
+AC_CHECK_FUNCS([clearenv dirfd fopencookie __fpurge getexecname getline \
+                pstat_getproc sysconf])
 
 AC_CONFIG_FILES([
 	Makefile
