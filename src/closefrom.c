@@ -123,11 +123,12 @@ closefrom(int lowfd)
 	}
 }
 #elif defined(HAVE_DIRFD)
-void
-closefrom(int lowfd)
+static int
+closefrom_procfs(int lowfd)
 {
 	const char *path;
 	DIR *dirp;
+	struct dirent *dent;
 
 	/* Use /proc/self/fd (or /dev/fd on FreeBSD) if it exists. */
 # if defined(__FreeBSD__) || defined(__APPLE__)
@@ -135,19 +136,30 @@ closefrom(int lowfd)
 # else
 	path = "/proc/self/fd";
 # endif
-	if ((dirp = opendir(path)) != NULL) {
-		struct dirent *dent;
+	dirp = opendir(path);
+	if (dirp == NULL)
+		return -1;
 
-		while ((dent = readdir(dirp)) != NULL) {
-			const char *errstr;
-			int fd;
+	while ((dent = readdir(dirp)) != NULL) {
+		const char *errstr;
+		int fd;
 
-			fd = strtonum(dent->d_name, lowfd, INT_MAX, &errstr);
-			if (errstr == NULL && fd != dirfd(dirp))
-				closefrom_close(fd);
-		}
-		(void)closedir(dirp);
-	} else
-		closefrom_fallback(lowfd);
+		fd = strtonum(dent->d_name, lowfd, INT_MAX, &errstr);
+		if (errstr == NULL && fd != dirfd(dirp))
+			closefrom_close(fd);
+	}
+
+	(void)closedir(dirp);
+
+	return 0;
+}
+
+void
+closefrom(int lowfd)
+{
+	if (closefrom_procfs(lowfd) == 0)
+		return;
+
+	closefrom_fallback(lowfd);
 }
 #endif /* HAVE_FCNTL_CLOSEM */
