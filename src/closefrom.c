@@ -129,6 +129,10 @@ closefrom_procfs(int lowfd)
 	const char *path;
 	DIR *dirp;
 	struct dirent *dent;
+	int *fd_array = NULL;
+	int fd_array_used = 0;
+	int fd_array_size = 0;
+	int i;
 
 	/* Use /proc/self/fd (or /dev/fd on FreeBSD) if it exists. */
 # if defined(__FreeBSD__) || defined(__APPLE__)
@@ -145,10 +149,30 @@ closefrom_procfs(int lowfd)
 		int fd;
 
 		fd = strtonum(dent->d_name, lowfd, INT_MAX, &errstr);
-		if (errstr == NULL && fd != dirfd(dirp))
-			closefrom_close(fd);
+		if (errstr != NULL || fd == dirfd(dirp))
+			continue;
+
+		if (fd_array_used >= fd_array_size) {
+			int *ptr;
+
+			if (fd_array_size > 0)
+				fd_array_size *= 2;
+			else
+				fd_array_size = 32;
+
+			ptr = reallocarray(fd_array, fd_array_size, sizeof(int));
+			if (ptr == NULL)
+				break;
+			fd_array = ptr;
+		}
+
+		fd_array[fd_array_used++] = fd;
 	}
 
+	for (i = 0; i < fd_array_used; i++)
+		closefrom_close(fd_array[i]);
+
+	free(fd_array);
 	(void)closedir(dirp);
 
 	return 0;
