@@ -154,7 +154,7 @@ common:			if (set->cmd2 & CMD2_CLR) {
 	if (set >= endset) {						\
 		BITCMD *newset;						\
 		setlen += SET_LEN_INCR;					\
-		newset = realloc(saveset, sizeof(BITCMD) * setlen);	\
+		newset = reallocarray(saveset, setlen, sizeof(BITCMD));	\
 		if (newset == NULL)					\
 			goto out;					\
 		set = newset + (set - saveset);				\
@@ -197,7 +197,8 @@ setmode(const char *p)
 
 	setlen = SET_LEN + 2;
 
-	if ((set = malloc((u_int)(sizeof(BITCMD) * setlen))) == NULL)
+	set = reallocarray(NULL, setlen, sizeof(BITCMD));
+	if (set == NULL)
 		return (NULL);
 	saveset = set;
 	endset = set + (setlen - 2);

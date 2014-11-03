@@ -149,7 +149,7 @@ test_fgetln_multi(void)
 		str = strdup("A\n");
 		str[0] += i;
 
-		files[i].lines = malloc(sizeof(char *) * LINE_COUNT);
+		files[i].lines = reallocarray(NULL, LINE_COUNT, sizeof(char *));
 		files[i].lines[0] = str;
 		files[i].lines[1] = str;
 		files[i].fp = pipe_feed("%s", files[i].lines, LINE_COUNT);
@@ -211,7 +211,7 @@ test_fgetwln_multi(void)
 		wstr = wcsdup(L"A\n");
 		wstr[0] += i;
 
-		files[i].lines = malloc(sizeof(char *) * LINE_COUNT);
+		files[i].lines = reallocarray(NULL, LINE_COUNT, sizeof(char *));
 		files[i].lines[0] = wstr;
 		files[i].lines[1] = wstr;
 		files[i].fp = pipe_feed("%ls", files[i].lines, LINE_COUNT);

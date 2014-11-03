@@ -68,7 +68,7 @@ fgetwln(FILE *stream, size_t *lenp)
 			else
 				fb->len = FILEWBUF_INIT_LEN;
 
-			wp = realloc(fb->wbuf, fb->len * sizeof(wchar_t));
+			wp = reallocarray(fb->wbuf, fb->len, sizeof(wchar_t));
 			if (wp == NULL) {
 				wused = 0;
 				break;
