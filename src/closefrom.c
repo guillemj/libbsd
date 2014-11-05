@@ -60,6 +60,17 @@
 # define closefrom	closefrom_fallback
 #endif
 
+static inline void
+closefrom_close(int fd)
+{
+#ifdef __APPLE__
+	/* Avoid potential libdispatch crash when we close its fds. */
+	(void)fcntl(fd, F_SETFD, FD_CLOEXEC);
+#else
+	(void)close(fd);
+#endif
+}
+
 /*
  * Close all file descriptors greater than or equal to lowfd.
  * This is the expensive (fallback) method.
@@ -82,14 +93,8 @@ closefrom_fallback(int lowfd)
 	if (maxfd < 0)
 		maxfd = OPEN_MAX;
 
-	for (fd = lowfd; fd < maxfd; fd++) {
-#ifdef __APPLE__
-		/* Avoid potential libdispatch crash when we close its fds. */
-		(void)fcntl((int)fd, F_SETFD, FD_CLOEXEC);
-#else
-		(void)close((int)fd);
-#endif
-	}
+	for (fd = lowfd; fd < maxfd; fd++)
+		closefrom_close(fd);
 }
 
 /*
@@ -138,15 +143,8 @@ closefrom(int lowfd)
 			int fd;
 
 			fd = strtonum(dent->d_name, lowfd, INT_MAX, &errstr);
-			if (errstr == NULL && fd != dirfd(dirp)) {
-# ifdef __APPLE__
-				/* Avoid potential libdispatch crash when we
-				 * close its fds. */
-				(void)fcntl(fd, F_SETFD, FD_CLOEXEC);
-# else
-				(void)close(fd);
-# endif
-			}
+			if (errstr == NULL && fd != dirfd(dirp))
+				closefrom_close(fd);
 		}
 		(void)closedir(dirp);
 	} else
