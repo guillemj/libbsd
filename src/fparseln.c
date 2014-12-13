@@ -77,7 +77,8 @@ fparseln(FILE *fp, size_t *size, size_t *lineno, const char str[3], int flags)
 {
 	static const char dstr[3] = { '\\', '\\', '#' };
 
-	size_t	s, len;
+	ssize_t	s;
+	size_t len, ptrlen;
 	char   *buf;
 	char   *ptr, *cp;
 	int	cnt;
@@ -87,6 +88,8 @@ fparseln(FILE *fp, size_t *size, size_t *lineno, const char str[3], int flags)
 
 	len = 0;
 	buf = NULL;
+	ptrlen = 0;
+	ptr = NULL;
 	cnt = 1;
 
 	if (str == NULL)
@@ -97,7 +100,7 @@ fparseln(FILE *fp, size_t *size, size_t *lineno, const char str[3], int flags)
 	com = str[2];
 	/*
 	 * XXX: it would be cool to be able to specify the newline character,
-	 * but unfortunately, fgetln does not let us
+	 * getdelim(3) does let us, but supporting it would diverge from BSDs.
 	 */
 	nl  = '\n';
 
@@ -109,7 +112,8 @@ fparseln(FILE *fp, size_t *size, size_t *lineno, const char str[3], int flags)
 		if (lineno)
 			(*lineno)++;
 
-		if ((ptr = fgetln(fp, &s)) == NULL)
+		s = getline(&ptr, &ptrlen, fp);
+		if (s < 0)
 			break;
 
 		if (s && com) {		/* Check and eliminate comments */
@@ -149,6 +153,7 @@ fparseln(FILE *fp, size_t *size, size_t *lineno, const char str[3], int flags)
 		if ((cp = realloc(buf, len + s + 1)) == NULL) {
 			FUNLOCKFILE(fp);
 			free(buf);
+			free(ptr);
 			return NULL;
 		}
 		buf = cp;
@@ -159,6 +164,7 @@ fparseln(FILE *fp, size_t *size, size_t *lineno, const char str[3], int flags)
 	}
 
 	FUNLOCKFILE(fp);
+	free(ptr);
 
 	if ((flags & FPARSELN_UNESCALL) != 0 && esc && buf != NULL &&
 	    strchr(buf, esc) != NULL) {
