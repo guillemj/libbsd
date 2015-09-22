@@ -44,7 +44,12 @@
 __BEGIN_DECLS
 const char *fmtcheck(const char *, const char *);
 
-char *fgetln(FILE *fp, size_t *lenp);
+/* XXX: The function requires cooperation from the system libc to store the
+ * line buffer in the FILE struct itself. */
+char *fgetln(FILE *fp, size_t *lenp)
+	__attribute__((deprecated("This functions cannot be safely ported, "
+	                          "use getline(3) instead, as it is supported "
+	                          "by GNU and POSIX.1-2008.")));
 
 /*
  * Note: We diverge from the FreeBSD, OpenBSD and DragonFlyBSD declarations,

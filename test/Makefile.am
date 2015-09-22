@@ -27,6 +27,7 @@ check_PROGRAMS += proctitle
 endif
 
 fgetln_SOURCES = test-stream.c test-stream.h fgetln.c
+fgetln_CFLAGS = -Wno-deprecated-declarations
 fparseln_SOURCES = test-stream.c test-stream.h fparseln.c
 
 proctitle_init_SOURCES = proctitle.c
