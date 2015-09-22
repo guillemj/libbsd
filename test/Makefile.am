@@ -25,6 +25,8 @@ if BUILD_LIBBSD_CTOR
 check_PROGRAMS += proctitle
 endif
 
+fgetln_SOURCES = test-stream.c test-stream.h fgetln.c
+
 proctitle_init_SOURCES = proctitle.c
 proctitle_init_CPPFLAGS = $(AM_CPPFLAGS) -DTEST_USE_SETPROCTITLE_INIT=1
 
