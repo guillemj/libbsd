@@ -17,6 +17,7 @@ check_PROGRAMS = \
 	humanize \
 	fgetln \
 	funopen \
+	fparseln \
 	fpurge \
 	proctitle-init \
 	$(nil)
@@ -26,6 +27,7 @@ check_PROGRAMS += proctitle
 endif
 
 fgetln_SOURCES = test-stream.c test-stream.h fgetln.c
+fparseln_SOURCES = test-stream.c test-stream.h fparseln.c
 
 proctitle_init_SOURCES = proctitle.c
 proctitle_init_CPPFLAGS = $(AM_CPPFLAGS) -DTEST_USE_SETPROCTITLE_INIT=1

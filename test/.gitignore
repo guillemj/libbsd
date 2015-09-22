@@ -2,6 +2,7 @@ closefrom
 endian
 fgetln
 funopen
+fparseln
 fpurge
 headers
 humanize
