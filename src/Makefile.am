@@ -65,6 +65,7 @@ libbsd_la_SOURCES = \
 	humanize_number.c \
 	inet_net_pton.c \
 	local-elf.h \
+	local-link.h \
 	merge.c \
 	nlist.c \
 	pidfile.c \
