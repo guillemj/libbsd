@@ -1,4 +1,5 @@
-.\" $OpenBSD: arc4random.3,v 1.2 1997/04/27 22:40:25 angelos Exp $
+.\" $OpenBSD: arc4random.3,v 1.34 2014/07/19 16:11:16 naddy Exp $
+.\"
 .\" Copyright 1997 Niels Provos <provos@physnet.uni-hamburg.de>
 .\" All rights reserved.
 .\"
@@ -28,9 +29,8 @@
 .\" THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 .\"
 .\" Manual page, using -mandoc macros
-.\" $FreeBSD$
 .\"
-.Dd April 15, 1997
+.Dd $Mdocdate: July 19 2014 $
 .Dt ARC4RANDOM 3
 .Os
 .Sh NAME
@@ -56,45 +56,59 @@
 .Ft void
 .Fn arc4random_addrandom "unsigned char *dat" "int datlen"
 .Sh DESCRIPTION
-The
-.Fn arc4random
-function uses the key stream generator employed by the
-arc4 cipher, which uses 8*8 8 bit S-Boxes.
-The S-Boxes
-can be in about
-.if t 2\u\s71700\s10\d
-.if n (2**1700)
-states.
-The
-.Fn arc4random
-function returns pseudo-random numbers in the range of 0 to
-.if t 2\u\s731\s10\d\(mi1,
-.if n (2**32)\(mi1,
-and therefore has twice the range of
-.Xr rand 3
+This family of functions provides higher quality data than those
+described in
+.Xr rand 3 ,
+.Xr random 3 ,
 and
-.Xr random 3 .
+.Xr rand48 3 .
 .Pp
+Use of these functions is encouraged for almost all random number
+consumption because the other interfaces are deficient in either
+quality, portability, standardization, or availability.
+These functions can be called in almost all coding environments,
+including
+.Xr pthreads 3
+and
+.Xr chroot 2 .
+.Pp
+High quality 32-bit pseudo-random numbers are generated very quickly.
+On each call, a cryptographic pseudo-random number generator is used
+to generate a new result.
+One data pool is used for all consumers in a process, so that consumption
+under program flow can act as additional stirring.
+The subsystem is re-seeded from the kernel random number subsystem using
+.Xr getentropy 2
+on a regular basis, and also upon
+.Xr fork 2 .
+.Pp
+The
+.Fn arc4random
+function returns a single 32-bit value.
+.Pp
+The
 .Fn arc4random_buf
 function fills the region
 .Fa buf
 of length
 .Fa nbytes
-with ARC4-derived random data.
+with random data.
 .Pp
 .Fn arc4random_uniform
-will return a uniformly distributed random number less than
+will return a single 32-bit value, uniformly distributed but less than
 .Fa upper_bound .
-.Fn arc4random_uniform
-is recommended over constructions like
+This is recommended over constructions like
 .Dq Li arc4random() % upper_bound
 as it avoids "modulo bias" when the upper bound is not a power of two.
+In the worst case, this function may consume multiple iterations
+to ensure uniformity; see the source code to understand the problem
+and solution.
 .Pp
 The
 .Fn arc4random_stir
 function reads data from
-.Pa /dev/urandom
-and uses it to permute the S-Boxes via
+.Xr getentropy 2
+and uses it to re-seed the subsystem via
 .Fn arc4random_addrandom .
 .Pp
 There is no need to call
@@ -103,26 +117,22 @@ before using
 .Fn arc4random
 functions family, since
 they automatically initialize themselves.
-.Sh EXAMPLES
-The following produces a drop-in replacement for the traditional
-.Fn rand
-and
-.Fn random
-functions using
-.Fn arc4random :
-.Pp
-.Dl "#define foo4random() (arc4random() % ((unsigned)RAND_MAX + 1))"
+.Sh RETURN VALUES
+These functions are always successful, and no return value is
+reserved to indicate an error.
 .Sh SEE ALSO
 .Xr rand 3 ,
-.Xr random 3 ,
-.Xr srandomdev 3
+.Xr rand48 3 ,
+.Xr random 3
 .Sh HISTORY
-.Pa RC4
-has been designed by RSA Data Security, Inc.
-It was posted anonymously
-to the USENET and was confirmed to be equivalent by several sources who
-had access to the original cipher.
-Since
-.Pa RC4
-used to be a trade secret, the cipher is now referred to as
-.Pa ARC4 .
+These functions first appeared in
+.Ox 2.1 .
+.Pp
+The original version of this random number generator used the
+RC4 (also known as ARC4) algorithm.
+In
+.Ox 5.5
+it was replaced with the ChaCha20 cipher, and it may be replaced
+again in the future as cryptographic techniques advance.
+A good mnemonic is
+.Dq A Replacement Call for Random .
