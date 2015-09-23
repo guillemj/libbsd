@@ -9,6 +9,12 @@ AM_CPPFLAGS = \
 
 libbsd_la_included_sources = \
 	hash/helper.c \
+	getentropy_aix.c \
+	getentropy_bsd.c \
+	getentropy_hpux.c \
+	getentropy_linux.c \
+	getentropy_osx.c \
+	getentropy_solaris.c \
 	$(nil)
 
 EXTRA_DIST = \
@@ -96,6 +102,12 @@ libbsd_la_SOURCES = \
 	wcslcat.c \
 	wcslcpy.c \
 	$(nil)
+
+if !HAVE_GETENTROPY
+libbsd_la_SOURCES += \
+	getentropy.c \
+	$(nil)
+endif
 
 libbsd_ctor_a_SOURCES = \
 	setproctitle_ctor.c \
