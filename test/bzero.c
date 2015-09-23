@@ -1,5 +1,5 @@
 /*
- * Copyright © 2004, 2005, 2009, 2011 Guillem Jover <guillem@hadrons.org>
+ * Copyright © 2015 Guillem Jover <guillem@hadrons.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -24,25 +24,24 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifdef LIBBSD_OVERLAY
-#include_next <string.h>
-#else
+#include <assert.h>
 #include <string.h>
-#endif
 
-#ifndef LIBBSD_STRING_H
-#define LIBBSD_STRING_H
+int
+main()
+{
+	unsigned char array[40];
+	size_t i;
 
-#include <sys/cdefs.h>
-#include <sys/types.h>
+	memset(array, 0x3e, sizeof(array));
 
-__BEGIN_DECLS
-size_t strlcpy(char *dst, const char *src, size_t siz);
-size_t strlcat(char *dst, const char *src, size_t siz);
-char *strnstr(const char *str, const char *find, size_t str_len);
-void strmode(mode_t mode, char *str);
+	explicit_bzero(array, 0);
+	for (i = 0; i < sizeof(array); i++)
+		assert(array[i] == 0x3e);
 
-void explicit_bzero(void *buf, size_t len);
-__END_DECLS
+	explicit_bzero(array, sizeof(array));
+	for (i = 0; i < sizeof(array); i++)
+		assert(array[i] == 0);
 
-#endif
+	return 0;
+}

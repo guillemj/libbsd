@@ -23,6 +23,7 @@ dist_man_MANS = \
 	closefrom.3 \
 	dehumanize_number.3 \
 	expand_number.3 \
+	explicit_bzero.3 \
 	fgetln.3 \
 	fgetwln.3 \
 	flopen.3 \

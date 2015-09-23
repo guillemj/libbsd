@@ -50,6 +50,7 @@ libbsd_la_SOURCES = \
 	dehumanize_number.c \
 	err.c \
 	expand_number.c \
+	explicit_bzero.c \
 	fgetln.c \
 	fgetwln.c \
 	flopen.c \

@@ -132,3 +132,7 @@ LIBBSD_0.7 {
     _time_to_int;
     _int_to_time;
 } LIBBSD_0.6;
+
+LIBBSD_0.8 {
+    explicit_bzero;
+} LIBBSD_0.7;
