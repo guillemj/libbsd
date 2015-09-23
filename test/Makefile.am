@@ -12,6 +12,7 @@ LDADD = $(top_builddir)/src/libbsd.la
 check_PROGRAMS = \
 	headers \
 	overlay \
+	closefrom \
 	endian \
 	humanize \
 	fgetln \
