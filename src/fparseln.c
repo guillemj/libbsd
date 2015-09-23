@@ -35,8 +35,6 @@ __RCSID("$NetBSD: fparseln.c,v 1.10 2009/10/21 01:07:45 snj Exp $");
 #include <string.h>
 #include <stdlib.h>
 
-#define FLOCKFILE(fp)
-#define FUNLOCKFILE(fp)
 #define _DIAGASSERT(t)
 
 static int isescaped(const char *, const char *, int);
@@ -104,7 +102,7 @@ fparseln(FILE *fp, size_t *size, size_t *lineno, const char str[3], int flags)
 	 */
 	nl  = '\n';
 
-	FLOCKFILE(fp);
+	flockfile(fp);
 
 	while (cnt) {
 		cnt = 0;
@@ -151,7 +149,7 @@ fparseln(FILE *fp, size_t *size, size_t *lineno, const char str[3], int flags)
 		}
 
 		if ((cp = realloc(buf, len + s + 1)) == NULL) {
-			FUNLOCKFILE(fp);
+			funlockfile(fp);
 			free(buf);
 			free(ptr);
 			return NULL;
@@ -163,7 +161,7 @@ fparseln(FILE *fp, size_t *size, size_t *lineno, const char str[3], int flags)
 		buf[len] = '\0';
 	}
 
-	FUNLOCKFILE(fp);
+	funlockfile(fp);
 	free(ptr);
 
 	if ((flags & FPARSELN_UNESCALL) != 0 && esc && buf != NULL &&

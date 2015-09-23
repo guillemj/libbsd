@@ -50,6 +50,8 @@ fgetln(FILE *stream, size_t *len)
 	struct filebuf *fb;
 	ssize_t nread;
 
+	flockfile(stream);
+
 	/* Try to diminish the possibility of several fgetln() calls being
 	 * used on different streams, by using a pool of buffers per file. */
 	fb = &fb_pool[fb_pool_cur];
@@ -61,6 +63,9 @@ fgetln(FILE *stream, size_t *len)
 	fb->fp = stream;
 
 	nread = getline(&fb->buf, &fb->len, stream);
+
+	funlockfile(stream);
+
 	/* Note: the getdelim/getline API ensures nread != 0. */
 	if (nread == -1) {
 		*len = 0;
