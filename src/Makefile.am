@@ -67,6 +67,8 @@ libbsd_la_SOURCES = \
 	getpeereid.c \
 	hash/md5.c \
 	hash/md5hl.c \
+	hash/sha512.h \
+	hash/sha512c.c \
 	heapsort.c \
 	humanize_number.c \
 	inet_net_pton.c \
