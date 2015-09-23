@@ -39,10 +39,14 @@
 #include <stdarg.h>
 
 __BEGIN_DECLS
-extern void warnc (int code, const char *format, ...);
-extern void vwarnc (int code, const char *format, va_list ap);
-extern void errc (int status, int code, const char *format, ...);
-extern void verrc (int status, int code, const char *format, va_list ap);
+void warnc(int code, const char *format, ...)
+	__printflike(2, 3);
+void vwarnc(int code, const char *format, va_list ap)
+	__printflike(2, 0);
+void errc(int status, int code, const char *format, ...)
+	__printflike(3, 4);
+void verrc(int status, int code, const char *format, va_list ap)
+	__printflike(3, 0);
 __END_DECLS
 
 #endif
