@@ -132,6 +132,7 @@ closefrom_procfs(int lowfd)
 	int *fd_array = NULL;
 	int fd_array_used = 0;
 	int fd_array_size = 0;
+	int ret = 0;
 	int i;
 
 	/* Use /proc/self/fd (or /dev/fd on FreeBSD) if it exists. */
@@ -161,8 +162,10 @@ closefrom_procfs(int lowfd)
 				fd_array_size = 32;
 
 			ptr = reallocarray(fd_array, fd_array_size, sizeof(int));
-			if (ptr == NULL)
+			if (ptr == NULL) {
+				ret = -1;
 				break;
+			}
 			fd_array = ptr;
 		}
 
@@ -175,7 +178,7 @@ closefrom_procfs(int lowfd)
 	free(fd_array);
 	(void)closedir(dirp);
 
-	return 0;
+	return ret;
 }
 
 void
