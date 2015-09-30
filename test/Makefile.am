@@ -21,6 +21,7 @@ check_PROGRAMS = \
 	fparseln \
 	fpurge \
 	proctitle-init \
+	strmode \
 	$(nil)
 
 if HAVE_LIBTESTU01
