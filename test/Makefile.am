@@ -23,6 +23,12 @@ check_PROGRAMS = \
 	proctitle-init \
 	$(nil)
 
+if HAVE_LIBTESTU01
+arc4random_LDADD = $(LDADD) $(TESTU01_LIBS)
+
+check_PROGRAMS += arc4random
+endif
+
 if BUILD_LIBBSD_CTOR
 proctitle_LDFLAGS = \
 	-Wl,-u,libbsd_init_func \

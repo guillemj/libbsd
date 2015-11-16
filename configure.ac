@@ -38,6 +38,11 @@ if test "$user_CFLAGS" = unset && test "$GCC" = yes; then
 fi
 
 # Checks for libraries.
+AC_CHECK_LIB([testu01], [unif01_CreateExternGenBits],
+             [TESTU01_LIBS="-ltestu01"])
+AC_SUBST([TESTU01_LIBS])
+AM_CONDITIONAL([HAVE_LIBTESTU01],
+               [test "x$ac_cv_lib_testu01_unif01_CreateExternGenBits" = "xyes"])
 
 # Checks for header files.
 AC_CHECK_HEADERS([sys/ndir.h sys/dir.h ndir.h dirent.h])
