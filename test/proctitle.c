@@ -36,6 +36,7 @@ main(int argc, char **argv, char **envp)
 	const char newtitle_base[] = "test arg1 arg2";
 	char *newtitle_full;
 	char *envvar;
+	int rc;
 
 #ifdef TEST_USE_SETPROCTITLE_INIT
 	setproctitle_init(argc, argv, envp);
@@ -44,7 +45,8 @@ main(int argc, char **argv, char **envp)
 	setproctitle("-test %s arg2", "arg1");
 	assert(strcmp(argv[0], newtitle_base) == 0);
 
-	asprintf(&newtitle_full, "%s: %s", getprogname(), newtitle_base);
+	rc = asprintf(&newtitle_full, "%s: %s", getprogname(), newtitle_base);
+	assert(rc > 0);
 	setproctitle("test %s arg2", "arg1");
 	assert(strcmp(argv[0], newtitle_full) == 0);
 	free(newtitle_full);
