@@ -134,6 +134,12 @@
 #define ELF_TARG_DATA	ELFDATA2LSB
 #endif
 
+#elif defined(__nios2__)
+
+#define ELF_TARG_MACH	EM_ALTERA_NIOS2
+#define ELF_TARG_CLASS	ELFCLASS32
+#define ELF_TARG_DATA	ELFDATA2LSB
+
 #elif defined(__powerpc__)
 
 #define ELF_TARG_MACH	EM_PPC
