@@ -12,5 +12,5 @@ EXTRA_DIST = \
 dist-hook:
 	echo $(VERSION) >$(distdir)/.dist-version
 	if [ -d .git ]; then \
-	  git log --stat -C >$(distdir)/ChangeLog; \
+	  XDG_CONFIG_HOME= HOME= git log --stat -C >$(distdir)/ChangeLog; \
 	fi
