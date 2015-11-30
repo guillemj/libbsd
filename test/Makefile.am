@@ -24,6 +24,12 @@ check_PROGRAMS = \
 	$(nil)
 
 if BUILD_LIBBSD_CTOR
+proctitle_LDFLAGS = \
+	-Wl,-u,libbsd_init_func \
+	$(top_builddir)/src/libbsd-ctor.a \
+	$(top_builddir)/src/libbsd.la \
+	$(nil)
+
 check_PROGRAMS += proctitle
 endif
 
@@ -33,11 +39,5 @@ fparseln_SOURCES = test-stream.c test-stream.h fparseln.c
 
 proctitle_init_SOURCES = proctitle.c
 proctitle_init_CPPFLAGS = $(AM_CPPFLAGS) -DTEST_USE_SETPROCTITLE_INIT=1
-
-proctitle_LDFLAGS = \
-	-Wl,-u,libbsd_init_func \
-	$(top_builddir)/src/libbsd-ctor.a \
-	$(top_builddir)/src/libbsd.la \
-	$(nil)
 
 TESTS = $(check_PROGRAMS)
