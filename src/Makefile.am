@@ -7,12 +7,16 @@ AM_CPPFLAGS = \
 	-DLIBBSD_OVERLAY -DLIBBSD_DISABLE_DEPRECATED \
 	-D__REENTRANT
 
+libbsd_la_included_sources = \
+	hash/helper.c \
+	$(nil)
+
 EXTRA_DIST = \
 	libbsd.map \
 	libbsd.pc.in \
 	libbsd-ctor.pc.in \
 	libbsd-overlay.pc.in \
-	hash/helper.c \
+	$(libbsd_la_included_sources) \
 	$(nil)
 
 CLEANFILES = \
@@ -39,6 +43,7 @@ hash/md5hl.c: $(srcdir)/hash/helper.c
 	$(AM_V_GEN) sed -e 's:hashinc:md5.h:g' -e 's:HASH:MD5:g' $< > $@
 
 libbsd_la_DEPENDENCIES = \
+	$(libbsd_la_included_sources) \
 	libbsd.map
 libbsd_la_LDFLAGS = \
 	-Wl,--version-script=$(srcdir)/libbsd.map \
