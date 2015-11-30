@@ -29,7 +29,7 @@ dist_man_MANS = \
 	flopen.3 \
 	fmtcheck.3 \
 	fparseln.3 \
-	funopen.3 \
+	funopen.3bsd \
 	getbsize.3 \
 	getmode.3 \
 	getpeereid.3 \
