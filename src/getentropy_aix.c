@@ -39,7 +39,7 @@
 #include <string.h>
 #include <termios.h>
 
-#include <openssl/sha.h>
+#include "hash/sha512.h"
 
 #include <libperfstat.h>
 

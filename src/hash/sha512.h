@@ -31,6 +31,8 @@
 
 #include <sys/types.h>
 
+#define SHA512_DIGEST_LENGTH		64
+
 typedef struct SHA512Context {
 	uint64_t state[8];
 	uint64_t count[2];

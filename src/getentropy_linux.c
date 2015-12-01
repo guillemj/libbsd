@@ -47,7 +47,8 @@
 #include <errno.h>
 #include <unistd.h>
 #include <time.h>
-#include <openssl/sha.h>
+
+#include "hash/sha512.h"
 
 #include <linux/types.h>
 #include <linux/random.h>
