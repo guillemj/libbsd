@@ -27,17 +27,17 @@
 #if defined(__linux__)
 #include "getentropy_linux.c"
 #elif defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
-#include "arc4random_bsd.c"
+#include "getentropy_bsd.c"
 #elif defined(__NetBSD__)
-#include "arc4random_bsd.c"
+#include "getentropy_bsd.c"
 #elif defined(__sun)
-#include "arc4random_solaris.c"
+#include "getentropy_solaris.c"
 #elif defined(__APPLE__)
-#include "arc4random_osx.c"
+#include "getentropy_osx.c"
 #elif defined(_AIX)
-#include "arc4random_aix.c"
+#include "getentropy_aix.c"
 #elif defined(__hpux)
-#include "arc4random_hpux.c"
+#include "getentropy_hpux.c"
 #else
 #error "No getentropy hooks defined for this platform."
 #endif
