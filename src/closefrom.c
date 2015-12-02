@@ -136,7 +136,7 @@ closefrom_procfs(int lowfd)
 	int i;
 
 	/* Use /proc/self/fd (or /dev/fd on FreeBSD) if it exists. */
-# if defined(__FreeBSD__) || defined(__APPLE__)
+# if defined(__FreeBSD__) || defined(__FreeBSD_kernel__) || defined(__APPLE__)
 	path = "/dev/fd";
 # else
 	path = "/proc/self/fd";

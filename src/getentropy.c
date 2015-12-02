@@ -26,7 +26,7 @@
 
 #if defined(__linux__)
 #include "getentropy_linux.c"
-#elif defined(__FreeBSD__)
+#elif defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
 #include "arc4random_bsd.c"
 #elif defined(__NetBSD__)
 #include "arc4random_bsd.c"
