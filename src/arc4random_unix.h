@@ -1,4 +1,4 @@
-/*	$OpenBSD: arc4random_hpux.h,v 1.1 2015/01/06 21:08:11 bcook Exp $	*/
+/*	$OpenBSD: arc4random_linux.h,v 1.8 2014/08/13 06:04:10 deraadt Exp $	*/
 
 /*
  * Copyright (c) 1996, David Mazieres <dm@uun.org>
@@ -32,7 +32,19 @@ static pthread_mutex_t arc4random_mtx = PTHREAD_MUTEX_INITIALIZER;
 #define _ARC4_LOCK()   pthread_mutex_lock(&arc4random_mtx)
 #define _ARC4_UNLOCK() pthread_mutex_unlock(&arc4random_mtx)
 
+#ifdef __GLIBC__
+extern void *__dso_handle;
+extern int __register_atfork(void (*)(void), void(*)(void), void (*)(void), void *);
+#define _ARC4_ATFORK(f) __register_atfork(NULL, NULL, (f), __dso_handle)
+#else
+/*
+ * Unfortunately, pthread_atfork() is broken on FreeBSD (at least 9 and 10) if
+ * a program does not link to -lthr. Callbacks registered with pthread_atfork()
+ * appear to fail silently. So, it is not always possible to detect a PID
+ * wraparound.
+ */
 #define _ARC4_ATFORK(f) pthread_atfork(NULL, NULL, (f))
+#endif
 
 static inline void
 _getentropy_fail(void)
