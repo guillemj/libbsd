@@ -6,7 +6,7 @@ fgetln
 funopen
 fparseln
 fpurge
-headers
+headers-gen.c
 humanize
 overlay
 proctitle-init
