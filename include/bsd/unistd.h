@@ -34,7 +34,11 @@
 #ifndef LIBBSD_UNISTD_H
 #define LIBBSD_UNISTD_H
 
+#ifdef LIBBSD_OVERLAY
 #include <sys/cdefs.h>
+#else
+#include <bsd/sys/cdefs.h>
+#endif
 #include <sys/stat.h>
 
 #ifndef S_ISTXT

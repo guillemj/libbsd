@@ -34,7 +34,11 @@
 #ifndef LIBBSD_ERR_H
 #define LIBBSD_ERR_H
 
+#ifdef LIBBSD_OVERLAY
 #include <sys/cdefs.h>
+#else
+#include <bsd/sys/cdefs.h>
+#endif
 
 #include <stdarg.h>
 
