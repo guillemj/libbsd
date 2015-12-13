@@ -27,10 +27,12 @@
 #ifndef LIBBSD_H
 #define LIBBSD_H
 
+#ifdef LIBBSD_OVERLAY
+#warning "This header is meant to be used w/o the libbsd overlay."
+#else
 /*
  * Include all bsd compat headers.
  */
-
 #include <bsd/sys/cdefs.h>
 #include <bsd/sys/queue.h>
 #include <bsd/sys/tree.h>
@@ -40,5 +42,6 @@
 #include <bsd/err.h>
 #include <bsd/getopt.h>
 #include <bsd/md5.h>
+#endif
 
 #endif
