@@ -28,6 +28,7 @@ typedef struct MD5Context {
 } MD5_CTX;
 
 #include <sys/cdefs.h>
+#include <sys/types.h>
 
 __BEGIN_DECLS
 void	 MD5Init(MD5_CTX *);
