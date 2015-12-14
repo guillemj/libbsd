@@ -26,6 +26,8 @@
 
 #if defined(__linux__)
 #include "getentropy_linux.c"
+#elif defined(__GNU__)
+#include "getentropy_hurd.c"
 #elif defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
 #include "getentropy_bsd.c"
 #elif defined(__NetBSD__)

@@ -394,6 +394,7 @@ Files:
  src/getentropy_aix.c
  src/getentropy_bsd.c
  src/getentropy_hpux.c
+ src/getentropy_hurd.c
  src/getentropy_linux.c
  src/getentropy_osx.c
  src/getentropy_solaris.c

@@ -12,6 +12,7 @@ libbsd_la_included_sources = \
 	getentropy_aix.c \
 	getentropy_bsd.c \
 	getentropy_hpux.c \
+	getentropy_hurd.c \
 	getentropy_linux.c \
 	getentropy_osx.c \
 	getentropy_solaris.c \
