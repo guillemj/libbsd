@@ -99,6 +99,8 @@ main(int argc, char **argv)
 		/* XXX: We should probably FAIL the test, but we currently
 		 * have one test always failing. */
 		rc = TEST_SKIP;
+	} else {
+		rc = TEST_OK;
 	}
 
 	return rc;
