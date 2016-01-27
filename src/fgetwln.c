@@ -60,7 +60,7 @@ fgetwln(FILE *stream, size_t *lenp)
 	fb->fp = stream;
 
 	while ((wc = fgetwc(stream)) != WEOF) {
-		if (!fb->len || wused > fb->len) {
+		if (!fb->len || wused >= fb->len) {
 			wchar_t *wp;
 
 			if (fb->len)
