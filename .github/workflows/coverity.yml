@@ -1,0 +1,58 @@
+name: Coverity Scan
+
+on:
+  push:
+    branches:
+      - ci/coverity
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: debian:sid
+
+    env:
+      COVERITY_SCAN_TOKEN: ${{ secrets.COVERITY_SCAN_TOKEN }}
+      COVERITY_SCAN_PROG_URL: https://scan.coverity.com/download/linux64
+      COVERITY_SCAN_PROJECT_NAME: guillemj/libbsd
+      COVERITY_SCAN_NOTIFICATION_EMAIL: guillem@hadrons.org
+
+    steps:
+      # Check-out repository under $GITHUB_WORKSPACE, so the job can access it.
+      - uses: actions/checkout@v3
+
+      - name: Get build dependencies
+        run: |
+          apt-get update
+          apt-get install -qq -y --no-install-recommends \
+            git ca-certificates curl \
+            gcc make autoconf automake libtool \
+            libmd-dev
+
+      - name: Get coverity scan
+        run: |
+          curl -o cov-analysis.tgz \
+            $COVERITY_SCAN_PROG_URL \
+            --form project=$COVERITY_SCAN_PROJECT_NAME \
+            --form token=$COVERITY_SCAN_TOKEN
+          tar xfz cov-analysis.tgz
+
+      - name: Configure
+        run: |
+          echo "0.x" >.dist-version
+          ./autogen && ./configure
+
+      - name: Analyze
+        run: cov-analysis-*/bin/cov-build --dir cov-int make -j4
+
+      - name: Submit result
+        run: |
+          tar cfz cov-int.tar.gz cov-int
+          curl \
+            https://scan.coverity.com/builds?project=$COVERITY_SCAN_PROJECT_NAME \
+            --form token=$COVERITY_SCAN_TOKEN \
+            --form email=$COVERITY_SCAN_NOTIFICATION_EMAIL \
+            --form file=@cov-int.tar.gz \
+            --form version="`git describe --tags`" \
+            --form description="`git describe --tags` / $CI_COMMIT_TITLE / $CI_COMMIT_REF_NAME:$CI_PIPELINE_ID"
