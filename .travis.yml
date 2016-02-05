@@ -1,0 +1,23 @@
+language: c
+compiler:
+  - gcc
+sudo: false
+env:
+  global:
+  # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+  # via the "travis encrypt" command using the project repo's public key
+  - secure: "V8NngTwnjLW3z0+XLtNbrIvAUelZ8i2eo+baafLio6hBZjbx9XpShrkFs9Aqf1g0Mt/GBgJf9AsrtEt59mFAQ3UBPPgKa0krZ2MtBY8JrbK4DWuie3ssCEUxjsvr3ZRxhCVsFyAFs1UGbuJqn7pqaOR2AkgIGwpB6YYMUb4wiIrsHHdQT2ixUaX8K2stPtmZdZnJkEbP55n79AS8719iUQdRO+NZSRmj3bYS5a2w+ZxJNMaARxc15qs/RWGcyrXw9TCHfWxNZ13Cq1PofSeznO1G32vX0zqh5zQBYJ3UK/HS7ucUPawIXBfPYAEH51t04wWy9QheKPbHd4Stz9qWv8iQlxrMTL91GZW1NJdRXwZB9DulHzZNROmtgpNvDvGvdkCzgx1e9dD+rn8pvPtDHjJq3+jN4iPva2auJ7Y0nXz5NKCuBOV/qrc9ce+b3EKJuOpOrEjNSaU84QvYHJyscPvvtAyqBx0GjCraLW6NGo0QEN2EFcnwO7b2zNX+Ks0B5dmdu0fyoyqFVKxHwu2XyXaWEPWPiS9dgSKyN3ZgvH5XwU/OmWUpTMvzoDd1T7Kkq7Be36RDloMG78z93UXyqUlz59XBsUwtUYAGfn8ccxKPQ04O8tzNlQnv2gPqWppTzKmhuqyCczFh5Zw6vRQa2DE3qiCluu5rHxawsbWAm18="
+addons:
+  apt:
+    packages:
+    - libtool
+  coverity_scan:
+    project:
+      name: guillemj/libbsd
+      description: BSD compatibility library
+    notification_email: guillem@hadrons.org
+    build_command_prepend: ./autogen && ./configure
+    build_command: make
+    branch_pattern: coverity_scan
+script:
+  - if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then ./autogen && ./configure && make check; fi
