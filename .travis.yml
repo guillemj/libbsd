@@ -1,0 +1,12 @@
+language: c
+os:
+  - linux
+  - osx
+  - windows
+sudo: false
+script:
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then
+      .travis/build-windows;
+    else
+      ./autogen && ./configure && make check;
+    fi
