@@ -118,7 +118,7 @@ sradixsort(const u_char **a, int n, const u_char *tab, u_int endch)
 	if (n < THRESHOLD)
 		simplesort(a, n, 0, tr, endch);
 	else {
-		ta = reallocarray(NULL, n, sizeof(a));
+		ta = reallocarray(NULL, n, sizeof(*a));
 		if (ta == NULL)
 			return (-1);
 		r_sort_b(a, ta, n, 0, tr, endch);
