@@ -67,8 +67,10 @@ HASHFileChunk(const char *filename, char *buf, off_t off, off_t len)
 		}
 		len = sb.st_size;
 	}
-	if ((len < 0) || (off > 0 && lseek(fd, off, SEEK_SET) < 0))
+	if ((len < 0) || (off > 0 && lseek(fd, off, SEEK_SET) < 0)) {
+		close(fd);
 		return (NULL);
+	}
 
 	while ((nr = read(fd, buffer,
 	    (size_t)(len ? MIN(BUFSIZ, len) : BUFSIZ))) > 0) {
