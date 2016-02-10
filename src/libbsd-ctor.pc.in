@@ -6,7 +6,7 @@ includedir=@includedir@
 Name: libbsd-ctor
 Description: Automatic constructor functions for libbsd
 Version: @VERSION@
-URL: http://libbsd.freedesktop.org/
+URL: https://libbsd.freedesktop.org/
 Cflags: -I${includedir}
 Libs: -L${libdir} -Wl,-z,nodlopen -Wl,-u,libbsd_init_func -lbsd-ctor
 Requires: libbsd

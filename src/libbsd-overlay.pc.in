@@ -6,6 +6,6 @@ includedir=@includedir@
 Name: libbsd
 Description: Utility functions from BSD systems (overlay)
 Version: @VERSION@
-URL: http://libbsd.freedesktop.org/
+URL: https://libbsd.freedesktop.org/
 Libs: -L${libdir} -lbsd
 Cflags: -isystem ${includedir}/bsd -DLIBBSD_OVERLAY

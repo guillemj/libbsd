@@ -25,9 +25,10 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* 
-  Rejected in glibc (http://sourceware.org/ml/libc-alpha/2006-03/msg00125.html)
-*/
+/*
+ * Rejected in glibc
+ * <https://sourceware.org/ml/libc-alpha/2006-03/msg00125.html>.
+ */
 
 #include <errno.h>
 #include <string.h>
