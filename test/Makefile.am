@@ -39,6 +39,7 @@ check_PROGRAMS = \
 	funopen \
 	fparseln \
 	fpurge \
+	md5 \
 	proctitle-init \
 	strmode \
 	$(nil)

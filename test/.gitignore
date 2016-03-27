@@ -8,6 +8,7 @@ fparseln
 fpurge
 headers-gen.c
 humanize
+md5
 overlay
 proctitle-init
 proctitle
