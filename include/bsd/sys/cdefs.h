@@ -49,6 +49,14 @@
 #define LIBBSD_GCC_VERSION 0
 #endif
 
+#if LIBBSD_GCC_VERSION >= 0x0405
+#define LIBBSD_DEPRECATED(x) __attribute__((deprecated(x)))
+#elif LIBBSD_GCC_VERSION >= 0x0301
+#define LIBBSD_DEPRECATED(x) __attribute__((deprecated))
+#else
+#define LIBBSD_DEPRECATED(x)
+#endif
+
 #ifndef __dead2
 # if LIBBSD_GCC_VERSION >= 0x0207
 #  define __dead2 __attribute__((__noreturn__))
