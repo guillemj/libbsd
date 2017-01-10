@@ -1,5 +1,5 @@
 /*
- * Copyright © 2011, 2013 Guillem Jover
+ * Copyright © 2011, 2013, 2017 Guillem Jover
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -137,6 +137,12 @@ funopen(const void *cookie,
 
 	return fopencookie(cookiewrap, mode, funcswrap);
 }
+#elif defined(__MUSL__)
+/*
+ * This is unimplementable on musl based systems, and upstream has stated
+ * they will not add the needed support to implement it. Just ignore this
+ * interface there, as it has never been provided anyway.
+ */
 #else
-#error "Function funopen() needs to be ported."
+#error "Function funopen() needs to be ported or disabled."
 #endif

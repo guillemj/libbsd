@@ -114,6 +114,9 @@ LIBBSD_0.6 {
 LIBBSD_0.7 {
     getbsize;
 
+    /* This symbol might not be present on some specific systems, such
+     * as musl based ones. It might need to be removed on SOVERSION bump,
+     * as it cannot be portabily implemented everywhere. */
     funopen;
 
     reallocarray;
