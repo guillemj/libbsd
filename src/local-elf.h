@@ -185,6 +185,12 @@
 #endif
 #define ELF_TARG_DATA	ELFDATA2MSB
 
+#elif defined(__tilegx__)
+
+#define ELF_TARG_MACH	EM_TILEGX
+#define ELF_TARG_CLASS	ELFCLASS64
+#define ELF_TARG_DATA	ELFDATA2LSB
+
 #elif defined(__or1k__)
 
 #define ELF_TARG_MACH	EM_OPENRISC
