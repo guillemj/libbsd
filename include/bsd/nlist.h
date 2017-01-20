@@ -28,7 +28,12 @@
 #define LIBBSD_NLIST_H
 
 #include <sys/cdefs.h>
+
+#if __has_include(<a.out.h>)
 #include <a.out.h>
+#elif __has_include(<linux/a.out.h>)
+#include <linux/a.out.h>
+#endif
 
 __BEGIN_DECLS
 extern int nlist(const char *filename, struct nlist *list);
