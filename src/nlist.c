@@ -10,7 +10,7 @@
  * 2. Redistributions in binary form must reproduce the above copyright
  *    notice, this list of conditions and the following disclaimer in the
  *    documentation and/or other materials provided with the distribution.
- * 4. Neither the name of the University nor the names of its contributors
+ * 3. Neither the name of the University nor the names of its contributors
  *    may be used to endorse or promote products derived from this software
  *    without specific prior written permission.
  *
@@ -27,185 +27,28 @@
  * SUCH DAMAGE.
  */
 
-#if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)nlist.c	8.1 (Berkeley) 6/4/93";
-#endif /* LIBC_SCCS and not lint */
 #include <sys/cdefs.h>
 
 #include <sys/param.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
-#include <sys/file.h>
-#include <arpa/inet.h>
 
 #include <errno.h>
 #include <fcntl.h>
-#include <a.out.h>
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <nlist.h>
 
-#if !defined(__NO_A_OUT_SUPPORT)
-#define _NLIST_DO_AOUT
-#endif
-#define _NLIST_DO_ELF
-
-#ifdef _NLIST_DO_ELF
 #include "local-elf.h"
-#endif
 
 #define SIZE_T_MAX 0xffffffffU
 
-#ifdef _NLIST_DO_AOUT
-static int __aout_fdnlist(int, struct nlist *);
-#ifndef N_SYMSIZE
-#define N_SYMSIZE(a)	((a).a_syms)
-#endif
-#endif
-#ifdef _NLIST_DO_ELF
-static int __elf_fdnlist(int, struct nlist *);
-#endif
-
-/* FIXME: This function is used by libkvm0, so we need to export it.
-   It is not declared in the include files though. */
+/* Note: This function is used by libkvm0, so we need to export it.
+ * It is not declared in the include files though. */
 int __fdnlist(int, struct nlist *);
 
-int
-nlist(const char *name, struct nlist *list)
-{
-	int fd, n;
-
-	fd = open(name, O_RDONLY, 0);
-	if (fd < 0)
-		return (-1);
-	n = __fdnlist(fd, list);
-	(void)close(fd);
-	return (n);
-}
-
-static struct nlist_handlers {
-	int	(*fn)(int fd, struct nlist *list);
-} nlist_fn[] = {
-#ifdef _NLIST_DO_AOUT
-	{ __aout_fdnlist },
-#endif
-#ifdef _NLIST_DO_ELF
-	{ __elf_fdnlist },
-#endif
-};
-
-int
-__fdnlist(int fd, struct nlist *list)
-{
-	size_t i;
-	int n = -1;
-
-	for (i = 0; i < sizeof(nlist_fn) / sizeof(nlist_fn[0]); i++) {
-		n = (nlist_fn[i].fn)(fd, list);
-		if (n != -1)
-			break;
-	}
-	return (n);
-}
-
 #define	ISLAST(p)	(p->n_un.n_name == 0 || p->n_un.n_name[0] == 0)
-
-#ifdef _NLIST_DO_AOUT
-static int
-__aout_fdnlist(int fd, struct nlist *list)
-{
-	struct nlist *p, *symtab;
-	caddr_t strtab, a_out_mmap;
-	off_t stroff, symoff;
-	unsigned long symsize;
-	int nent;
-	struct exec * exec;
-	struct stat st;
-
-	/* check that file is at least as large as struct exec! */
-	if ((fstat(fd, &st) < 0) || (st.st_size < sizeof(struct exec)))
-		return (-1);
-
-	/* Check for files too large to mmap. */
-	if (st.st_size > SIZE_T_MAX) {
-		errno = EFBIG;
-		return (-1);
-	}
-
-	/*
-	 * Map the whole a.out file into our address space.
-	 * We then find the string table within this area.
-	 * We do not just mmap the string table, as it probably
-	 * does not start at a page boundary - we save ourselves a
-	 * lot of nastiness by mmapping the whole file.
-	 *
-	 * This gives us an easy way to randomly access all the strings,
-	 * without making the memory allocation permanent as with
-	 * malloc/free (i.e., munmap will return it to the system).
-	 */
-	a_out_mmap = mmap(NULL, (size_t)st.st_size, PROT_READ, MAP_PRIVATE, fd, (off_t)0);
-	if (a_out_mmap == MAP_FAILED)
-		return (-1);
-
-	exec = (struct exec *)a_out_mmap;
-	if (N_BADMAG(*exec)) {
-		munmap(a_out_mmap, (size_t)st.st_size);
-		return (-1);
-	}
-
-	symoff = N_SYMOFF(*exec);
-	symsize = N_SYMSIZE(*exec);
-	stroff = symoff + symsize;
-
-	/* find the string table in our mmapped area */
-	strtab = a_out_mmap + stroff;
-	symtab = (struct nlist *)(a_out_mmap + symoff);
-
-	/*
-	 * clean out any left-over information for all valid entries.
-	 * Type and value defined to be 0 if not found; historical
-	 * versions cleared other and desc as well.  Also figure out
-	 * the largest string length so don't read any more of the
-	 * string table than we have to.
-	 *
-	 * XXX clearing anything other than n_type and n_value violates
-	 * the semantics given in the man page.
-	 */
-	nent = 0;
-	for (p = list; !ISLAST(p); ++p) {
-		p->n_type = 0;
-		p->n_other = 0;
-		p->n_desc = 0;
-		p->n_value = 0;
-		++nent;
-	}
-
-	while (symsize > 0) {
-		int soff;
-
-		symsize-= sizeof(struct nlist);
-		soff = symtab->n_un.n_strx;
-
-
-		if (soff != 0 && (symtab->n_type & N_STAB) == 0)
-			for (p = list; !ISLAST(p); p++)
-				if (!strcmp(&strtab[soff], p->n_un.n_name)) {
-					p->n_value = symtab->n_value;
-					p->n_type = symtab->n_type;
-					p->n_desc = symtab->n_desc;
-					p->n_other = symtab->n_other;
-					if (--nent <= 0)
-						break;
-				}
-		symtab++;
-	}
-	munmap(a_out_mmap, (size_t)st.st_size);
-	return (nent);
-}
-#endif
-
-#ifdef _NLIST_DO_ELF
-static void elf_sym_to_nlist(struct nlist *, Elf_Sym *, Elf_Shdr *, int);
 
 /*
  * __elf_is_okay__ - Determine if ehdr really
@@ -237,8 +80,44 @@ __elf_is_okay__(Elf_Ehdr *ehdr)
 	return retval;
 }
 
-static int
-__elf_fdnlist(int fd, struct nlist *list)
+/*
+ * Convert an Elf_Sym into an nlist structure.  This fills in only the
+ * n_value and n_type members.
+ */
+static void
+elf_sym_to_nlist(struct nlist *nl, Elf_Sym *s, Elf_Shdr *shdr, int shnum)
+{
+	nl->n_value = s->st_value;
+
+	switch (s->st_shndx) {
+	case SHN_UNDEF:
+	case SHN_COMMON:
+		nl->n_type = N_UNDF;
+		break;
+	case SHN_ABS:
+		nl->n_type = ELF_ST_TYPE(s->st_info) == STT_FILE ?
+		    N_FN : N_ABS;
+		break;
+	default:
+		if (s->st_shndx >= shnum)
+			nl->n_type = N_UNDF;
+		else {
+			Elf_Shdr *sh = shdr + s->st_shndx;
+
+			nl->n_type = sh->sh_type == SHT_PROGBITS ?
+			    (sh->sh_flags & SHF_WRITE ? N_DATA : N_TEXT) :
+			    (sh->sh_type == SHT_NOBITS ? N_BSS : N_UNDF);
+		}
+		break;
+	}
+
+	if (ELF_ST_BIND(s->st_info) == STB_GLOBAL ||
+	    ELF_ST_BIND(s->st_info) == STB_WEAK)
+		nl->n_type |= N_EXT;
+}
+
+int
+__fdnlist(int fd, struct nlist *list)
 {
 	struct nlist *p;
 	Elf_Off symoff = 0, symstroff = 0;
@@ -373,39 +252,15 @@ __elf_fdnlist(int fd, struct nlist *list)
 	return (nent);
 }
 
-/*
- * Convert an Elf_Sym into an nlist structure.  This fills in only the
- * n_value and n_type members.
- */
-static void
-elf_sym_to_nlist(struct nlist *nl, Elf_Sym *s, Elf_Shdr *shdr, int shnum)
+int
+nlist(const char *name, struct nlist *list)
 {
-	nl->n_value = s->st_value;
+	int fd, n;
 
-	switch (s->st_shndx) {
-	case SHN_UNDEF:
-	case SHN_COMMON:
-		nl->n_type = N_UNDF;
-		break;
-	case SHN_ABS:
-		nl->n_type = ELF_ST_TYPE(s->st_info) == STT_FILE ?
-		    N_FN : N_ABS;
-		break;
-	default:
-		if (s->st_shndx >= shnum)
-			nl->n_type = N_UNDF;
-		else {
-			Elf_Shdr *sh = shdr + s->st_shndx;
-
-			nl->n_type = sh->sh_type == SHT_PROGBITS ?
-			    (sh->sh_flags & SHF_WRITE ? N_DATA : N_TEXT) :
-			    (sh->sh_type == SHT_NOBITS ? N_BSS : N_UNDF);
-		}
-		break;
-	}
-
-	if (ELF_ST_BIND(s->st_info) == STB_GLOBAL ||
-	    ELF_ST_BIND(s->st_info) == STB_WEAK)
-		nl->n_type |= N_EXT;
+	fd = open(name, O_RDONLY, 0);
+	if (fd < 0)
+		return (-1);
+	n = __fdnlist(fd, list);
+	(void)close(fd);
+	return (n);
 }
-#endif /* _NLIST_DO_ELF */
