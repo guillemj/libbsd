@@ -45,8 +45,11 @@
 
 #define	S_HTTP		0x080	/* %HEXHEX escape */
 
-#define	isoctal(c)	(((u_char)(c)) >= '0' && ((u_char)(c)) <= '7')
-#define	ishex(c)	((((u_char)(c)) >= '0' && ((u_char)(c)) <= '9') || (((u_char)(c)) >= 'a' && ((u_char)(c)) <= 'f'))
+#define	isoctal(c) \
+	(((unsigned char)(c)) >= '0' && ((unsigned char)(c)) <= '7')
+#define	ishex(c) \
+	((((unsigned char)(c)) >= '0' && ((unsigned char)(c)) <= '9') || \
+	 (((unsigned char)(c)) >= 'a' && ((unsigned char)(c)) <= 'f'))
 
 /*
  * unvis - decode characters previously encoded by vis

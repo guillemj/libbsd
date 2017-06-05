@@ -59,14 +59,14 @@ __RCSID("$NetBSD: radixsort.c,v 1.18 2009/08/21 20:49:50 dsl Exp $");
 #include <errno.h>
 
 typedef struct {
-	const u_char **sa;
+	const unsigned char **sa;
 	int sn, si;
 } stack;
 
-static inline void simplesort(const u_char **, int, int, const u_char *, u_int);
-static void r_sort_a(const u_char **, int, int, const u_char *, u_int);
-static void r_sort_b(const u_char **,
-	    const u_char **, int, int, const u_char *, u_int);
+static inline void simplesort(const unsigned char **, int, int, const unsigned char *, unsigned int);
+static void r_sort_a(const unsigned char **, int, int, const unsigned char *, unsigned int);
+static void r_sort_b(const unsigned char **,
+	    const unsigned char **, int, int, const unsigned char *, unsigned int);
 
 #define	THRESHOLD	20		/* Divert to simplesort(). */
 #define	SIZE		512		/* Default stack size. */
@@ -91,11 +91,12 @@ static void r_sort_b(const u_char **,
 }
 
 int
-radixsort(const u_char **a, int n, const u_char *tab, u_int endch)
+radixsort(const unsigned char **a, int n, const unsigned char *tab,
+          unsigned int endch)
 {
-	const u_char *tr;
-	u_int c;
-	u_char tr0[256];
+	const unsigned char *tr;
+	unsigned int c;
+	unsigned char tr0[256];
 
 	SETUP;
 	r_sort_a(a, n, 0, tr, endch);
@@ -103,11 +104,12 @@ radixsort(const u_char **a, int n, const u_char *tab, u_int endch)
 }
 
 int
-sradixsort(const u_char **a, int n, const u_char *tab, u_int endch)
+sradixsort(const unsigned char **a, int n, const unsigned char *tab,
+           unsigned int endch)
 {
-	const u_char *tr, **ta;
-	u_int c;
-	u_char tr0[256];
+	const unsigned char *tr, **ta;
+	unsigned int c;
+	unsigned char tr0[256];
 
 	if (a == NULL) {
 		errno = EFAULT;
@@ -134,14 +136,15 @@ sradixsort(const u_char **a, int n, const u_char *tab, u_int endch)
 
 /* Unstable, in-place sort. */
 static void
-r_sort_a(const u_char **a, int n, int i, const u_char *tr, u_int endch)
+r_sort_a(const unsigned char **a, int n, int i, const unsigned char *tr,
+         unsigned int endch)
 {
-	static u_int count[256], nc, bmin;
-	u_int c;
-	const u_char **ak, *r;
+	static unsigned int count[256], nc, bmin;
+	unsigned int c;
+	const unsigned char **ak, *r;
 	stack s[SIZE], *sp, *sp0, *sp1, temp;
-	u_int *cp, bigc;
-	const u_char **an, *t, **aj, **top[256];
+	unsigned int *cp, bigc;
+	const unsigned char **an, *t, **aj, **top[256];
 
 	/* Set up stack. */
 	sp = s;
@@ -176,7 +179,7 @@ r_sort_a(const u_char **a, int n, int i, const u_char *tr, u_int endch)
 		 * character at position i, move on to the next
 		 * character.
 		 */
-		if (nc == 1 && count[bmin] == (u_int)n) {
+		if (nc == 1 && count[bmin] == (unsigned int)n) {
 			push(a, n, i+1);
 			nc = count[bmin] = 0;
 			continue;
@@ -232,15 +235,15 @@ r_sort_a(const u_char **a, int n, int i, const u_char *tr, u_int endch)
 
 /* Stable sort, requiring additional memory. */
 static void
-r_sort_b(const u_char **a, const u_char **ta, int n, int i, const u_char *tr,
-    u_int endch)
+r_sort_b(const unsigned char **a, const unsigned char **ta, int n, int i,
+         const unsigned char *tr, unsigned int endch)
 {
-	static u_int count[256], nc, bmin;
-	u_int c;
-	const u_char **ak, **ai;
+	static unsigned int count[256], nc, bmin;
+	unsigned int c;
+	const unsigned char **ak, **ai;
 	stack s[512], *sp, *sp0, *sp1, temp;
-	const u_char **top[256];
-	u_int *cp, bigc;
+	const unsigned char **top[256];
+	unsigned int *cp, bigc;
 
 	sp = s;
 	push(a, n, i);
@@ -302,10 +305,11 @@ r_sort_b(const u_char **a, const u_char **ta, int n, int i, const u_char *tr,
 
 /* insertion sort */
 static inline void
-simplesort(const u_char **a, int n, int b, const u_char *tr, u_int endch)
+simplesort(const unsigned char **a, int n, int b, const unsigned char *tr,
+           unsigned int endch)
 {
-	u_char ch;
-	const u_char  **ak, **ai, *s, *t;
+	unsigned char ch;
+	const unsigned char  **ak, **ai, *s, *t;
 
 	for (ak = a+1; --n >= 1; ak++)
 		for (ai = ak; ai > a; ai--) {

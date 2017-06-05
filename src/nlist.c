@@ -117,7 +117,7 @@ __aout_fdnlist(int fd, struct nlist *list)
 	struct nlist *p, *symtab;
 	caddr_t strtab, a_out_mmap;
 	off_t stroff, symoff;
-	u_long symsize;
+	unsigned long symsize;
 	int nent;
 	struct exec * exec;
 	struct stat st;

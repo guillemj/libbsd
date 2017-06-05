@@ -49,7 +49,7 @@
 __BEGIN_DECLS
 uint32_t arc4random(void);
 void arc4random_stir(void);
-void arc4random_addrandom(u_char *dat, int datlen);
+void arc4random_addrandom(unsigned char *dat, int datlen);
 void arc4random_buf(void *_buf, size_t n);
 uint32_t arc4random_uniform(uint32_t upper_bound);
 

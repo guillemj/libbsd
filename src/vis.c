@@ -35,17 +35,20 @@
 #include <stdio.h>
 #include <vis.h>
 
-#define	isoctal(c)	(((u_char)(c)) >= '0' && ((u_char)(c)) <= '7')
+#define	isoctal(c)	\
+	(((unsigned char)(c)) >= '0' && ((unsigned char)(c)) <= '7')
 #define	isvisible(c)							\
-	(((u_int)(c) <= UCHAR_MAX && isascii((u_char)(c)) &&		\
+	(((unsigned int)(c) <= UCHAR_MAX &&				\
+	  isascii((unsigned char)(c)) &&				\
 	(((c) != '*' && (c) != '?' && (c) != '[' && (c) != '#') ||	\
-		(flag & VIS_GLOB) == 0) && isgraph((u_char)(c))) ||	\
+		(flag & VIS_GLOB) == 0) &&				\
+	  isgraph((unsigned char)(c))) ||				\
 	((flag & VIS_SP) == 0 && (c) == ' ') ||				\
 	((flag & VIS_TAB) == 0 && (c) == '\t') ||			\
 	((flag & VIS_NL) == 0 && (c) == '\n') ||			\
 	((flag & VIS_SAFE) && ((c) == '\b' ||				\
 		(c) == '\007' || (c) == '\r' ||				\
-		isgraph((u_char)(c)))))
+		isgraph((unsigned char)(c)))))
 
 /*
  * vis - visually encode characters
@@ -131,9 +134,9 @@ vis(char *dst, int c, int flag, int nextc)
 	}
 	if (((c & 0177) == ' ') || isgraph(c) || (flag & VIS_OCTAL)) {
 		*dst++ = '\\';
-		*dst++ = ((u_char)c >> 6 & 07) + '0';
-		*dst++ = ((u_char)c >> 3 & 07) + '0';
-		*dst++ = ((u_char)c & 07) + '0';
+		*dst++ = ((unsigned char)c >> 6 & 07) + '0';
+		*dst++ = ((unsigned char)c >> 3 & 07) + '0';
+		*dst++ = ((unsigned char)c & 07) + '0';
 		goto done;
 	}
 	if ((flag & VIS_NOSLASH) == 0)

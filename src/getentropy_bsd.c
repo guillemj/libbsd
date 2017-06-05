@@ -30,7 +30,7 @@
  * Derived from lib/libc/gen/arc4random.c from FreeBSD.
  */
 static size_t
-getentropy_sysctl(u_char *buf, size_t size)
+getentropy_sysctl(unsigned char *buf, size_t size)
 {
 	int mib[2];
 	size_t len, done;

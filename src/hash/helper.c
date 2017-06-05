@@ -51,7 +51,7 @@ char *
 HASHFileChunk(const char *filename, char *buf, off_t off, off_t len)
 {
 	struct stat sb;
-	u_char buffer[BUFSIZ];
+	unsigned char buffer[BUFSIZ];
 	HASH_CTX ctx;
 	int fd, save_errno;
 	ssize_t nr;
@@ -92,7 +92,7 @@ HASHFile(const char *filename, char *buf)
 }
 
 char *
-HASHData(const u_char *data, size_t len, char *buf)
+HASHData(const unsigned char *data, size_t len, char *buf)
 {
 	HASH_CTX ctx;
 

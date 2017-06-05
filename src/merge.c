@@ -56,13 +56,13 @@ __FBSDID("$FreeBSD$");
 #include <stdlib.h>
 #include <string.h>
 
-static void setup(u_char *, u_char *, size_t, size_t,
+static void setup(unsigned char *, unsigned char *, size_t, size_t,
     int (*)(const void *, const void *));
-static void insertionsort(u_char *, size_t, size_t,
+static void insertionsort(unsigned char *, size_t, size_t,
     int (*)(const void *, const void *));
 
 #define ISIZE sizeof(int)
-#define PSIZE sizeof(u_char *)
+#define PSIZE sizeof(unsigned char *)
 #define ICOPY_LIST(src, dst, last)				\
 	do							\
 	*(int*)dst = *(int*)src, src += ISIZE, dst += ISIZE;	\
@@ -87,9 +87,10 @@ static void insertionsort(u_char *, size_t, size_t,
  * boundaries.
  */
 /* Assumption: PSIZE is a power of 2. */
-#define EVAL(p) (u_char **)						\
-	((u_char *)0 +							\
-	    (((u_char *)p + PSIZE - 1 - (u_char *) 0) & ~(PSIZE - 1)))
+#define EVAL(p) (unsigned char **)					\
+	((unsigned char *)0 +						\
+	 (((unsigned char *)p + PSIZE - 1 -				\
+	   (unsigned char *)0) & ~(PSIZE - 1)))
 
 /*
  * Arguments are as for qsort.
@@ -101,8 +102,8 @@ mergesort(void *base, size_t nmemb, size_t size,
 	size_t i;
 	int sense;
 	int big, iflag;
-	u_char *f1, *f2, *t, *b, *tp2, *q, *l1, *l2;
-	u_char *list2, *list1, *p2, *p, *last, **p1;
+	unsigned char *f1, *f2, *t, *b, *tp2, *q, *l1, *l2;
+	unsigned char *list2, *list1, *p2, *p, *last, **p1;
 
 	if (size < PSIZE / 2) {		/* Pointers must fit into 2 * size. */
 		errno = EINVAL;
@@ -256,16 +257,16 @@ COPY:	    			b = t;
  * is defined.  Otherwise simple pairwise merging is used.)
  */
 static void
-setup(u_char *list1, u_char *list2, size_t n, size_t size,
+setup(unsigned char *list1, unsigned char *list2, size_t n, size_t size,
 	int (*cmp)(const void *, const void *))
 {
 	int i, length, size2, tmp, sense;
-	u_char *f1, *f2, *s, *l2, *last, *p2;
+	unsigned char *f1, *f2, *s, *l2, *last, *p2;
 
 	size2 = size*2;
 	if (n <= 5) {
 		insertionsort(list1, n, size, cmp);
-		*EVAL(list2) = (u_char*) list2 + n*size;
+		*EVAL(list2) = (unsigned char*) list2 + n*size;
 		return;
 	}
 	/*
@@ -328,10 +329,10 @@ setup(u_char *list1, u_char *list2, size_t n, size_t size,
  * last 4 elements.
  */
 static void
-insertionsort(u_char *a, size_t n, size_t size,
+insertionsort(unsigned char *a, size_t n, size_t size,
 	int (*cmp)(const void *, const void *))
 {
-	u_char *ai, *s, *t, *u, tmp;
+	unsigned char *ai, *s, *t, *u, tmp;
 	int i;
 
 	for (ai = a+size; --n >= 1; ai += size)

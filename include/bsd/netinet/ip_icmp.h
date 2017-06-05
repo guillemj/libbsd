@@ -33,7 +33,7 @@
 #ifndef _NETINET_IP_ICMP_H_
 #define _NETINET_IP_ICMP_H_
 
-#include <sys/types.h>		/* u_int32_t, u_char */
+#include <sys/types.h>		/* uint32_t */
 #include <netinet/in.h>		/* in_addr */
 #include <netinet/in_systm.h>	/* n_short */
 #include <netinet/ip.h>		/* idi_ip */
@@ -47,19 +47,19 @@
  * Internal of an ICMP Router Advertisement
  */
 struct icmp_ra_addr {
-	u_int32_t ira_addr;
-	u_int32_t ira_preference;
+	uint32_t ira_addr;
+	uint32_t ira_preference;
 };
 
 /*
  * Structure of an icmp header.
  */
 struct icmp {
-	u_char	icmp_type;		/* type of message, see below */
-	u_char	icmp_code;		/* type sub code */
-	u_short	icmp_cksum;		/* ones complement cksum of struct */
+	unsigned char	icmp_type;	/* type of message, see below */
+	unsigned char	icmp_code;	/* type sub code */
+	unsigned short	icmp_cksum;	/* ones complement cksum of struct */
 	union {
-		u_char ih_pptr;			/* ICMP_PARAMPROB */
+		unsigned char ih_pptr;		/* ICMP_PARAMPROB */
 		struct in_addr ih_gwaddr;	/* ICMP_REDIRECT */
 		struct ih_idseq {
 			n_short	icd_id;
@@ -74,9 +74,9 @@ struct icmp {
 		} ih_pmtu;
 
 		struct ih_rtradv {
-			u_char irt_num_addrs;
-			u_char irt_wpa;
-			u_int16_t irt_lifetime;
+			unsigned char irt_num_addrs;
+			unsigned char irt_wpa;
+			uint16_t irt_lifetime;
 		} ih_rtradv;
 	} icmp_hun;
 #define	icmp_pptr	icmp_hun.ih_pptr
@@ -100,7 +100,7 @@ struct icmp {
 			/* options and then 64 bits of data */
 		} id_ip;
 		struct icmp_ra_addr id_radv;
-		u_int32_t id_mask;
+		uint32_t id_mask;
 		char	id_data[1];
 	} icmp_dun;
 #define	icmp_otime	icmp_dun.id_ts.its_otime
