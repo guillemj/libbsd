@@ -41,7 +41,10 @@
 .Lb libbsd
 .Sh SYNOPSIS
 .In limits.h
-.In bsd/stdlib.h
+.In stdlib.h
+(See
+.Xr libbsd 7
+for include usage.)
 .Ft int
 .Fn radixsort "const unsigned char **base" "int nmemb" "const unsigned char *table" "unsigned endbyte"
 .Ft int

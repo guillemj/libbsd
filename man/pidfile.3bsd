@@ -37,7 +37,10 @@
 .ds str-Lb-libbsd Utility functions from BSD systems (libbsd, \-lbsd)
 .Lb libbsd
 .Sh SYNOPSIS
-.In bsd/libutil.h
+.In libutil.h
+(See
+.Xr libbsd 7
+for include usage.)
 .Ft "struct pidfh *"
 .Fn pidfile_open "const char *path" "mode_t mode" "pid_t *pidptr"
 .Ft int

@@ -39,7 +39,10 @@
 .ds str-Lb-libbsd Utility functions from BSD systems (libbsd, \-lbsd)
 .Lb libbsd
 .Sh SYNOPSIS
-.In bsd/string.h
+.In string.h
+(See
+.Xr libbsd 7
+for include usage.)
 .Ft void
 .Fn explicit_bzero "void *buf" "size_t len"
 .Sh DESCRIPTION

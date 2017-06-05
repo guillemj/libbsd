@@ -31,7 +31,10 @@
 .Lb libbsd
 .Sh SYNOPSIS
 .In sys/types.h
-.In bsd/unistd.h
+.In unistd.h
+(See
+.Xr libbsd 7
+for include usage.)
 .Ft void
 .Fn setproctitle_init "int argc" "char *argv[]" "char *envp[]"
 .Ft void

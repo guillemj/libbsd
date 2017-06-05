@@ -42,6 +42,9 @@
 .Lb libbsd
 .Sh SYNOPSIS
 .In stdio.h
+(See
+.Xr libbsd 7
+for include usage.)
 .Ft int
 .Fn fpurge "FILE *stream"
 .Sh DESCRIPTION

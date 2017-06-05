@@ -41,7 +41,10 @@
 .Lb libbsd
 .Sh SYNOPSIS
 .In stdlib.h
-.In bsd/vis.h
+.In vis.h
+(See
+.Xr libbsd 7
+for include usage.)
 .Ft char *
 .Fn vis "char *dst" "int c" "int flag" "int nextc"
 .Ft int

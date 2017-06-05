@@ -39,7 +39,10 @@
 .Lb libbsd
 .Sh SYNOPSIS
 .In stdio.h
-.In bsd/wchar.h
+.In wchar.h
+(See
+.Xr libbsd 7
+for include usage.)
 .Ft wchar_t *
 .Fn fgetwln "FILE * restrict stream" "size_t * restrict len"
 .Sh DESCRIPTION

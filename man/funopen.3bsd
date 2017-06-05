@@ -42,7 +42,10 @@
 .ds str-Lb-libbsd Utility functions from BSD systems (libbsd, \-lbsd)
 .Lb libbsd
 .Sh SYNOPSIS
-.In bsd/stdio.h
+.In stdio.h
+(See
+.Xr libbsd 7
+for include usage.)
 .Ft FILE *
 .Fn funopen "const void *cookie" "int (*readfn)(void *, char *, int)" "int (*writefn)(void *, const char *, int)" "off_t (*seekfn)(void *, off_t, int)" "int (*closefn)(void *)"
 .Ft FILE *

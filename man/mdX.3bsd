@@ -28,7 +28,10 @@
 .Lb libbsd
 .Sh SYNOPSIS
 .Fd #include <sys/types.h>
-.Fd #include <bsd/mdX.h>
+.Fd #include <mdX.h>
+(See
+.Xr libbsd 7
+for include usage.)
 .Ft void
 .Fn MDXInit "MDX_CTX *context"
 .Ft void

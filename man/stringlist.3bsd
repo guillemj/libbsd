@@ -41,7 +41,10 @@
 .ds str-Lb-libbsd Utility functions from BSD systems (libbsd, \-lbsd)
 .Lb libbsd
 .Sh SYNOPSIS
-.In bsd/stringlist.h
+.In stringlist.h
+(See
+.Xr libbsd 7
+for include usage.)
 .Ft StringList *
 .Fn sl_init "void"
 .Ft int

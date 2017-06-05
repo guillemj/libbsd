@@ -33,6 +33,9 @@
 .Nd byte order operations
 .Sh SYNOPSIS
 .In sys/endian.h
+(See
+.Xr libbsd 7
+for include usage.)
 .Ft uint16_t
 .Fn be16dec "const void *"
 .Ft uint32_t

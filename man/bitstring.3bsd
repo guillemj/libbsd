@@ -45,7 +45,10 @@
 .Nm bit_test
 .Nd bit-string manipulation macros
 .Sh SYNOPSIS
-.In bsd/bitstring.h
+.In bitstring.h
+(See
+.Xr libbsd 7
+for include usage.)
 .Ft bitstr_t *
 .Fn bit_alloc "int nbits"
 .Ft void

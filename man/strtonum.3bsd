@@ -26,7 +26,10 @@
 .Lb libbsd
 .Sh SYNOPSIS
 .In limits.h
-.In bsd/stdlib.h
+.In stdlib.h
+(See
+.Xr libbsd 7
+for include usage.)
 .Ft long long
 .Fo strtonum
 .Fa "const char *nptr"

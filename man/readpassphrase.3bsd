@@ -28,7 +28,10 @@
 .ds str-Lb-libbsd Utility functions from BSD systems (libbsd, \-lbsd)
 .Lb libbsd
 .Sh SYNOPSIS
-.Fd #include <bsd/readpassphrase.h>
+.Fd #include <readpassphrase.h>
+(See
+.Xr libbsd 7
+for include usage.)
 .Ft char *
 .Fn readpassphrase "const char *prompt" "char *buf" "size_t bufsiz" "int flags"
 .Sh DESCRIPTION

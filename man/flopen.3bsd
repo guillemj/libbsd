@@ -36,7 +36,10 @@
 .Lb libbsd
 .Sh SYNOPSIS
 .In sys/fcntl.h
-.In bsd/libutil.h
+.In libutil.h
+(See
+.Xr libbsd 7
+for include usage.)
 .Ft int
 .Fn flopen "const char *path" "int flags"
 .Ft int

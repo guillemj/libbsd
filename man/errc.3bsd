@@ -41,6 +41,9 @@
 .Lb libbsd
 .Sh SYNOPSIS
 .In err.h
+(See
+.Xr libbsd 7
+for include usage.)
 .Ft void
 .Fn errc "int status" "int code" "const char *fmt" "..."
 .Ft void

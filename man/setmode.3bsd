@@ -41,7 +41,10 @@
 .ds str-Lb-libbsd Utility functions from BSD systems (libbsd, \-lbsd)
 .Lb libbsd
 .Sh SYNOPSIS
-.In bsd/unistd.h
+.In unistd.h
+(See
+.Xr libbsd 7
+for include usage.)
 .Ft void *
 .Fn setmode "const char *mode_str"
 .Ft mode_t

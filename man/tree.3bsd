@@ -76,7 +76,10 @@
 .Nm RB_REMOVE
 .Nd implementations of splay and red-black trees
 .Sh SYNOPSIS
-.In bsd/sys/tree.h
+.In sys/tree.h
+(See
+.Xr libbsd 7
+for include usage.)
 .Fn SPLAY_PROTOTYPE NAME TYPE FIELD CMP
 .Fn SPLAY_GENERATE NAME TYPE FIELD CMP
 .Fn SPLAY_ENTRY TYPE
