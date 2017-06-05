@@ -6,6 +6,7 @@ nobase_include_HEADERS = \
 	bsd/sys/endian.h \
 	bsd/sys/poll.h \
 	bsd/sys/queue.h \
+	bsd/sys/time.h \
 	bsd/sys/tree.h \
 	bsd/netinet/ip_icmp.h \
 	bsd/bitstring.h \

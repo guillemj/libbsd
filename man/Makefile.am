@@ -132,6 +132,8 @@ dist_man_MANS = \
 	TAILQ_PREV.3bsd \
 	TAILQ_REMOVE.3bsd \
 	TAILQ_SWAP.3bsd \
+	TIMESPEC_TO_TIMEVAL.3bsd \
+	TIMEVAL_TO_TIMESPEC.3bsd \
 	arc4random.3bsd \
 	arc4random_addrandom.3bsd \
 	arc4random_buf.3bsd \
@@ -213,6 +215,17 @@ dist_man_MANS = \
 	strunvis.3bsd \
 	strvis.3bsd \
 	strvisx.3bsd \
+	timeradd.3bsd \
+	timerclear.3bsd \
+	timercmp.3bsd \
+	timerisset.3bsd \
+	timersub.3bsd \
+	timespecadd.3bsd \
+	timespecclear.3bsd \
+	timespeccmp.3bsd \
+	timespecisset.3bsd \
+	timespecsub.3bsd \
+	timeval.3bsd \
 	tree.3bsd \
 	unvis.3bsd \
 	vis.3bsd \
