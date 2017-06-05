@@ -87,7 +87,7 @@ allows the aforementioned library to learn the program name without
 modifications to the start-up code.
 .Sh SEE ALSO
 .Xr err 3 ,
-.Xr setproctitle 3
+.Xr setproctitle 3bsd
 .Sh HISTORY
 These functions first appeared in
 .Nx 1.6 ,

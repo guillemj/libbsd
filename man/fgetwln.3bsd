@@ -112,6 +112,6 @@ or
 .Xr read 2 .
 .Sh SEE ALSO
 .Xr ferror 3 ,
-.Xr fgetln 3 ,
+.Xr fgetln 3bsd ,
 .Xr fgetws 3 ,
 .Xr fopen 3

@@ -1204,7 +1204,7 @@ while (n1 != NULL) {
 TAILQ_INIT(&head);
 .Ed
 .Sh SEE ALSO
-.Xr tree 3
+.Xr tree 3bsd
 .Sh HISTORY
 The
 .Nm queue

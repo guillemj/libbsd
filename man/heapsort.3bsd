@@ -174,7 +174,7 @@ were unable to allocate memory.
 .El
 .Sh SEE ALSO
 .Xr sort 1 ,
-.Xr radixsort 3
+.Xr radixsort 3bsd
 .Rs
 .%A Williams, J.W.J
 .%D 1964

@@ -498,7 +498,7 @@ return the pointer to the removed element otherwise they return
 .Dv NULL
 to indicate an error.
 .Sh SEE ALSO
-.Xr queue 3
+.Xr queue 3bsd
 .Sh AUTHORS
 The author of the tree macros is
 .An Niels Provos .

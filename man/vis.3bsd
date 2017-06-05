@@ -151,9 +151,9 @@ must not be used without checking it against
 The encoding is a unique, invertible representation composed entirely of
 graphic characters; it can be decoded back into the original form using
 the
-.Xr unvis 3
+.Xr unvis 3bsd
 or
-.Xr strunvis 3
+.Xr strunvis 3bsd
 functions.
 .Pp
 There are two parameters that can be controlled: the range of
@@ -305,8 +305,8 @@ ambiguous and non-invertible.
 .Xr unvis 1 ,
 .Xr vis 1 ,
 .Xr snprintf 3 ,
-.Xr strlcpy 3 ,
-.Xr unvis 3
+.Xr strlcpy 3bsd ,
+.Xr unvis 3bsd
 .Sh HISTORY
 The
 .Fn vis ,

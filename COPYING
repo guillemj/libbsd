@@ -7,8 +7,8 @@ Copyright:
 License: BSD-3-clause
 
 Files:
- man/arc4random.3
- man/tree.3
+ man/arc4random.3bsd
+ man/tree.3bsd
 Copyright:
  Copyright 1997 Niels Provos <provos@physnet.uni-hamburg.de>
  All rights reserved.
@@ -39,7 +39,7 @@ License: BSD-4-clause-Niels-Provos
  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Files:
- man/getprogname.3
+ man/getprogname.3bsd
 Copyright:
  Copyright © 2001 Christopher G. Demetriou
  All rights reserved.
@@ -92,24 +92,24 @@ Files:
  include/bsd/sys/queue.h
  include/bsd/timeconv.h
  include/bsd/vis.h
- man/bitstring.3
- man/explicit_bzero.3
- man/fgetln.3
- man/fgetwln.3
+ man/bitstring.3bsd
+ man/explicit_bzero.3bsd
+ man/fgetln.3bsd
+ man/fgetwln.3bsd
  man/funopen.3bsd
- man/getbsize.3
- man/heapsort.3
- man/nlist.3
+ man/getbsize.3bsd
+ man/heapsort.3bsd
+ man/nlist.3bsd
  man/queue.3bsd
- man/radixsort.3
- man/reallocarray.3
- man/reallocf.3
- man/setmode.3
- man/strmode.3
- man/strnstr.3
- man/unvis.3
- man/vis.3
- man/wcslcpy.3
+ man/radixsort.3bsd
+ man/reallocarray.3bsd
+ man/reallocf.3bsd
+ man/setmode.3bsd
+ man/strmode.3bsd
+ man/strnstr.3bsd
+ man/unvis.3bsd
+ man/vis.3bsd
+ man/wcslcpy.3bsd
  src/getbsize.c
  src/heapsort.c
  src/merge.c
@@ -207,7 +207,7 @@ License: BSD-3-clause-Peter-Wemm
  SUCH DAMAGE.
 
 Files:
- man/setproctitle.3
+ man/setproctitle.3bsd
 Copyright:
  Copyright © 1995 Peter Wemm <peter@FreeBSD.org>
  All rights reserved.
@@ -230,9 +230,9 @@ License: BSD-5-clause-Peter-Wemm
 
 Files:
  include/bsd/stringlist.h
- man/fmtcheck.3
- man/humanize_number.3
- man/stringlist.3
+ man/fmtcheck.3bsd
+ man/humanize_number.3bsd
+ man/stringlist.3bsd
  src/fmtcheck.c
  src/humanize_number.c
  src/stringlist.c
@@ -278,11 +278,11 @@ License: BSD-2-clause-NetBSD
 
 Files:
  include/bsd/sys/endian.h
- man/expand_number.3
- man/closefrom.3
- man/flopen.3
- man/getpeereid.3
- man/pidfile.3
+ man/expand_number.3bsd
+ man/closefrom.3bsd
+ man/flopen.3bsd
+ man/getpeereid.3bsd
+ man/pidfile.3bsd
  src/expand_number.c
  src/hash/sha512.h
  src/hash/sha512c.c
@@ -352,7 +352,7 @@ License: BSD-2-clause-verbatim
 
 Files:
  include/bsd/sys/tree.h
- man/fparseln.3
+ man/fparseln.3bsd
  src/fparseln.c
 Copyright:
  Copyright © 1997 Christos Zoulas.
@@ -383,9 +383,9 @@ License: BSD-2-clause-author
 
 Files:
  include/bsd/readpassphrase.h
- man/readpassphrase.3
- man/strlcpy.3
- man/strtonum.3
+ man/readpassphrase.3bsd
+ man/strlcpy.3bsd
+ man/strtonum.3bsd
  src/arc4random.c
  src/arc4random_openbsd.h
  src/arc4random_uniform.c

@@ -136,8 +136,8 @@ it will be a space.
 .Xr chmod 1 ,
 .Xr find 1 ,
 .Xr stat 2 ,
-.Xr getmode 3 ,
-.Xr setmode 3
+.Xr getmode 3bsd ,
+.Xr setmode 3bsd
 .Sh HISTORY
 The
 .Fn strmode

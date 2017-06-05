@@ -56,10 +56,10 @@ The functions implement string manipulation operations over wide character
 strings.
 For a detailed description, refer to documents for the respective single-byte
 counterpart, such as
-.Xr strlcpy 3 .
+.Xr strlcpy 3bsd .
 .Sh SEE ALSO
-.Xr strlcat 3 ,
-.Xr strlcpy 3 ,
+.Xr strlcat 3bsd ,
+.Xr strlcpy 3bsd .
 .Sh STANDARDS
 .Fn wcslcat
 and

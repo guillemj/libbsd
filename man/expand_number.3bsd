@@ -79,7 +79,7 @@ An unrecognized prefix was given.
 Result doesn't fit into 64 bits.
 .El
 .Sh SEE ALSO
-.Xr humanize_number 3
+.Xr humanize_number 3bsd
 .Sh HISTORY
 The
 .Fn expand_number

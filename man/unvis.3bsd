@@ -54,7 +54,7 @@ and
 .Fn strnunvis
 functions are used to decode a visual representation of characters,
 as produced by the
-.Xr vis 3
+.Xr vis 3bsd
 function, back into the original form.
 .Fn unvis
 is called with successive characters in
@@ -190,7 +190,7 @@ if (unvis(&out, (char)0, &state, UNVIS_END) == UNVIS_VALID)
 .Sh SEE ALSO
 .Xr unvis 1 ,
 .Xr vis 1 ,
-.Xr vis 3
+.Xr vis 3bsd
 .Sh HISTORY
 The
 .Fn unvis
