@@ -93,9 +93,11 @@ Files:
  include/bsd/timeconv.h
  include/bsd/vis.h
  man/bitstring.3bsd
+ man/errc.3bsd
  man/explicit_bzero.3bsd
  man/fgetln.3bsd
  man/fgetwln.3bsd
+ man/fpurge.3bsd
  man/funopen.3bsd
  man/getbsize.3bsd
  man/heapsort.3bsd
@@ -278,8 +280,9 @@ License: BSD-2-clause-NetBSD
 
 Files:
  include/bsd/sys/endian.h
- man/expand_number.3bsd
+ man/byteorder.3bsd
  man/closefrom.3bsd
+ man/expand_number.3bsd
  man/flopen.3bsd
  man/getpeereid.3bsd
  man/pidfile.3bsd
@@ -300,6 +303,9 @@ Copyright:
  All rights reserved.
  .
  Copyright © 2002 Thomas Moestl <tmm@FreeBSD.org>
+ All rights reserved.
+ .
+ Copyright © 2002 Mike Barcroft <mike@FreeBSD.org>
  All rights reserved.
  .
  Copyright © 2005 Pawel Jakub Dawidek <pjd@FreeBSD.org>

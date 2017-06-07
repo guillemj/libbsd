@@ -137,6 +137,12 @@ dist_man_MANS = \
 	arc4random_buf.3bsd \
 	arc4random_stir.3bsd \
 	arc4random_uniform.3bsd \
+	be16dec.3bsd \
+	be16enc.3bsd \
+	be32dec.3bsd \
+	be32enc.3bsd \
+	be64dec.3bsd \
+	be64enc.3bsd \
 	bit_alloc.3bsd \
 	bit_clear.3bsd \
 	bit_decl.3bsd \
@@ -148,8 +154,10 @@ dist_man_MANS = \
 	bit_test.3bsd \
 	bitstr_size.3bsd \
 	bitstring.3bsd \
+	byteorder.3bsd \
 	closefrom.3bsd \
 	dehumanize_number.3bsd \
+	errc.3bsd \
 	expand_number.3bsd \
 	explicit_bzero.3bsd \
 	fgetln.3bsd \
@@ -157,6 +165,7 @@ dist_man_MANS = \
 	flopen.3bsd \
 	fmtcheck.3bsd \
 	fparseln.3bsd \
+	fpurge.3bsd \
 	funopen.3bsd \
 	getbsize.3bsd \
 	getmode.3bsd \
@@ -164,6 +173,12 @@ dist_man_MANS = \
 	getprogname.3bsd \
 	heapsort.3bsd \
 	humanize_number.3bsd \
+	le16dec.3bsd \
+	le16enc.3bsd \
+	le32dec.3bsd \
+	le32enc.3bsd \
+	le64dec.3bsd \
+	le64enc.3bsd \
 	md5.3bsd \
 	mergesort.3bsd \
 	nlist.3bsd \
