@@ -27,8 +27,8 @@
 .ds str-Lb-libbsd Utility functions from BSD systems (libbsd, \-lbsd)
 .Lb libbsd
 .Sh SYNOPSIS
-.Fd #include <sys/types.h>
-.Fd #include <mdX.h>
+.In sys/types.h
+.In mdX.h
 (See
 .Xr libbsd 7
 for include usage.)
