@@ -44,9 +44,9 @@ AC_SUBST([TESTU01_LIBS])
 AM_CONDITIONAL([HAVE_LIBTESTU01],
                [test "x$ac_cv_lib_testu01_unif01_CreateExternGenBits" = "xyes"])
 
-# In old glibc versions (< 2.17) clock_gettime() is in librt.
 AS_CASE([$host_os],
   [*-gnu], [
+    # In old glibc versions (< 2.17) clock_gettime() is in librt.
     saved_LIBS="$LIBS"
     AC_SEARCH_LIBS([clock_gettime], [rt], [CLOCK_GETTIME_LIBS="-lrt"])
     AC_SUBST([CLOCK_GETTIME_LIBS])
