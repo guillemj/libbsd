@@ -41,6 +41,7 @@ check_PROGRAMS = \
 	fpurge \
 	md5 \
 	proctitle-init \
+	strl \
 	strmode \
 	$(nil)
 
