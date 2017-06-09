@@ -144,7 +144,7 @@ AC_LINK_IFELSE(
 AC_CHECK_FUNCS([clearenv dirfd fopencookie __fpurge \
                 getauxval getentropy getexecname getline \
                 pstat_getproc sysconf])
-AM_CONDITIONAL(HAVE_GETENTROPY, [test "x$ac_cv_func_getentropy" = "xtrue"])
+AM_CONDITIONAL([HAVE_GETENTROPY], [test "x$ac_cv_func_getentropy" = "xtrue"])
 
 AC_CONFIG_FILES([
 	Makefile
