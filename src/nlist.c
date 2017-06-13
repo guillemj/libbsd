@@ -36,6 +36,7 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <nlist.h>
@@ -131,7 +132,6 @@ __fdnlist(int fd, struct nlist *list)
 	char *strtab = NULL;
 	Elf_Shdr *shdr = NULL;
 	Elf_Word shdr_size;
-	void *base;
 	struct stat st;
 
 	/* Make sure obj is OK */
@@ -150,12 +150,13 @@ __fdnlist(int fd, struct nlist *list)
 		return (-1);
 	}
 
-	/* mmap section header table */
-	base = mmap(NULL, (size_t)shdr_size, PROT_READ, 0, fd,
-	    (off_t)ehdr.e_shoff);
-	if (base == MAP_FAILED)
+	shdr = malloc((size_t)shdr_size);
+	if (shdr == NULL)
 		return (-1);
-	shdr = (Elf_Shdr *)base;
+
+	/* Load section header table. */
+	if (pread(fd, shdr, (size_t)shdr_size, (off_t)ehdr.e_shoff) < 0)
+		goto done;
 
 	/*
 	 * Find the symbol table entry and it's corresponding
@@ -179,16 +180,17 @@ __fdnlist(int fd, struct nlist *list)
 		goto done;
 	}
 	/*
-	 * Map string table into our address space.  This gives us
+	 * Load string table into our address space.  This gives us
 	 * an easy way to randomly access all the strings, without
 	 * making the memory allocation permanent as with malloc/free
 	 * (i.e., munmap will return it to the system).
 	 */
-	base = mmap(NULL, (size_t)symstrsize, PROT_READ, 0, fd,
-	    (off_t)symstroff);
-	if (base == MAP_FAILED)
+	strtab = malloc((size_t)symstrsize);
+	if (strtab == NULL)
 		goto done;
-	strtab = (char *)base;
+
+	if (pread(fd, strtab, (size_t)symstrsize, (off_t)symstroff) < 0)
+		goto done;
 
 	/*
 	 * clean out any left-over information for all valid entries.
@@ -230,6 +232,7 @@ __fdnlist(int fd, struct nlist *list)
 			name = strtab + s->st_name;
 			if (name[0] == '\0')
 				continue;
+
 			for (p = list; !ISLAST(p); p++) {
 				if ((p->n_un.n_name[0] == '_' &&
 				    strcmp(name, p->n_un.n_name+1) == 0)
@@ -244,10 +247,8 @@ __fdnlist(int fd, struct nlist *list)
 	}
   done:
 	errsave = errno;
-	if (strtab != NULL)
-		munmap(strtab, symstrsize);
-	if (shdr != NULL)
-		munmap(shdr, shdr_size);
+	free(strtab);
+	free(shdr);
 	errno = errsave;
 	return (nent);
 }
