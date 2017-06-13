@@ -10,6 +10,7 @@ headers-overlay-gen.c
 headers-system-gen.c
 humanize
 md5
+nlist
 overlay
 proctitle-init
 proctitle

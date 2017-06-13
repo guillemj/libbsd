@@ -40,6 +40,7 @@ check_PROGRAMS = \
 	fparseln \
 	fpurge \
 	md5 \
+	nlist \
 	proctitle-init \
 	strl \
 	strmode \
