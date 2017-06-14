@@ -29,8 +29,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _STRINGLIST_H
-#define _STRINGLIST_H
+#ifndef LIBBSD_STRINGLIST_H
+#define LIBBSD_STRINGLIST_H
 #include <sys/cdefs.h>
 #include <sys/types.h>
 
@@ -51,4 +51,4 @@ char		*sl_find(StringList *, const char *);
 int		 sl_delete(StringList *, const char *, int);
 __END_DECLS
 
-#endif /* _STRINGLIST_H */
+#endif /* LIBBSD_STRINGLIST_H */

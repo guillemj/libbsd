@@ -30,8 +30,8 @@
  * $FreeBSD: src/sys/netinet/ip_icmp.h,v 1.22 2004/04/07 20:46:13 imp Exp $
  */
 
-#ifndef _NETINET_IP_ICMP_H_
-#define _NETINET_IP_ICMP_H_
+#ifndef LIBBSD_NETINET_IP_ICMP_H
+#define LIBBSD_NETINET_IP_ICMP_H
 
 #include <sys/types.h>		/* uint32_t */
 #include <netinet/in.h>		/* in_addr */

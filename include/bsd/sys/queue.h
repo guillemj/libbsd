@@ -30,8 +30,8 @@
  * $FreeBSD$
  */
 
-#ifndef _SYS_QUEUE_H_
-#define	_SYS_QUEUE_H_
+#ifndef LIBBSD_SYS_QUEUE_H
+#define LIBBSD_SYS_QUEUE_H
 
 #include <sys/cdefs.h>
 
@@ -691,4 +691,4 @@ struct {								\
 		(head2)->tqh_last = &(head2)->tqh_first;		\
 } while (0)
 
-#endif /* !_SYS_QUEUE_H_ */
+#endif /* !LIBBSD_SYS_QUEUE_H */

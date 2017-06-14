@@ -20,8 +20,8 @@
  * Materiel Command, USAF, under agreement number F39502-99-1-0512.
  */
 
-#ifndef _READPASSPHRASE_H_
-#define _READPASSPHRASE_H_
+#ifndef LIBBSD_READPASSPHRASE_H
+#define LIBBSD_READPASSPHRASE_H
 
 #define RPP_ECHO_OFF    0x00		/* Turn off echo (default). */
 #define RPP_ECHO_ON     0x01		/* Leave echo on. */
@@ -38,4 +38,4 @@ __BEGIN_DECLS
 char * readpassphrase(const char *, char *, size_t, int);
 __END_DECLS
 
-#endif /* !_READPASSPHRASE_H_ */
+#endif /* !LIBBSD_READPASSPHRASE_H */

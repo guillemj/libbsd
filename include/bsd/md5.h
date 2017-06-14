@@ -12,8 +12,8 @@
  * with every copy.
  */
 
-#ifndef _MD5_H_
-#define _MD5_H_
+#ifndef LIBBSD_MD5_H
+#define LIBBSD_MD5_H
 
 #include <stdint.h>
 
@@ -51,4 +51,4 @@ char	*MD5Data(const uint8_t *, size_t, char *)
 		__attribute__((__bounded__(__minbytes__,3,MD5_DIGEST_STRING_LENGTH)));
 __END_DECLS
 
-#endif /* _MD5_H_ */
+#endif /* LIBBSD_MD5_H */

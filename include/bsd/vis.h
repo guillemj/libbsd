@@ -30,8 +30,8 @@
  * $FreeBSD: src/include/vis.h,v 1.11 2003/10/30 10:40:49 phk Exp $
  */
 
-#ifndef _VIS_H_
-#define	_VIS_H_
+#ifndef LIBBSD_VIS_H
+#define LIBBSD_VIS_H
 
 #include <sys/types.h>
 
@@ -85,4 +85,4 @@ ssize_t strnunvis(char *, const char *, size_t);
 int	unvis(char *, int, int *, int);
 __END_DECLS
 
-#endif /* !_VIS_H_ */
+#endif /* !LIBBSD_VIS_H */
