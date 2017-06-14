@@ -6,7 +6,8 @@ fgetln
 funopen
 fparseln
 fpurge
-headers-gen.c
+headers-overlay-gen.c
+headers-system-gen.c
 humanize
 md5
 overlay
