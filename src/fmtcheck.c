@@ -24,11 +24,12 @@
  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
+ *
+ *	from NetBSD: fmtcheck.c,v 1.2 2000/11/01 01:17:20 briggs Exp
+ *	from FreeBSD: fmtcheck.c,v 1.8 2005/03/21 08:00:55 das Exp
  */
 
-/*	$NetBSD: fmtcheck.c,v 1.2 2000/11/01 01:17:20 briggs Exp $	*/
 #include <sys/cdefs.h>
-__FBSDID("$FreeBSD: /repoman/r/ncvs/src/lib/libc/gen/fmtcheck.c,v 1.8 2005/03/21 08:00:55 das Exp $");
 
 #include <stdio.h>
 #include <string.h>

@@ -32,13 +32,6 @@
  */
 
 #include <sys/cdefs.h>
-#if defined(LIBC_SCCS) && !defined(lint)
-#if 0
-static char sccsid[] = "@(#)radixsort.c	8.2 (Berkeley) 4/28/95";
-#else
-__RCSID("$NetBSD: radixsort.c,v 1.18 2009/08/21 20:49:50 dsl Exp $");
-#endif
-#endif /* LIBC_SCCS and not lint */
 
 /*
  * Radixsort routines.

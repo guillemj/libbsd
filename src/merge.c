@@ -30,11 +30,7 @@
  * SUCH DAMAGE.
  */
 
-#if defined(LIBC_SCCS) && !defined(lint)
-static char sccsid[] = "@(#)merge.c	8.2 (Berkeley) 2/14/94";
-#endif /* LIBC_SCCS and not lint */
 #include <sys/cdefs.h>
-__FBSDID("$FreeBSD$");
 
 /*
  * Hybrid exponential search/linear search merge sort with hybrid

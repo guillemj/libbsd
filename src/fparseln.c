@@ -25,9 +25,6 @@
  */
 
 #include <sys/cdefs.h>
-#if defined(LIBC_SCCS) && !defined(lint)
-__RCSID("$NetBSD: fparseln.c,v 1.10 2009/10/21 01:07:45 snj Exp $");
-#endif /* LIBC_SCCS and not lint */
 
 #include <assert.h>
 #include <errno.h>

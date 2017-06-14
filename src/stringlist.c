@@ -30,9 +30,6 @@
  */
 
 #include <sys/cdefs.h>
-#if defined(LIBC_SCCS) && !defined(lint)
-__RCSID("$NetBSD: stringlist.c,v 1.12 2007/05/09 17:10:29 christos Exp $");
-#endif /* LIBC_SCCS and not lint */
 
 #include <assert.h>
 #include <err.h>

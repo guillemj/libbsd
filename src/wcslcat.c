@@ -25,16 +25,10 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  *	from OpenBSD: strlcat.c,v 1.3 2000/11/24 11:10:02 itojun Exp
+ *	from NetBSD: wcslcat.c,v 1.1 2000/12/23 23:14:36 itojun Exp
  */
 
 #include <sys/cdefs.h>
-#if 0
-#if defined(LIBC_SCCS) && !defined(lint)
-__RCSID("$NetBSD: wcslcat.c,v 1.1 2000/12/23 23:14:36 itojun Exp $");
-#endif /* LIBC_SCCS and not lint */
-#endif
-__FBSDID("$FreeBSD$");
-
 #include <sys/types.h>
 #include <wchar.h>
 

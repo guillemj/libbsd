@@ -33,14 +33,6 @@
  */
 
 #include <sys/cdefs.h>
-#if defined(LIBC_SCCS) && !defined(lint)
-#if 0
-static char sccsid[] = "@(#)setmode.c	8.2 (Berkeley) 3/25/94";
-#else
-__RCSID("$NetBSD: setmode.c,v 1.34 2012/06/25 22:32:43 abs Exp $");
-#endif
-#endif /* LIBC_SCCS and not lint */
-
 #include <sys/types.h>
 #include <sys/stat.h>
 
