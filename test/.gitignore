@@ -14,5 +14,6 @@ nlist
 overlay
 proctitle-init
 proctitle
+setmode
 strl
 strmode
