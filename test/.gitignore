@@ -18,3 +18,4 @@ progname
 setmode
 strl
 strmode
+strnstr
