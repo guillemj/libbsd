@@ -42,6 +42,7 @@ check_PROGRAMS = \
 	md5 \
 	nlist \
 	proctitle-init \
+	progname \
 	setmode \
 	strl \
 	strmode \
