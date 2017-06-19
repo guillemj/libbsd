@@ -61,7 +61,7 @@ main(int argc, char **argv)
 		{ .n_un.n_name = "data_pub_init" },
 		{ .n_un.n_name = "data_prv_init" },
 		{ .n_un.n_name = NULL },
-	}, *nlp;
+	};
 	int rc;
 
 	assert(*data_pub_ptr == 50);
