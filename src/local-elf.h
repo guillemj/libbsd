@@ -140,17 +140,29 @@
 #define ELF_TARG_CLASS	ELFCLASS32
 #define ELF_TARG_DATA	ELFDATA2LSB
 
-#elif defined(__powerpc__)
-
-#define ELF_TARG_MACH	EM_PPC
-#define ELF_TARG_CLASS	ELFCLASS32
-#define ELF_TARG_DATA	ELFDATA2MSB
-
 #elif defined(__powerpc64__)
 
 #define ELF_TARG_MACH	EM_PPC64
 #define ELF_TARG_CLASS	ELFCLASS64
+#if defined(__LITTLE_ENDIAN__)
+#define ELF_TARG_DATA	ELFDATA2LSB
+#elif defined(__BIG_ENDIAN__)
 #define ELF_TARG_DATA	ELFDATA2MSB
+#else
+#error Unknown PowerPC64 endianness
+#endif
+
+#elif defined(__powerpc__)
+
+#define ELF_TARG_MACH	EM_PPC
+#define ELF_TARG_CLASS	ELFCLASS32
+#if defined(__LITTLE_ENDIAN__)
+#define ELF_TARG_DATA	ELFDATA2LSB
+#elif defined(__BIG_ENDIAN__)
+#define ELF_TARG_DATA	ELFDATA2MSB
+#else
+#error Unknown PowerPC endianness
+#endif
 
 #elif defined(__riscv)
 
