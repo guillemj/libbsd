@@ -127,7 +127,11 @@
 #elif defined(__mips__)
 
 #define ELF_TARG_MACH	EM_MIPS
+#if defined(_ABI64) && _MIPS_SIM == _ABI64
+#define ELF_TARG_CLASS	ELFCLASS64
+#else
 #define ELF_TARG_CLASS	ELFCLASS32
+#endif
 #if defined(__MIPSEB__)
 #define ELF_TARG_DATA	ELFDATA2MSB
 #else
