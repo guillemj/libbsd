@@ -31,7 +31,12 @@
 int
 main(int argc, char **argv)
 {
-	assert(strcmp(getprogname(), "progname") == 0);
+	const char *progname;
+
+	progname = getprogname();
+	if (strncmp(progname, "lt-", 3) == 0)
+		progname += 3;
+	assert(strcmp(progname, "progname") == 0);
 
 	setprogname("program-name");
 	assert(strcmp(getprogname(), "program-name") == 0);
