@@ -181,6 +181,7 @@ dist_man_MANS = \
 	le32enc.3bsd \
 	le64dec.3bsd \
 	le64enc.3bsd \
+	libbsd.7 \
 	md5.3bsd \
 	mergesort.3bsd \
 	nlist.3bsd \
