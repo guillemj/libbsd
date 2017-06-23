@@ -29,7 +29,7 @@
 .\" $FreeBSD: /repoman/r/ncvs/src/lib/libc/stdio/fgetln.3,v 1.8 2004/07/16 06:07:12 tjr Exp $
 .\"
 .Dd April 19, 1994
-.Dt FGETLN 3
+.Dt FGETLN 3bsd
 .Os
 .Sh NAME
 .Nm fgetln

@@ -25,7 +25,7 @@
 .\" $FreeBSD$
 .\"
 .Dd October 20, 2008
-.Dt PIDFILE 3
+.Dt PIDFILE 3bsd
 .Os
 .Sh NAME
 .Nm pidfile_open ,

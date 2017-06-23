@@ -25,7 +25,7 @@
 .\" $FreeBSD$
 .\"
 .Dd April 29, 2002
-.Dt BYTEORDER 3
+.Dt BYTEORDER 3bsd
 .Os
 .Sh NAME
 .Nm be16enc , be16dec , be32enc , be32dec , be64enc , be64dec ,

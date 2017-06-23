@@ -27,7 +27,7 @@
 .\" $FreeBSD: /repoman/r/ncvs/src/lib/libc/gen/fmtcheck.3,v 1.9 2004/07/02 23:52:10 ru Exp $
 .Dd October 16, 2002
 .Os
-.Dt FMTCHECK 3
+.Dt FMTCHECK 3bsd
 .Sh NAME
 .Nm fmtcheck
 .Nd sanitizes user-supplied

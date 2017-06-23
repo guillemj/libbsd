@@ -28,7 +28,7 @@
 .\" SUCH DAMAGE.
 .\"
 .Dd $Mdocdate: April 23 2014 $
-.Dt ERRC 3
+.Dt ERRC 3bsd
 .Os
 .Sh NAME
 .Nm errc ,

@@ -21,7 +21,7 @@
 .\"
 .\" The following requests are required for all man pages.
 .Dd December 16, 1995
-.Dt SETPROCTITLE 3
+.Dt SETPROCTITLE 3bsd
 .Os
 .Sh NAME
 .Nm setproctitle

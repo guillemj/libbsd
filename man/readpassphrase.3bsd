@@ -19,7 +19,7 @@
 .\" Materiel Command, USAF, under agreement number F39502-99-1-0512.
 .\"
 .Dd $Mdocdate: May 31 2007 $
-.Dt READPASSPHRASE 3
+.Dt READPASSPHRASE 3bsd
 .Os
 .Sh NAME
 .Nm readpassphrase

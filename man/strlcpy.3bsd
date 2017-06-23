@@ -15,7 +15,7 @@
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
 .Dd $Mdocdate: May 31 2007 $
-.Dt STRLCPY 3
+.Dt STRLCPY 3bsd
 .Os
 .Sh NAME
 .Nm strlcpy ,

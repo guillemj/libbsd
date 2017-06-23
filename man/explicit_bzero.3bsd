@@ -30,7 +30,7 @@
 .\"	$OpenBSD: bzero.3,v 1.10 2014/01/22 21:06:45 tedu Exp $
 .\"
 .Dd $Mdocdate: January 22 2014 $
-.Dt BZERO 3
+.Dt EXPLICIT_BZERO 3bsd
 .Os
 .Sh NAME
 .Nm explicit_bzero

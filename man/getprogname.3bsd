@@ -32,7 +32,7 @@
 .\" $FreeBSD$
 .\"
 .Dd May 1, 2001
-.Dt GETPROGNAME 3
+.Dt GETPROGNAME 3bsd
 .Os
 .Sh NAME
 .Nm getprogname ,

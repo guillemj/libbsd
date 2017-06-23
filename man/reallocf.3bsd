@@ -33,7 +33,7 @@
 .\" $FreeBSD: src/lib/libc/stdlib/malloc.3,v 1.80.2.2.2.1 2010/06/14 02:09:06 kensmith Exp $
 .\"
 .Dd September 26, 2009
-.Dt MALLOC 3
+.Dt REALLOCF 3bsd
 .Os
 .Sh NAME
 .Nm reallocf

@@ -28,7 +28,7 @@
 .\" POSSIBILITY OF SUCH DAMAGE.
 .\"
 .Dd February 9, 2008
-.Dt HUMANIZE_NUMBER 3
+.Dt HUMANIZE_NUMBER 3bsd
 .Os
 .Sh NAME
 .Nm dehumanize_number ,

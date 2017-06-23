@@ -28,7 +28,7 @@
 .\" SUCH DAMAGE.
 .\"
 .Dd $Mdocdate: May 31 2007 $
-.Dt VIS 3
+.Dt VIS 3bsd
 .Os
 .Sh NAME
 .Nm vis ,
@@ -144,7 +144,7 @@ returns the length that
 would become if it were of unlimited size (similar to
 .Xr snprintf 3
 or
-.Xr strlcpy 3 ) .
+.Xr strlcpy 3bsd ) .
 This can be used to detect truncation but it also means that
 the return value of
 .Fn strnvis

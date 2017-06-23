@@ -28,7 +28,7 @@
 .\" POSSIBILITY OF SUCH DAMAGE.
 .\"
 .Dd April 12, 2011
-.Dt TIMEVAL 3
+.Dt TIMEVAL 3bsd
 .Os
 .Sh NAME
 .Nm timeval ,
@@ -130,4 +130,4 @@ example(struct timespec *spec, time_t minutes)
 A better alternative would use the more precise
 .Xr clock_gettime 2 .
 .Sh SEE ALSO
-.Xr timeradd 3
+.Xr timeradd 3bsd

@@ -34,7 +34,7 @@
 .\" $FreeBSD$
 .\"
 .Dd October 11, 2001
-.Dt STRSTR 3
+.Dt STRSTR 3bsd
 .Os
 .Sh NAME
 .Nm strnstr

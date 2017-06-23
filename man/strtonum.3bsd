@@ -16,7 +16,7 @@
 .\" $FreeBSD$
 .\"
 .Dd April 29, 2004
-.Dt STRTONUM 3
+.Dt STRTONUM 3bsd
 .Os
 .Sh NAME
 .Nm strtonum

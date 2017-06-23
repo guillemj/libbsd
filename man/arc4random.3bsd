@@ -31,7 +31,7 @@
 .\" Manual page, using -mandoc macros
 .\"
 .Dd $Mdocdate: July 19 2014 $
-.Dt ARC4RANDOM 3
+.Dt ARC4RANDOM 3bsd
 .Os
 .Sh NAME
 .Nm arc4random ,

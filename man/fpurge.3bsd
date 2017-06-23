@@ -32,7 +32,7 @@
 .\" SUCH DAMAGE.
 .\"
 .Dd $Mdocdate: November 4 2015 $
-.Dt FPURGE 3
+.Dt FPURGE 3bsd
 .Os
 .Sh NAME
 .Nm fpurge

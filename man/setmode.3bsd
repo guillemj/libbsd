@@ -31,7 +31,7 @@
 .\" $FreeBSD: src/lib/libc/gen/setmode.3,v 1.12 2007/01/09 00:27:55 imp Exp $
 .\"
 .Dd January 4, 2009
-.Dt SETMODE 3
+.Dt SETMODE 3bsd
 .Os
 .Sh NAME
 .Nm getmode ,

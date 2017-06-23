@@ -28,7 +28,7 @@
 .\" SUCH DAMAGE.
 .\"
 .Dd $Mdocdate: May 31 2007 $
-.Dt UNVIS 3
+.Dt UNVIS 3bsd
 .Os
 .Sh NAME
 .Nm unvis ,

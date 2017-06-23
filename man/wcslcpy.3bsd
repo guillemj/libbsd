@@ -36,7 +36,7 @@
 .\" $FreeBSD$
 .\"
 .Dd March 4, 2009
-.Dt WCSLCPY 3
+.Dt WCSLCPY 3bsd
 .Os
 .Sh NAME
 .Nm wcslcat ,
