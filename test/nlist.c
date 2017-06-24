@@ -69,8 +69,17 @@ main(int argc, char **argv)
 	rc = nlist(argv[0], nl);
 	assert(rc == 0);
 
+#if defined(__ia64__) || (defined(__powerpc64__) && _CALL_ELF == 1)
+	/* On IA64 and PowerPC 64-bit ELFv1, the functions are stored in
+	 * the .text sections but they are accessed through a function
+	 * descriptor stored in a data section, for example for PowerPC
+	 * 64-bit that section is called .opd. */
+	assert(nl[0].n_type == (N_DATA | N_EXT));
+	assert(nl[1].n_type == (N_DATA | N_EXT));
+#else
 	assert(nl[0].n_type == (N_TEXT | N_EXT));
 	assert(nl[1].n_type == (N_TEXT | N_EXT));
+#endif
 	assert(nl[2].n_type == (N_BSS | N_EXT));
 	assert(nl[3].n_type == (N_DATA | N_EXT));
 	assert(nl[4].n_type == (N_DATA));
