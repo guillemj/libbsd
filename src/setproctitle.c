@@ -173,14 +173,14 @@ setproctitle_init(int argc, char *argv[], char *envp[])
 	end = nul + 1;
 
 	for (i = 0; i < argc || (i >= argc && argv[i]); i++) {
-		if (argv[i] == NULL || argv[i] < end)
+		if (argv[i] == NULL || argv[i] != end)
 			continue;
 
 		end = argv[i] + strlen(argv[i]) + 1;
 	}
 
 	for (i = 0; envp[i]; i++) {
-		if (envp[i] < end)
+		if (envp[i] != end)
 			continue;
 
 		end = envp[i] + strlen(envp[i]) + 1;
