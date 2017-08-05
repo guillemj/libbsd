@@ -129,7 +129,11 @@ reserved to indicate an error.
 .Xr random 3
 .Sh HISTORY
 These functions first appeared in
-.Ox 2.1 .
+.Ox 2.1 ,
+.Fx 3.0 ,
+.Nx 1.6 ,
+and
+.Dx 1.0 .
 .Pp
 The original version of this random number generator used the
 RC4 (also known as ARC4) algorithm.
