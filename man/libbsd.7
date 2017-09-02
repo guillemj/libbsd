@@ -150,13 +150,36 @@ function can be used.
 Otherwise the code needs to be prepared for neither of these functions being
 available.
 .El
+.Sh SUPERSEDED
+Some functions have been superseded by implementations in other system
+libraries, and might disappear on the next SONAME bump, assuming those
+other implementation have widespread deployment, or the implementations
+are present in all major
+.Nm libc
+for example.
 .Pp
-In addition, the MD5 set of digest funtions are now provided by the
+.Bl -tag -width 4m -compact
+.It Fn MD5Init
+.It Fn MD5Update
+.It Fn MD5Pad
+.It Fn MD5Final
+.It Fn MD5Transform
+.It Fn MD5End
+.It Fn MD5File
+.It Fn MD5FileChunk
+.It Fn MD5Data
+The set of MD5 digest functions are now provided by the
 .Nm libmd
-companion library, so it is advised to use that instead, as the ones
-provided in
-.Nm libbsd
-might disappear on the next SONAME bump.
+companion library, so it is advised to use that instead.
+.It Fn explicit_bzero
+This function is provided by
+.Nm glibc
+2.25.
+.It Fn reallocarray
+This function is provided by
+.Nm glibc
+2.26.
+.El
 .Sh SEE ALSO
 .Xr arc4random 3bsd ,
 .Xr bitstring 3bsd ,

@@ -72,4 +72,5 @@ pass, making it useful for clearing sensitive memory such as a password.
 The
 .Fn explicit_bzero
 function first appeared in
-.Ox 5.5 .
+.Ox 5.5 ,
+glibc 2.25.

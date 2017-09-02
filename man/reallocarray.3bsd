@@ -102,4 +102,5 @@ is set to
 .Sh HISTORY
 .Fn reallocarray
 appeared in
-.Ox 5.6 .
+.Ox 5.6 ,
+glibc 2.26.
