@@ -25,10 +25,10 @@
  */
 
 #ifndef __has_include
-#define __has_include 1
+#define __has_include(x) 1
 #endif
 #ifndef __has_include_next
-#define __has_include_next 1
+#define __has_include_next(x) 1
 #endif
 
 #ifdef LIBBSD_OVERLAY
