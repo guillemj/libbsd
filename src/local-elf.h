@@ -186,7 +186,11 @@
 #define ELF_TARG_MACH	EM_SPARCV9
 #define ELF_TARG_CLASS	ELFCLASS64
 #else
+#if defined(__sparc_v9__)
+#define ELF_TARG_MACH	EM_SPARC32PLUS
+#else
 #define ELF_TARG_MACH	EM_SPARC
+#endif
 #define ELF_TARG_CLASS	ELFCLASS32
 #endif
 #define ELF_TARG_DATA	ELFDATA2MSB
