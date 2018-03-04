@@ -186,7 +186,7 @@
 #define ELF_TARG_MACH	EM_SPARCV9
 #define ELF_TARG_CLASS	ELFCLASS64
 #else
-#if defined(__sparc_v9__)
+#if defined(__sparc_v9__) || defined(__sparcv9)
 #define ELF_TARG_MACH	EM_SPARC32PLUS
 #else
 #define ELF_TARG_MACH	EM_SPARC
