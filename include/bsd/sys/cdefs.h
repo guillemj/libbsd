@@ -59,6 +59,14 @@
 #endif
 
 /*
+ * On non-glibc based systems, we cannot unconditionally use the
+ * __GLIBC_PREREQ macro as it gets expanded before evaluation.
+ */
+#ifndef __GLIBC_PREREQ
+#define __GLIBC_PREREQ(maj, min) 0
+#endif
+
+/*
  * Some kFreeBSD headers expect those macros to be set for sanity checks.
  */
 #ifndef _SYS_CDEFS_H_
