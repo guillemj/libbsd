@@ -39,7 +39,6 @@
 #ifndef LIBBSD_LIBUTIL_H
 #define LIBBSD_LIBUTIL_H
 
-#include <features.h>
 #ifdef LIBBSD_OVERLAY
 #include <sys/cdefs.h>
 #else
