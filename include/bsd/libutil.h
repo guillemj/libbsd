@@ -40,7 +40,11 @@
 #define LIBBSD_LIBUTIL_H
 
 #include <features.h>
+#ifdef LIBBSD_OVERLAY
 #include <sys/cdefs.h>
+#else
+#include <bsd/sys/cdefs.h>
+#endif
 #include <sys/types.h>
 #include <stdint.h>
 #include <stdio.h>

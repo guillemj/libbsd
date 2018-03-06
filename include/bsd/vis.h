@@ -72,7 +72,11 @@
  */
 #define	UNVIS_END	1	/* no more characters */
 
+#ifdef LIBBSD_OVERLAY
 #include <sys/cdefs.h>
+#else
+#include <bsd/sys/cdefs.h>
+#endif
 
 __BEGIN_DECLS
 char	*vis(char *, int, int, int);
