@@ -225,7 +225,11 @@
 
 #elif defined(__or1k__)
 
+#if defined(EM_OPENRISC)
 #define ELF_TARG_MACH	EM_OPENRISC
+#else
+#define ELF_TARG_MACH	EM_OR1K
+#endif
 #define ELF_TARG_CLASS	ELFCLASS32
 #define ELF_TARG_DATA	ELFDATA2MSB
 
