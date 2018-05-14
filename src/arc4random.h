@@ -36,6 +36,8 @@ getentropy(void *buf, size_t len);
 #include "arc4random_openbsd.h"
 #elif defined(__linux__)
 #include "arc4random_linux.h"
+#elif defined(_WIN32)
+#include "arc4random_win.h"
 #else
 #include "arc4random_unix.h"
 #endif

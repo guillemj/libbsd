@@ -449,6 +449,7 @@ Files:
  src/arc4random_openbsd.h
  src/arc4random_uniform.c
  src/arc4random_unix.h
+ src/arc4random_win.h
  src/closefrom.c
  src/getentropy_aix.c
  src/getentropy_bsd.c
@@ -457,6 +458,7 @@ Files:
  src/getentropy_linux.c
  src/getentropy_osx.c
  src/getentropy_solaris.c
+ src/getentropy_win.c
  src/readpassphrase.c
  src/reallocarray.c
  src/strlcat.c
