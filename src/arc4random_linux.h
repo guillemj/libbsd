@@ -1,4 +1,4 @@
-/*	$OpenBSD: arc4random_freebsd.h,v 1.4 2016/06/30 12:19:51 bcook Exp $	*/
+/*	$OpenBSD: arc4random_linux.h,v 1.11 2016/06/30 12:19:51 bcook Exp $	*/
 
 /*
  * Copyright (c) 1996, David Mazieres <dm@uun.org>
@@ -37,12 +37,6 @@ extern void *__dso_handle;
 extern int __register_atfork(void (*)(void), void(*)(void), void (*)(void), void *);
 #define _ARC4_ATFORK(f) __register_atfork(NULL, NULL, (f), __dso_handle)
 #else
-/*
- * Unfortunately, pthread_atfork() is broken on FreeBSD (at least 9 and 10) if
- * a program does not link to -lthr. Callbacks registered with pthread_atfork()
- * appear to fail silently. So, it is not always possible to detect a PID
- * wraparound.
- */
 #define _ARC4_ATFORK(f) pthread_atfork(NULL, NULL, (f))
 #endif
 
@@ -66,7 +60,8 @@ _rs_forkdetect(void)
 	static pid_t _rs_pid = 0;
 	pid_t pid = getpid();
 
-	if (_rs_pid == 0 || _rs_pid != pid || _rs_forked) {
+	/* XXX unusual calls to clone() can bypass checks */
+	if (_rs_pid == 0 || _rs_pid == 1 || _rs_pid != pid || _rs_forked) {
 		_rs_pid = pid;
 		_rs_forked = 0;
 		if (rs)

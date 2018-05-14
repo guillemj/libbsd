@@ -60,9 +60,10 @@ libbsd_la_LDFLAGS = \
 libbsd_la_SOURCES = \
 	arc4random.c \
 	arc4random.h \
-	arc4random_unix.h \
+	arc4random_linux.h \
 	arc4random_openbsd.h \
 	arc4random_uniform.c \
+	arc4random_unix.h \
 	bsd_getopt.c \
 	chacha_private.h \
 	closefrom.c \
