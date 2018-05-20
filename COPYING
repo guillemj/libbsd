@@ -273,6 +273,7 @@ Files:
  src/stringlist.c
 Copyright:
  Copyright © 1994, 1997-2000, 2002, 2008, 2010 The NetBSD Foundation, Inc.
+ Copyright © 2013 John-Mark Gurney <jmg@FreeBSD.org>
  All rights reserved.
  .
  Some code was contributed to The NetBSD Foundation by Allen Briggs.
