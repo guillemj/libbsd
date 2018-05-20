@@ -62,6 +62,7 @@ int humanize_number(char *buf, size_t len, int64_t bytes,
 int expand_number(const char *_buf, uint64_t *_num);
 
 int flopen(const char *_path, int _flags, ...);
+int flopenat(int dirfd, const char *path, int flags, ...);
 
 struct pidfh *pidfile_open(const char *path, mode_t mode, pid_t *pidptr);
 int pidfile_write(struct pidfh *pfh);

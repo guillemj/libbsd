@@ -139,3 +139,7 @@ LIBBSD_0.7 {
 LIBBSD_0.8 {
     explicit_bzero;
 } LIBBSD_0.7;
+
+LIBBSD_0.9 {
+    flopenat;
+} LIBBSD_0.8;

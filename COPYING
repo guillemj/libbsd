@@ -367,7 +367,7 @@ License: BSD-2-clause
 Files:
  src/flopen.c
 Copyright:
- Copyright © 2007 Dag-Erling Coïdan Smørgrav
+ Copyright © 2007-2009 Dag-Erling Coïdan Smørgrav
  All rights reserved.
 License: BSD-2-clause-verbatim
  Redistribution and use in source and binary forms, with or without
