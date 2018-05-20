@@ -145,6 +145,9 @@ LIBBSD_0.9 {
 
     pidfile_fileno;
 
+    strtoi;
+    strtou;
+
     nvis;
     snvis;
     stravis;

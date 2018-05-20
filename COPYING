@@ -3,7 +3,7 @@ Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Files:
  *
 Copyright:
- Copyright © 2004-2006, 2008-2017 Guillem Jover <guillem@hadrons.org>
+ Copyright © 2004-2006, 2008-2018 Guillem Jover <guillem@hadrons.org>
 License: BSD-3-clause
 
 Files:
@@ -110,6 +110,8 @@ Files:
  man/setmode.3bsd
  man/strmode.3bsd
  man/strnstr.3bsd
+ man/strtoi.3bsd
+ man/strtou.3bsd
  man/unvis.3bsd
  man/vis.3bsd
  man/wcslcpy.3bsd
@@ -121,6 +123,8 @@ Files:
  src/setmode.c
  src/strmode.c
  src/strnstr.c
+ src/strtoi.c
+ src/strtou.c
  src/unvis.c
 Copyright:
  Copyright © 1980, 1982, 1986, 1989-1994

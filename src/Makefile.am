@@ -104,7 +104,9 @@ libbsd_la_SOURCES = \
 	stringlist.c \
 	strmode.c \
 	strnstr.c \
+	strtoi.c \
 	strtonum.c \
+	strtou.c \
 	timeconv.c \
 	unvis.c \
 	vis.c \

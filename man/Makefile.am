@@ -212,7 +212,9 @@ dist_man_MANS = \
 	strnstr.3bsd \
 	strnunvis.3bsd \
 	strnvis.3bsd \
+	strtoi.3bsd \
 	strtonum.3bsd \
+	strtou.3bsd \
 	strunvis.3bsd \
 	strvis.3bsd \
 	strvisx.3bsd \
