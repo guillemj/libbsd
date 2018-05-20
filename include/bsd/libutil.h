@@ -48,13 +48,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-/* for pidfile.c */
-struct pidfh {
-	int	pf_fd;
-	char	*pf_path;
-	dev_t	pf_dev;
-	ino_t	pf_ino;
-};
+struct pidfh;
 
 __BEGIN_DECLS
 int humanize_number(char *buf, size_t len, int64_t bytes,
@@ -65,6 +59,7 @@ int flopen(const char *_path, int _flags, ...);
 int flopenat(int dirfd, const char *path, int flags, ...);
 
 struct pidfh *pidfile_open(const char *path, mode_t mode, pid_t *pidptr);
+int pidfile_fileno(const struct pidfh *pfh);
 int pidfile_write(struct pidfh *pfh);
 int pidfile_close(struct pidfh *pfh);
 int pidfile_remove(struct pidfh *pfh);

@@ -142,4 +142,6 @@ LIBBSD_0.8 {
 
 LIBBSD_0.9 {
     flopenat;
+
+    pidfile_fileno;
 } LIBBSD_0.8;
