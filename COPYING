@@ -274,8 +274,10 @@ Files:
  src/fmtcheck.c
  src/humanize_number.c
  src/stringlist.c
+ src/strtonum.c
 Copyright:
- Copyright © 1994, 1997-2000, 2002, 2008, 2010 The NetBSD Foundation, Inc.
+ Copyright © 1994, 1997-2000, 2002, 2008, 2010, 2014
+     The NetBSD Foundation, Inc.
  Copyright © 2013 John-Mark Gurney <jmg@FreeBSD.org>
  All rights reserved.
  .
@@ -459,7 +461,6 @@ Files:
  src/reallocarray.c
  src/strlcat.c
  src/strlcpy.c
- src/strtonum.c
 Copyright:
  Copyright © 2004 Ted Unangst and Todd Miller
  All rights reserved.
