@@ -1,6 +1,6 @@
 .\" libbsd man page
 .\"
-.\" Copyright © 2017 Gullem Jover <guillem@hadrons.org>
+.\" Copyright © 2017-2018 Gullem Jover <guillem@hadrons.org>
 .\"
 .\" Redistribution and use in source and binary forms, with or without
 .\" modification, are permitted provided that the following conditions
@@ -24,7 +24,7 @@
 .\" OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 .\" ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 .\"
-.Dd May 31 2017
+.Dd May 21 2018
 .Dt LIBBSD 7
 .Os
 .Sh NAME
@@ -143,6 +143,17 @@ Use
 .Fn getline 3
 instead, which is available in many systems and required by
 .St -p1003.1-2008 .
+.It Fn fgetwln
+Unportable, requires assistance from the stdio layer.
+An implementation has to choose between leaking buffers or being reentrant
+for a limited amount of streams (this implementation chose the latter with
+a limit of 32).
+Use
+.Fn fgetwc 3
+instead, which is available in many systems and required by
+.St -isoC-99
+and
+.St -p1003.1-2001 .
 .It Fn funopen
 Unportable, requires assistance from the stdio layer or some hook framework.
 On GNU systems the
