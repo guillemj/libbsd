@@ -156,6 +156,12 @@
 #endif
 
 /*
+ * Return the number of elements in a statically-allocated array,
+ * __x.
+ */
+#define	__arraycount(__x)	(sizeof(__x) / sizeof(__x[0]))
+
+/*
  * We define this here since <stddef.h>, <sys/queue.h>, and <sys/types.h>
  * require it.
  */
