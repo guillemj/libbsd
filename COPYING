@@ -122,7 +122,6 @@ Files:
  src/strmode.c
  src/strnstr.c
  src/unvis.c
- src/vis.c
 Copyright:
  Copyright © 1980, 1982, 1986, 1989-1994
      The Regents of the University of California.  All rights reserved.
@@ -314,6 +313,16 @@ License: BSD-2-clause-NetBSD
  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
+
+Files:
+ src/vis.c
+Copyright:
+ Copyright © 1989, 1993
+     The Regents of the University of California.  All rights reserved.
+ .
+ Copyright © 1999, 2005 The NetBSD Foundation, Inc.
+ All rights reserved.
+License: BSD-3-clause-Regents and BSD-2-clause-NetBSD
 
 Files:
  include/bsd/sys/endian.h

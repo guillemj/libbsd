@@ -144,4 +144,16 @@ LIBBSD_0.9 {
     flopenat;
 
     pidfile_fileno;
+
+    nvis;
+    snvis;
+    stravis;
+    strenvisx;
+    strnunvisx;
+    strsenvisx;
+    strsnvis;
+    strsnvisx;
+    strsvis;
+    strsvisx;
+    svis;
 } LIBBSD_0.8;
