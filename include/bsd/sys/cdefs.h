@@ -76,6 +76,9 @@
 #define _SYS_CDEFS_H
 #endif
 
+#define LIBBSD_CONCAT(x, y)	x ## y
+#define LIBBSD_STRING(x)	#x
+
 #ifdef __GNUC__
 #define LIBBSD_GCC_VERSION (__GNUC__ << 8 | __GNUC_MINOR__)
 #else
@@ -89,6 +92,12 @@
 #else
 #define LIBBSD_DEPRECATED(x)
 #endif
+
+#if LIBBSD_GCC_VERSION >= 0x0200
+#define LIBBSD_REDIRECT(name, proto, alias) name proto __asm__(LIBBSD_ASMNAME(#alias))
+#endif
+#define LIBBSD_ASMNAME(cname) LIBBSD_ASMNAME_PREFIX(__USER_LABEL_PREFIX__, cname)
+#define LIBBSD_ASMNAME_PREFIX(prefix, cname) LIBBSD_STRING(prefix) cname
 
 #ifndef __dead2
 # if LIBBSD_GCC_VERSION >= 0x0207
