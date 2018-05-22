@@ -118,7 +118,7 @@ similar functions.
 .Pp
 The
 .Fn setproctitle_init
-function is a libbsd extension not present on the BSDs, avoid using it
+function is a libbsd extension not present on the BSDs; avoid using it
 in portable code.
 .Sh AUTHORS
 .An -nosplit
