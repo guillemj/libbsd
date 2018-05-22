@@ -60,7 +60,10 @@
 #include <sys/param.h>
 
 #include <assert.h>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcpp"
 #include <vis.h>
+#pragma GCC diagnostic pop
 #include <errno.h>
 #include <stdlib.h>
 #include <wchar.h>
@@ -701,11 +704,33 @@ strvis(char *mbdst, const char *mbsrc, int flags)
 	return istrsenvisxl(&mbdst, NULL, mbsrc, flags, "", NULL);
 }
 
+/*
+ * NetBSD added an strnvis and unfortunately made it incompatible with the
+ * existing one in OpenBSD and Freedesktop's libbsd (the former having existed
+ * for over ten years). Despite this incompatibility being reported during
+ * development (see http://gnats.netbsd.org/44977) they still shipped it.
+ * Even more unfortunately FreeBSD and later MacOS picked up this incompatible
+ * implementation.
+ *
+ * Provide both implementations and default for now on the historical one to
+ * avoid breakage, we will switch to the NetBSD one in libbsd 0.10.0 or so.
+ *
+ * OpenBSD, 2001: strnvis(char *dst, const char *src, size_t dlen, int flag);
+ * NetBSD: 2012,  strnvis(char *dst, size_t dlen, const char *src, int flag);
+ */
 int
-strnvis(char *mbdst, size_t dlen, const char *mbsrc, int flags)
+strnvis_openbsd(char *mbdst, const char *mbsrc, size_t dlen, int flags)
 {
 	return istrsenvisxl(&mbdst, &dlen, mbsrc, flags, "", NULL);
 }
+__asm__(".symver strnvis_openbsd,strnvis@@LIBBSD_0.2");
+
+int
+strnvis_netbsd(char *mbdst, size_t dlen, const char *mbsrc, int flags)
+{
+	return istrsenvisxl(&mbdst, &dlen, mbsrc, flags, "", NULL);
+}
+__asm__(".symver strnvis_netbsd,strnvis@LIBBSD_0.9.1");
 
 int
 stravis(char **mbdstp, const char *mbsrc, int flags)

@@ -160,3 +160,11 @@ LIBBSD_0.9 {
     strsvisx;
     svis;
 } LIBBSD_0.8;
+
+LIBBSD_0.9.1 {
+    /* The strnvis() and strnunvis() symbols changed prototype to match
+     * the NetBSD implementation. Provided as versioned nodes in 0.9.1, and
+     * exposed here explicitly so that we can redirect at compile-time. */
+    strnvis_netbsd;
+    strnunvis_netbsd;
+} LIBBSD_0.9;

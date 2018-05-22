@@ -19,3 +19,5 @@ setmode
 strl
 strmode
 strnstr
+vis
+vis-openbsd

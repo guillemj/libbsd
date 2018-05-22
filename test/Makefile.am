@@ -47,6 +47,8 @@ check_PROGRAMS = \
 	strl \
 	strmode \
 	strnstr \
+	vis \
+	vis-openbsd \
 	$(nil)
 
 if HAVE_LIBTESTU01

@@ -37,7 +37,10 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <errno.h>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcpp"
 #include <vis.h>
+#pragma GCC diagnostic pop
 
 #ifdef __weak_alias
 __weak_alias(strnunvisx,_strnunvisx)
@@ -543,8 +546,30 @@ strunvis(char *dst, const char *src)
 	return strnunvisx(dst, (size_t)~0, src, 0);
 }
 
-int
-strnunvis(char *dst, size_t dlen, const char *src)
+/*
+ * NetBSD added an strnvis and unfortunately made it incompatible with the
+ * existing one in OpenBSD and Freedesktop's libbsd (the former having existed
+ * for over ten years). Despite this incompatibility being reported during
+ * development (see http://gnats.netbsd.org/44977) they still shipped it.
+ * Even more unfortunately FreeBSD and later MacOS picked up this incompatible
+ * implementation.
+ *
+ * Provide both implementations and default for now on the historical one to
+ * avoid breakage, we will switch to the NetBSD one in libbsd 0.10.0 or so.
+ *
+ * OpenBSD, 2001: strnunvis(char *dst, const char *src, size_t dlen);
+ * NetBSD: 2012,  strnunvis(char *dst, size_t dlen, const char *src);
+ */
+ssize_t
+strnunvis_openbsd(char *dst, const char *src, size_t dlen)
 {
 	return strnunvisx(dst, dlen, src, 0);
 }
+__asm__(".symver strnunvis_openbsd,strnunvis@@LIBBSD_0.2");
+
+int
+strnunvis_netbsd(char *dst, size_t dlen, const char *src)
+{
+	return strnunvisx(dst, dlen, src, 0);
+}
+__asm__(".symver strnunvis_netbsd,strnunvis@LIBBSD_0.9.1");

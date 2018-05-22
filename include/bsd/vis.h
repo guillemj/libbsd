@@ -88,6 +88,22 @@
 #include <bsd/sys/cdefs.h>
 #endif
 
+/*
+ * NetBSD added an strnvis and unfortunately made it incompatible with the
+ * existing one in OpenBSD and Freedesktop's libbsd (the former having existed
+ * for over ten years). Despite this incompatibility being reported during
+ * development (see http://gnats.netbsd.org/44977) they still shipped it.
+ * Even more unfortunately FreeBSD and later MacOS picked up this incompatible
+ * implementation.
+ *
+ * Provide both implementations and default for now on the historical one to
+ * avoid breakage, we will switch to the NetBSD one in libbsd 0.10.0 or so.
+ * Define LIBBSD_NETBSD_VIS to switch to the NetBSD one now.
+ */
+#ifndef LIBBSD_NETBSD_VIS
+#warning "NetBSD added incompatible strnvis() and strnunvis(), please see <bsd/vis.h> for more detils."
+#endif
+
 __BEGIN_DECLS
 char	*vis(char *, int, int, int);
 char	*nvis(char *, size_t, int, int, int);
@@ -97,7 +113,14 @@ char	*snvis(char *, size_t, int, int, int, const char *);
 
 int	strvis(char *, const char *, int);
 int	stravis(char **, const char *, int);
-int	strnvis(char *, size_t, const char *, int);
+#ifdef LIBBSD_NETBSD_VIS
+/* NetBSD prototype. */
+int	LIBBSD_REDIRECT(strnvis, (char *, size_t, const char *, int),
+                        strnvis_netbsd);
+#else
+/* OpenBSD prototype (current default). */
+int	strnvis(char *, const char *, size_t, int);
+#endif
 
 int	strsvis(char *, const char *, int, const char *);
 int	strsnvis(char *, size_t, const char *, int, const char *);
@@ -112,7 +135,14 @@ int	strsenvisx(char *, size_t, const char *, size_t , int, const char *,
     int *);
 
 int	strunvis(char *, const char *);
-int	strnunvis(char *, size_t, const char *);
+#ifdef LIBBSD_NETBSD_VIS
+/* NetBSD prototype. */
+int	LIBBSD_REDIRECT(strnunvis, (char *, size_t, const char *),
+                        strnunvis_netbsd);
+#else
+/* OpenBSD prototype (current default). */
+ssize_t	strnunvis(char *, const char *, size_t);
+#endif
 
 int	strunvisx(char *, const char *, int);
 int	strnunvisx(char *, size_t, const char *, int);
