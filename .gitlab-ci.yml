@@ -1,0 +1,22 @@
+image: debian:stretch
+
+before_script:
+  - apt update -qq
+  - apt install build-essential autoconf automake libtool
+
+stages:
+  - autogen
+  - build
+  - test
+
+autogen:
+  stage: autogen
+  script: autoreconf -f -i && ./configure
+
+build:
+  stage: build
+  script: make
+
+test:
+  stage: test
+  script: make check
