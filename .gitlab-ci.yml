@@ -2,7 +2,7 @@ image: debian:stretch
 
 before_script:
   - apt update -qq
-  - apt install --no-install-recommends -y gcc make autoconf automake libtool
+  - apt install --no-install-recommends -y git gcc make autoconf automake libtool
 
 stages:
   - autogen
