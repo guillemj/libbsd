@@ -580,10 +580,20 @@ out:
 }
 
 static int
-istrsenvisxl(char **mbdstp, size_t *dlen, const char *mbsrc,
+istrsenvisxna(char *mbdst, size_t *dlen, const char *mbsrc, size_t mblength,
     int flags, const char *mbextra, int *cerr_ptr)
 {
-	return istrsenvisx(mbdstp, dlen, mbsrc,
+	assert(mbdst != NULL);
+
+	return istrsenvisx(&mbdst, dlen, mbsrc, mblength,
+	    flags, mbextra, cerr_ptr);
+}
+
+static int
+istrsenvisxl(char *mbdst, size_t *dlen, const char *mbsrc,
+    int flags, const char *mbextra, int *cerr_ptr)
+{
+	return istrsenvisxna(mbdst, dlen, mbsrc,
 	    mbsrc != NULL ? strlen(mbsrc) : 0, flags, mbextra, cerr_ptr);
 }
 
@@ -628,33 +638,33 @@ snvis(char *mbdst, size_t dlen, int c, int flags, int nextc, const char *mbextra
 int
 strsvis(char *mbdst, const char *mbsrc, int flags, const char *mbextra)
 {
-	return istrsenvisxl(&mbdst, NULL, mbsrc, flags, mbextra, NULL);
+	return istrsenvisxl(mbdst, NULL, mbsrc, flags, mbextra, NULL);
 }
 
 int
 strsnvis(char *mbdst, size_t dlen, const char *mbsrc, int flags, const char *mbextra)
 {
-	return istrsenvisxl(&mbdst, &dlen, mbsrc, flags, mbextra, NULL);
+	return istrsenvisxl(mbdst, &dlen, mbsrc, flags, mbextra, NULL);
 }
 
 int
 strsvisx(char *mbdst, const char *mbsrc, size_t len, int flags, const char *mbextra)
 {
-	return istrsenvisx(&mbdst, NULL, mbsrc, len, flags, mbextra, NULL);
+	return istrsenvisxna(mbdst, NULL, mbsrc, len, flags, mbextra, NULL);
 }
 
 int
 strsnvisx(char *mbdst, size_t dlen, const char *mbsrc, size_t len, int flags,
     const char *mbextra)
 {
-	return istrsenvisx(&mbdst, &dlen, mbsrc, len, flags, mbextra, NULL);
+	return istrsenvisxna(mbdst, &dlen, mbsrc, len, flags, mbextra, NULL);
 }
 
 int
 strsenvisx(char *mbdst, size_t dlen, const char *mbsrc, size_t len, int flags,
     const char *mbextra, int *cerr_ptr)
 {
-	return istrsenvisx(&mbdst, &dlen, mbsrc, len, flags, mbextra, cerr_ptr);
+	return istrsenvisxna(mbdst, &dlen, mbsrc, len, flags, mbextra, cerr_ptr);
 }
 
 /*
@@ -701,7 +711,7 @@ nvis(char *mbdst, size_t dlen, int c, int flags, int nextc)
 int
 strvis(char *mbdst, const char *mbsrc, int flags)
 {
-	return istrsenvisxl(&mbdst, NULL, mbsrc, flags, "", NULL);
+	return istrsenvisxl(mbdst, NULL, mbsrc, flags, "", NULL);
 }
 
 /*
@@ -721,14 +731,14 @@ strvis(char *mbdst, const char *mbsrc, int flags)
 int
 strnvis_openbsd(char *mbdst, const char *mbsrc, size_t dlen, int flags)
 {
-	return istrsenvisxl(&mbdst, &dlen, mbsrc, flags, "", NULL);
+	return istrsenvisxl(mbdst, &dlen, mbsrc, flags, "", NULL);
 }
 __asm__(".symver strnvis_openbsd,strnvis@@LIBBSD_0.2");
 
 int
 strnvis_netbsd(char *mbdst, size_t dlen, const char *mbsrc, int flags)
 {
-	return istrsenvisxl(&mbdst, &dlen, mbsrc, flags, "", NULL);
+	return istrsenvisxl(mbdst, &dlen, mbsrc, flags, "", NULL);
 }
 __asm__(".symver strnvis_netbsd,strnvis@LIBBSD_0.9.1");
 
@@ -736,7 +746,8 @@ int
 stravis(char **mbdstp, const char *mbsrc, int flags)
 {
 	*mbdstp = NULL;
-	return istrsenvisxl(mbdstp, NULL, mbsrc, flags, "", NULL);
+	return istrsenvisx(mbdstp, NULL, mbsrc,
+	    mbsrc != NULL ? strlen(mbsrc) : 0, flags, "", NULL);
 }
 
 /*
@@ -753,18 +764,18 @@ stravis(char **mbdstp, const char *mbsrc, int flags)
 int
 strvisx(char *mbdst, const char *mbsrc, size_t len, int flags)
 {
-	return istrsenvisx(&mbdst, NULL, mbsrc, len, flags, "", NULL);
+	return istrsenvisxna(mbdst, NULL, mbsrc, len, flags, "", NULL);
 }
 
 int
 strnvisx(char *mbdst, size_t dlen, const char *mbsrc, size_t len, int flags)
 {
-	return istrsenvisx(&mbdst, &dlen, mbsrc, len, flags, "", NULL);
+	return istrsenvisxna(mbdst, &dlen, mbsrc, len, flags, "", NULL);
 }
 
 int
 strenvisx(char *mbdst, size_t dlen, const char *mbsrc, size_t len, int flags,
     int *cerr_ptr)
 {
-	return istrsenvisx(&mbdst, &dlen, mbsrc, len, flags, "", cerr_ptr);
+	return istrsenvisxna(mbdst, &dlen, mbsrc, len, flags, "", cerr_ptr);
 }
