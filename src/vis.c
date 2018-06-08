@@ -503,7 +503,7 @@ istrsenvisx(char **mbdstp, size_t *dlen, const char *mbsrc, size_t mblength,
 	 */
 	for (start = dst; len > 0; len--) {
 		c = *src++;
-		dst = (*f)(dst, c, flags, len >= 1 ? *src : L'\0', extra);
+		dst = (*f)(dst, c, flags, *src, extra);
 		if (dst == NULL) {
 			errno = ENOSPC;
 			goto out;
