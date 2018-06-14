@@ -74,6 +74,7 @@ License: BSD-4-clause-Christopher-G-Demetriou
 Files:
  include/bsd/err.h
  include/bsd/stdlib.h
+ include/bsd/sys/param.h
  include/bsd/unistd.h
  src/bsd_getopt.c
  src/err.c
@@ -84,6 +85,7 @@ Copyright:
  Copyright © 2005 Hector Garcia Alvarez
  Copyright © 2005 Aurelien Jarno
  Copyright © 2006 Robert Millan
+ Copyright © 2018 Facebook, Inc.
 License: BSD-3-clause
 
 Files:
