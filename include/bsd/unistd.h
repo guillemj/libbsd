@@ -41,7 +41,7 @@
 #endif
 #include <sys/stat.h>
 
-#ifndef S_ISTXT
+#if !defined(S_ISTXT) && defined(S_ISVTX)
 #define S_ISTXT S_ISVTX
 #endif
 
