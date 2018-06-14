@@ -7,6 +7,13 @@ AM_CPPFLAGS = \
 	-DLIBBSD_OVERLAY -DLIBBSD_DISABLE_DEPRECATED \
 	-D__REENTRANT
 
+if OS_WINDOWS
+AM_CPPFLAGS += \
+	-D_CRT_SECURE_NO_WARNINGS \
+	-D_CRT_NONSTDC_NO_WARNINGS \
+	$(nil)
+endif
+
 libbsd_la_included_sources = \
 	hash/helper.c \
 	getentropy_aix.c \
