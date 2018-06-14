@@ -117,7 +117,8 @@ iscgraph(int c) {
 #define ISGRAPH(flags, c) \
     (((flags) & VIS_NOLOCALE) ? iscgraph(c) : iswgraph(c))
 
-#define iswoctal(c)	(((u_char)(c)) >= L'0' && ((u_char)(c)) <= L'7')
+#define iswoctal(c)	\
+	(((unsigned char)(c)) >= L'0' && ((unsigned char)(c)) <= L'7')
 #define iswwhite(c)	(c == L' ' || c == L'\t' || c == L'\n')
 #define iswsafe(c)	(c == L'\b' || c == BELL || c == L'\r')
 #define xtoa(c)		L"0123456789abcdef"[c]
@@ -253,9 +254,11 @@ do_mbyte(wchar_t *dst, wint_t c, int flags, wint_t nextc, int iswextra)
 	}
 	if (iswextra || ((c & 0177) == L' ') || (flags & VIS_OCTAL)) {
 		*dst++ = L'\\';
-		*dst++ = (u_char)(((u_int32_t)(u_char)c >> 6) & 03) + L'0';
-		*dst++ = (u_char)(((u_int32_t)(u_char)c >> 3) & 07) + L'0';
-		*dst++ =			     (c	      & 07) + L'0';
+		*dst++ =
+			(unsigned char)(((uint32_t)(unsigned char)c >> 6) & 03) + L'0';
+		*dst++ =
+			(unsigned char)(((uint32_t)(unsigned char)c >> 3) & 07) + L'0';
+		*dst++ = (c & 07) + L'0';
 	} else {
 		if ((flags & VIS_NOSLASH) == 0)
 			*dst++ = L'\\';
@@ -349,7 +352,7 @@ makeextralist(int flags, const char *src)
 	if ((flags & VIS_NOLOCALE) || mbstowcs(dst, src, len) == (size_t)-1) {
 		size_t i;
 		for (i = 0; i < len; i++)
-			dst[i] = (wchar_t)(u_char)src[i];
+			dst[i] = (wchar_t)(unsigned char)src[i];
 		d = dst + len;
 	} else
 		d = dst + wcslen(dst);
@@ -452,7 +455,7 @@ istrsenvisx(char **mbdstp, size_t *dlen, const char *mbsrc, size_t mblength,
 			clen = mbtowc(src, mbsrc, MB_LEN_MAX);
 		if (cerr || clen < 0) {
 			/* Conversion error, process as a byte instead. */
-			*src = (wint_t)(u_char)*mbsrc;
+			*src = (wint_t)(unsigned char)*mbsrc;
 			clen = 1;
 			cerr = 1;
 		}
