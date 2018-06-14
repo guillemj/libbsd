@@ -30,6 +30,13 @@
 #ifndef __has_include_next
 #define __has_include_next(x) 1
 #endif
+#ifndef __has_attribute
+#define __has_attribute(x) 0
+#endif
+/* Clang expands this to 1 if an identifier is *not* reserved. */
+#ifndef __is_identifier
+#define __is_identifier(x) 1
+#endif
 
 #ifdef LIBBSD_OVERLAY
 /*
@@ -85,7 +92,7 @@
 #define LIBBSD_GCC_VERSION 0
 #endif
 
-#if LIBBSD_GCC_VERSION >= 0x0405
+#if LIBBSD_GCC_VERSION >= 0x0405 || __has_attribute(__deprecated__)
 #define LIBBSD_DEPRECATED(x) __attribute__((__deprecated__(x)))
 #elif LIBBSD_GCC_VERSION >= 0x0301
 #define LIBBSD_DEPRECATED(x) __attribute__((__deprecated__))
@@ -93,14 +100,14 @@
 #define LIBBSD_DEPRECATED(x)
 #endif
 
-#if LIBBSD_GCC_VERSION >= 0x0200
+#if LIBBSD_GCC_VERSION >= 0x0200 || defined(__clang__)
 #define LIBBSD_REDIRECT(name, proto, alias) name proto __asm__(LIBBSD_ASMNAME(#alias))
 #endif
 #define LIBBSD_ASMNAME(cname) LIBBSD_ASMNAME_PREFIX(__USER_LABEL_PREFIX__, cname)
 #define LIBBSD_ASMNAME_PREFIX(prefix, cname) LIBBSD_STRING(prefix) cname
 
 #ifndef __dead2
-# if LIBBSD_GCC_VERSION >= 0x0207
+# if LIBBSD_GCC_VERSION >= 0x0207 || __has_attribute(__noreturn__)
 #  define __dead2 __attribute__((__noreturn__))
 # else
 #  define __dead2
@@ -108,7 +115,7 @@
 #endif
 
 #ifndef __pure2
-# if LIBBSD_GCC_VERSION >= 0x0207
+# if LIBBSD_GCC_VERSION >= 0x0207 || __has_attribute(__const__)
 #  define __pure2 __attribute__((__const__))
 # else
 #  define __pure2
@@ -116,7 +123,7 @@
 #endif
 
 #ifndef __packed
-# if LIBBSD_GCC_VERSION >= 0x0207
+# if LIBBSD_GCC_VERSION >= 0x0207 || __has_attribute(__packed__)
 #  define __packed __attribute__((__packed__))
 # else
 #  define __packed
@@ -124,7 +131,7 @@
 #endif
 
 #ifndef __aligned
-# if LIBBSD_GCC_VERSION >= 0x0207
+# if LIBBSD_GCC_VERSION >= 0x0207 || __has_attribute(__aligned__)
 #  define __aligned(x) __attribute__((__aligned__(x)))
 # else
 #  define __aligned(x)
@@ -145,7 +152,7 @@
 #endif
 
 #ifndef __printflike
-# if LIBBSD_GCC_VERSION >= 0x0300
+# if LIBBSD_GCC_VERSION >= 0x0300 || __has_attribute(__format__)
 #  define __printflike(x, y) __attribute((__format__(__printf__, (x), (y))))
 # else
 #  define __printflike(x, y)
@@ -153,7 +160,7 @@
 #endif
 
 #ifndef __nonnull
-# if LIBBSD_GCC_VERSION >= 0x0302
+# if LIBBSD_GCC_VERSION >= 0x0302 || __has_attribute(__nonnull__)
 #  define __nonnull(x) __attribute__((__nonnull__(x)))
 # else
 #  define __nonnull(x)
@@ -175,7 +182,7 @@
  * require it.
  */
 #ifndef __offsetof
-# if LIBBSD_GCC_VERSION >= 0x0401
+# if LIBBSD_GCC_VERSION >= 0x0401 || !__is_identifier(__builtin_offsetof)
 #  define __offsetof(type, field)	__builtin_offsetof(type, field)
 # else
 #  ifndef __cplusplus
@@ -200,7 +207,7 @@
  * compatible with member m.
  */
 #ifndef __containerof
-# if LIBBSD_GCC_VERSION >= 0x0301
+# if LIBBSD_GCC_VERSION >= 0x0301 || !__is_identifier(__typeof__)
 #  define __containerof(x, s, m) ({ \
 	const volatile __typeof__(((s *)0)->m) *__x = (x); \
 	__DEQUALIFY(s *, (const volatile char *)__x - __offsetof(s, m)); \
