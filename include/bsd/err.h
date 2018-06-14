@@ -26,19 +26,19 @@
  */
 
 #ifdef LIBBSD_OVERLAY
+#include <sys/cdefs.h>
+#if __has_include_next(<err.h>)
 #include_next <err.h>
+#endif
 #else
+#include <bsd/sys/cdefs.h>
+#if __has_include(<err.h>)
 #include <err.h>
+#endif
 #endif
 
 #ifndef LIBBSD_ERR_H
 #define LIBBSD_ERR_H
-
-#ifdef LIBBSD_OVERLAY
-#include <sys/cdefs.h>
-#else
-#include <bsd/sys/cdefs.h>
-#endif
 
 #include <stdarg.h>
 

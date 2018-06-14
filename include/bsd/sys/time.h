@@ -33,9 +33,15 @@
  */
 
 #ifdef LIBBSD_OVERLAY
+#include <sys/cdefs.h>
+#if __has_include_next(<sys/time.h>)
 #include_next <sys/time.h>
+#endif
 #else
+#include <bsd/sys/cdefs.h>
+#if __has_include(<sys/time.h>)
 #include <sys/time.h>
+#endif
 #endif
 
 #ifndef LIBBSD_SYS_TIME_H

@@ -26,19 +26,20 @@
  */
 
 #ifdef LIBBSD_OVERLAY
+#include <sys/cdefs.h>
+#if __has_include_next(<unistd.h>)
 #include_next <unistd.h>
+#endif
 #else
+#include <bsd/sys/cdefs.h>
+#if __has_include(<unistd.h>)
 #include <unistd.h>
+#endif
 #endif
 
 #ifndef LIBBSD_UNISTD_H
 #define LIBBSD_UNISTD_H
 
-#ifdef LIBBSD_OVERLAY
-#include <sys/cdefs.h>
-#else
-#include <bsd/sys/cdefs.h>
-#endif
 #include <sys/stat.h>
 
 #if !defined(S_ISTXT) && defined(S_ISVTX)
