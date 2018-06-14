@@ -28,7 +28,9 @@
  * other headers through magic macros, to check that the overlay is working
  * properly. */
 #include <errno.h>
+#ifdef HAVE_GRP_H
 #include <grp.h>
+#endif
 #include <stdint.h>
 
 /* Include libbsd overlayed headers that might get partially included. */
