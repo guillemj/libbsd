@@ -44,6 +44,7 @@ AC_SUBST([TESTU01_LIBS])
 AM_CONDITIONAL([HAVE_LIBTESTU01],
                [test "x$ac_cv_lib_testu01_unif01_CreateExternGenBits" = "xyes"])
 
+is_windows=no
 AS_CASE([$host_os],
   [*-gnu*], [
     # In old glibc versions (< 2.17) clock_gettime() is in librt.
@@ -60,7 +61,11 @@ AS_CASE([$host_os],
     # Upstream refuses to define this, we will do it ourselves then.
     AC_DEFINE([__MUSL__], [1], [Define to 1 if we are building for musl])
   ],
+  [mingw*], [
+    is_windows=yes
+  ],
 )
+AM_CONDITIONAL([OS_WINDOWS], [test "x$is_windows" = "xyes"])
 
 # Checks for header files.
 AC_CHECK_HEADERS([sys/ndir.h sys/dir.h ndir.h dirent.h grp.h])
