@@ -57,7 +57,6 @@
 
 #include <sys/cdefs.h>
 #include <sys/types.h>
-#include <sys/param.h>
 
 #include <assert.h>
 #pragma GCC diagnostic push
@@ -308,7 +307,7 @@ do_svis(wchar_t *dst, wint_t c, int flags, wint_t nextc, const wchar_t *extra)
 	/* See comment in istrsenvisx() output loop, below. */
 	wmsk = 0;
 	for (i = sizeof(wmsk) - 1; i >= 0; i--) {
-		shft = i * NBBY;
+		shft = i * CHAR_BIT;
 		bmsk = (uint64_t)0xffLL << shft;
 		wmsk |= bmsk;
 		if ((c & wmsk) || i == 0)
@@ -539,7 +538,7 @@ istrsenvisx(char **mbdstp, size_t *dlen, const char *mbsrc, size_t mblength,
 			clen = 0;
 			wmsk = 0;
 			for (i = sizeof(wmsk) - 1; i >= 0; i--) {
-				shft = i * NBBY;
+				shft = i * CHAR_BIT;
 				bmsk = (uint64_t)0xffLL << shft;
 				wmsk |= bmsk;
 				if ((*dst & wmsk) || i == 0)
