@@ -29,5 +29,5 @@
 
 #define libbsd_link_warning(symbol, msg) \
 	static const char libbsd_emit_link_warning_##symbol[] \
-		__attribute__((used,section(".gnu.warning." #symbol))) = msg;
+		__attribute__((__used__,__section__(".gnu.warning." #symbol))) = msg;
 #endif

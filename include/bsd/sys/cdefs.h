@@ -86,9 +86,9 @@
 #endif
 
 #if LIBBSD_GCC_VERSION >= 0x0405
-#define LIBBSD_DEPRECATED(x) __attribute__((deprecated(x)))
+#define LIBBSD_DEPRECATED(x) __attribute__((__deprecated__(x)))
 #elif LIBBSD_GCC_VERSION >= 0x0301
-#define LIBBSD_DEPRECATED(x) __attribute__((deprecated))
+#define LIBBSD_DEPRECATED(x) __attribute__((__deprecated__))
 #else
 #define LIBBSD_DEPRECATED(x)
 #endif
@@ -137,7 +137,7 @@
 #if 0
 #ifndef __unused
 # if LIBBSD_GCC_VERSION >= 0x0300
-#  define __unused __attribute__((unused))
+#  define __unused __attribute__((__unused__))
 # else
 #  define __unused
 # endif
@@ -146,7 +146,7 @@
 
 #ifndef __printflike
 # if LIBBSD_GCC_VERSION >= 0x0300
-#  define __printflike(x, y) __attribute((format(printf, (x), (y))))
+#  define __printflike(x, y) __attribute((__format__(__printf__, (x), (y))))
 # else
 #  define __printflike(x, y)
 # endif
@@ -202,7 +202,7 @@
 #ifndef __containerof
 # if LIBBSD_GCC_VERSION >= 0x0301
 #  define __containerof(x, s, m) ({ \
-	const volatile __typeof(((s *)0)->m) *__x = (x); \
+	const volatile __typeof__(((s *)0)->m) *__x = (x); \
 	__DEQUALIFY(s *, (const volatile char *)__x - __offsetof(s, m)); \
 })
 # else

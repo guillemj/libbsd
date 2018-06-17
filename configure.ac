@@ -87,7 +87,7 @@ AC_CACHE_CHECK(
 [[
 static int rc = 1;
 static void init(int argc) { if (argc == 1) rc = 0; }
-void (*init_func)(int argc) __attribute__((section(".init_array"))) = init;
+void (*init_func)(int argc) __attribute__((__section__(".init_array"))) = init;
 int main() { return rc; }
 ]]
 		)],

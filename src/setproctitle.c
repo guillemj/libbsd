@@ -287,9 +287,12 @@ __asm__(".symver setproctitle_impl,setproctitle@@LIBBSD_0.5");
  * for code linking against that version, and change the default to use the
  * new version, so that new code depends on the implemented version. */
 #ifdef HAVE_TYPEOF
-extern typeof(setproctitle_impl) setproctitle_stub __attribute__((alias("setproctitle_impl")));
+extern __typeof__(setproctitle_impl)
+setproctitle_stub
+	__attribute__((__alias__("setproctitle_impl")));
 #else
-void setproctitle_stub(const char *fmt, ...)
-	__attribute__((alias("setproctitle_impl")));
+void
+setproctitle_stub(const char *fmt, ...)
+	__attribute__((__alias__("setproctitle_impl")));
 #endif
 __asm__(".symver setproctitle_stub,setproctitle@LIBBSD_0.2");
