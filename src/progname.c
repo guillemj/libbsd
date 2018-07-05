@@ -1,6 +1,7 @@
 /*
  * Copyright © 2006 Robert Millan
  * Copyright © 2010-2012 Guillem Jover <guillem@hadrons.org>
+ * Copyright © 2018 Facebook, Inc.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -30,11 +31,16 @@
  * <https://sourceware.org/ml/libc-alpha/2006-03/msg00125.html>.
  */
 
+#include <sys/param.h>
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
+#ifdef _WIN32
+#include <Windows.h>
+#include <shlwapi.h>
+#endif
 
-#if defined(_WIN32) || defined(__WIN32__) || defined(__WINDOWS__)
+#ifdef _WIN32
 #define LIBBSD_IS_PATHNAME_SEPARATOR(c) ((c) == '/' || (c) == '\\')
 #else
 #define LIBBSD_IS_PATHNAME_SEPARATOR(c) ((c) == '/')
@@ -56,6 +62,70 @@ getprogname(void)
 	/* getexecname(3) returns an absolute pathname, normalize it. */
 	if (__progname == NULL)
 		setprogname(getexecname());
+#elif defined(_WIN32)
+	if (__progname == NULL) {
+		WCHAR *wpath = NULL;
+		WCHAR *wname = NULL;
+		WCHAR *wext = NULL;
+		DWORD wpathsiz = MAX_PATH / 2;
+		DWORD len, i;
+		char *mbname = NULL;
+		int mbnamesiz;
+
+		/* Use the Unicode version of this function to support long
+		 * paths. MAX_PATH isn't actually the maximum length of a
+		 * path in this case. */
+		do {
+			WCHAR *wpathnew;
+
+			wpathsiz *= 2;
+			wpathsiz = MIN(wpathsiz, UNICODE_STRING_MAX_CHARS);
+			wpathnew = reallocarray(wpath, wpathsiz, sizeof(*wpath));
+			if (wpathnew == NULL)
+				goto done;
+			wpath = wpathnew;
+
+			len = GetModuleFileNameW(NULL, wpath, wpathsiz);
+			if (wpathsiz == UNICODE_STRING_MAX_CHARS)
+				goto done;
+		} while (wpathsiz == len);
+		if (len == 0)
+			goto done;
+
+		/* GetModuleFileNameW() retrieves an absolute path. Locate the
+		 * filename now to only convert necessary characters and save
+		 * memory. */
+		wname = wpath;
+		for (i = len; i > 0; i--) {
+			if (LIBBSD_IS_PATHNAME_SEPARATOR(wpath[i - 1])) {
+				wname = wpath + i;
+				break;
+			}
+		}
+
+		/* Remove any trailing extension, such as '.exe', to make the
+		 * behavior mach the non-Windows systems. */
+		wext = PathFindExtensionW(wname);
+		wext[0] = '\0';
+
+		mbnamesiz = WideCharToMultiByte(CP_UTF8, 0, wname, -1, NULL,
+		                                0, NULL, NULL);
+		if (mbnamesiz == 0)
+			goto done;
+		mbname = malloc(mbnamesiz);
+		if (mbname == NULL)
+			goto done;
+		mbnamesiz = WideCharToMultiByte(CP_UTF8, 0, wname, -1, mbname,
+		                                mbnamesiz, NULL, NULL);
+		if (mbnamesiz == 0)
+			goto done;
+		__progname = mbname;
+		mbname = NULL;
+
+done:
+		free(wpath);
+		free(mbname);
+	}
 #endif
 
 	return __progname;
