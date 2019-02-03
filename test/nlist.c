@@ -66,6 +66,8 @@ main(int argc, char **argv)
 
 	assert(*data_pub_ptr == 50);
 
+	assert(nl[0].n_name == nl[0].n_un.n_name);
+
 	rc = nlist(argv[0], nl);
 	assert(rc == 0);
 
