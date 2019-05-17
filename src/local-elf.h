@@ -55,6 +55,12 @@
 #endif
 #define ELF_TARG_DATA	ELFDATA2LSB
 
+#elif defined (__arc__)
+
+#define ELF_TARG_MACH   EM_ARC
+#define ELF_TARG_CLASS  ELFCLASS32
+#define ELF_TARG_DATA   ELFDATA2LSB
+
 #elif defined(__arm__)
 
 #define ELF_TARG_MACH	EM_ARM
