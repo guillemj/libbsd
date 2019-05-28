@@ -74,7 +74,11 @@
 #elif defined(__aarch64__)
 
 #define ELF_TARG_MACH	EM_AARCH64
+#if defined(__ILP32__)
+#define ELF_TARG_CLASS	ELFCLASS32
+#else
 #define ELF_TARG_CLASS	ELFCLASS64
+#endif
 #if defined(__AARCH64EB__)
 #define ELF_TARG_DATA	ELFDATA2MSB
 #else
