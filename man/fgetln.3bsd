@@ -36,6 +36,7 @@
 .Nd get a line from a stream
 .Sh LIBRARY
 .ds str-Lb-libbsd Utility functions from BSD systems (libbsd, \-lbsd)
+.ds doc-str-Lb-libbsd \*[str-Lb-libbsd]
 .Lb libbsd
 .Sh SYNOPSIS
 .In stdio.h
