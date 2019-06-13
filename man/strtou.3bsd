@@ -220,6 +220,7 @@ the range given was invalid, i.e.
 .Xr strtoull 3 ,
 .Xr strtoumax 3
 .Sh STANDARDS
+.ds doc-operating-system-NetBSD-7.0 7.0
 The
 .Fn strtou
 function is a

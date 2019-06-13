@@ -145,6 +145,7 @@ is an
 .Ox
 extension.
 .Sh HISTORY
+.ds doc-operating-system-NetBSD-8.0 8.0
 The
 .Fn strtonum
 function first appeared in

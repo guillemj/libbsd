@@ -226,6 +226,7 @@ function is a
 .Nx
 extension.
 .Sh HISTORY
+.ds doc-operating-system-NetBSD-7.0 7.0
 The
 .Fn strtoi
 function first appeared in
