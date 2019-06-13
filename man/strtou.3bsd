@@ -229,7 +229,7 @@ extension.
 The
 .Fn strtou
 function first appeared in
-.Nx 7 .
+.Nx 7.0 .
 .Ox
 introduced the
 .Fn strtonum 3bsd

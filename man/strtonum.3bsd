@@ -151,7 +151,7 @@ function first appeared in
 .Ox 3.6 .
 .Fn strtonum
 was redesigned in
-.Nx 8
+.Nx 8.0
 as
 .Fn strtoi 3bsd
 and
