@@ -172,6 +172,9 @@ __fdnlist(int fd, struct nlist *list)
 	 */
 	for (i = 0; i < ehdr.e_shnum; i++) {
 		if (shdr[i].sh_type == SHT_SYMTAB) {
+			if (shdr[i].sh_link >= ehdr.e_shnum)
+				goto done;
+
 			symoff = shdr[i].sh_offset;
 			symsize = shdr[i].sh_size;
 			symstroff = shdr[shdr[i].sh_link].sh_offset;
