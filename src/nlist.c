@@ -161,7 +161,7 @@ __fdnlist(int fd, struct nlist *list)
 		return (-1);
 
 	/* Load section header table. */
-	if (pread(fd, shdr, (size_t)shdr_size, (off_t)ehdr.e_shoff) < 0)
+	if (pread(fd, shdr, (size_t)shdr_size, (off_t)ehdr.e_shoff) != (ssize_t)shdr_size)
 		goto done;
 
 	/*
@@ -198,7 +198,7 @@ __fdnlist(int fd, struct nlist *list)
 	if (strtab == NULL)
 		goto done;
 
-	if (pread(fd, strtab, (size_t)symstrsize, (off_t)symstroff) < 0)
+	if (pread(fd, strtab, (size_t)symstrsize, (off_t)symstroff) != (ssize_t)symstrsize)
 		goto done;
 
 	/*
