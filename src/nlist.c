@@ -141,6 +141,12 @@ __fdnlist(int fd, struct nlist *list)
 	    fstat(fd, &st) < 0)
 		return (-1);
 
+	if (ehdr.e_shnum == 0 ||
+	    ehdr.e_shentsize != sizeof(Elf_Shdr)) {
+		errno = ERANGE;
+		return (-1);
+	}
+
 	/* calculate section header table size */
 	shdr_size = ehdr.e_shentsize * ehdr.e_shnum;
 
