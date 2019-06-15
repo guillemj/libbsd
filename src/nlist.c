@@ -151,7 +151,7 @@ __fdnlist(int fd, struct nlist *list)
 	shdr_size = ehdr.e_shentsize * ehdr.e_shnum;
 
 	/* Make sure it's not too big to mmap */
-	if (shdr_size > SIZE_T_MAX) {
+	if (shdr_size > SIZE_T_MAX || shdr_size > st.st_size) {
 		errno = EFBIG;
 		return (-1);
 	}
@@ -184,7 +184,7 @@ __fdnlist(int fd, struct nlist *list)
 	}
 
 	/* Check for files too large to mmap. */
-	if (symstrsize > SIZE_T_MAX) {
+	if (symstrsize > SIZE_T_MAX || symstrsize > st.st_size) {
 		errno = EFBIG;
 		goto done;
 	}
