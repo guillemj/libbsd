@@ -100,6 +100,12 @@
 #error Unknown AVR32 endianness
 #endif
 
+#elif defined(__e2k__)
+
+#define ELF_TARG_MACH	EM_MCST_ELBRUS
+#define ELF_TARG_CLASS	ELFCLASS64
+#define ELF_TARG_DATA	ELFDATA2LSB
+
 #elif defined(__hppa__)
 
 #define ELF_TARG_MACH	EM_PARISC
