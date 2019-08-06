@@ -48,7 +48,11 @@ AS_CASE([$host_os],
   [*-gnu*], [
     # In old glibc versions (< 2.17) clock_gettime() is in librt.
     saved_LIBS="$LIBS"
-    AC_SEARCH_LIBS([clock_gettime], [rt], [CLOCK_GETTIME_LIBS="-lrt"])
+    AC_SEARCH_LIBS([clock_gettime], [rt], [
+      AS_IF([test "x$ac_cv_search_clock_gettime" != "xnone required"], [
+        CLOCK_GETTIME_LIBS="$ac_cv_search_clock_gettime"
+      ])
+    ])
     AC_SUBST([CLOCK_GETTIME_LIBS])
     LIBS="$saved_LIBS"
   ],
