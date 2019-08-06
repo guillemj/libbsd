@@ -37,6 +37,8 @@
 
 #define ELF_TARG_VER	EV_CURRENT
 
+/* The following entries are sorted alphabetically. */
+
 #if defined(__alpha__)
 
 #define ELF_TARG_MACH	EM_ALPHA
