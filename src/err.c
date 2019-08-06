@@ -1,6 +1,6 @@
 /*
  * Copyright © 2006 Robert Millan
- * Copyright © 2011 Guillem Jover <guillem@hadrons.org>
+ * Copyright © 2011, 2019 Guillem Jover <guillem@hadrons.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -26,8 +26,21 @@
  */
 
 #include <err.h>
-#include <errno.h>
+#include <string.h>
 #include <stdarg.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+void
+vwarnc(int code, const char *format, va_list ap)
+{
+	fprintf(stderr, "%s: ", getprogname());
+	if (format) {
+		vfprintf(stderr, format, ap);
+		fprintf(stderr, ": ");
+	}
+	fprintf(stderr, "%s\n", strerror(code));
+}
 
 void
 warnc(int code, const char *format, ...)
@@ -40,13 +53,15 @@ warnc(int code, const char *format, ...)
 }
 
 void
-vwarnc(int code, const char *format, va_list ap)
+verrc(int status, int code, const char *format, va_list ap)
 {
-	int tmp = errno;
-
-	errno = code;
-	vwarn(format, ap);
-	errno = tmp;
+	fprintf(stderr, "%s: ", getprogname());
+	if (format) {
+		vfprintf(stderr, format, ap);
+		fprintf(stderr, ": ");
+	}
+	fprintf(stderr, "%s\n", strerror(code));
+	exit(status);
 }
 
 void
@@ -57,11 +72,4 @@ errc(int status, int code, const char *format, ...)
 	va_start(ap, format);
 	verrc(status, code, format, ap);
 	va_end(ap);
-}
-
-void
-verrc(int status, int code, const char *format, va_list ap)
-{
-	errno = code;
-	verr(status, format, ap);
 }
