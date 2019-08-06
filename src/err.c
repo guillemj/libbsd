@@ -72,3 +72,75 @@ errc(int status, int code, const char *format, ...)
 	verrc(status, code, format, ap);
 	va_end(ap);
 }
+
+#ifdef LIBBSD_NEED_ERR_H_FUNCS
+void
+{
+	vwarnc(errno, format, ap);
+}
+
+void
+warn(const char *format, ...)
+{
+	va_list ap;
+
+	va_start(ap, format);
+	vwarnc(errno, format, ap);
+	va_end(ap);
+}
+
+void
+vwarnx(const char *format, va_list ap)
+{
+	fprintf(stderr, "%s: ", getprogname());
+	if (format)
+		vfprintf(stderr, format, ap);
+	fprintf(stderr, "\n");
+}
+
+void
+warnx(const char *format, ...)
+{
+	va_list ap;
+
+	va_start(ap, format);
+	vwarnx(format, ap);
+	va_end(ap);
+}
+
+void
+verr(int status, const char *format, va_list ap)
+{
+	verrc(status, errno, format, ap);
+}
+
+void
+err(int status, const char *format, ...)
+{
+	va_list ap;
+
+	va_start(ap, format);
+	verrc(status, errno, format, ap);
+	va_end(ap);
+}
+
+void
+verrx(int eval, const char *format, va_list ap)
+{
+	fprintf(stderr, "%s: ", getprogname());
+	if (format)
+		vfprintf(stderr, format, ap);
+	fprintf(stderr, "\n");
+	exit(eval);
+}
+
+void
+errx(int eval, const char *format, ...)
+{
+	va_list ap;
+
+	va_start(ap, format);
+	verrx(eval, format, ap);
+	va_end(ap);
+}
+#endif
