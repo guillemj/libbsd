@@ -31,6 +31,7 @@
 #include <err.h>
 #include <unistd.h>
 #include <string.h>
+#include "local-link.h"
 
 static struct {
 	/* Original value. */
@@ -280,7 +281,7 @@ setproctitle_impl(const char *fmt, ...)
 		*++nul = '\0';
 	}
 }
-__asm__(".symver setproctitle_impl,setproctitle@@LIBBSD_0.5");
+libbsd_symver_default(setproctitle, setproctitle_impl, LIBBSD_0.5);
 
 /* The original function introduced in 0.2 was a stub, it only got implemented
  * in 0.5, make the implementation available in the old version as an alias
@@ -295,4 +296,4 @@ void
 setproctitle_stub(const char *fmt, ...)
 	__attribute__((__alias__("setproctitle_impl")));
 #endif
-__asm__(".symver setproctitle_stub,setproctitle@LIBBSD_0.2");
+libbsd_symver_variant(setproctitle, setproctitle_stub, LIBBSD_0.2);
