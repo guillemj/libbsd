@@ -29,11 +29,15 @@
 #include <sys/cdefs.h>
 #if __has_include_next(<err.h>)
 #include_next <err.h>
+#else
+#define LIBBSD_NEED_ERR_H_FUNCS
 #endif
 #else
 #include <bsd/sys/cdefs.h>
 #if __has_include(<err.h>)
 #include <err.h>
+#else
+#define LIBBSD_NEED_ERR_H_FUNCS
 #endif
 #endif
 
@@ -52,6 +56,26 @@ void verrc(int status, int code, const char *format, va_list ap)
 	__printflike(3, 0) __dead2;
 void errc(int status, int code, const char *format, ...)
 	__printflike(3, 4) __dead2;
+
+#ifdef LIBBSD_NEED_ERR_H_FUNCS
+void vwarn(const char *format, va_list ap)
+	__printflike(1, 0);
+void vwarnx(const char *format, va_list ap)
+	__printflike(1, 0);
+void warn(const char *format, ...)
+	__printflike(1, 2);
+void warnx(const char *format, ...)
+	__printflike(1, 2);
+
+void verr(int status, const char *format, va_list ap)
+	__printflike(2, 0) __dead2;
+void verrx(int status, const char *format, va_list ap)
+	__printflike(2, 0) __dead2;
+void err(int status, const char *format, ...)
+	__printflike(2, 3) __dead2;
+void errx(int status, const char *format, ...)
+	__printflike(2, 3) __dead2;
+#endif
 __END_DECLS
 
 #endif
