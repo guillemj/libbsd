@@ -47,10 +47,11 @@ void warnc(int code, const char *format, ...)
 	__printflike(2, 3);
 void vwarnc(int code, const char *format, va_list ap)
 	__printflike(2, 0);
+
 void errc(int status, int code, const char *format, ...)
-	__printflike(3, 4);
+	__printflike(3, 4) __dead2;
 void verrc(int status, int code, const char *format, va_list ap)
-	__printflike(3, 0);
+	__printflike(3, 0) __dead2;
 __END_DECLS
 
 #endif
