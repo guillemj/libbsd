@@ -54,7 +54,9 @@ libbsd_la_DEPENDENCIES = \
 	$(libbsd_la_included_sources) \
 	libbsd.map
 libbsd_la_LIBADD = \
-	$(CLOCK_GETTIME_LIBS)
+	$(CLOCK_GETTIME_LIBS) \
+	$(ARC4RANDOM_ATFORK_LIBS) \
+	$(nil)
 libbsd_la_LDFLAGS = \
 	-Wl,--version-script=$(srcdir)/libbsd.map \
 	-version-number $(LIBBSD_ABI)

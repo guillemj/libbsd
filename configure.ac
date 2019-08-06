@@ -145,6 +145,23 @@ AC_LINK_IFELSE(
 	 AC_MSG_RESULT([yes])],
 	[AC_MSG_RESULT([no])])
 
+AC_MSG_CHECKING([for __register_atfork])
+AC_LINK_IFELSE(
+	[AC_LANG_PROGRAM([[
+		#include <stddef.h>
+		extern void *__dso_handle;
+		extern int __register_atfork(void (*)(void), void(*)(void), void (*)(void), void *);
+	]], [[
+		__register_atfork(NULL, NULL, NULL, __dso_handle);
+	]])],
+	[AC_DEFINE([HAVE___REGISTER_ATFORK], [1],
+	           [Define to 1 if you have __register_atfork])
+	 AC_MSG_RESULT([yes])],
+	[ARC4RANDOM_ATFORK_LIBS="-pthread"
+	 AC_SUBST([ARC4RANDOM_ATFORK_LIBS])
+	 AC_MSG_RESULT([no])
+	])
+
 AC_CHECK_FUNCS([clearenv dirfd fopencookie __fpurge \
                 getauxval getentropy getexecname getline \
                 pstat_getproc sysconf])
