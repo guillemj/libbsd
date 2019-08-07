@@ -26,9 +26,10 @@
 
 #include <errno.h>
 #include <stdio.h>
-#include <stdio_ext.h>
 
 #ifdef HAVE___FPURGE
+#include <stdio_ext.h>
+
 int
 fpurge(FILE *fp)
 {

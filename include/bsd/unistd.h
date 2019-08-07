@@ -56,7 +56,9 @@ extern int optreset;
 
 int bsd_getopt(int argc, char * const argv[], const char *shortopts);
 
+#ifndef __APPLE__
 mode_t getmode(const void *set, mode_t mode);
+#endif
 void *setmode(const char *mode_str);
 
 void closefrom(int lowfd);

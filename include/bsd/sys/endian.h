@@ -41,6 +41,10 @@
 #ifndef LIBBSD_SYS_ENDIAN_H
 #define LIBBSD_SYS_ENDIAN_H
 
+#if __has_include(<machine/endian.h>)
+#include <machine/endian.h>
+#endif
+
 #ifndef _BYTE_ORDER
 #define _BYTE_ORDER __BYTE_ORDER
 #endif

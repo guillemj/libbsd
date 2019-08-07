@@ -30,6 +30,7 @@
 #define _SHA512_H_
 
 #include <sys/types.h>
+#include <stdint.h>
 
 #define SHA512_DIGEST_LENGTH		64
 
