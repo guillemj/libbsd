@@ -236,16 +236,18 @@ __fdnlist(int fd, struct nlist *list)
 		symsize -= cc;
 		for (s = sbuf; cc > 0 && nent > 0; ++s, cc -= sizeof(*s)) {
 			char *name;
+			Elf_Word size;
 			struct nlist *p;
 
 			name = strtab + s->st_name;
 			if (name[0] == '\0')
 				continue;
+			size = symstrsize - s->st_name;
 
 			for (p = list; !ISLAST(p); p++) {
 				if ((p->n_un.n_name[0] == '_' &&
-				    strcmp(name, p->n_un.n_name+1) == 0)
-				    || strcmp(name, p->n_un.n_name) == 0) {
+				     strncmp(name, p->n_un.n_name+1, size) == 0) ||
+				    strncmp(name, p->n_un.n_name, size) == 0) {
 					elf_sym_to_nlist(p, s, shdr,
 					    ehdr.e_shnum);
 					if (--nent <= 0)
