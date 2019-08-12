@@ -43,7 +43,9 @@
 
 #include "local-elf.h"
 
+#ifndef SIZE_T_MAX
 #define SIZE_T_MAX 0xffffffffU
+#endif
 
 /* Note: This function is used by libkvm0, so we need to export it.
  * It is not declared in the include files though. */
