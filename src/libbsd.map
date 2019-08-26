@@ -181,3 +181,7 @@ LIBBSD_0.10.0 {
     err;
     errx;
 } LIBBSD_0.9.1;
+
+LIBBSD_0.11.0 {
+    strnvisx;
+} LIBBSD_0.10.0;
