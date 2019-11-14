@@ -45,7 +45,7 @@
 #define ELF_TARG_CLASS	ELFCLASS64
 #define ELF_TARG_DATA	ELFDATA2LSB
 
-#elif defined(__amd64__)
+#elif defined(__amd64__) || defined(__x86_64__)
 
 #define ELF_TARG_MACH	EM_X86_64
 #if defined(__ILP32__)
