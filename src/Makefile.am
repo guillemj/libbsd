@@ -65,8 +65,11 @@ libbsd_la_LIBADD = \
 	$(ARC4RANDOM_ATFORK_LIBS) \
 	$(nil)
 libbsd_la_LDFLAGS = \
-	-Wl,--version-script=$(srcdir)/libbsd.map \
 	-version-number $(LIBBSD_ABI)
+if HAVE_LINKER_VERSION_SCRIPT
+libbsd_la_LDFLAGS += \
+	-Wl,--version-script=$(srcdir)/libbsd.map
+endif
 libbsd_la_SOURCES = \
 	arc4random.c \
 	arc4random.h \
