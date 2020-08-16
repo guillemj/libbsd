@@ -61,6 +61,7 @@ static const wchar_t *data_wide[] = {
 
 struct file {
 	FILE *fp;
+	void *line_alloc;
 	const void **lines;
 
 	const void *got_buf;
@@ -97,6 +98,7 @@ test_fgetln_multi(void)
 		str = strdup("A\n");
 		str[0] += i;
 
+		files[i].line_alloc = str;
 		files[i].lines = reallocarray(NULL, LINE_COUNT, sizeof(char *));
 		files[i].lines[0] = str;
 		files[i].lines[1] = str;
@@ -123,8 +125,11 @@ test_fgetln_multi(void)
 		}
 	}
 
-	for (i = 0; i < LINE_COUNT; i++)
+	for (i = 0; i < FILE_COUNT; i++) {
+		free(files[i].line_alloc);
+		free(files[i].lines);
 		pipe_close(files[i].fp);
+	}
 }
 
 static void
@@ -159,6 +164,7 @@ test_fgetwln_multi(void)
 		wstr = wcsdup(L"A\n");
 		wstr[0] += i;
 
+		files[i].line_alloc = wstr;
 		files[i].lines = reallocarray(NULL, LINE_COUNT, sizeof(char *));
 		files[i].lines[0] = wstr;
 		files[i].lines[1] = wstr;
@@ -185,8 +191,11 @@ test_fgetwln_multi(void)
 		}
 	}
 
-	for (i = 0; i < LINE_COUNT; i++)
+	for (i = 0; i < FILE_COUNT; i++) {
+		free(files[i].line_alloc);
+		free(files[i].lines);
 		pipe_close(files[i].fp);
+	}
 }
 
 static void
