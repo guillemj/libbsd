@@ -112,6 +112,10 @@
 .Nm TAILQ_SWAP
 .Nd implementations of singly-linked lists, singly-linked tail queues,
 lists and tail queues
+.Sh LIBRARY
+.ds str-Lb-libbsd Utility functions from BSD systems (libbsd, \-lbsd)
+.ds doc-str-Lb-libbsd \*[str-Lb-libbsd]
+.Lb libbsd
 .Sh SYNOPSIS
 .In sys/queue.h
 (See

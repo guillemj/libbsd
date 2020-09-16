@@ -31,6 +31,10 @@
 .Nm be16enc , be16dec , be32enc , be32dec , be64enc , be64dec ,
 .Nm le16enc , le16dec , le32enc , le32dec , le64enc , le64dec
 .Nd byte order operations
+.Sh LIBRARY
+.ds str-Lb-libbsd Utility functions from BSD systems (libbsd, \-lbsd)
+.ds doc-str-Lb-libbsd \*[str-Lb-libbsd]
+.Lb libbsd
 .Sh SYNOPSIS
 .In sys/endian.h
 (See
