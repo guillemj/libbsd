@@ -223,6 +223,7 @@ dist_man_MANS = \
 	timercmp.3bsd \
 	timerisset.3bsd \
 	timersub.3bsd \
+	timespec.3bsd \
 	timespecadd.3bsd \
 	timespecclear.3bsd \
 	timespeccmp.3bsd \
