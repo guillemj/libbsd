@@ -62,7 +62,7 @@ int dehumanize_number(const char *str, int64_t *size);
 const char *getprogname(void);
 void setprogname(const char *);
 
-int heapsort (void *, size_t, size_t, int (*)(const void *, const void *));
+int heapsort(void *, size_t, size_t, int (*)(const void *, const void *));
 int mergesort(void *base, size_t nmemb, size_t size,
               int (*cmp)(const void *, const void *));
 int radixsort(const unsigned char **base, int nmemb,
