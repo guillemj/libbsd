@@ -165,6 +165,7 @@ dist_man_MANS = \
 	fgetln.3bsd \
 	fgetwln.3bsd \
 	flopen.3bsd \
+	freezero.3bsd \
 	fmtcheck.3bsd \
 	fparseln.3bsd \
 	fpurge.3bsd \
@@ -195,6 +196,7 @@ dist_man_MANS = \
 	readpassphrase.3bsd \
 	reallocarray.3bsd \
 	reallocf.3bsd \
+	recallocarray.3bsd \
 	setmode.3bsd \
 	setproctitle.3bsd \
 	setproctitle_init.3bsd \

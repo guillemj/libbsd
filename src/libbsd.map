@@ -184,4 +184,7 @@ LIBBSD_0.10.0 {
 
 LIBBSD_0.11.0 {
     strnvisx;
+
+    recallocarray;
+    freezero;
 } LIBBSD_0.10.0;

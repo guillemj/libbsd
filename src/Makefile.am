@@ -86,6 +86,7 @@ libbsd_la_SOURCES = \
 	expand_number.c \
 	explicit_bzero.c \
 	fgetln.c \
+	freezero.c \
 	fgetwln.c \
 	flopen.c \
 	fmtcheck.c \
@@ -111,6 +112,7 @@ libbsd_la_SOURCES = \
 	readpassphrase.c \
 	reallocarray.c \
 	reallocf.c \
+	recallocarray.c \
 	setmode.c \
 	setproctitle.c \
 	strlcat.c \

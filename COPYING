@@ -368,6 +368,7 @@ Files:
  src/arc4random_unix.h
  src/arc4random_win.h
  src/closefrom.c
+ src/freezero.c
  src/getentropy_aix.c
  src/getentropy_bsd.c
  src/getentropy_hpux.c
@@ -378,6 +379,7 @@ Files:
  src/getentropy_win.c
  src/readpassphrase.c
  src/reallocarray.c
+ src/recallocarray.c
  src/strlcat.c
  src/strlcpy.c
 Copyright:
@@ -389,7 +391,7 @@ Copyright:
      Todd C. Miller <Todd.Miller@courtesan.com>
  Copyright © 2004 Ted Unangst
  Copyright © 2008 Damien Miller <djm@openbsd.org>
- Copyright © 2008 Otto Moerbeek <otto@drijf.net>
+ Copyright © 2008, 2010-2011, 2016-2017 Otto Moerbeek <otto@drijf.net>
  Copyright © 2013 Markus Friedl <markus@openbsd.org>
  Copyright © 2014 Bob Beck <beck@obtuse.com>
  Copyright © 2014 Brent Cook <bcook@openbsd.org>

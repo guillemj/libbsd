@@ -75,6 +75,8 @@ void *reallocf(void *ptr, size_t size);
     (defined(__GLIBC__) && (!__GLIBC_PREREQ(2, 26) || !defined(_GNU_SOURCE)))
 void *reallocarray(void *ptr, size_t nmemb, size_t size);
 #endif
+void *recallocarray(void *ptr, size_t oldnmemb, size_t nmemb, size_t size);
+void freezero(void *ptr, size_t size);
 
 long long strtonum(const char *nptr, long long minval, long long maxval,
                    const char **errstr);
