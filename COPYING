@@ -3,7 +3,7 @@ Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Files:
  *
 Copyright:
- Copyright © 2004-2006, 2008-2018 Guillem Jover <guillem@hadrons.org>
+ Copyright © 2004-2006, 2008-2021 Guillem Jover <guillem@hadrons.org>
 License: BSD-3-clause
 
 Files:

@@ -1,5 +1,5 @@
 /*
- * Copyright © 2013 Guillem Jover <guillem@hadrons.org>
+ * Copyright © 2013-2015, 2020 Guillem Jover <guillem@hadrons.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
