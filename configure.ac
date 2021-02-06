@@ -63,6 +63,17 @@ AC_SUBST([TESTU01_LIBS])
 AM_CONDITIONAL([HAVE_LIBTESTU01],
                [test "x$ac_cv_lib_testu01_unif01_CreateExternGenBits" = "xyes"])
 
+saved_LIBS="$LIBS"
+AC_SEARCH_LIBS([MD5Update], [md], [
+  AC_SEARCH_LIBS([SHA512Update], [md], [
+    MD_LIBS="-lmd"
+  ])
+], [
+  AC_MSG_ERROR([cannot find required message digest functions in libc or libmd])
+])
+AC_SUBST([MD_LIBS])
+LIBS="$saved_LIBS"
+
 is_windows=no
 AS_CASE([$host_os],
   [*-gnu*], [

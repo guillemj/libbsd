@@ -5,6 +5,9 @@ and lacking on others like GNU systems, thus making it easier to port
 projects with strong BSD origins, without needing to embed the same
 code over and over again on each project.
 
+A BSD compatible message-digest library is required, on systems where
+this is not provided by its libc or libmd libraries, the canonical
+implementation to use is <https://www.hadrons.org/software/libmd/>.
 
 Releases
 --------

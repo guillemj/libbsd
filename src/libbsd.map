@@ -35,6 +35,8 @@ LIBBSD_0.0 {
     strunvis;
     strunvisx;
 
+    /* The following functions are provided via the system libc or libmd
+     * implementations. */
     MD5Init;
     MD5Update;
     MD5Pad;

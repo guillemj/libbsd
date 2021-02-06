@@ -278,8 +278,6 @@ Files:
  man/getpeereid.3bsd
  man/pidfile.3bsd
  src/expand_number.c
- src/hash/sha512.h
- src/hash/sha512c.c
  src/pidfile.c
  src/reallocf.c
  src/timeconv.c
@@ -459,17 +457,6 @@ License: Expat
  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 Files:
- include/bsd/md5.h
- src/hash/md5.c
-Copyright:
- None
-License: public-domain-Colin-Plumb
- This code implements the MD5 message-digest algorithm.
- The algorithm is due to Ron Rivest. This code was
- written by Colin Plumb in 1993, no copyright is claimed.
- This code is in the public domain; do with it what you wish.
-
-Files:
  src/explicit_bzero.c
  src/chacha_private.h
 Copyright:
@@ -479,8 +466,6 @@ License: public-domain
 
 Files:
  man/mdX.3bsd
- src/hash/md5hl.c
- src/hash/helper.c
 Copyright:
  None
 License: Beerware

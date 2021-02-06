@@ -15,7 +15,6 @@ AM_CPPFLAGS += \
 endif
 
 libbsd_la_included_sources = \
-	hash/helper.c \
 	getentropy_aix.c \
 	getentropy_bsd.c \
 	getentropy_hpux.c \
@@ -34,10 +33,6 @@ EXTRA_DIST = \
 	$(libbsd_la_included_sources) \
 	$(nil)
 
-CLEANFILES = \
-	hash/md5hl.c \
-	$(nil)
-
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = \
 	libbsd.pc \
@@ -53,14 +48,11 @@ pkgconfig_DATA += libbsd-ctor.pc
 lib_LIBRARIES += libbsd-ctor.a
 endif
 
-hash/md5hl.c: $(srcdir)/hash/helper.c
-	$(AM_V_at) $(MKDIR_P) hash
-	$(AM_V_GEN) sed -e 's:hashinc:md5.h:g' -e 's:HASH:MD5:g' $< > $@
-
 libbsd_la_DEPENDENCIES = \
 	$(libbsd_la_included_sources) \
 	libbsd.map
 libbsd_la_LIBADD = \
+	$(MD_LIBS) \
 	$(CLOCK_GETTIME_LIBS) \
 	$(ARC4RANDOM_ATFORK_LIBS) \
 	$(nil)
@@ -95,15 +87,12 @@ libbsd_la_SOURCES = \
 	funopen.c \
 	getbsize.c \
 	getpeereid.c \
-	hash/md5.c \
-	hash/md5hl.c \
-	hash/sha512.h \
-	hash/sha512c.c \
 	heapsort.c \
 	humanize_number.c \
 	inet_net_pton.c \
 	local-elf.h \
 	local-link.h \
+	md5.c \
 	merge.c \
 	nlist.c \
 	pidfile.c \

@@ -180,9 +180,10 @@ for example.
 .It Fn MD5File 3
 .It Fn MD5FileChunk 3
 .It Fn MD5Data 3
-The set of MD5 digest functions are now provided by the
+The set of MD5 digest functions are now proxies for the implementations
+provided by the
 .Nm libmd
-companion library, so it is advised to use that instead.
+companion library, so it is advised to switch to use that directly instead.
 .It Fn explicit_bzero 3
 This function is provided by
 .Nm glibc

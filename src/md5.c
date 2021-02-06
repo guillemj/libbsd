@@ -24,8 +24,68 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifdef LIBBSD_OVERLAY
-#include_next <md5.h>
-#else
 #include <md5.h>
-#endif
+#include "local-link.h"
+
+void
+bsd_MD5Init(MD5_CTX *context)
+{
+	MD5Init(context);
+}
+libbsd_symver_variant(MD5Init, bsd_MD5Init, LIBBSD_0.0);
+
+void
+bsd_MD5Update(MD5_CTX *context, const uint8_t *data, size_t len)
+{
+	MD5Update(context, data, len);
+}
+libbsd_symver_variant(MD5Update, bsd_MD5Update, LIBBSD_0.0);
+
+void
+bsd_MD5Pad(MD5_CTX *context)
+{
+	MD5Pad(context);
+}
+libbsd_symver_variant(MD5Pad, bsd_MD5Pad, LIBBSD_0.0);
+
+void
+bsd_MD5Final(uint8_t digest[MD5_DIGEST_LENGTH], MD5_CTX *context)
+{
+	MD5Final(digest, context);
+}
+libbsd_symver_variant(MD5Final, bsd_MD5Final, LIBBSD_0.0);
+
+void
+bsd_MD5Transform(uint32_t state[4], const uint8_t block[MD5_BLOCK_LENGTH])
+{
+	MD5Transform(state, block);
+}
+libbsd_symver_variant(MD5Transform, bsd_MD5Transform, LIBBSD_0.0);
+
+char *
+bsd_MD5End(MD5_CTX *context, char *buf)
+{
+	return MD5End(context, buf);
+}
+libbsd_symver_variant(MD5End, bsd_MD5End, LIBBSD_0.0);
+
+char *
+bsd_MD5File(const char *filename, char *buf)
+{
+	return MD5File(filename, buf);
+}
+libbsd_symver_variant(MD5File, bsd_MD5File, LIBBSD_0.0);
+
+char *
+bsd_MD5FileChunk(const char *filename, char *buf, off_t offset, off_t length)
+{
+	return MD5FileChunk(filename, buf, offset, length);
+}
+libbsd_symver_variant(MD5FileChunk, bsd_MD5FileChunk, LIBBSD_0.0);
+
+char *
+bsd_MD5Data(const uint8_t *data, size_t len, char *buf)
+{
+	return MD5Data(data, len, buf);
+}
+libbsd_symver_variant(MD5Data, bsd_MD5Data, LIBBSD_0.0);

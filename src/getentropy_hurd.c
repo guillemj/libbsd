@@ -44,7 +44,7 @@
 #include <unistd.h>
 #include <time.h>
 
-#include "hash/sha512.h"
+#include <sha512.h>
 
 #ifdef HAVE_GETAUXVAL
 #include <sys/auxv.h>
@@ -62,9 +62,9 @@
 			HD(b); \
 	} while (0)
 
-#define HR(x, l) (SHA512_Update(&ctx, (char *)(x), (l)))
-#define HD(x)	 (SHA512_Update(&ctx, (char *)&(x), sizeof (x)))
-#define HF(x)    (SHA512_Update(&ctx, (char *)&(x), sizeof (void*)))
+#define HR(x, l) (SHA512_Update(&ctx, (uint8_t *)(x), (l)))
+#define HD(x)	 (SHA512_Update(&ctx, (uint8_t *)&(x), sizeof (x)))
+#define HF(x)    (SHA512_Update(&ctx, (uint8_t *)&(x), sizeof (void*)))
 
 int	getentropy(void *buf, size_t len);
 
@@ -228,7 +228,7 @@ getentropy_phdr(struct dl_phdr_info *info, size_t size, void *data)
 {
 	SHA512_CTX *ctx = data;
 
-	SHA512_Update(ctx, &info->dlpi_addr, sizeof (info->dlpi_addr));
+	SHA512_Update(ctx, (uint8_t *)&info->dlpi_addr, sizeof (info->dlpi_addr));
 	return (0);
 }
 
