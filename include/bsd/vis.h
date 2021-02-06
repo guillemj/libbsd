@@ -99,8 +99,11 @@
  * Provide both implementations and default for now on the historical one to
  * avoid breakage, we will switch to the NetBSD one in libbsd 0.10.0 or so.
  * Define LIBBSD_NETBSD_VIS to switch to the NetBSD one now.
+ * Define LIBBSD_OPENBSD_VIS to keep using the OpenBSD one.
  */
-#ifndef LIBBSD_NETBSD_VIS
+#if defined(LIBBSD_OPENBSD_VIS)
+#undef LIBBSD_NETBSD_VIS
+#elif !defined(LIBBSD_NETBSD_VIS)
 #warning "NetBSD added incompatible strnvis() and strnunvis(), please see <bsd/vis.h> for more detils."
 #endif
 

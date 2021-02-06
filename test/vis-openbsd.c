@@ -24,12 +24,11 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#define LIBBSD_OPENBSD_VIS 1
+
 #include <assert.h>
 #include <string.h>
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wcpp"
 #include <vis.h>
-#pragma GCC diagnostic pop
 
 int
 main(int argc, char **argv)
