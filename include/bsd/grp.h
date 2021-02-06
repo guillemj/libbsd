@@ -1,5 +1,5 @@
 /*
- * Copyright © 2012 Guillem Jover <guillem@hadrons.org>
+ * Copyright © 2021 Guillem Jover <guillem@hadrons.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -24,31 +24,28 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* Include system headers that are “known” to pull bits selectively from
- * other headers through magic macros, to check that the overlay is working
- * properly. */
-#include <errno.h>
-#ifdef HAVE_PWD_H
-#include <pwd.h>
+#ifdef LIBBSD_OVERLAY
+#include <sys/cdefs.h>
+#if __has_include_next(<grp.h>)
+#include_next <grp.h>
 #endif
-#ifdef HAVE_GRP_H
+#else
+#include <bsd/sys/cdefs.h>
+#if __has_include(<grp.h>)
 #include <grp.h>
 #endif
-#include <stdint.h>
+#endif
 
-/* Include libbsd overlayed headers that might get partially included. */
-#include <sys/cdefs.h>
+#ifndef LIBBSD_GRP_H
+#define LIBBSD_GRP_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
+#define _GR_BUF_LEN		(1024 + 200 * sizeof(char *))
 
+__BEGIN_DECLS
 int
-main()
-{
-	/* Test that we do not get partial definitions. */
-	fflush(stdout);
+gid_from_group(const char *, gid_t *);
+const char *
+group_from_gid(gid_t, int);
+__END_DECLS
 
-	return 0;
-}
+#endif

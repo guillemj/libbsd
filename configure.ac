@@ -87,7 +87,7 @@ AS_CASE([$host_os],
 AM_CONDITIONAL([OS_WINDOWS], [test "x$is_windows" = "xyes"])
 
 # Checks for header files.
-AC_CHECK_HEADERS([sys/ndir.h sys/dir.h ndir.h dirent.h grp.h])
+AC_CHECK_HEADERS([sys/ndir.h sys/dir.h ndir.h dirent.h pwd.h grp.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_INLINE

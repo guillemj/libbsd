@@ -187,4 +187,9 @@ LIBBSD_0.11.0 {
 
     recallocarray;
     freezero;
+
+    gid_from_group;
+    group_from_gid;
+    uid_from_user;
+    user_from_uid;
 } LIBBSD_0.10.0;

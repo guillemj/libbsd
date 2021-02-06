@@ -15,6 +15,7 @@ overlay
 proctitle-init
 proctitle
 progname
+pwcache
 setmode
 strl
 strmode

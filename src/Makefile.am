@@ -108,6 +108,7 @@ libbsd_la_SOURCES = \
 	nlist.c \
 	pidfile.c \
 	progname.c \
+	pwcache.c \
 	radixsort.c \
 	readpassphrase.c \
 	reallocarray.c \

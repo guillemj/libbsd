@@ -43,6 +43,7 @@ check_PROGRAMS = \
 	nlist \
 	proctitle-init \
 	progname \
+	pwcache \
 	setmode \
 	strl \
 	strmode \

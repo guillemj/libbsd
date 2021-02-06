@@ -1,5 +1,5 @@
 /*
- * Copyright © 2012 Guillem Jover <guillem@hadrons.org>
+ * Copyright © 2021 Guillem Jover <guillem@hadrons.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -24,31 +24,28 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* Include system headers that are “known” to pull bits selectively from
- * other headers through magic macros, to check that the overlay is working
- * properly. */
-#include <errno.h>
-#ifdef HAVE_PWD_H
+#ifdef LIBBSD_OVERLAY
+#include <sys/cdefs.h>
+#if __has_include_next(<pwd.h>)
+#include_next <pwd.h>
+#endif
+#else
+#include <bsd/sys/cdefs.h>
+#if __has_include(<pwd.h>)
 #include <pwd.h>
 #endif
-#ifdef HAVE_GRP_H
-#include <grp.h>
 #endif
-#include <stdint.h>
 
-/* Include libbsd overlayed headers that might get partially included. */
-#include <sys/cdefs.h>
+#ifndef LIBBSD_PWD_H
+#define LIBBSD_PWD_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
+#define _PW_BUF_LEN		1024	/* length of getpw*_r buffer */
 
+__BEGIN_DECLS
 int
-main()
-{
-	/* Test that we do not get partial definitions. */
-	fflush(stdout);
+uid_from_user(const char *, uid_t *);
+const char *
+user_from_uid(uid_t, int);
+__END_DECLS
 
-	return 0;
-}
+#endif

@@ -1,5 +1,5 @@
 /*
- * Copyright © 2012 Guillem Jover <guillem@hadrons.org>
+ * Copyright © 2021 Guillem Jover <guillem@hadrons.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -24,31 +24,26 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* Include system headers that are “known” to pull bits selectively from
- * other headers through magic macros, to check that the overlay is working
- * properly. */
-#include <errno.h>
-#ifdef HAVE_PWD_H
-#include <pwd.h>
-#endif
-#ifdef HAVE_GRP_H
-#include <grp.h>
-#endif
-#include <stdint.h>
-
-/* Include libbsd overlayed headers that might get partially included. */
-#include <sys/cdefs.h>
-
-#include <stdio.h>
-#include <stdlib.h>
+#include <assert.h>
 #include <string.h>
-#include <unistd.h>
+#include <pwd.h>
+#include <grp.h>
 
 int
-main()
+main(int argc, char **argv)
 {
-	/* Test that we do not get partial definitions. */
-	fflush(stdout);
+	uid_t uid;
+	gid_t gid;
+
+	assert(uid_from_user("root", &uid) == 0);
+	assert(uid == 0);
+
+	assert(strcmp(user_from_uid(0, 0), "root") == 0);
+
+	assert(gid_from_group("root", &gid) == 0);
+	assert(gid == 0);
+
+	assert(strcmp(group_from_gid(0, 0), "root") == 0);
 
 	return 0;
 }
