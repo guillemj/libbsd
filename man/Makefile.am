@@ -14,6 +14,8 @@ md5.3bsd: $(srcdir)/mdX.3bsd
 	$(AM_V_GEN) sed $(SED_MD5_SUBST) $< > $@
 
 dist_man_MANS = \
+	LIST_CLASS_ENTRY.3bsd \
+	LIST_CLASS_HEAD.3bsd \
 	LIST_EMPTY.3bsd \
 	LIST_ENTRY.3bsd \
 	LIST_FIRST.3bsd \
@@ -54,6 +56,8 @@ dist_man_MANS = \
 	RB_REMOVE.3bsd \
 	RB_RIGHT.3bsd \
 	RB_ROOT.3bsd \
+	SLIST_CLASS_ENTRY.3bsd \
+	SLIST_CLASS_HEAD.3bsd \
 	SLIST_EMPTY.3bsd \
 	SLIST_ENTRY.3bsd \
 	SLIST_FIRST.3bsd \
@@ -70,6 +74,7 @@ dist_man_MANS = \
 	SLIST_REMOVE.3bsd \
 	SLIST_REMOVE_AFTER.3bsd \
 	SLIST_REMOVE_HEAD.3bsd \
+	SLIST_REMOVE_PREVPTR.3bsd \
 	SLIST_SWAP.3bsd \
 	SPLAY_EMPTY.3bsd \
 	SPLAY_ENTRY.3bsd \
@@ -88,6 +93,8 @@ dist_man_MANS = \
 	SPLAY_REMOVE.3bsd \
 	SPLAY_RIGHT.3bsd \
 	SPLAY_ROOT.3bsd \
+	STAILQ_CLASS_ENTRY.3bsd \
+	STAILQ_CLASS_HEAD.3bsd \
 	STAILQ_CONCAT.3bsd \
 	STAILQ_EMPTY.3bsd \
 	STAILQ_ENTRY.3bsd \
@@ -108,6 +115,8 @@ dist_man_MANS = \
 	STAILQ_REMOVE_AFTER.3bsd \
 	STAILQ_REMOVE_HEAD.3bsd \
 	STAILQ_SWAP.3bsd \
+	TAILQ_CLASS_ENTRY.3bsd \
+	TAILQ_CLASS_HEAD.3bsd \
 	TAILQ_CONCAT.3bsd \
 	TAILQ_EMPTY.3bsd \
 	TAILQ_ENTRY.3bsd \
