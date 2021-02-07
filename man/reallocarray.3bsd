@@ -274,7 +274,6 @@ To avoid leaking information,
 it guarantees memory is cleared before placing it on the internal free list.
 Deallocation of such an object should be done by calling
 .Fn freezero .
-
 .Sh SEE ALSO
 .Xr malloc 3 ,
 .Xr calloc 3 ,
