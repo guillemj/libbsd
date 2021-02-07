@@ -35,11 +35,15 @@ main(int argc, char **argv)
 
 	assert(strnstr(large, "", strlen(large)) == large);
 
+	assert(strnstr(large, "far", strlen(large)) == NULL);
 	assert(strnstr(large, "quux", strlen(large)) == NULL);
 
 	assert(strnstr(large, small, 4) == NULL);
 
 	assert(strnstr(large, small, strlen(large)) == (large + 4));
+
+	assert(strnstr("quux", large, strlen("quux")) == NULL);
+	assert(strnstr("foo", large, strlen("foo")) == NULL);
 
 	return 0;
 }
