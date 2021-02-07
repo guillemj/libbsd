@@ -179,6 +179,9 @@ closefrom_procfs(int lowfd)
 void
 closefrom(int lowfd)
 {
+	if (lowfd < 0)
+		lowfd = 0;
+
 	/* Try the fast method first, if possible. */
 #if defined(HAVE_FCNTL_CLOSEM)
 	if (fcntl(lowfd, F_CLOSEM, 0) != -1)
