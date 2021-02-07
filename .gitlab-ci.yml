@@ -3,7 +3,7 @@ image: debian:buster
 test:
   before_script:
     - apt update -qq
-    - apt install -qq -y --no-install-recommends git gcc make autoconf automake libtool
+    - apt install -qq -y --no-install-recommends git gcc make autoconf automake libtool libmd-dev
   script:
     - ./autogen && ./configure
     - make check
