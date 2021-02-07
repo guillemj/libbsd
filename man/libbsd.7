@@ -94,11 +94,13 @@ be prefixed with
 .It In bitstring.h
 .It In err.h
 .It In getopt.h
+.It In grp.h
 .It In inttypes.h
 .It In libutil.h
 .It In md5.h
 .It In netinet/ip_icmp.h
 .It In nlist.h
+.It In pwd.h
 .It In readpassphrase.h
 .It In stdio.h
 .It In stdlib.h
@@ -107,6 +109,7 @@ be prefixed with
 .It In sys/bitstring.h
 .It In sys/cdefs.h
 .It In sys/endian.h
+.It In sys/param.h
 .It In sys/poll.h
 .It In sys/queue.h
 .It In sys/time.h
@@ -124,6 +127,45 @@ It only works in non-overlay mode.
 .Pp
 .Bl -tag -width 4m -compact
 .It In bsd/bsd.h
+.El
+.Sh ALTERNATIVES
+Some functions have different prototypes depending on the BSD where they
+originated from, and these various implementations provided are selectable
+at build-time.
+.Pp
+This is the list of functions that provide multiple implementations:
+.Bl -tag -width 4m
+.It Fn strnvis 3
+.It Fn strnunvis 3
+.Nx
+added
+.Fn strnvis 3
+and
+.Fn strnunvis 3
+but unfortunately made it incompatible with the existing one in
+.Ox
+and Freedesktop's libbsd (the former having existed for over ten years).
+Despite this incompatibility being reported during development (see
+http://gnats.netbsd.org/44977) they still shipped it.
+Even more unfortunately
+.Fx
+and later MacOS picked up this incompatible implementation.
+.Pp
+Provide both implementations and default for now to the historical one to
+avoid breakage, but we will switch to the
+.Nx
+one in a later release, which is internally consistent with the other
+.Xr vis 3
+functions and is now more widespread.
+Define
+.Dv LIBBSD_NETBSD_VIS
+to switch to the
+.Nx one now.
+Define
+.Dv LIBBSD_OPENBSD_VIS
+to keep using the
+.Ox
+one.
 .El
 .Sh DEPRECATED
 Some functions have been deprecated, they will emit warnings at compile time
@@ -216,6 +258,7 @@ This function is provided by
 .Xr md5 3bsd ,
 .Xr nlist 3bsd ,
 .Xr pidfile 3bsd ,
+.Xr pwcache 3bsd ,
 .Xr queue 3bsd ,
 .Xr radixsort 3bsd ,
 .Xr readpassphrase 3bsd ,
