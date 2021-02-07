@@ -1,4 +1,4 @@
-image: debian:stretch
+image: debian:buster
 
 test:
   before_script:
