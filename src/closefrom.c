@@ -19,6 +19,12 @@
 
 #include <config.h>
 
+#ifdef __linux__
+# include <sys/syscall.h>
+# if defined(__NR_close_range) && !defined(SYS_close_range)
+#  define SYS_close_range __NR_close_range
+# endif
+#endif
 #include <errno.h>
 #include <fcntl.h>
 #include <limits.h>
@@ -60,6 +66,14 @@ closefrom_close(int fd)
 	(void)close(fd);
 #endif
 }
+
+#if defined(__linux__) && defined(SYS_close_range)
+static inline int
+sys_close_range(unsigned int fd, unsigned int max_fd, unsigned int flags)
+{
+	return syscall(SYS_close_range, fd, max_fd, flags);
+}
+#endif
 
 /*
  * Close all file descriptors greater than or equal to lowfd.
@@ -182,11 +196,16 @@ closefrom(int lowfd)
 	if (lowfd < 0)
 		lowfd = 0;
 
-	/* Try the fast method first, if possible. */
+	/* Try the fast methods first, if possible. */
 #if defined(HAVE_FCNTL_CLOSEM)
 	if (fcntl(lowfd, F_CLOSEM, 0) != -1)
 		return;
 #endif /* HAVE_FCNTL_CLOSEM */
+#if defined(__linux__) && defined(SYS_close_range)
+	if (sys_close_range(lowfd, UINT_MAX, 0) == 0)
+		return;
+#endif
+
 #if defined(HAVE_PSTAT_GETPROC)
 	if (closefrom_pstat(lowfd) != -1)
 		return;
