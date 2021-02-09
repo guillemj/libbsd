@@ -67,6 +67,7 @@ saved_LIBS="$LIBS"
 AC_SEARCH_LIBS([MD5Update], [md], [
   AS_IF([test "x$ac_cv_search_MD5Update" != "xnone required"], [
     MD_LIBS="$ac_cv_search_MD5Update"
+    LIBBSD_LIBS="$LIBBSD_LIBS $ac_cv_search_MD5Update"
   ])
 ], [
   AC_MSG_ERROR([cannot find required MD5 functions in libc or libmd])
@@ -74,6 +75,7 @@ AC_SEARCH_LIBS([MD5Update], [md], [
 AC_SEARCH_LIBS([SHA512Update], [md], [
   AS_IF([test "x$ac_cv_search_SHA512Update" != "xnone required"], [
     MD_LIBS="$ac_cv_search_SHA512Update"
+    LIBBSD_LIBS="$LIBBSD_LIBS $ac_cv_search_SHA512Update"
   ])
 ], [
   AC_MSG_ERROR([cannot find required SHA-2 functions in libc or libmd])
@@ -88,10 +90,9 @@ AS_CASE([$host_os],
     saved_LIBS="$LIBS"
     AC_SEARCH_LIBS([clock_gettime], [rt], [
       AS_IF([test "x$ac_cv_search_clock_gettime" != "xnone required"], [
-        CLOCK_GETTIME_LIBS="$ac_cv_search_clock_gettime"
+        LIBBSD_LIBS="$LIBBSD_LIBS $ac_cv_search_clock_gettime"
       ])
     ])
-    AC_SUBST([CLOCK_GETTIME_LIBS])
     LIBS="$saved_LIBS"
   ],
   [*-musl*], [
@@ -199,8 +200,7 @@ AC_LINK_IFELSE(
 	[AC_DEFINE([HAVE___REGISTER_ATFORK], [1],
 	           [Define to 1 if you have __register_atfork])
 	 AC_MSG_RESULT([yes])],
-	[ARC4RANDOM_ATFORK_LIBS="-pthread"
-	 AC_SUBST([ARC4RANDOM_ATFORK_LIBS])
+	[LIBBSD_LIBS="$LIBBSD_LIBS -pthread"
 	 AC_MSG_RESULT([no])
 	])
 
@@ -208,6 +208,8 @@ AC_CHECK_FUNCS([clearenv dirfd fopencookie __fpurge \
                 getauxval getentropy getexecname getline \
                 pstat_getproc sysconf])
 AM_CONDITIONAL([HAVE_GETENTROPY], [test "x$ac_cv_func_getentropy" = "xtrue"])
+
+AC_SUBST([LIBBSD_LIBS])
 
 AC_CONFIG_FILES([
 	Makefile
