@@ -8,4 +8,5 @@ Description: Utility functions from BSD systems
 Version: @VERSION@
 URL: https://libbsd.freedesktop.org/
 Libs: -L${libdir} -lbsd
+Libs.private: @LIBBSD_LIBS@
 Cflags: -I${includedir}
