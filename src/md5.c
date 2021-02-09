@@ -24,68 +24,100 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <stddef.h>
+#include <stdlib.h>
+#include <dlfcn.h>
 #include <md5.h>
-#include "local-link.h"
+
+static void (*libmd_MD5Init)(MD5_CTX *);
+static void (*libmd_MD5Update)(MD5_CTX *, const uint8_t *, size_t);
+static void (*libmd_MD5Pad)(MD5_CTX *);
+static void (*libmd_MD5Final)(uint8_t [MD5_DIGEST_LENGTH], MD5_CTX *);
+static void (*libmd_MD5Transform)(uint32_t [4], const uint8_t [MD5_BLOCK_LENGTH]);
+static char *(*libmd_MD5End)(MD5_CTX *, char *);
+static char *(*libmd_MD5File)(const char *, char *);
+static char *(*libmd_MD5FileChunk)(const char *, char *, off_t, off_t);
+static char *(*libmd_MD5Data)(const uint8_t *, size_t, char *);
+
+static void *
+libmd_loader(const char *symbol)
+{
+	void *func;
+
+	func = dlsym(RTLD_NEXT, symbol);
+	if (func == NULL) {
+		fprintf(stderr,
+		        "libbsd: cannot find wrapped symbol %s in libc or libmd\n",
+		        symbol);
+		abort();
+	}
+
+	return func;
+}
+
+#define libmd_wrapper(symbol) \
+	if (libmd_ ## symbol == NULL) \
+		libmd_ ## symbol = libmd_loader(#symbol)
 
 void
-bsd_MD5Init(MD5_CTX *context)
+MD5Init(MD5_CTX *context)
 {
-	MD5Init(context);
+	libmd_wrapper(MD5Init);
+	libmd_MD5Init(context);
 }
-libbsd_symver_variant(MD5Init, bsd_MD5Init, LIBBSD_0.0);
 
 void
-bsd_MD5Update(MD5_CTX *context, const uint8_t *data, size_t len)
+MD5Update(MD5_CTX *context, const uint8_t *data, size_t len)
 {
-	MD5Update(context, data, len);
+	libmd_wrapper(MD5Update);
+	libmd_MD5Update(context, data, len);
 }
-libbsd_symver_variant(MD5Update, bsd_MD5Update, LIBBSD_0.0);
 
 void
-bsd_MD5Pad(MD5_CTX *context)
+MD5Pad(MD5_CTX *context)
 {
-	MD5Pad(context);
+	libmd_wrapper(MD5Pad);
+	libmd_MD5Pad(context);
 }
-libbsd_symver_variant(MD5Pad, bsd_MD5Pad, LIBBSD_0.0);
 
 void
-bsd_MD5Final(uint8_t digest[MD5_DIGEST_LENGTH], MD5_CTX *context)
+MD5Final(uint8_t digest[MD5_DIGEST_LENGTH], MD5_CTX *context)
 {
-	MD5Final(digest, context);
+	libmd_wrapper(MD5Final);
+	libmd_MD5Final(digest, context);
 }
-libbsd_symver_variant(MD5Final, bsd_MD5Final, LIBBSD_0.0);
 
 void
-bsd_MD5Transform(uint32_t state[4], const uint8_t block[MD5_BLOCK_LENGTH])
+MD5Transform(uint32_t state[4], const uint8_t block[MD5_BLOCK_LENGTH])
 {
-	MD5Transform(state, block);
+	libmd_wrapper(MD5Transform);
+	libmd_MD5Transform(state, block);
 }
-libbsd_symver_variant(MD5Transform, bsd_MD5Transform, LIBBSD_0.0);
 
 char *
-bsd_MD5End(MD5_CTX *context, char *buf)
+MD5End(MD5_CTX *context, char *buf)
 {
-	return MD5End(context, buf);
+	libmd_wrapper(MD5End);
+	return libmd_MD5End(context, buf);
 }
-libbsd_symver_variant(MD5End, bsd_MD5End, LIBBSD_0.0);
 
 char *
-bsd_MD5File(const char *filename, char *buf)
+MD5File(const char *filename, char *buf)
 {
+	libmd_wrapper(MD5File);
 	return MD5File(filename, buf);
 }
-libbsd_symver_variant(MD5File, bsd_MD5File, LIBBSD_0.0);
 
 char *
-bsd_MD5FileChunk(const char *filename, char *buf, off_t offset, off_t length)
+MD5FileChunk(const char *filename, char *buf, off_t offset, off_t length)
 {
-	return MD5FileChunk(filename, buf, offset, length);
+	libmd_wrapper(MD5FileChunk);
+	return libmd_MD5FileChunk(filename, buf, offset, length);
 }
-libbsd_symver_variant(MD5FileChunk, bsd_MD5FileChunk, LIBBSD_0.0);
 
 char *
-bsd_MD5Data(const uint8_t *data, size_t len, char *buf)
+MD5Data(const uint8_t *data, size_t len, char *buf)
 {
-	return MD5Data(data, len, buf);
+	libmd_wrapper(MD5Data);
+	return libmd_MD5Data(data, len, buf);
 }
-libbsd_symver_variant(MD5Data, bsd_MD5Data, LIBBSD_0.0);

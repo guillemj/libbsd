@@ -52,8 +52,6 @@ check_PROGRAMS = \
 	vis-openbsd \
 	$(nil)
 
-md5_LDADD = $(LDADD) $(MD_LIBS)
-
 if HAVE_LIBTESTU01
 arc4random_LDADD = $(LDADD) $(TESTU01_LIBS)
 

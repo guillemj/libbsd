@@ -64,9 +64,15 @@ AM_CONDITIONAL([HAVE_LIBTESTU01],
                [test "x$ac_cv_lib_testu01_unif01_CreateExternGenBits" = "xyes"])
 
 saved_LIBS="$LIBS"
+AC_SEARCH_LIBS([dlsym], [dl], [
+  AS_IF([test "x$ac_cv_search_dlsym" != "xnone required"], [
+    LIBBSD_LIBS="$LIBBSD_LIBS $ac_cv_search_dlsym"
+  ])
+], [
+  AC_MSG_ERROR([cannot find required dlsym function])
+])
 AC_SEARCH_LIBS([MD5Update], [md], [
   AS_IF([test "x$ac_cv_search_MD5Update" != "xnone required"], [
-    MD_LIBS="$ac_cv_search_MD5Update"
     LIBBSD_LIBS="$LIBBSD_LIBS $ac_cv_search_MD5Update"
   ])
 ], [
@@ -74,13 +80,11 @@ AC_SEARCH_LIBS([MD5Update], [md], [
 ])
 AC_SEARCH_LIBS([SHA512Update], [md], [
   AS_IF([test "x$ac_cv_search_SHA512Update" != "xnone required"], [
-    MD_LIBS="$ac_cv_search_SHA512Update"
     LIBBSD_LIBS="$LIBBSD_LIBS $ac_cv_search_SHA512Update"
   ])
 ], [
   AC_MSG_ERROR([cannot find required SHA-2 functions in libc or libmd])
 ])
-AC_SUBST([MD_LIBS])
 LIBS="$saved_LIBS"
 
 is_windows=no
