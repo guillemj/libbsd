@@ -65,11 +65,18 @@ AM_CONDITIONAL([HAVE_LIBTESTU01],
 
 saved_LIBS="$LIBS"
 AC_SEARCH_LIBS([MD5Update], [md], [
-  AC_SEARCH_LIBS([SHA512Update], [md], [
-    MD_LIBS="-lmd"
+  AS_IF([test "x$ac_cv_search_MD5Update" != "xnone required"], [
+    MD_LIBS="$ac_cv_search_MD5Update"
   ])
 ], [
-  AC_MSG_ERROR([cannot find required message digest functions in libc or libmd])
+  AC_MSG_ERROR([cannot find required MD5 functions in libc or libmd])
+])
+AC_SEARCH_LIBS([SHA512Update], [md], [
+  AS_IF([test "x$ac_cv_search_SHA512Update" != "xnone required"], [
+    MD_LIBS="$ac_cv_search_SHA512Update"
+  ])
+], [
+  AC_MSG_ERROR([cannot find required SHA-2 functions in libc or libmd])
 ])
 AC_SUBST([MD_LIBS])
 LIBS="$saved_LIBS"
