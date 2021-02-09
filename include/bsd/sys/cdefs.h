@@ -187,10 +187,10 @@
 # else
 #  ifndef __cplusplus
 #   define __offsetof(type, field) \
-           ((__size_t)(__uintptr_t)((const volatile void *)&((type *)0)->field))
+           ((size_t)(uintptr_t)((const volatile void *)&((type *)0)->field))
 #  else
 #   define __offsetof(type, field) \
-	(__offsetof__ (reinterpret_cast <__size_t> \
+	(__offsetof__ (reinterpret_cast <size_t> \
 	               (&reinterpret_cast <const volatile char &> \
 	                (static_cast<type *> (0)->field))))
 #  endif
@@ -243,15 +243,15 @@
 #endif
 
 #ifndef __DECONST
-#define __DECONST(type, var)	((type)(__uintptr_t)(const void *)(var))
+#define __DECONST(type, var)	((type)(uintptr_t)(const void *)(var))
 #endif
 
 #ifndef __DEVOLATILE
-#define __DEVOLATILE(type, var)	((type)(__uintptr_t)(volatile void *)(var))
+#define __DEVOLATILE(type, var)	((type)(uintptr_t)(volatile void *)(var))
 #endif
 
 #ifndef __DEQUALIFY
-#define __DEQUALIFY(type, var)	((type)(__uintptr_t)(const volatile void *)(var))
+#define __DEQUALIFY(type, var)	((type)(uintptr_t)(const volatile void *)(var))
 #endif
 
 #endif
