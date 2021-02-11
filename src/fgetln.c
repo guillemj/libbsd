@@ -77,7 +77,7 @@ fgetln(FILE *stream, size_t *len)
 }
 libbsd_link_warning(fgetln,
                     "This function cannot be safely ported, use getline(3) "
-                    "instead, as it is supported by GNU and POSIX.1-2008.")
+                    "instead, as it is supported by GNU and POSIX.1-2008.");
 #else
 #error "Function fgetln() needs to be ported."
 #endif
