@@ -52,9 +52,45 @@ AC_PROG_INSTALL
 AC_PROG_LN_S
 
 # Set default compiler variables
-if test "$user_CFLAGS" = unset && test "$GCC" = yes; then
-  CFLAGS="$CFLAGS -Wall -Wextra -Wno-unused-variable -Wno-unused-parameter"
-fi
+AS_IF([test "$user_CFLAGS" = unset], [
+  LIBBSD_CHECK_COMPILER_FLAG([-Wall])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wextra])
+
+  LIBBSD_CHECK_COMPILER_FLAG([-Wbad-function-cast])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wc99-c11-compat])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wcast-align])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wdeclaration-after-statement])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wdocumentation])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wduplicated-branches])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wduplicated-cond])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wformat -Wformat-security])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wformat=2])
+  LIBBSD_CHECK_COMPILER_FLAG([-Winit-self])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wlogical-not-parentheses])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wlogical-op])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wmissing-declarations])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wmissing-format-attribute])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wmissing-prototypes])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wnested-externs])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wno-missing-field-initializers])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wno-nonnull-compare])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wno-tautological-constant-out-of-range-compare])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wno-unused-parameter])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wnull-dereference])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wold-style-definition])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wpointer-arith])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wregister])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wrestrict])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wshadow])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wshift-negative-value])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wsizeof-array-argument])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wstrict-prototypes])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wswitch-bool])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wvla])
+  LIBBSD_CHECK_COMPILER_FLAG([-Wwrite-strings])
+
+  CFLAGS="$CFLAGS $LIBBSD_COMPILER_FLAGS"
+])
 
 # Checks for libraries.
 AC_CHECK_LIB([testu01], [unif01_CreateExternGenBits],

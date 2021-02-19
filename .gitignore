@@ -20,5 +20,4 @@ build-aux/
 configure
 config.*
 libtool
-m4/
 stamp-h1
