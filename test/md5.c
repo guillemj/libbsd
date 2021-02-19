@@ -28,7 +28,7 @@
 #include <md5.h>
 #include <string.h>
 
-void
+static void
 test_md5(const char *digest, const char *string)
 {
 	char result[MD5_DIGEST_STRING_LENGTH];

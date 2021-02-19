@@ -37,7 +37,7 @@ struct test_cookie {
 	int index;
 };
 
-int
+static int
 test_readfn(void *cookie, char *buf, int size)
 {
 	struct test_cookie *tc = cookie;
@@ -56,7 +56,7 @@ test_readfn(void *cookie, char *buf, int size)
 	return size;
 }
 
-int
+static int
 test_writefn(void *cookie, const char *buf, int size)
 {
 	struct test_cookie *tc = cookie;
@@ -75,7 +75,7 @@ test_writefn(void *cookie, const char *buf, int size)
 	return size;
 }
 
-off_t
+static off_t
 test_seekfn(void *cookie, off_t offset, int whence)
 {
 	struct test_cookie *tc = cookie;
@@ -95,7 +95,7 @@ test_seekfn(void *cookie, off_t offset, int whence)
 	return tc->index;
 }
 
-int
+static int
 test_closefn(void *cookie)
 {
 	struct test_cookie *tc = cookie;

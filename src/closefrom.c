@@ -79,7 +79,7 @@ sys_close_range(unsigned int fd, unsigned int max_fd, unsigned int flags)
  * Close all file descriptors greater than or equal to lowfd.
  * This is the expensive (fallback) method.
  */
-void
+static void
 closefrom_fallback(int lowfd)
 {
 	long fd, maxfd;
