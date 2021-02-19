@@ -239,7 +239,6 @@ __fdnlist(int fd, struct nlist *list)
 		for (s = sbuf; cc > 0 && nent > 0; ++s, cc -= sizeof(*s)) {
 			char *name;
 			Elf_Word size;
-			struct nlist *p;
 
 			name = strtab + s->st_name;
 			if (name[0] == '\0')
