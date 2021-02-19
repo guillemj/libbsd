@@ -37,7 +37,7 @@ test_md5(const char *digest, const char *string)
 }
 
 int
-main()
+main(int argc, char *argv[])
 {
 	test_md5("d41d8cd98f00b204e9800998ecf8427e", "");
 	test_md5("900150983cd24fb0d6963f7d28e17f72", "abc");

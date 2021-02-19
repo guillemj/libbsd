@@ -27,7 +27,7 @@
 #include <stdio.h>
 
 int
-main()
+main(int argc, char *argv[])
 {
 	static FILE fp_bad;
 	FILE *fp;

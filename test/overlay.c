@@ -45,7 +45,7 @@
 #include <unistd.h>
 
 int
-main()
+main(int argc, char *argv[])
 {
 	/* Test that we do not get partial definitions. */
 	fflush(stdout);

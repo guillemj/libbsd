@@ -28,7 +28,7 @@
 #include <string.h>
 
 int
-main()
+main(int argc, char *argv[])
 {
 	unsigned char array[40];
 	size_t i;
