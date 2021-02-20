@@ -1,6 +1,6 @@
 .unit-tests:
   script:
-    - ./autogen && ./configure
+    - ./autogen && ./configure --enable-sanitize
     - make check
 
 .coverage:
