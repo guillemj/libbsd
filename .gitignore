@@ -7,6 +7,8 @@ ChangeLog
 *.a
 *.log
 *.trs
+*.gcda
+*.gcno
 .dirstamp
 .deps/
 .libs/
