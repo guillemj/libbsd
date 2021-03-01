@@ -27,12 +27,13 @@
 #include <sys/wait.h>
 #include <assert.h>
 #include <unistd.h>
+#include <wchar.h>
 #include <stdio.h>
 
 #include "test-stream.h"
 
 FILE *
-pipe_feed(const char *fmt, const void **buf, int buf_nmemb)
+pipe_feed(enum pipe_data_mode mode, const void **buf, int buf_nmemb)
 {
 	FILE *fp;
 	int rc;
@@ -56,7 +57,10 @@ pipe_feed(const char *fmt, const void **buf, int buf_nmemb)
 		assert(fp);
 
 		for (line = 0; line < buf_nmemb; line++) {
-			rc = fprintf(fp, fmt, buf[line]);
+			if (mode == PIPE_DATA_ASCII)
+				rc = fprintf(fp, "%s", (const char *)buf[line]);
+			else
+				rc = fprintf(fp, "%ls", (const wchar_t *)buf[line]);
 			assert(rc >= 0);
 		}
 

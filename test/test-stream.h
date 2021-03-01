@@ -29,8 +29,13 @@
 
 #include <stdio.h>
 
+enum pipe_data_mode {
+	PIPE_DATA_ASCII,
+	PIPE_DATA_WIDE,
+};
+
 FILE *
-pipe_feed(const char *fmt, const void **buf, int buf_nmemb);
+pipe_feed(enum pipe_data_mode mode, const void **buf, int buf_nmemb);
 void
 pipe_close(FILE *fp);
 

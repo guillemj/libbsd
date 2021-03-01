@@ -68,7 +68,7 @@ test_fparseln(const char **data_expect, int flags)
 	FILE *fp;
 	size_t i, len, lineno = 0;
 
-	fp = pipe_feed("%s", (const void **)data_test, TEST_LINES);
+	fp = pipe_feed(PIPE_DATA_ASCII, (const void **)data_test, TEST_LINES);
 	for (i = 0; i < EXPECT_LINES; i++) {
 		char *str = fparseln(fp, &len, &lineno, NULL, flags);
 

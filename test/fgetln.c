@@ -75,7 +75,7 @@ test_fgetln_single(void)
 	size_t len;
 	int i;
 
-	fp = pipe_feed("%s", (const void **)data_ascii, DATA_LINES);
+	fp = pipe_feed(PIPE_DATA_ASCII, (const void **)data_ascii, DATA_LINES);
 	for (i = 0; i < DATA_LINES; i++) {
 		char *str = fgetln(fp, &len);
 
@@ -102,7 +102,7 @@ test_fgetln_multi(void)
 		files[i].lines = reallocarray(NULL, LINE_COUNT, sizeof(char *));
 		files[i].lines[0] = str;
 		files[i].lines[1] = str;
-		files[i].fp = pipe_feed("%s", files[i].lines, LINE_COUNT);
+		files[i].fp = pipe_feed(PIPE_DATA_ASCII, files[i].lines, LINE_COUNT);
 	}
 
 	for (l = 0; l < LINE_COUNT; l++) {
@@ -139,7 +139,7 @@ test_fgetwln_single(void)
 	size_t len;
 	int i;
 
-	fp = pipe_feed("%ls", (const void **)data_wide, DATA_LINES);
+	fp = pipe_feed(PIPE_DATA_WIDE, (const void **)data_wide, DATA_LINES);
 	for (i = 0; i < DATA_LINES; i++) {
 		wchar_t *wstr;
 
@@ -168,7 +168,7 @@ test_fgetwln_multi(void)
 		files[i].lines = reallocarray(NULL, LINE_COUNT, sizeof(char *));
 		files[i].lines[0] = wstr;
 		files[i].lines[1] = wstr;
-		files[i].fp = pipe_feed("%ls", files[i].lines, LINE_COUNT);
+		files[i].fp = pipe_feed(PIPE_DATA_WIDE, files[i].lines, LINE_COUNT);
 	}
 
 	for (l = 0; l < LINE_COUNT; l++) {
