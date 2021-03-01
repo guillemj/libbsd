@@ -55,11 +55,11 @@ int
 main(int argc, char **argv)
 {
 	struct nlist nl[] = {
-		{ .n_un.n_name = "main" },
-		{ .n_un.n_name = "func_pub" },
-		{ .n_un.n_name = "data_pub_uninit" },
-		{ .n_un.n_name = "data_pub_init" },
-		{ .n_un.n_name = "data_prv_init" },
+		{ .n_un.n_name = (char *)"main" },
+		{ .n_un.n_name = (char *)"func_pub" },
+		{ .n_un.n_name = (char *)"data_pub_uninit" },
+		{ .n_un.n_name = (char *)"data_pub_init" },
+		{ .n_un.n_name = (char *)"data_prv_init" },
 		{ .n_un.n_name = NULL },
 	};
 	int rc;
