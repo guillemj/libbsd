@@ -222,6 +222,10 @@ setproctitle_init(int argc, char *argv[], char *envp[])
 #define SPT_MAXTITLE 255
 #endif
 
+__printflike(1, 2)
+void
+setproctitle_impl(const char *fmt, ...);
+
 void
 setproctitle_impl(const char *fmt, ...)
 {
