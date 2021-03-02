@@ -564,12 +564,16 @@ strunvis(char *dst, const char *src)
  * NetBSD: 2012,  strnunvis(char *dst, size_t dlen, const char *src);
  */
 ssize_t
+strnunvis_openbsd(char *, const char *, size_t);
+ssize_t
 strnunvis_openbsd(char *dst, const char *src, size_t dlen)
 {
 	return strnunvisx(dst, dlen, src, 0);
 }
 libbsd_symver_default(strnunvis, strnunvis_openbsd, LIBBSD_0.2);
 
+int
+strnunvis_netbsd(char *, size_t, const char *);
 int
 strnunvis_netbsd(char *dst, size_t dlen, const char *src)
 {
