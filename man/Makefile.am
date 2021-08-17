@@ -11,7 +11,7 @@ CLEANFILES = \
 SED_MD5_SUBST = -e 's/mdX/md5/g' -e 's/mdY/md4/g' -e 's/MDX/MD5/g'
 
 md5.3bsd: $(srcdir)/mdX.3bsd
-	$(AM_V_GEN) sed $(SED_MD5_SUBST) $< > $@
+	$(AM_V_GEN) $(SED) $(SED_MD5_SUBST) $< > $@
 
 dist_man_MANS = \
 	LIST_CLASS_ENTRY.3bsd \

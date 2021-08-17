@@ -136,7 +136,7 @@ install-exec-hook:
 		mv $(DESTDIR)$(libdir)/libbsd*.so.* \
 		   $(DESTDIR)$(runtimelibdir)/; \
 		soname=`readlink $(DESTDIR)$(libdir)/libbsd.so`; \
-		sorelprefix=`echo $(libdir) | sed -r -e 's:(^/)?[^/]+:..:g'`; \
+		sorelprefix=`echo $(libdir) | $(SED) -r -e 's:(^/)?[^/]+:..:g'`; \
 		ln -sf $$sorelprefix$(runtimelibdir)/$$soname \
 		       $(DESTDIR)$(libdir)/libbsd.so; \
 	fi
