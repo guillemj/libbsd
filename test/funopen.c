@@ -114,7 +114,7 @@ main(int argc, char **argv)
 	size_t i;
 
 	/* Test invalid hooks. */
-	fp = funopen(&tc, NULL, NULL, NULL, NULL);
+	fp = funopen(NULL, NULL, NULL, NULL, NULL);
 	assert(fp == NULL);
 	assert(errno == EINVAL);
 
