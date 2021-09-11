@@ -124,6 +124,16 @@
 #define ELF_TARG_CLASS	ELFCLASS64
 #define ELF_TARG_DATA	ELFDATA2LSB
 
+#elif defined(__loongarch__)
+
+#define ELF_TARG_MACH	EM_LOONGARCH
+#if defined(__loongarch64)
+#define ELF_TARG_CLASS	ELFCLASS64
+#else
+#error Unsupported ELF class
+#endif
+#define ELF_TARG_DATA	ELFDATA2LSB
+
 #elif defined(__m32r__)
 
 #define ELF_TARG_MACH	EM_M32R
