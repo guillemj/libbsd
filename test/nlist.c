@@ -39,11 +39,11 @@ extern int data_pub_uninit[2048];
 extern int *data_pub_ptr;
 
 int *data_pub_ptr = &data_prv_init;
-int data_pub_init = 10;
-int data_pub_uninit[2048];
+int data_pub_init __attribute__((__used__)) = 10;
+int data_pub_uninit[2048] __attribute__((__used__));
 
 extern int
-func_pub(void);
+func_pub(void) __attribute__((__used__)) ;
 
 int
 func_pub(void)
