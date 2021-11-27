@@ -96,6 +96,7 @@ test_fgetln_multi(void)
 		char *str;
 
 		str = strdup("A\n");
+		assert(str);
 		str[0] += i;
 
 		files[i].line_alloc = str;
