@@ -37,11 +37,11 @@
 #  if __has_attribute(symver)
 /* The symver attribute is supported since gcc 10.x. */
 #define libbsd_symver_default(alias, symbol, version) \
-	extern __typeof(symbol) symbol \
-		__attribute((__symver__(#alias "@@" #version)))
+	extern __typeof__(symbol) symbol \
+		__attribute__((__symver__(#alias "@@" #version)))
 #define libbsd_symver_variant(alias, symbol, version) \
-	extern __typeof(symbol) symbol \
-		__attribute((__symver__(#alias "@" #version)))
+	extern __typeof__(symbol) symbol \
+		__attribute__((__symver__(#alias "@" #version)))
 #  else
 #define libbsd_symver_default(alias, symbol, version) \
 	__asm__(".symver " #symbol "," #alias "@@" #version)
@@ -51,7 +51,7 @@
 #  endif
 #else
 #define libbsd_symver_default(alias, symbol, version) \
-	extern __typeof(symbol) alias __attribute__((__alias__(#symbol)))
+	extern __typeof__(symbol) alias __attribute__((__alias__(#symbol)))
 
 #define libbsd_symver_variant(alias, symbol, version)
 #endif
