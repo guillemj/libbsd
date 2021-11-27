@@ -26,6 +26,8 @@
 #include <errno.h>
 #include <stddef.h>
 
+int	getentropy(void *buf, size_t len);
+
 /*
  * Derived from lib/libc/gen/arc4random.c from FreeBSD.
  */
