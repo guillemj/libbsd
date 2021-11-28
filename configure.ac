@@ -110,7 +110,7 @@ AC_SEARCH_LIBS([dlsym], [dl], [
 ])
 AC_SEARCH_LIBS([MD5Update], [md], [
   AS_IF([test "x$ac_cv_search_MD5Update" != "xnone required"], [
-    LIBBSD_LIBS="$LIBBSD_LIBS $ac_cv_search_MD5Update"
+    MD5_LIBS="$MD5_LIBS $ac_cv_search_MD5Update"
   ])
 ], [
   AC_MSG_ERROR([cannot find required MD5 functions in libc or libmd])
@@ -250,6 +250,7 @@ AC_CHECK_FUNCS([clearenv dirfd fopencookie __fpurge \
                 pstat_getproc sysconf])
 AM_CONDITIONAL([HAVE_GETENTROPY], [test "x$ac_cv_func_getentropy" = "xtrue"])
 
+AC_SUBST([MD5_LIBS])
 AC_SUBST([LIBBSD_LIBS])
 
 AC_CONFIG_FILES([

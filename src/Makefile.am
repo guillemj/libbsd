@@ -52,6 +52,7 @@ libbsd_la_DEPENDENCIES = \
 	$(libbsd_la_included_sources) \
 	libbsd.map
 libbsd_la_LIBADD = \
+	$(MD5_LIBS) \
 	$(LIBBSD_LIBS) \
 	$(nil)
 libbsd_la_LDFLAGS = \
