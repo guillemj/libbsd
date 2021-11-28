@@ -69,6 +69,11 @@ proctitle_LDFLAGS = \
 check_PROGRAMS += proctitle
 endif
 
+if NEED_TRANSPARENT_LIBMD
+# On the installed system this is handled via the ld script.
+md5_LDADD = $(LDADD) $(MD5_LIBS)
+endif
+
 fgetln_SOURCES = test-stream.c test-stream.h fgetln.c
 fgetln_CFLAGS = -Wno-deprecated-declarations
 fparseln_SOURCES = test-stream.c test-stream.h fparseln.c

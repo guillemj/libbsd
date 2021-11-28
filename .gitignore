@@ -20,5 +20,6 @@ autom4te.cache/
 build-aux/
 configure
 config.*
+format.ld
 libtool
 stamp-h1

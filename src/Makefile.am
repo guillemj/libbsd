@@ -25,6 +25,7 @@ libbsd_la_included_sources = \
 	getentropy_win.c \
 	$(nil)
 
+CLEANFILES =
 EXTRA_DIST = \
 	libbsd.map \
 	libbsd.pc.in \
@@ -125,22 +126,51 @@ libbsd_la_SOURCES += \
 	$(nil)
 endif
 
+if NEED_TRANSPARENT_LIBMD
+CLEANFILES += \
+	format.ld \
+	# EOL
+endif
+
 libbsd_ctor_a_SOURCES = \
 	setproctitle_ctor.c \
 	$(nil)
 
+if NEED_TRANSPARENT_LIBMD
+TRANSPARENT_LIBMD_DEPENDS = format.ld
+
+format.ld:
+	$(CC) -shared -nostdlib -nostartfiles -x assembler /dev/null -o $@.so
+	objdump -f $@.so | sed -n 's/.*file format \(.*\)/OUTPUT_FORMAT(\1)/;T;p' > $@
+	rm -f $@.so
+endif
+
 runtimelibdir = $(libdir)
 
-install-exec-hook:
+install-exec-hook: $(TRANSPARENT_LIBMD_DEPENDS)
 	if [ "$(libdir)" != "$(runtimelibdir)" ]; then \
 		$(MKDIR_P) $(DESTDIR)$(runtimelibdir); \
 		mv $(DESTDIR)$(libdir)/libbsd*.so.* \
 		   $(DESTDIR)$(runtimelibdir)/; \
+	fi
+if NEED_TRANSPARENT_LIBMD
+# The "GNU ld script" magic is required so that GNU ldconfig does not complain
+# about an unknown format file.
+	soname=`readlink $(DESTDIR)$(libdir)/libbsd.so`; \
+	$(RM) $(DESTDIR)$(libdir)/libbsd.so; \
+	(echo '/* GNU ld script'; \
+	 echo ' * The MD5 functions are provided by the libmd library. */'; \
+	 cat format.ld; \
+	 echo "GROUP($(runtimelibdir)/$$soname AS_NEEDED($(MD5_LIBS)))"; \
+	)>$(DESTDIR)$(libdir)/libbsd.so
+else
+	if [ "$(libdir)" != "$(runtimelibdir)" ]; then \
 		soname=`readlink $(DESTDIR)$(libdir)/libbsd.so`; \
 		sorelprefix=`echo $(libdir) | $(SED) -r -e 's:(^/)?[^/]+:..:g'`; \
 		ln -sf $$sorelprefix$(runtimelibdir)/$$soname \
 		       $(DESTDIR)$(libdir)/libbsd.so; \
 	fi
+endif
 
 uninstall-hook:
 	rm -f $(DESTDIR)$(runtimelibdir)/libbsd*.so*

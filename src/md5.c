@@ -24,119 +24,88 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <stddef.h>
-#include <stdlib.h>
-#include <dlfcn.h>
 #include <md5.h>
 #include "local-link.h"
 
-static void (*libmd_MD5Init)(MD5_CTX *);
-static void (*libmd_MD5Update)(MD5_CTX *, const uint8_t *, size_t);
-static void (*libmd_MD5Pad)(MD5_CTX *);
-static void (*libmd_MD5Final)(uint8_t [MD5_DIGEST_LENGTH], MD5_CTX *);
-static void (*libmd_MD5Transform)(uint32_t [4], const uint8_t [MD5_BLOCK_LENGTH]);
-static char *(*libmd_MD5End)(MD5_CTX *, char *);
-static char *(*libmd_MD5File)(const char *, char *);
-static char *(*libmd_MD5FileChunk)(const char *, char *, off_t, off_t);
-static char *(*libmd_MD5Data)(const uint8_t *, size_t, char *);
-
-static void *
-libmd_loader(const char *symbol)
-{
-	void *func;
-
-	func = dlsym(RTLD_NEXT, symbol);
-	if (func == NULL) {
-		fprintf(stderr,
-		        "libbsd: cannot find wrapped symbol %s in libc or libmd\n",
-		        symbol);
-		abort();
-	}
-
-	return func;
-}
-
-#define libmd_wrapper(symbol) \
-	if (libmd_ ## symbol == NULL) \
-		libmd_ ## symbol = libmd_loader(#symbol)
+#pragma GCC diagnostic ignored "-Wmissing-prototypes"
 
 void
-MD5Init(MD5_CTX *context)
+libbsd_MD5Init(MD5_CTX *context)
 {
-	libmd_wrapper(MD5Init);
-	libmd_MD5Init(context);
+	MD5Init(context);
 }
 libbsd_link_warning(MD5Init,
                     "This function is a deprecated wrapper, use libmd instead.");
+libbsd_symver_weak(MD5Init, libbsd_MD5Init, LIBBSD_0.0);
 
 void
-MD5Update(MD5_CTX *context, const uint8_t *data, size_t len)
+libbsd_MD5Update(MD5_CTX *context, const uint8_t *data, size_t len)
 {
-	libmd_wrapper(MD5Update);
-	libmd_MD5Update(context, data, len);
+	MD5Update(context, data, len);
 }
 libbsd_link_warning(MD5Update,
                     "This function is a deprecated wrapper, use libmd instead.");
+libbsd_symver_weak(MD5Update, libbsd_MD5Update, LIBBSD_0.0);
 
 void
-MD5Pad(MD5_CTX *context)
+libbsd_MD5Pad(MD5_CTX *context)
 {
-	libmd_wrapper(MD5Pad);
-	libmd_MD5Pad(context);
+	MD5Pad(context);
 }
 libbsd_link_warning(MD5Pad,
                     "This function is a deprecated wrapper, use libmd instead.");
+libbsd_symver_weak(MD5Pad, libbsd_MD5Pad, LIBBSD_0.0);
 
 void
-MD5Final(uint8_t digest[MD5_DIGEST_LENGTH], MD5_CTX *context)
+libbsd_MD5Final(uint8_t digest[MD5_DIGEST_LENGTH], MD5_CTX *context)
 {
-	libmd_wrapper(MD5Final);
-	libmd_MD5Final(digest, context);
+	MD5Final(digest, context);
 }
 libbsd_link_warning(MD5Final,
                     "This function is a deprecated wrapper, use libmd instead.");
+libbsd_symver_weak(MD5Final, libbsd_MD5Final, LIBBSD_0.0);
 
 void
-MD5Transform(uint32_t state[4], const uint8_t block[MD5_BLOCK_LENGTH])
+libbsd_MD5Transform(uint32_t state[4], const uint8_t block[MD5_BLOCK_LENGTH])
 {
-	libmd_wrapper(MD5Transform);
-	libmd_MD5Transform(state, block);
+	MD5Transform(state, block);
 }
 libbsd_link_warning(MD5Transform,
                     "This function is a deprecated wrapper, use libmd instead.");
+libbsd_symver_weak(MD5Transform, libbsd_MD5Transform, LIBBSD_0.0);
 
 char *
-MD5End(MD5_CTX *context, char *buf)
+libbsd_MD5End(MD5_CTX *context, char *buf)
 {
-	libmd_wrapper(MD5End);
-	return libmd_MD5End(context, buf);
+	return MD5End(context, buf);
 }
 libbsd_link_warning(MD5End,
                     "This function is a deprecated wrapper, use libmd instead.");
+libbsd_symver_weak(MD5End, libbsd_MD5End, LIBBSD_0.0);
 
 char *
-MD5File(const char *filename, char *buf)
+libbsd_MD5File(const char *filename, char *buf)
 {
-	libmd_wrapper(MD5File);
 	return MD5File(filename, buf);
 }
 libbsd_link_warning(MD5File,
                     "This function is a deprecated wrapper, use libmd instead.");
+libbsd_symver_weak(MD5File, libbsd_MD5File, LIBBSD_0.0);
 
 char *
-MD5FileChunk(const char *filename, char *buf, off_t offset, off_t length)
+libbsd_MD5FileChunk(const char *filename, char *buf, off_t offset, off_t length)
 {
-	libmd_wrapper(MD5FileChunk);
-	return libmd_MD5FileChunk(filename, buf, offset, length);
+	return MD5FileChunk(filename, buf, offset, length);
 }
 libbsd_link_warning(MD5FileChunk,
                     "This function is a deprecated wrapper, use libmd instead.");
+libbsd_symver_weak(MD5FileChunk, libbsd_MD5FileChunk, LIBBSD_0.0);
 
 char *
-MD5Data(const uint8_t *data, size_t len, char *buf)
+libbsd_MD5Data(const uint8_t *data, size_t len, char *buf)
 {
-	libmd_wrapper(MD5Data);
-	return libmd_MD5Data(data, len, buf);
+	return MD5Data(data, len, buf);
 }
 libbsd_link_warning(MD5Data,
                     "This function is a deprecated wrapper, use libmd instead.");
+libbsd_symver_weak(MD5Data, libbsd_MD5Data, LIBBSD_0.0);
