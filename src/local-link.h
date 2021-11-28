@@ -42,18 +42,29 @@
 #define libbsd_symver_variant(alias, symbol, version) \
 	extern __typeof__(symbol) symbol \
 		__attribute__((__symver__(#alias "@" #version)))
+
+#define libbsd_symver_weak(alias, symbol, version) \
+	extern __typeof__(symbol) symbol \
+		__attribute__((__symver__(#alias "@" #version), __weak__))
 #  else
 #define libbsd_symver_default(alias, symbol, version) \
 	__asm__(".symver " #symbol "," #alias "@@" #version)
 
 #define libbsd_symver_variant(alias, symbol, version) \
 	__asm__(".symver " #symbol "," #alias "@" #version)
+
+#define libbsd_symver_weak(alias, symbol, version) \
+	libbsd_symver_variant(alias, symbol, version); \
+	extern __typeof__(symbol) alias \
+		__attribute__((__weak__))
 #  endif
 #else
 #define libbsd_symver_default(alias, symbol, version) \
 	extern __typeof__(symbol) alias __attribute__((__alias__(#symbol)))
 
 #define libbsd_symver_variant(alias, symbol, version)
+
+#define libbsd_symver_weak(alias, symbol, version)
 #endif
 
 #endif
