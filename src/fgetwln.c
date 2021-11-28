@@ -88,5 +88,5 @@ fgetwln(FILE *stream, size_t *lenp)
 	return wused ? fb->wbuf : NULL;
 }
 libbsd_link_warning(fgetwln,
-                    "This function cannot be safely ported, use fgetwc(3) "
+                    "The fgetwln() function cannot be safely ported, use fgetwc(3) "
                     "instead, as it is supported by C99 and POSIX.1-2001.");
