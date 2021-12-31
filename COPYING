@@ -364,7 +364,6 @@ Files:
  man/strtonum.3bsd
  src/arc4random.c
  src/arc4random_linux.h
- src/arc4random_openbsd.h
  src/arc4random_uniform.c
  src/arc4random_unix.h
  src/arc4random_win.h

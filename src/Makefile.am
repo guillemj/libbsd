@@ -66,7 +66,6 @@ libbsd_la_SOURCES = \
 	arc4random.c \
 	arc4random.h \
 	arc4random_linux.h \
-	arc4random_openbsd.h \
 	arc4random_uniform.c \
 	arc4random_unix.h \
 	arc4random_win.h \
