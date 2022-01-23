@@ -141,7 +141,7 @@ TRANSPARENT_LIBMD_DEPENDS = format.ld
 
 format.ld:
 	$(CC) -shared -nostdlib -nostartfiles -x assembler /dev/null -o $@.so
-	objdump -f $@.so | sed -n 's/.*file format \(.*\)/OUTPUT_FORMAT(\1)/;T;p' > $@
+	$(OBJDUMP) -f $@.so | sed -n 's/.*file format \(.*\)/OUTPUT_FORMAT(\1)/;T;p' > $@
 	rm -f $@.so
 endif
 
