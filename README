@@ -37,3 +37,35 @@ The master repository can be browsed at:
 and cloned from:
 
   <https://anongit.freedesktop.org/git/libbsd>
+
+Building from git source
+------------------------
+
+To prepare the libbsd source tree from git before starting the build process
+some required software needs to be installed:
+
+  GNU autoconf >= 2.67
+  GNU automake >= 1.9
+  GNU libtool >= 2.0
+
+After installing the needed software, and running the following command on
+the git tree:
+
+  $ ./autogen
+
+the source should be roughly equivalent to the distributed tar source.
+
+Building from tar source
+------------------------
+
+The minimum software required to configure and build dpkg from a tarball is:
+
+  C89 compiler
+  make
+
+The following software might be required depending on the system:
+
+  libmd (whenever the libc does not provide the needed digest functions)
+
+The build process is done by running the usual «./configure; make». To
+see all available configuration options please run «./configure --help».
