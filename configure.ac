@@ -47,6 +47,7 @@ AM_CONDITIONAL([HAVE_LINKER_VERSION_SCRIPT],
   [test "x$libbsd_cv_version_script" = "xyes"])
 
 # Checks for programs.
+AC_CHECK_TOOL([OBJDUMP], [objdump])
 AC_PROG_CC
 AC_PROG_SED
 AC_PROG_INSTALL
