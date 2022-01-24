@@ -1,19 +1,37 @@
-image: debian:buster
-
-before_script:
-  - apt-get update -qq
-  - apt-get install -qq -y --no-install-recommends
-            git gcc make autoconf automake libtool libmd-dev gcovr
-
-unit-tests:
-  stage: test
+.unit-tests:
   script:
     - ./autogen && ./configure
     - make check
 
-coverage:
-  stage: test
+.coverage:
   script:
     - ./autogen && ./configure --disable-static
     - make check CFLAGS="--coverage -O0 -ggdb" LDFLAGS="--coverage -O0 -ggdb"
     - gcovr -s -e test/
+
+.debian:
+  image: debian:buster
+  stage: test
+  before_script:
+    - apt-get update -qq
+    - apt-get install -qq -y --no-install-recommends
+              git gcc make autoconf automake libtool libmd-dev gcovr
+
+.alpine:
+  image: alpine:latest
+  stage: test
+  before_script:
+    - apk add --no-cache git gcc make autoconf automake libtool
+              bsd-compat-headers linux-headers libmd-dev musl-dev gcovr
+
+unit-tests:debian:
+  extends: [.debian, .unit-tests]
+
+coverage:debian:
+  extends: [.debian, .coverage]
+
+unit-tests:alpine:
+  extends: [.alpine, .unit-tests]
+
+coverage:alpine:
+  extends: [.alpine, .coverage]
