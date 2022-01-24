@@ -29,13 +29,9 @@
 int
 main(int argc, char *argv[])
 {
-	static FILE fp_bad;
 	FILE *fp;
 
 	if (fpurge(NULL) == 0)
-		return 1;
-
-	if (fpurge(&fp_bad) == 0)
 		return 1;
 
 	fp = fopen("/dev/zero", "r");
