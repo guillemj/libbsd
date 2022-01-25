@@ -41,7 +41,6 @@ check_PROGRAMS = \
 	fpurge \
 	md5 \
 	nlist \
-	proctitle \
 	proctitle-init \
 	progname \
 	pwcache \
