@@ -32,7 +32,7 @@
 int
 fpurge(FILE *fp)
 {
-	if (fp == NULL || fileno(fp) < 0) {
+	if (fp == NULL) {
 		errno = EBADF;
 		return EOF;
 	}
