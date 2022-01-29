@@ -34,6 +34,7 @@ check_PROGRAMS = \
 	bzero \
 	closefrom \
 	endian \
+	explicit_bzero \
 	humanize \
 	fgetln \
 	funopen \
@@ -48,6 +49,7 @@ check_PROGRAMS = \
 	strl \
 	strmode \
 	strnstr \
+	strtonum \
 	vis \
 	vis-openbsd \
 	$(nil)

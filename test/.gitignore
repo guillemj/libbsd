@@ -2,6 +2,7 @@ arc4random
 bzero
 closefrom
 endian
+explicit_bzero
 fgetln
 fparseln
 fpurge
@@ -20,5 +21,6 @@ setmode
 strl
 strmode
 strnstr
+strtonum
 vis
 vis-openbsd
