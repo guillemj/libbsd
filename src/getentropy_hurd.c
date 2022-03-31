@@ -415,17 +415,17 @@ getentropy_fallback(void *buf, size_t len)
 #ifdef HAVE_GETAUXVAL
 #ifdef AT_RANDOM
 		/* Not as random as you think but we take what we are given */
-		p = (char *) getauxval(AT_RANDOM);
+		p = (char *) ((intptr_t) getauxval(AT_RANDOM));
 		if (p)
 			HR(p, 16);
 #endif
 #ifdef AT_SYSINFO_EHDR
-		p = (char *) getauxval(AT_SYSINFO_EHDR);
+		p = (char *) ((intptr_t) getauxval(AT_SYSINFO_EHDR));
 		if (p)
 			HR(p, pgs);
 #endif
 #ifdef AT_BASE
-		p = (char *) getauxval(AT_BASE);
+		p = (char *) ((intptr_t) getauxval(AT_BASE));
 		if (p)
 			HD(p);
 #endif
