@@ -230,7 +230,7 @@
 #if defined(__LITTLE_ENDIAN__)
 #define ELF_TARG_DATA	ELFDATA2LSB
 #elif defined(__BIG_ENDIAN__)
-#define ELF_TARG_DATA	ELFDATA2LMSB
+#define ELF_TARG_DATA	ELFDATA2MSB
 #else
 #error Unknown SH endianness
 #endif
