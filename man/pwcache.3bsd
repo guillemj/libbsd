@@ -28,7 +28,7 @@
 .\" SUCH DAMAGE.
 .\"
 .Dd $Mdocdate: September 13 2018 $
-.Dt USER_FROM_UID 3
+.Dt user_from_uid 3
 .Os
 .Sh NAME
 .Nm user_from_uid ,

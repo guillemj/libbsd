@@ -28,7 +28,7 @@
 .\" POSSIBILITY OF SUCH DAMAGE.
 .\"
 .Dd April 12, 2011
-.Dt TIMEVAL 3bsd
+.Dt timeval 3bsd
 .Os
 .Sh NAME
 .Nm timeval ,

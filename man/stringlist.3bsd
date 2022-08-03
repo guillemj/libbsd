@@ -27,7 +27,7 @@
 .\" POSSIBILITY OF SUCH DAMAGE.
 .\"
 .Dd May 6, 2010
-.Dt STRINGLIST 3bsd
+.Dt stringlist 3bsd
 .Os
 .Sh NAME
 .Nm stringlist ,

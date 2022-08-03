@@ -30,7 +30,7 @@
 .\"     @(#)vis.3	8.1 (Berkeley) 6/9/93
 .\"
 .Dd April 22, 2017
-.Dt VIS 3bsd
+.Dt vis 3bsd
 .Os
 .Sh NAME
 .Nm vis ,

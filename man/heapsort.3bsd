@@ -33,7 +33,7 @@
 .\" $FreeBSD$
 .\"
 .Dd September 30, 2003
-.Dt HEAPSORT 3bsd
+.Dt heapsort 3bsd
 .Os
 .Sh NAME
 .Nm heapsort , mergesort

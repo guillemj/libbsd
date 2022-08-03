@@ -37,7 +37,7 @@
 .\" NetBSD: strtol.3,v 1.31 2015/03/11 09:57:35 wiz Exp
 .\"
 .Dd November 13, 2015
-.Dt STRTOI 3bsd
+.Dt strtoi 3bsd
 .Os
 .Sh NAME
 .Nm strtoi

@@ -30,7 +30,7 @@
 .\"     @(#)unvis.3	8.2 (Berkeley) 12/11/93
 .\"
 .Dd March 12, 2011
-.Dt UNVIS 3bsd
+.Dt unvis 3bsd
 .Os
 .Sh NAME
 .Nm unvis ,

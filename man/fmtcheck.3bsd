@@ -27,7 +27,7 @@
 .\" POSSIBILITY OF SUCH DAMAGE.
 .\"
 .Dd June 14, 2014
-.Dt FMTCHECK 3bsd
+.Dt fmtcheck 3bsd
 .Os
 .Sh NAME
 .Nm fmtcheck

@@ -33,7 +33,7 @@
 .\"	$OpenBSD: malloc.3,v 1.126 2019/09/14 13:16:50 otto Exp $
 .\"
 .Dd $Mdocdate: September 14 2019 $
-.Dt REALLOCARRAY 3bsd
+.Dt reallocarray 3bsd
 .Os
 .Sh NAME
 .Nm reallocarray ,

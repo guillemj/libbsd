@@ -16,7 +16,7 @@
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
 .Dd January 18, 2015
-.Dt STRTONUM 3bsd
+.Dt strtonum 3bsd
 .Os
 .Sh NAME
 .Nm strtonum

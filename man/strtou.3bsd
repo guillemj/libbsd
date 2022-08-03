@@ -37,7 +37,7 @@
 .\" NetBSD: strtoul.3,v 1.29 2015/03/10 13:00:58 christos Exp
 .\"
 .Dd November 13, 2015
-.Dt STRTOU 3bsd
+.Dt strtou 3bsd
 .Os
 .Sh NAME
 .Nm strtou
