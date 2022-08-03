@@ -1,4 +1,4 @@
-.\" $OpenBSD: arc4random.3,v 1.34 2014/07/19 16:11:16 naddy Exp $
+.\" $OpenBSD: arc4random.3,v 1.37 2019/09/29 16:30:35 jmc Exp $
 .\"
 .\" Copyright 1997 Niels Provos <provos@physnet.uni-hamburg.de>
 .\" All rights reserved.
@@ -30,7 +30,7 @@
 .\"
 .\" Manual page, using -mandoc macros
 .\"
-.Dd $Mdocdate: July 19 2014 $
+.Dd $Mdocdate: September 29 2019 $
 .Dt ARC4RANDOM 3bsd
 .Os
 .Sh NAME
@@ -39,7 +39,7 @@
 .Nm arc4random_uniform ,
 .Nm arc4random_stir ,
 .Nm arc4random_addrandom
-.Nd arc4 random number generator
+.Nd random number generator
 .Sh LIBRARY
 .ds str-Lb-libbsd Utility functions from BSD systems (libbsd, \-lbsd)
 .ds doc-str-Lb-libbsd \*[str-Lb-libbsd]
