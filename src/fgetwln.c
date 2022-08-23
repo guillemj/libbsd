@@ -87,6 +87,9 @@ fgetwln(FILE *stream, size_t *lenp)
 	*lenp = wused;
 	return wused ? fb->wbuf : NULL;
 }
+/* XXX: Ideally we'd recommend getwline(3), but unfortunately even though it
+ * was part of the ISO/IEC TR 24731-2:2010 draft, it did not make it into C11
+ * and is not widely implemented. */
 libbsd_link_warning(fgetwln,
                     "The fgetwln() function cannot be safely ported, use fgetwc(3) "
                     "instead, as it is supported by C99 and POSIX.1-2001.");
