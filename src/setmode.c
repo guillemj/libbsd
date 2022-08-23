@@ -36,6 +36,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#include <stddef.h>
 #include <ctype.h>
 #include <errno.h>
 #include <signal.h>
@@ -144,12 +145,13 @@ common:			if (set->cmd2 & CMD2_CLR) {
 
 #define	ADDCMD(a, b, c, d) do {						\
 	if (set >= endset) {						\
+		ptrdiff_t setdiff = set - saveset;			\
 		BITCMD *newset;						\
 		setlen += SET_LEN_INCR;					\
 		newset = reallocarray(saveset, setlen, sizeof(BITCMD));	\
 		if (newset == NULL)					\
 			goto out;					\
-		set = newset + (set - saveset);				\
+		set = newset + setdiff;					\
 		saveset = newset;					\
 		endset = newset + (setlen - 2);				\
 	}								\
