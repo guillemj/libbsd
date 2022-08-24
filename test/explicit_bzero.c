@@ -1,6 +1,7 @@
 /*	$OpenBSD: explicit_bzero.c,v 1.7 2021/03/27 11:17:58 bcook Exp $	*/
 /*
  * Copyright (c) 2014 Google Inc.
+ * Copyright (c) 2022 Guillem Jover <guillem@hadrons.org>
  *
  * Permission to use, copy, modify, and distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -123,6 +124,18 @@ populate_secret(char *buf, ssize_t len)
 	ASSERT_EQ(0, close(fds[0]));
 }
 
+static void __attribute__((__noinline__))
+blank_stack_side_effects(char *buf, size_t len)
+{
+	char scratch[SECRETBYTES * 4];
+
+	/* If the read(3) in populate_secret() wrote into the stack, as it
+	 * might happen on the Hurd for small data, then we might incorrectly
+	 * detect the wrong secret on the stack. */
+	memset(scratch, 0xFF, sizeof(scratch));
+	ASSERT_EQ(NULL, memmem(scratch, sizeof(scratch), buf, len));
+}
+
 static int
 count_secrets(const char *buf)
 {
@@ -143,6 +156,7 @@ test_without_bzero(void)
 	char *res;
 	assert_on_stack();
 	populate_secret(buf, sizeof(buf));
+	blank_stack_side_effects(buf, sizeof(buf));
 	res = memmem(altstack, ALTSTACK_SIZE, buf, sizeof(buf));
 	ASSERT_NE(NULL, res);
 	return (res);
@@ -155,6 +169,7 @@ test_with_bzero(void)
 	char *res;
 	assert_on_stack();
 	populate_secret(buf, sizeof(buf));
+	blank_stack_side_effects(buf, sizeof(buf));
 	res = memmem(altstack, ALTSTACK_SIZE, buf, sizeof(buf));
 	ASSERT_NE(NULL, res);
 	explicit_bzero(buf, sizeof(buf));
