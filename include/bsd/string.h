@@ -48,7 +48,7 @@ void strmode(mode_t mode, char *str);
 
 #if !defined(__GLIBC__) || \
     !__GLIBC_PREREQ(2, 25) || \
-    !defined(_GNU_SOURCE)
+    !defined(_DEFAULT_SOURCE)
 void explicit_bzero(void *buf, size_t len);
 #endif
 __END_DECLS
