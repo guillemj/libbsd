@@ -38,7 +38,7 @@
  *
  * To avoid any other possible fallout, the constructor is split into a
  * new static library that needs to be linked explicitly into programs
- * using setproctitle(). As an additional safety measure the pkg-config
+ * using setproctitle(). As an additional safety measure the pkgconf(1)
  * linker flags will mark the program as not allowing to be dlopen()ed
  * so that we make sure to avoid the problem described above.
  */

@@ -54,7 +54,7 @@ library routine only needs to be called (before any call to
 and with
 .Fn main
 arguments), if the automatic constructor support has not
-been linked in through the libbsd-ctor pkg-config file.
+been linked in through the libbsd-ctor pkgconf file.
 .Pp
 The title is set from the executable's name, followed by the
 result of a

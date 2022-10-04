@@ -42,7 +42,7 @@ The library can be used in an overlay mode, which is the preferred way, so
 that the code is portable and requires no modification to the original BSD
 code.
 This can be done easily with the
-.Xr pkg-config 1
+.Xr pkgconf 1
 library named
 .Pa libbsd-overlay .
 Or by adding the system-specific include directory with the
@@ -64,7 +64,7 @@ this is less portable as it makes using
 mandatory and it will not work on BSD-based systems, and requires
 modifying original BSD code.
 This can be done with the
-.Xr pkg-config 1
+.Xr pkgconf 1
 library named
 .Pa libbsd .
 The includes in this case should be namespaced with
@@ -79,7 +79,7 @@ program so that the
 .Fn setproctitle_init 3
 function gets invoked automatically at startup time.
 This can be done with the
-.Xr pkg-config 1
+.Xr pkgconf 1
 library named
 .Pa libbsd-ctor .
 .Sh HEADERS
