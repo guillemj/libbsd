@@ -9,6 +9,7 @@ A BSD compatible message-digest library is required, on systems where
 this is not provided by its libc or libmd libraries, the canonical
 implementation to use is <https://www.hadrons.org/software/libmd/>.
 
+
 Releases
 --------
 
@@ -38,6 +39,7 @@ and cloned from:
 
   <https://anongit.freedesktop.org/git/libbsd>
 
+
 Building from git source
 ------------------------
 
@@ -54,6 +56,7 @@ the git tree:
   $ ./autogen
 
 the source should be roughly equivalent to the distributed tar source.
+
 
 Building from tar source
 ------------------------
