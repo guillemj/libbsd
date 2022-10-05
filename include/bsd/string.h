@@ -47,7 +47,8 @@ char *strnstr(const char *str, const char *find, size_t str_len);
 void strmode(mode_t mode, char *str);
 
 #if !defined(__GLIBC__) || \
-    (defined(__GLIBC__) && (!__GLIBC_PREREQ(2, 25) || !defined(_GNU_SOURCE)))
+    !__GLIBC_PREREQ(2, 25) || \
+    !defined(_GNU_SOURCE)
 void explicit_bzero(void *buf, size_t len);
 #endif
 __END_DECLS
