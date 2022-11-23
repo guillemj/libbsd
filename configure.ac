@@ -247,6 +247,7 @@ AC_CHECK_FUNCS([clearenv dirfd fopencookie __fpurge \
                 getauxval getentropy getexecname getline \
                 pstat_getproc sysconf])
 AM_CONDITIONAL([HAVE_GETENTROPY], [test "x$ac_cv_func_getentropy" = "xyes"])
+AM_CONDITIONAL([HAVE_FOPENCOOKIE], [test "x$ac_cv_func_fopencookie" = "xyes"])
 
 AC_SUBST([MD5_LIBS])
 AC_SUBST([LIBBSD_LIBS])

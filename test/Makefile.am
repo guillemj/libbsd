@@ -39,7 +39,6 @@ check_PROGRAMS = \
 	explicit_bzero \
 	humanize \
 	fgetln \
-	funopen \
 	fparseln \
 	fpurge \
 	md5 \
@@ -55,6 +54,10 @@ check_PROGRAMS = \
 	vis \
 	vis-openbsd \
 	# EOL
+
+if HAVE_FOPENCOOKIE
+check_PROGRAMS += funopen
+endif
 
 if HAVE_LIBTESTU01
 arc4random_LDADD = $(LDADD) $(TESTU01_LIBS)

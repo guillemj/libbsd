@@ -137,12 +137,6 @@ funopen(const void *cookie,
 
 	return fopencookie(cookiewrap, mode, funcswrap);
 }
-#elif defined(__MUSL__)
-/*
- * This is unimplementable on musl based systems, and upstream has stated
- * they will not add the needed support to implement it. Just ignore this
- * interface there, as it has never been provided anyway.
- */
 #else
-#error "Function funopen() needs to be ported or disabled."
+#warning "Function funopen() is not provided on this platform."
 #endif
