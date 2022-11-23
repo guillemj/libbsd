@@ -4,30 +4,32 @@ HEADERS_CPPFLAGS = \
 	-I$(top_builddir) \
 	-include $(top_builddir)/config.h \
 	-DLIBBSD_DISABLE_DEPRECATED \
-	-D__REENTRANT
+	-D__REENTRANT \
+	# EOL
 
 AM_CPPFLAGS = \
 	-isystem $(top_srcdir)/include/bsd/ \
 	$(HEADERS_CPPFLAGS) \
-	-DLIBBSD_OVERLAY
+	-DLIBBSD_OVERLAY \
+	# EOL
 
 AM_TESTS_ENVIRONMENT = \
 	export CC="$(CC)"; \
 	export CPPFLAGS="$(HEADERS_CPPFLAGS)"; \
 	export top_srcdir="$(top_srcdir)"; \
-	$(nil)
+	# EOL
 
 LDADD = $(top_builddir)/src/libbsd.la
 
 EXTRA_DIST = \
 	headers-overlay.sh \
 	headers-system.sh \
-	$(nil)
+	# EOL
 
 check_SCRIPTS = \
 	headers-overlay.sh \
 	headers-system.sh \
-	$(nil)
+	# EOL
 
 check_PROGRAMS = \
 	overlay \
@@ -52,7 +54,7 @@ check_PROGRAMS = \
 	strtonum \
 	vis \
 	vis-openbsd \
-	$(nil)
+	# EOL
 
 if HAVE_LIBTESTU01
 arc4random_LDADD = $(LDADD) $(TESTU01_LIBS)
@@ -65,7 +67,7 @@ proctitle_LDFLAGS = \
 	-Wl,-u,libbsd_init_func \
 	$(top_builddir)/src/libbsd-ctor.a \
 	$(top_builddir)/src/libbsd.la \
-	$(nil)
+	# EOL
 
 check_PROGRAMS += proctitle
 endif

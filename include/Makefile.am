@@ -29,4 +29,4 @@ nobase_include_HEADERS = \
 	bsd/unistd.h \
 	bsd/vis.h \
 	bsd/wchar.h \
-	$(nil)
+	# EOL

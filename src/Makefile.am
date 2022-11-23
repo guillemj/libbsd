@@ -5,13 +5,14 @@ AM_CPPFLAGS = \
 	-isystem $(top_srcdir)/include/bsd/ \
 	-include $(top_builddir)/config.h \
 	-DLIBBSD_OVERLAY -DLIBBSD_DISABLE_DEPRECATED \
-	-D__REENTRANT
+	-D__REENTRANT \
+	# EOL
 
 if OS_WINDOWS
 AM_CPPFLAGS += \
 	-D_CRT_SECURE_NO_WARNINGS \
 	-D_CRT_NONSTDC_NO_WARNINGS \
-	$(nil)
+	# EOL
 endif
 
 libbsd_la_included_sources = \
@@ -23,7 +24,7 @@ libbsd_la_included_sources = \
 	getentropy_osx.c \
 	getentropy_solaris.c \
 	getentropy_win.c \
-	$(nil)
+	# EOL
 
 CLEANFILES =
 EXTRA_DIST = \
@@ -32,13 +33,13 @@ EXTRA_DIST = \
 	libbsd-ctor.pc.in \
 	libbsd-overlay.pc.in \
 	$(libbsd_la_included_sources) \
-	$(nil)
+	# EOL
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = \
 	libbsd.pc \
 	libbsd-overlay.pc \
-	$(nil)
+	# EOL
 
 lib_LTLIBRARIES = libbsd.la
 lib_LIBRARIES =
@@ -51,16 +52,19 @@ endif
 
 libbsd_la_DEPENDENCIES = \
 	$(libbsd_la_included_sources) \
-	libbsd.map
+	libbsd.map \
+	# EOL
 libbsd_la_LIBADD = \
 	$(MD5_LIBS) \
 	$(LIBBSD_LIBS) \
-	$(nil)
+	# EOL
 libbsd_la_LDFLAGS = \
-	-version-number $(LIBBSD_ABI)
+	-version-number $(LIBBSD_ABI) \
+	# EOL
 if HAVE_LINKER_VERSION_SCRIPT
 libbsd_la_LDFLAGS += \
-	-Wl,--version-script=$(srcdir)/libbsd.map
+	-Wl,--version-script=$(srcdir)/libbsd.map \
+	# EOL
 endif
 libbsd_la_SOURCES = \
 	arc4random.c \
@@ -117,12 +121,12 @@ libbsd_la_SOURCES = \
 	vis.c \
 	wcslcat.c \
 	wcslcpy.c \
-	$(nil)
+	# EOL
 
 if !HAVE_GETENTROPY
 libbsd_la_SOURCES += \
 	getentropy.c \
-	$(nil)
+	# EOL
 endif
 
 if NEED_TRANSPARENT_LIBMD
@@ -133,7 +137,7 @@ endif
 
 libbsd_ctor_a_SOURCES = \
 	setproctitle_ctor.c \
-	$(nil)
+	# EOL
 
 if NEED_TRANSPARENT_LIBMD
 TRANSPARENT_LIBMD_DEPENDS = format.ld

@@ -2,11 +2,11 @@
 
 EXTRA_DIST = \
 	mdX.3bsd \
-	$(nil)
+	# EOL
 
 CLEANFILES = \
 	md5.3bsd \
-	$(nil)
+	# EOL
 
 SED_MD5_SUBST = -e 's/mdX/md5/g' -e 's/mdY/md4/g' -e 's/MDX/MD5/g'
 
@@ -251,4 +251,4 @@ dist_man_MANS = \
 	vis.3bsd \
 	wcslcat.3bsd \
 	wcslcpy.3bsd \
-	$(nil)
+	# EOL
