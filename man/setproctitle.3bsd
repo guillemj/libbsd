@@ -20,7 +20,7 @@
 .\" $FreeBSD$
 .\"
 .\" The following requests are required for all man pages.
-.Dd December 16, 1995
+.Dd December 7, 2022
 .Dt setproctitle 3bsd
 .Os
 .Sh NAME
@@ -31,7 +31,6 @@
 .ds doc-str-Lb-libbsd \*[str-Lb-libbsd]
 .Lb libbsd
 .Sh SYNOPSIS
-.In sys/types.h
 .In unistd.h
 (See
 .Xr libbsd 7
