@@ -6,7 +6,13 @@ AC_CONFIG_SRCDIR([src/strlcpy.c])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 
-AM_INIT_AUTOMAKE([1.11 foreign nostdinc subdir-objects no-dist-gzip dist-xz])
+AM_INIT_AUTOMAKE(
+  [1.11]
+  [foreign]
+  [nostdinc]
+  [subdir-objects]
+  [no-dist-gzip dist-xz]
+)
 AM_SILENT_RULES([yes])
 
 LIBBSD_ABI_MAJOR=0
@@ -27,20 +33,19 @@ LT_INIT
 
 AC_CACHE_CHECK([if ld supports --version-script flag],
   [libbsd_cv_version_script], [
-    echo "{ global: symbol; local: *; };" >conftest.map
-    save_LDFLAGS=$LDFLAGS
-    LDFLAGS="$LDFLAGS -Wl,--version-script=conftest.map"
-    AC_LINK_IFELSE([
-      AC_LANG_PROGRAM([], [])
-    ], [
-      libbsd_cv_version_script=yes
-    ], [
-      libbsd_cv_version_script=no
-    ])
-    LDFLAGS="$save_LDFLAGS"
-    rm -f conftest.map
-  ]
-)
+  echo "{ global: symbol; local: *; };" >conftest.map
+  save_LDFLAGS=$LDFLAGS
+  LDFLAGS="$LDFLAGS -Wl,--version-script=conftest.map"
+  AC_LINK_IFELSE([
+    AC_LANG_PROGRAM([], [])
+  ], [
+    libbsd_cv_version_script=yes
+  ], [
+    libbsd_cv_version_script=no
+  ])
+  LDFLAGS="$save_LDFLAGS"
+  rm -f conftest.map
+])
 AM_CONDITIONAL([HAVE_LINKER_VERSION_SCRIPT],
   [test "x$libbsd_cv_version_script" = "xyes"])
 
@@ -94,10 +99,10 @@ AS_IF([test "$user_CFLAGS" = unset], [
 
 # Checks for libraries.
 AC_CHECK_LIB([testu01], [unif01_CreateExternGenBits],
-             [TESTU01_LIBS="-ltestu01"])
+  [TESTU01_LIBS="-ltestu01"])
 AC_SUBST([TESTU01_LIBS])
 AM_CONDITIONAL([HAVE_LIBTESTU01],
-               [test "x$ac_cv_lib_testu01_unif01_CreateExternGenBits" = "xyes"])
+  [test "x$ac_cv_lib_testu01_unif01_CreateExternGenBits" = "xyes"])
 
 saved_LIBS="$LIBS"
 AC_SEARCH_LIBS([MD5Update], [md], [
@@ -118,7 +123,7 @@ AC_SEARCH_LIBS([SHA512Update], [md], [
 LIBS="$saved_LIBS"
 
 AM_CONDITIONAL([NEED_TRANSPARENT_LIBMD],
-               [test "x$need_transparent_libmd" = "xyes"])
+  [test "x$need_transparent_libmd" = "xyes"])
 
 is_windows=no
 AS_CASE([$host_os],
@@ -143,7 +148,14 @@ AS_CASE([$host_os],
 AM_CONDITIONAL([OS_WINDOWS], [test "x$is_windows" = "xyes"])
 
 # Checks for header files.
-AC_CHECK_HEADERS([sys/ndir.h sys/dir.h ndir.h dirent.h pwd.h grp.h])
+AC_CHECK_HEADERS([\
+  sys/ndir.h \
+  sys/dir.h \
+  ndir.h \
+  dirent.h \
+  pwd.h \
+  grp.h \
+])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_INLINE
@@ -156,30 +168,30 @@ AC_TYPE_UID_T
 AC_TYPE_SIZE_T
 AC_TYPE_SSIZE_T
 
-AC_CHECK_DECL([F_CLOSEM],
-              [AC_DEFINE([HAVE_FCNTL_CLOSEM], [1],
-                         [Define to 1 if you have fcntl(F_CLOSEM)])],
-              [],
-              [#include <limits.h>
-               #include <fcntl.h>])
+AC_CHECK_DECL([F_CLOSEM], [
+  AC_DEFINE([HAVE_FCNTL_CLOSEM], [1],
+    [Define to 1 if you have fcntl(F_CLOSEM)])
+], [], [[
+#include <limits.h>
+#include <fcntl.h>
+]])
 
-AC_CACHE_CHECK(
-	[for GNU .init_array section support],
-	[libbsd_cv_gnu_init_array_support],
-	[AC_RUN_IFELSE(
-		[AC_LANG_SOURCE(
-[[
+AC_CACHE_CHECK([for GNU .init_array section support],
+  [libbsd_cv_gnu_init_array_support], [
+  AC_RUN_IFELSE([
+    AC_LANG_SOURCE([[
 static int rc = 1;
 static void init(int argc) { if (argc == 1) rc = 0; }
 void (*init_func)(int argc) __attribute__((__section__(".init_array"), __used__)) = init;
 int main() { return rc; }
-]]
-		)],
-		[libbsd_cv_gnu_init_array_support=yes],
-		[libbsd_cv_gnu_init_array_support=no],
-		[AC_PREPROC_IFELSE(
-			[AC_LANG_SOURCE(
-[[
+    ]])
+  ], [
+    libbsd_cv_gnu_init_array_support=yes
+  ], [
+    libbsd_cv_gnu_init_array_support=no
+  ], [
+    AC_PREPROC_IFELSE([
+      AC_LANG_SOURCE([[
 /* Look for a known libc that supports .init_array with the GNU extension
  * to pass main() arguments to the init functions. */
 #include <stdlib.h>
@@ -197,53 +209,77 @@ int main() { return rc; }
  */
 #  error unknown whether libc supports GNU .init_array
 #endif
-]]
-			)],
-			[libbsd_cv_gnu_init_array_support=yes],
-			[libbsd_cv_gnu_init_array_support=no])
-		]
-	)]
-)
+      ]])
+    ], [
+      libbsd_cv_gnu_init_array_support=yes
+    ], [
+      libbsd_cv_gnu_init_array_support=no
+    ])
+  ])
+])
 AM_CONDITIONAL([BUILD_LIBBSD_CTOR],
-               [test "$libbsd_cv_gnu_init_array_support" = yes])
+  [test "$libbsd_cv_gnu_init_array_support" = yes])
 
 # Checks for library functions.
 AC_MSG_CHECKING([for program_invocation_short_name])
-AC_LINK_IFELSE(
-	[AC_LANG_PROGRAM([[#include <errno.h>]],
-	                 [[const char *p = program_invocation_short_name;]])],
-	[AC_DEFINE([HAVE_PROGRAM_INVOCATION_SHORT_NAME], [1],
-	           [Define to 1 if you have program_invocation_short_name])
-	 AC_MSG_RESULT([yes])],
-	[AC_MSG_RESULT([no])])
+AC_LINK_IFELSE([
+  AC_LANG_PROGRAM([[
+#include <errno.h>
+  ]], [[
+const char *p = program_invocation_short_name;
+  ]])
+], [
+  AC_DEFINE([HAVE_PROGRAM_INVOCATION_SHORT_NAME], [1],
+    [Define to 1 if you have program_invocation_short_name])
+  AC_MSG_RESULT([yes])
+], [
+  AC_MSG_RESULT([no])
+])
 
 AC_MSG_CHECKING([for __progname])
-AC_LINK_IFELSE(
-	[AC_LANG_PROGRAM([[extern char *__progname;]],
-	                 [[printf("%s", __progname);]])],
-	[AC_DEFINE([HAVE___PROGNAME], [1], [Define to 1 if you have __progname])
-	 AC_MSG_RESULT([yes])],
-	[AC_MSG_RESULT([no])])
+AC_LINK_IFELSE([
+  AC_LANG_PROGRAM([[
+extern char *__progname;
+  ]], [[
+printf("%s", __progname);
+  ]])
+], [
+  AC_DEFINE([HAVE___PROGNAME], [1], [Define to 1 if you have __progname])
+  AC_MSG_RESULT([yes])
+], [
+  AC_MSG_RESULT([no])
+])
 
 AC_MSG_CHECKING([for __register_atfork])
-AC_LINK_IFELSE(
-	[AC_LANG_PROGRAM([[
-		#include <stddef.h>
-		extern void *__dso_handle;
-		extern int __register_atfork(void (*)(void), void(*)(void), void (*)(void), void *);
-	]], [[
-		__register_atfork(NULL, NULL, NULL, __dso_handle);
-	]])],
-	[AC_DEFINE([HAVE___REGISTER_ATFORK], [1],
-	           [Define to 1 if you have __register_atfork])
-	 AC_MSG_RESULT([yes])],
-	[LIBBSD_LIBS="$LIBBSD_LIBS -pthread"
-	 AC_MSG_RESULT([no])
-	])
+AC_LINK_IFELSE([
+  AC_LANG_PROGRAM([[
+#include <stddef.h>
+extern void *__dso_handle;
+extern int __register_atfork(void (*)(void), void(*)(void), void (*)(void), void *);
+  ]], [[
+__register_atfork(NULL, NULL, NULL, __dso_handle);
+  ]])
+], [
+  AC_DEFINE([HAVE___REGISTER_ATFORK], [1],
+    [Define to 1 if you have __register_atfork])
+  AC_MSG_RESULT([yes])
+], [
+  LIBBSD_LIBS="$LIBBSD_LIBS -pthread"
+  AC_MSG_RESULT([no])
+])
 
-AC_CHECK_FUNCS([clearenv dirfd fopencookie __fpurge \
-                getauxval getentropy getexecname getline \
-                pstat_getproc sysconf])
+AC_CHECK_FUNCS([\
+  clearenv \
+  dirfd \
+  fopencookie \
+  __fpurge \
+  getauxval \
+  getentropy \
+  getexecname \
+  getline \
+  pstat_getproc \
+  sysconf \
+])
 AM_CONDITIONAL([HAVE_GETENTROPY], [test "x$ac_cv_func_getentropy" = "xyes"])
 AM_CONDITIONAL([HAVE_FOPENCOOKIE], [test "x$ac_cv_func_fopencookie" = "xyes"])
 
@@ -251,14 +287,14 @@ AC_SUBST([MD5_LIBS])
 AC_SUBST([LIBBSD_LIBS])
 
 AC_CONFIG_FILES([
-	Makefile
-	include/Makefile
-	man/Makefile
-	src/Makefile
-	src/libbsd.pc
-	src/libbsd-ctor.pc
-	src/libbsd-overlay.pc
-	test/Makefile
+  Makefile
+  include/Makefile
+  man/Makefile
+  src/Makefile
+  src/libbsd.pc
+  src/libbsd-ctor.pc
+  src/libbsd-overlay.pc
+  test/Makefile
 ])
 AC_CONFIG_HEADERS([config.h])
 AC_OUTPUT
