@@ -6,10 +6,8 @@ AC_CONFIG_SRCDIR([src/strlcpy.c])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 
-AM_INIT_AUTOMAKE([1.9 foreign nostdinc subdir-objects no-dist-gzip dist-xz])
-
-m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])],
-                            [AC_SUBST([AM_DEFAULT_VERBOSITY], [1])])
+AM_INIT_AUTOMAKE([1.11 foreign nostdinc subdir-objects no-dist-gzip dist-xz])
+AM_SILENT_RULES([yes])
 
 LIBBSD_ABI_MAJOR=0
 LIBBSD_ABI_MINOR=11
