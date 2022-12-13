@@ -29,6 +29,7 @@ user_CFLAGS=${CFLAGS-unset}
 AC_USE_SYSTEM_EXTENSIONS
 AC_SYS_LARGEFILE
 
+AM_PROG_AR
 LT_INIT
 
 AC_CACHE_CHECK([if ld supports --version-script flag],
