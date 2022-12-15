@@ -65,7 +65,7 @@ funopen_write(void *cookie, const char *buf, size_t size)
 }
 
 static int
-funopen_seek(void *cookie, off64_t *offset, int whence)
+funopen_seek(void *cookie, off_t *offset, int whence)
 {
 	struct funopen_cookie *cookiewrap = cookie;
 	off_t soff = *offset;
