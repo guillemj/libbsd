@@ -10,7 +10,7 @@
     - gcovr -s -e test/
 
 .debian:
-  image: debian:buster
+  image: debian:latest
   stage: test
   before_script:
     - apt-get update -qq
