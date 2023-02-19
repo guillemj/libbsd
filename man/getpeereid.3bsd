@@ -139,4 +139,7 @@ or the kernel returned invalid data.
 The
 .Fn getpeereid
 function appeared in
-.Fx 4.6 .
+.Fx 4.6 ,
+.Nx 5.0
+and
+.Ox 3.0 .

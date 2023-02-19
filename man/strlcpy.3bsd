@@ -192,4 +192,6 @@ and
 functions first appeared in
 .Ox 2.4 ,
 and made their appearance in
+.Nx 1.4.3
+and
 .Fx 3.3 .

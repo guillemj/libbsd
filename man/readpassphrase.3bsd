@@ -165,10 +165,12 @@ will reprint the prompt and the user may then enter a passphrase.
 The
 .Fn readpassphrase
 function is an
-.Ox
+.Bx
 extension and should not be used if portability is desired.
 .Sh HISTORY
 The
 .Fn readpassphrase
 function first appeared in
-.Ox 2.9 .
+.Ox 2.9
+and
+.Fx 4.6 .

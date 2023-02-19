@@ -137,7 +137,7 @@ The
 .Fn uid_from_user
 and
 .Fn gid_from_group
-functions were ported from
-.Nx
-and first appeared in
+functions first appeared in
+.Nx 1.4
+and
 .Ox 6.4 .

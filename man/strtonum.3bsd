@@ -141,8 +141,8 @@ The string did not consist solely of digit characters.
 .Xr strtoull 3
 .Sh STANDARDS
 .Fn strtonum
-is an
-.Ox
+is a
+.Bx
 extension.
 .Sh HISTORY
 .ds doc-operating-system-NetBSD-8.0 8.0

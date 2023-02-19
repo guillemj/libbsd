@@ -283,12 +283,18 @@ The
 .Fn reallocarray
 function appeared in
 .Ox 5.6 ,
+.Dx 5.5
 and glibc 2.26.
+.Pp
 The
 .Fn recallocarray
 function appeared in
-.Ox 6.1 .
+.Ox 6.1
+and
+.Dx 5.5 .
 The
 .Fn freezero
 function appeared in
-.Ox 6.2 .
+.Ox 6.2
+and
+.Dx 5.5 .

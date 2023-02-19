@@ -112,6 +112,8 @@ The
 .Fn setproctitle
 function
 first appeared in
+.Nx 1.0
+and
 .Fx 2.2 .
 Other operating systems have
 similar functions.

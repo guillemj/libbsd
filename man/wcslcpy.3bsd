@@ -69,3 +69,14 @@ counterpart, such as
 and
 .Fn wcslcpy ,
 which are BSD extensions.
+.Sh HISTORY
+The
+.Fn wcslcpy
+and
+.Fn wcslcat
+functions first appeared in
+.Ox 3.8 ,
+.Nx 1.6 ,
+.Fx 5.0
+and
+.Dx 2.1.1 .

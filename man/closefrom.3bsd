@@ -51,8 +51,17 @@ from the per-process object reference table.
 Any errors encountered while closing file descriptors are ignored.
 .Sh SEE ALSO
 .Xr close 2
+.Sh STANDARDS
+.Fn closefrom
+is a
+.Bx
+and Solaris extension.
 .Sh HISTORY
 The
 .Fn closefrom
-function first appeared in
-.Fx 8.0 .
+function first appeared in Solaris 9,
+.Ox 3.5 ,
+.Dx 1.2 ,
+.Nx 3 ,
+.Fx 8.0
+and glibc 2.26.

@@ -166,7 +166,9 @@ represented a number that does not fit in
 .Sh HISTORY
 .Fn humanize_number
 first appeared in
-.Nx 2.0 .
+.Nx 2.0
+and
+.Fx 5.3 .
 .Pp
 .Fn dehumanize_number
 first appeared in
