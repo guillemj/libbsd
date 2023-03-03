@@ -62,6 +62,6 @@ The
 function first appeared in Solaris 9,
 .Ox 3.5 ,
 .Dx 1.2 ,
-.Nx 3 ,
+.Nx 3.0 ,
 .Fx 8.0
-and glibc 2.26.
+and glibc 2.34.
