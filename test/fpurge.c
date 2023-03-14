@@ -28,12 +28,25 @@
 #include <stdlib.h>
 #include <string.h>
 
+static int
+test_memstream(FILE *fp, size_t bufsz)
+{
+	fputs("World", fp);
+	if (fpurge(fp) < 0)
+		return 1;
+	fflush(fp);
+	if (bufsz != 0)
+		return 1;
+	return 0;
+}
+
 int
 main(int argc, char *argv[])
 {
 	FILE *fp;
 	char *buf = NULL;
 	size_t bufsz = 0;
+	int rc;
 
 	if (fpurge(NULL) == 0)
 		return 1;
@@ -45,13 +58,9 @@ main(int argc, char *argv[])
 	fclose(fp);
 
 	fp = open_memstream(&buf, &bufsz);
-	fputs("World", fp);
-	if (fpurge(fp) < 0)
-		return 1;
-	fflush(fp);
-	if (bufsz != 0)
-		return 1;
+	rc = test_memstream(fp, bufsz);
+	fclose(fp);
 	free(buf);
 
-	return 0;
+	return rc;
 }
