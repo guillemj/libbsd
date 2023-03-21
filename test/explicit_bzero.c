@@ -27,6 +27,17 @@
 #define ASSERT_NE(a, b) assert((a) != (b))
 #define ASSERT_GE(a, b) assert((a) >= (b))
 
+#if defined(__has_feature)
+#if __has_feature(address_sanitizer)
+#define __SANITIZE_ADDRESS__
+#endif
+#endif
+#ifdef __SANITIZE_ADDRESS__
+#define ATTRIBUTE_NO_SANITIZE_ADDRESS __attribute__((no_sanitize_address))
+#else
+#define ATTRIBUTE_NO_SANITIZE_ADDRESS
+#endif
+
 /* 128 bits of random data. */
 static const char secret[16] = {
 	0xa0, 0x6c, 0x0c, 0x81, 0xba, 0xd8, 0x5b, 0x0c,
@@ -149,7 +160,7 @@ count_secrets(const char *buf)
 	return (res);
 }
 
-static char *
+ATTRIBUTE_NO_SANITIZE_ADDRESS static char *
 test_without_bzero(void)
 {
 	char buf[SECRETBYTES];
@@ -162,7 +173,7 @@ test_without_bzero(void)
 	return (res);
 }
 
-static char *
+ATTRIBUTE_NO_SANITIZE_ADDRESS static char *
 test_with_bzero(void)
 {
 	char buf[SECRETBYTES];
