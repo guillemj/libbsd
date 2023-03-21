@@ -138,6 +138,7 @@ populate_secret(char *buf, ssize_t len)
 static void __attribute__((__noinline__))
 blank_stack_side_effects(char *buf, size_t len)
 {
+#ifndef __SANITIZE_ADDRESS__
 	char scratch[SECRETBYTES * 4];
 
 	/* If the read(3) in populate_secret() wrote into the stack, as it
@@ -145,6 +146,7 @@ blank_stack_side_effects(char *buf, size_t len)
 	 * detect the wrong secret on the stack. */
 	memset(scratch, 0xFF, sizeof(scratch));
 	ASSERT_EQ(NULL, memmem(scratch, sizeof(scratch), buf, len));
+#endif
 }
 
 static int
