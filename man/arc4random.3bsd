@@ -250,6 +250,19 @@ system fails to provide entropy.
 .%O Document ID: 4027b5256e17b9796842e6d0f68b0b5e
 .%U http://cr.yp.to/papers.html#chacha
 .Re
+.Sh HISTORY
+These functions first appeared in
+.Ox 2.1 ,
+.Fx 3.0 ,
+.Nx 1.6 ,
+and
+.Dx 1.0 .
+The functions
+.Fn arc4random ,
+.Fn arc4random_buf
+and
+.Fn arc4random_uniform
+appeared in glibc 2.36.
 .Sh BUGS
 There is no way to get deterministic, reproducible results out of
 .Nm
