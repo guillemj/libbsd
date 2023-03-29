@@ -1,5 +1,10 @@
 .unit-tests:
   script:
+    - ./autogen && ./configure
+    - make check
+
+.unit-tests-asan:
+  script:
     - ./autogen && ./configure --enable-sanitize
     - make check
 
@@ -25,7 +30,7 @@
               bsd-compat-headers linux-headers libmd-dev musl-dev gcovr
 
 unit-tests:debian:
-  extends: [.debian, .unit-tests]
+  extends: [.debian, .unit-tests-asan]
 
 coverage:debian:
   extends: [.debian, .coverage]
