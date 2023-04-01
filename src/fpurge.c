@@ -26,7 +26,9 @@
 
 #include <errno.h>
 #include <stdio.h>
+#if HAVE_STDIO_EXT_H
 #include <stdio_ext.h>
+#endif
 
 #ifdef HAVE___FPURGE
 int
