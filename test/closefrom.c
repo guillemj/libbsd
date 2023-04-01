@@ -55,7 +55,19 @@ main(int argc, char *argv[])
 	closefrom(4);
 
 	for (i = 4; i < fd_max; i++) {
-		assert(fcntl(i, F_GETFL) == -1 && errno == EBADF);
+		int rc;
+
+		errno = 0;
+		rc = fcntl(i, F_GETFD);
+#ifdef __APPLE__
+		/* On macOS we only set close-on-exec. */
+		if ((i & (i - 1)) == 0)
+			assert(rc == FD_CLOEXEC);
+		else
+			assert(rc == -1 && errno == EBADF);
+#else
+		assert(rc == -1 && errno == EBADF);
+#endif
 	}
 	assert(fcntl(fd, F_GETFL) == -1 && errno == EBADF);
 
