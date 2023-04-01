@@ -35,18 +35,28 @@ main(int argc, char *argv[])
 {
 	int i;
 	int fd;
+	int fd_max;
 
 	fd = open("/dev/null", O_RDONLY);
 
-	for (i = 4; i < 1024; i *= 2)
-		assert(dup2(fd, i) == i);
+	fd_max = 1024;
+	for (i = 4; i < fd_max; i *= 2) {
+		int fd_new = dup2(fd, i);
+
+		if (fd_new < 0 && (errno == EMFILE || errno == EBADF)) {
+			fd_max = i - 1;
+			break;
+		}
+		assert(fd_new == i);
+	}
 
 	if (fd < 4)
 		close(fd);
 	closefrom(4);
 
-	for (i = 4; i < 1024; i++)
+	for (i = 4; i < fd_max; i++) {
 		assert(fcntl(i, F_GETFL) == -1 && errno == EBADF);
+	}
 	assert(fcntl(fd, F_GETFL) == -1 && errno == EBADF);
 
 	return 0;
