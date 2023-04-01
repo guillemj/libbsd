@@ -33,6 +33,10 @@
 #include <string.h>
 #include "local-link.h"
 
+#if !HAVE_DECL_ENVIRON
+extern char **environ;
+#endif
+
 static struct {
 	/* Original value. */
 	const char *arg0;

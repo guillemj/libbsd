@@ -194,6 +194,10 @@ AC_CHECK_DECL([F_CLOSEM], [
 #include <fcntl.h>
 ]])
 
+AC_CHECK_DECLS([environ], [], [], [[
+#include <unistd.h>
+]])
+
 AC_CACHE_CHECK([for GNU .init_array section support],
   [libbsd_cv_gnu_init_array_support], [
   AC_RUN_IFELSE([
