@@ -37,6 +37,16 @@
 #define libbsd_link_warning(symbol, msg)
 #endif
 
+#if defined(__APPLE__)
+#define libbsd_strong_alias(alias, symbol) \
+	__asm__(".globl _" #alias); \
+	__asm__(".set _" #alias ", _" #symbol); \
+	extern __typeof(symbol) alias
+#elif !defined(_MSC_VER)
+#define libbsd_strong_alias(alias, symbol) \
+	extern __typeof__(symbol) alias __attribute__((__alias__(#symbol)))
+#endif
+
 #ifdef __ELF__
 #  if __has_attribute(symver)
 /* The symver attribute is supported since gcc 10.x. */
@@ -64,7 +74,7 @@
 #  endif
 #else
 #define libbsd_symver_default(alias, symbol, version) \
-	extern __typeof__(symbol) alias __attribute__((__alias__(#symbol)))
+	libbsd_strong_alias(alias, symbol)
 
 #define libbsd_symver_variant(alias, symbol, version)
 

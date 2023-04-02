@@ -295,10 +295,8 @@ libbsd_symver_default(setproctitle, setproctitle_impl, LIBBSD_0.5);
  * in 0.5, make the implementation available in the old version as an alias
  * for code linking against that version, and change the default to use the
  * new version, so that new code depends on the implemented version. */
-#ifdef HAVE_TYPEOF
-extern __typeof__(setproctitle_impl)
-setproctitle_stub
-	__attribute__((__alias__("setproctitle_impl")));
+#if defined(libbsd_strong_alias)
+libbsd_strong_alias(setproctitle_stub, setproctitle_impl);
 #else
 void
 setproctitle_stub(const char *fmt, ...)
