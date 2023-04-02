@@ -29,9 +29,13 @@
 
 #include <sys/cdefs.h>
 
+#ifdef __ELF__
 #define libbsd_link_warning(symbol, msg) \
 	static const char libbsd_emit_link_warning_##symbol[] \
 		__attribute__((__used__,__section__(".gnu.warning." #symbol))) = msg
+#else
+#define libbsd_link_warning(symbol, msg)
+#endif
 
 #ifdef __ELF__
 #  if __has_attribute(symver)
