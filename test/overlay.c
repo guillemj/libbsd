@@ -28,11 +28,13 @@
  * other headers through magic macros, to check that the overlay is working
  * properly. */
 #include <errno.h>
+#ifndef __APPLE__
 #ifdef HAVE_PWD_H
 #include <pwd.h>
 #endif
 #ifdef HAVE_GRP_H
 #include <grp.h>
+#endif
 #endif
 #include <stdint.h>
 

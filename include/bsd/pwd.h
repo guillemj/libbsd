@@ -44,8 +44,10 @@
 __BEGIN_DECLS
 int
 uid_from_user(const char *, uid_t *);
+#ifndef __APPLE__
 const char *
 user_from_uid(uid_t, int);
+#endif
 __END_DECLS
 
 #endif

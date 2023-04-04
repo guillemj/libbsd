@@ -44,8 +44,10 @@
 __BEGIN_DECLS
 int
 gid_from_group(const char *, gid_t *);
+#ifndef __APPLE__
 const char *
 group_from_gid(gid_t, int);
+#endif
 __END_DECLS
 
 #endif

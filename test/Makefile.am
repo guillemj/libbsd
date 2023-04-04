@@ -40,29 +40,45 @@ check_PROGRAMS = \
 	humanize \
 	fgetln \
 	fparseln \
-	fpurge \
-	md5 \
-	nlist \
 	proctitle-init \
 	progname \
-	pwcache \
 	setmode \
-	strl \
-	strmode \
 	strnstr \
 	strtonum \
 	vis \
 	vis-openbsd \
 	# EOL
 
+if NEED_NLIST
+check_PROGRAMS += nlist
+endif
+
+if NEED_STRL
+check_PROGRAMS += strl
+endif
+
+if NEED_STRMODE
+check_PROGRAMS += strmode
+endif
+
+if NEED_PWCACHE
+check_PROGRAMS += pwcache
+endif
+
+if NEED_FPURGE
+check_PROGRAMS += fpurge
+endif
+
 if NEED_FUNOPEN
 check_PROGRAMS += funopen
 endif
 
+if NEED_ARC4RANDOM
 if HAVE_LIBTESTU01
 arc4random_LDADD = $(LDADD) $(TESTU01_LIBS)
 
 check_PROGRAMS += arc4random
+endif
 endif
 
 if BUILD_LIBBSD_CTOR
@@ -75,9 +91,13 @@ proctitle_LDFLAGS = \
 check_PROGRAMS += proctitle
 endif
 
+if NEED_MD5
+check_PROGRAMS += md5
+
 if NEED_TRANSPARENT_LIBMD
 # On the installed system this is handled via the ld script.
 md5_LDADD = $(LDADD) $(MD5_LIBS)
+endif
 endif
 
 fgetln_SOURCES = test-stream.c test-stream.h fgetln.c

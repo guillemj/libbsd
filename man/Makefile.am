@@ -177,13 +177,10 @@ dist_man_MANS = \
 	freezero.3bsd \
 	fmtcheck.3bsd \
 	fparseln.3bsd \
-	fpurge.3bsd \
 	getbsize.3bsd \
 	getmode.3bsd \
 	getpeereid.3bsd \
 	getprogname.3bsd \
-	gid_from_group.3bsd \
-	group_from_gid.3bsd \
 	heapsort.3bsd \
 	humanize_number.3bsd \
 	le16dec.3bsd \
@@ -193,15 +190,12 @@ dist_man_MANS = \
 	le64dec.3bsd \
 	le64enc.3bsd \
 	libbsd.7 \
-	md5.3bsd \
 	mergesort.3bsd \
-	nlist.3bsd \
 	pidfile.3bsd \
 	pidfile_close.3bsd \
 	pidfile_open.3bsd \
 	pidfile_remove.3bsd \
 	pidfile_write.3bsd \
-	pwcache.3bsd \
 	queue.3bsd \
 	radixsort.3bsd \
 	readpassphrase.3bsd \
@@ -219,9 +213,6 @@ dist_man_MANS = \
 	sl_init.3bsd \
 	sradixsort.3bsd \
 	stringlist.3bsd \
-	strlcat.3bsd \
-	strlcpy.3bsd \
-	strmode.3bsd \
 	strnstr.3bsd \
 	strnunvis.3bsd \
 	strnvis.3bsd \
@@ -244,13 +235,52 @@ dist_man_MANS = \
 	timespecsub.3bsd \
 	timeval.3bsd \
 	tree.3bsd \
-	uid_from_user.3bsd \
 	unvis.3bsd \
-	user_from_uid.3bsd \
 	vis.3bsd \
 	wcslcat.3bsd \
 	wcslcpy.3bsd \
 	# EOL
+
+if NEED_MD5
+dist_man_MANS += \
+	md5.3bsd \
+	# EOL
+endif
+
+if NEED_NLIST
+dist_man_MANS += \
+	nlist.3bsd \
+	# EOL
+endif
+
+if NEED_STRL
+dist_man_MANS += \
+	strlcat.3bsd \
+	strlcpy.3bsd \
+	# EOL
+endif
+
+if NEED_STRMODE
+dist_man_MANS += \
+	strmode.3bsd \
+	# EOL
+endif
+
+if NEED_PWCACHE
+dist_man_MANS += \
+	pwcache.3bsd \
+	uid_from_user.3bsd \
+	user_from_uid.3bsd \
+	gid_from_group.3bsd \
+	group_from_gid.3bsd \
+	# EOL
+endif
+
+if NEED_FPURGE
+dist_man_MANS += \
+	fpurge.3bsd \
+	# EOL
+endif
 
 if NEED_FUNOPEN
 dist_man_MANS += \

@@ -17,8 +17,6 @@ nobase_include_HEADERS = \
 	bsd/grp.h \
 	bsd/inttypes.h \
 	bsd/libutil.h \
-	bsd/md5.h \
-	bsd/nlist.h \
 	bsd/pwd.h \
 	bsd/readpassphrase.h \
 	bsd/stdio.h \
@@ -30,3 +28,15 @@ nobase_include_HEADERS = \
 	bsd/vis.h \
 	bsd/wchar.h \
 	# EOL
+
+if NEED_MD5
+nobase_include_HEADERS += \
+	bsd/md5.h \
+	# EOL
+endif
+
+if NEED_NLIST
+nobase_include_HEADERS += \
+	bsd/nlist.h \
+	# EOL
+endif

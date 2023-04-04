@@ -103,6 +103,7 @@ st_hash(const char *name, size_t len, int tabsz)
 	return key % tabsz;
 }
 
+#ifndef HAVE_USER_FROM_UID
 /*
  * uidtb_start
  *	creates an an empty uidtb
@@ -124,7 +125,9 @@ uidtb_start(void)
 	}
 	return 0;
 }
+#endif
 
+#ifndef HAVE_GROUP_FROM_GID
 /*
  * gidtb_start
  *	creates an an empty gidtb
@@ -146,6 +149,7 @@ gidtb_start(void)
 	}
 	return 0;
 }
+#endif
 
 /*
  * usrtb_start
@@ -191,6 +195,7 @@ grptb_start(void)
 	return 0;
 }
 
+#ifndef HAVE_USER_FROM_UID
 /*
  * user_from_uid()
  *	caches the name (if any) for the uid. If noname clear, we always
@@ -251,7 +256,9 @@ user_from_uid(uid_t uid, int noname)
 	}
 	return ptr->name;
 }
+#endif
 
+#ifndef HAVE_GROUP_FROM_GID
 /*
  * group_from_gid()
  *	caches the name (if any) for the gid. If noname clear, we always
@@ -312,6 +319,7 @@ group_from_gid(gid_t gid, int noname)
 	}
 	return ptr->name;
 }
+#endif
 
 /*
  * uid_from_user()

@@ -41,10 +41,14 @@
 #include <sys/types.h>
 
 __BEGIN_DECLS
+#ifndef __APPLE__
 size_t strlcpy(char *dst, const char *src, size_t siz);
 size_t strlcat(char *dst, const char *src, size_t siz);
+#endif
 char *strnstr(const char *str, const char *find, size_t str_len);
+#ifndef __APPLE__
 void strmode(mode_t mode, char *str);
+#endif
 
 #if !defined(__GLIBC__) || \
     !__GLIBC_PREREQ(2, 25) || \

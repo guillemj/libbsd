@@ -75,14 +75,7 @@ EXTRA_libbsd_la_DEPENDENCIES += \
 	# EOL
 endif
 libbsd_la_SOURCES = \
-	arc4random.c \
-	arc4random.h \
-	arc4random_linux.h \
-	arc4random_uniform.c \
-	arc4random_unix.h \
-	arc4random_win.h \
 	bsd_getopt.c \
-	chacha_private.h \
 	closefrom.c \
 	dehumanize_number.c \
 	err.c \
@@ -94,7 +87,6 @@ libbsd_la_SOURCES = \
 	flopen.c \
 	fmtcheck.c \
 	fparseln.c \
-	fpurge.c \
 	getbsize.c \
 	getpeereid.c \
 	heapsort.c \
@@ -102,12 +94,9 @@ libbsd_la_SOURCES = \
 	inet_net_pton.c \
 	local-elf.h \
 	local-link.h \
-	md5.c \
 	merge.c \
-	nlist.c \
 	pidfile.c \
 	progname.c \
-	pwcache.c \
 	radixsort.c \
 	readpassphrase.c \
 	reallocarray.c \
@@ -115,10 +104,7 @@ libbsd_la_SOURCES = \
 	recallocarray.c \
 	setmode.c \
 	setproctitle.c \
-	strlcat.c \
-	strlcpy.c \
 	stringlist.c \
-	strmode.c \
 	strnstr.c \
 	strtoi.c \
 	strtonum.c \
@@ -130,9 +116,57 @@ libbsd_la_SOURCES = \
 	wcslcpy.c \
 	# EOL
 
+if NEED_ARC4RANDOM
 if !HAVE_GETENTROPY
 libbsd_la_SOURCES += \
 	getentropy.c \
+	# EOL
+endif
+libbsd_la_SOURCES += \
+	arc4random.c \
+	arc4random.h \
+	arc4random_linux.h \
+	arc4random_uniform.c \
+	arc4random_unix.h \
+	arc4random_win.h \
+	chacha_private.h \
+	# EOL
+endif
+
+if NEED_MD5
+libbsd_la_SOURCES += \
+	md5.c \
+	# EOL
+endif
+
+if NEED_NLIST
+libbsd_la_SOURCES += \
+	nlist.c \
+	# EOL
+endif
+
+if NEED_STRL
+libbsd_la_SOURCES += \
+	strlcat.c \
+	strlcpy.c \
+	# EOL
+endif
+
+if NEED_STRMODE
+libbsd_la_SOURCES += \
+	strmode.c \
+	# EOL
+endif
+
+if NEED_PWCACHE
+libbsd_la_SOURCES += \
+	pwcache.c \
+	# EOL
+endif
+
+if NEED_FPURGE
+libbsd_la_SOURCES += \
+	fpurge.c \
 	# EOL
 endif
 

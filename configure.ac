@@ -148,9 +148,6 @@ AC_SEARCH_LIBS([SHA512Update], [md], [
 ])
 LIBS="$saved_LIBS"
 
-AM_CONDITIONAL([NEED_TRANSPARENT_LIBMD],
-  [test "x$need_transparent_libmd" = "xyes"])
-
 AS_CASE([$host_os],
   [*-gnu*], [
     # In old glibc versions (< 2.17) clock_gettime() is in librt.
@@ -305,8 +302,19 @@ AC_CHECK_FUNCS([\
   open_memstream \
   pstat_getproc \
   sysconf \
+  uid_from_user \
+  gid_from_group \
+  user_from_uid \
+  group_from_gid \
 ])
 
+need_arc4random=yes
+need_md5=yes
+need_nlist=yes
+need_strl=yes
+need_strmode=yes
+need_pwcache=yes
+need_fpurge=yes
 need_funopen=yes
 AS_CASE([$host_os],
   [*-musl*], [
@@ -319,12 +327,31 @@ AS_CASE([$host_os],
     need_funopen=yes
   ],
   [darwin*], [
+    # On macOS these are provided by the system, and libbsd has never built
+    # there, so we can avoid providing these with no ABI breakage.
+    need_arc4random=no
+    need_transparent_libmd=no
+    need_md5=no
+    need_nlist=no
+    need_strl=no
+    need_strmode=no
+    need_pwcache=no
+    need_fpurge=no
     # On macOS we do not have fopencookie(), and cannot implement it.
     need_funopen=no
   ],
 )
 
 AM_CONDITIONAL([HAVE_GETENTROPY], [test "x$ac_cv_func_getentropy" = "xyes"])
+
+AM_CONDITIONAL([NEED_ARC4RANDOM], [test "x$need_arc4random" = "xyes"])
+AM_CONDITIONAL([NEED_TRANSPARENT_LIBMD], [test "x$need_transparent_libmd" = "xyes"])
+AM_CONDITIONAL([NEED_MD5], [test "x$need_md5" = "xyes"])
+AM_CONDITIONAL([NEED_NLIST], [test "x$need_nlist" = "xyes"])
+AM_CONDITIONAL([NEED_STRL], [test "x$need_strl" = "xyes"])
+AM_CONDITIONAL([NEED_STRMODE], [test "x$need_strmode" = "xyes"])
+AM_CONDITIONAL([NEED_PWCACHE], [test "x$need_pwcache" = "xyes"])
+AM_CONDITIONAL([NEED_FPURGE], [test "x$need_fpurge" = "xyes"])
 AM_CONDITIONAL([NEED_FUNOPEN], [test "x$need_funopen" = "xyes"])
 AS_IF([test "x$need_funopen" = "xno" && \
        test "x$ac_cv_func_funopen" != "xyes" && \
