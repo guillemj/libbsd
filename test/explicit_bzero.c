@@ -138,7 +138,7 @@ populate_secret(char *buf, ssize_t len)
 static void __attribute__((__noinline__))
 blank_stack_side_effects(char *buf, size_t len)
 {
-#ifndef __SANITIZE_ADDRESS__
+#if defined(__GNU__) && !defined(__SANITIZE_ADDRESS__)
 	char scratch[SECRETBYTES * 4];
 
 	/* If the read(3) in populate_secret() wrote into the stack, as it
