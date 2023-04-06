@@ -55,7 +55,7 @@ check_PROGRAMS = \
 	vis-openbsd \
 	# EOL
 
-if HAVE_FOPENCOOKIE
+if NEED_FUNOPEN
 check_PROGRAMS += funopen
 endif
 

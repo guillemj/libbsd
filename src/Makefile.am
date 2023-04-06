@@ -95,7 +95,6 @@ libbsd_la_SOURCES = \
 	fmtcheck.c \
 	fparseln.c \
 	fpurge.c \
-	funopen.c \
 	getbsize.c \
 	getpeereid.c \
 	heapsort.c \
@@ -134,6 +133,12 @@ libbsd_la_SOURCES = \
 if !HAVE_GETENTROPY
 libbsd_la_SOURCES += \
 	getentropy.c \
+	# EOL
+endif
+
+if NEED_FUNOPEN
+libbsd_la_SOURCES += \
+	funopen.c \
 	# EOL
 endif
 

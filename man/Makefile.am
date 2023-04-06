@@ -178,7 +178,6 @@ dist_man_MANS = \
 	fmtcheck.3bsd \
 	fparseln.3bsd \
 	fpurge.3bsd \
-	funopen.3bsd \
 	getbsize.3bsd \
 	getmode.3bsd \
 	getpeereid.3bsd \
@@ -252,3 +251,9 @@ dist_man_MANS = \
 	wcslcat.3bsd \
 	wcslcpy.3bsd \
 	# EOL
+
+if NEED_FUNOPEN
+dist_man_MANS += \
+	funopen.3bsd \
+	# EOL
+endif

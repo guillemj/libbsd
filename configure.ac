@@ -297,6 +297,7 @@ AC_CHECK_FUNCS([\
   flock \
   fopencookie \
   __fpurge \
+  funopen \
   getauxval \
   getentropy \
   getexecname \
@@ -305,8 +306,31 @@ AC_CHECK_FUNCS([\
   pstat_getproc \
   sysconf \
 ])
+
+need_funopen=yes
+AS_CASE([$host_os],
+  [*-musl*], [
+    # On musl >= 1.1.19, fopencookie() got implemented, and because we were
+    # checking for its presence to decide whether to build funopen(), it got
+    # included in builds even when previously it had not been included, which
+    # is partially an ABI issue, but given that disabling it now would be
+    # worse, we'll ignore this as this is only a problem with downgrades. And
+    # enable it explicitly
+    need_funopen=yes
+  ],
+  [darwin*], [
+    # On macOS we do not have fopencookie(), and cannot implement it.
+    need_funopen=no
+  ],
+)
+
 AM_CONDITIONAL([HAVE_GETENTROPY], [test "x$ac_cv_func_getentropy" = "xyes"])
-AM_CONDITIONAL([HAVE_FOPENCOOKIE], [test "x$ac_cv_func_fopencookie" = "xyes"])
+AM_CONDITIONAL([NEED_FUNOPEN], [test "x$need_funopen" = "xyes"])
+AS_IF([test "x$need_funopen" = "xno" && \
+       test "x$ac_cv_func_funopen" != "xyes" && \
+       test "x$ac_cv_func_fopencookie" = "xyes"], [
+  AC_MSG_WARN([[can implement funopen() now based on newly added fopencooke(), report upstream]])
+])
 
 AC_SUBST([MD5_LIBS])
 AC_SUBST([LIBBSD_LIBS])

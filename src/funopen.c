@@ -138,5 +138,5 @@ funopen(const void *cookie,
 	return fopencookie(cookiewrap, mode, funcswrap);
 }
 #else
-#warning "Function funopen() is not provided on this platform."
+#error "Function funopen() needs to be ported."
 #endif
