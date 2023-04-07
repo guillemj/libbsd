@@ -55,6 +55,14 @@ int symbol(void) { return 0; }
 AM_CONDITIONAL([HAVE_LINKER_VERSION_SCRIPT],
   [test "x$libbsd_cv_version_script" = "xyes"])
 
+is_windows=no
+AS_CASE([$host_os],
+  [mingw*], [
+    is_windows=yes
+  ],
+)
+AM_CONDITIONAL([OS_WINDOWS], [test "x$is_windows" = "xyes"])
+
 # Checks for programs.
 AC_CHECK_TOOL([OBJDUMP], [objdump])
 AC_PROG_CC
@@ -143,7 +151,6 @@ LIBS="$saved_LIBS"
 AM_CONDITIONAL([NEED_TRANSPARENT_LIBMD],
   [test "x$need_transparent_libmd" = "xyes"])
 
-is_windows=no
 AS_CASE([$host_os],
   [*-gnu*], [
     # In old glibc versions (< 2.17) clock_gettime() is in librt.
@@ -155,11 +162,7 @@ AS_CASE([$host_os],
     ])
     LIBS="$saved_LIBS"
   ],
-  [mingw*], [
-    is_windows=yes
-  ],
 )
-AM_CONDITIONAL([OS_WINDOWS], [test "x$is_windows" = "xyes"])
 
 # Checks for header files.
 AC_CHECK_HEADERS([\
