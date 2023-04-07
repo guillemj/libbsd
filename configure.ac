@@ -155,10 +155,6 @@ AS_CASE([$host_os],
     ])
     LIBS="$saved_LIBS"
   ],
-  [*-musl*], [
-    # Upstream refuses to define this, we will do it ourselves then.
-    AC_DEFINE([__MUSL__], [1], [Define to 1 if we are building for musl])
-  ],
   [mingw*], [
     is_windows=yes
   ],
