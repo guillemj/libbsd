@@ -1,5 +1,5 @@
 /*
- * Copyright © 2021 Guillem Jover <guillem@hadrons.org>
+ * Copyright © 2021, 2023 Guillem Jover <guillem@hadrons.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -26,24 +26,48 @@
 
 #include <assert.h>
 #include <string.h>
+#include <stdlib.h>
 #include <pwd.h>
 #include <grp.h>
+
+#define TEST_SKIP	77
 
 int
 main(int argc, char **argv)
 {
+	struct group *gr;
+	struct passwd *pw;
+	char *uname;
+	char *gname;
 	uid_t uid;
 	gid_t gid;
 
-	assert(uid_from_user("root", &uid) == 0);
+	/* Do not hardcode user or group names. */
+	pw = getpwuid(0);
+	if (pw == NULL)
+		return TEST_SKIP;
+	uname = strdup(pw->pw_name);
+	assert(uname != NULL);
+
+	gr = getgrgid(0);
+	if (gr == NULL)
+		return TEST_SKIP;
+	gname = strdup(gr->gr_name);
+	assert(gname != NULL);
+
+	/* Test the functions. */
+	assert(uid_from_user(uname, &uid) == 0);
 	assert(uid == 0);
 
-	assert(strcmp(user_from_uid(0, 0), "root") == 0);
+	assert(strcmp(user_from_uid(0, 0), uname) == 0);
 
-	assert(gid_from_group("root", &gid) == 0);
+	assert(gid_from_group(gname, &gid) == 0);
 	assert(gid == 0);
 
-	assert(strcmp(group_from_gid(0, 0), "root") == 0);
+	assert(strcmp(group_from_gid(0, 0), gname) == 0);
+
+	free(uname);
+	free(gname);
 
 	return 0;
 }
