@@ -296,6 +296,7 @@ AC_CHECK_FUNCS([\
   getentropy \
   getexecname \
   getline \
+  open_memstream \
   pstat_getproc \
   sysconf \
 ])
