@@ -66,6 +66,13 @@ if HAVE_LINKER_VERSION_SCRIPT
 libbsd_la_LDFLAGS += \
 	-Wl,--version-script=$(srcdir)/libbsd.map \
 	# EOL
+else
+libbsd_la_LDFLAGS += \
+	-export-symbols libbsd.sym \
+	# EOL
+EXTRA_libbsd_la_DEPENDENCIES += \
+	libbsd.sym \
+	# EOL
 endif
 libbsd_la_SOURCES = \
 	arc4random.c \
@@ -136,9 +143,18 @@ CLEANFILES += \
 	# EOL
 endif
 
+DISTCLEANFILES = \
+	libbsd.sym \
+	# EOL
+
 libbsd_ctor_a_SOURCES = \
 	setproctitle_ctor.c \
 	# EOL
+
+# Generate a simple libtool symbol export list to be used as a fallback if
+# there is no version script support.
+libbsd.sym: libbsd.map
+	$(AM_V_GEN) $(SED) -ne 's/^[[:space:]]\{1,\}\([A-Za-z0-9_]\{1,\}\);/\1/p' libbsd.map > $@
 
 if NEED_TRANSPARENT_LIBMD
 TRANSPARENT_LIBMD_DEPENDS = format.ld
