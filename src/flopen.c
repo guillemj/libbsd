@@ -38,6 +38,27 @@
 
 #include <libutil.h>
 
+static int
+lock_file(int fd, int flags)
+{
+	int operation;
+
+#if HAVE_FLOCK
+	operation = LOCK_EX;
+	if (flags & O_NONBLOCK)
+		operation |= LOCK_NB;
+
+	return flock(fd, operation);
+#else
+	if (flags & O_NONBLOCK)
+		operation = F_TLOCK;
+	else
+		operation = F_LOCK;
+
+	return lockf(fd, operation, 0);
+#endif
+}
+
 /*
  * Reliably open and lock a file.
  *
@@ -49,7 +70,7 @@
 static int
 vflopenat(int dirfd, const char *path, int flags, va_list ap)
 {
-	int fd, operation, serrno, trunc;
+	int fd, serrno, trunc;
 	struct stat sb, fsb;
 	mode_t mode;
 
@@ -62,10 +83,6 @@ vflopenat(int dirfd, const char *path, int flags, va_list ap)
 		mode = (mode_t)va_arg(ap, int); /* mode_t promoted to int */
 	}
 
-        operation = LOCK_EX;
-        if (flags & O_NONBLOCK)
-                operation |= LOCK_NB;
-
 	trunc = (flags & O_TRUNC);
 	flags &= ~O_TRUNC;
 
@@ -73,7 +90,7 @@ vflopenat(int dirfd, const char *path, int flags, va_list ap)
 		if ((fd = openat(dirfd, path, flags, mode)) == -1)
 			/* non-existent or no access */
 			return (-1);
-		if (flock(fd, operation) == -1) {
+		if (lock_file(fd, flags) == -1) {
 			/* unsupported or interrupted */
 			serrno = errno;
 			(void)close(fd);

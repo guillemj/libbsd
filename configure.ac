@@ -290,6 +290,7 @@ __register_atfork(NULL, NULL, NULL, __dso_handle);
 AC_CHECK_FUNCS([\
   clearenv \
   dirfd \
+  flock \
   fopencookie \
   __fpurge \
   getauxval \
