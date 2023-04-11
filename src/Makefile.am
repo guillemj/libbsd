@@ -50,7 +50,7 @@ pkgconfig_DATA += libbsd-ctor.pc
 lib_LIBRARIES += libbsd-ctor.a
 endif
 
-libbsd_la_DEPENDENCIES = \
+EXTRA_libbsd_la_DEPENDENCIES = \
 	$(libbsd_la_included_sources) \
 	libbsd.map \
 	# EOL
