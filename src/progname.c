@@ -62,6 +62,14 @@ getprogname(void)
 	/* getexecname(3) returns an absolute pathname, normalize it. */
 	if (__progname == NULL)
 		setprogname(getexecname());
+#elif defined(_AIX)
+	if (__progname == NULL) {
+		struct procentry64 procs;
+		pid_t pid = getpid ();
+
+		if (getprocs64(&procs, sizeof procs, NULL, 0, &pid, 1) > 0)
+			__progname = strdup(procs.pi_comm);
+	}
 #elif defined(_WIN32)
 	if (__progname == NULL) {
 		WCHAR *wpath = NULL;
