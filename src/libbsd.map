@@ -17,7 +17,8 @@ LIBBSD_0.0 {
     heapsort;
     humanize_number;
 
-    inet_net_pton; /* XXX: Already provided by glibc, remove. */
+    /* XXX: Already provided by glibc, remove. */
+    inet_net_pton;
 
     getprogname;
     setprogname;
@@ -54,7 +55,8 @@ LIBBSD_0.0 {
 LIBBSD_0.1 {
     strmode;
 
-    __fdnlist; /* Private symbol, but libkvm uses it. */
+    /* Private symbol, but libkvm uses it. */
+    __fdnlist;
     nlist;
 } LIBBSD_0.0;
 
