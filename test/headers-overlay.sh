@@ -18,8 +18,9 @@ int main() { return 0; }
 SOURCE
 
   echo "testing header $inc"
-  run $CC -isystem "$incdir" $CPPFLAGS headers-overlay-gen.c -o /dev/null
+  run $CC -isystem "$incdir" $CPPFLAGS headers-overlay-gen.c -o headers-overlay
   echo
 
+  rm -f headers-overlay
   rm -f headers-overlay-gen*
 done

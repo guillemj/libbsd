@@ -17,8 +17,9 @@ int main() { return 0; }
 SOURCE
 
   echo "testing header $inc"
-  run $CC -isystem "$incdir" $CPPFLAGS headers-system-gen.c -o /dev/null
+  run $CC -isystem "$incdir" $CPPFLAGS headers-system-gen.c -o headers-system
   echo
 
+  rm -f headers-system
   rm -f headers-system-gen.*
 done
