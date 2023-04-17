@@ -10,6 +10,7 @@ ChangeLog
 *.trs
 *.gcda
 *.gcno
+*.sym
 .dirstamp
 .deps/
 .libs/
