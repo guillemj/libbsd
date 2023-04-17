@@ -126,6 +126,8 @@ done:
 		free(wpath);
 		free(mbname);
 	}
+#else
+#error "Function getprogname() needs to be ported."
 #endif
 
 	return __progname;
