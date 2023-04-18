@@ -75,7 +75,6 @@ EXTRA_libbsd_la_DEPENDENCIES += \
 	# EOL
 endif
 libbsd_la_SOURCES = \
-	bsd_getopt.c \
 	closefrom.c \
 	dehumanize_number.c \
 	err.c \
@@ -115,6 +114,12 @@ libbsd_la_SOURCES = \
 	wcslcat.c \
 	wcslcpy.c \
 	# EOL
+
+if NEED_BSD_GETOPT
+libbsd_la_SOURCES += \
+	bsd_getopt.c \
+	# EOL
+endif
 
 if NEED_ARC4RANDOM
 if !HAVE_GETENTROPY

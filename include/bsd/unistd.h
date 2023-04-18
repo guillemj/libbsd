@@ -47,6 +47,7 @@
 #endif
 
 __BEGIN_DECLS
+#if !defined(__APPLE__)
 extern int optreset;
 
 #ifdef LIBBSD_OVERLAY
@@ -55,6 +56,7 @@ extern int optreset;
 #endif
 
 int bsd_getopt(int argc, char * const argv[], const char *shortopts);
+#endif
 
 mode_t getmode(const void *set, mode_t mode);
 void *setmode(const char *mode_str);
