@@ -159,6 +159,15 @@ AS_CASE([$host_os],
     ])
     LIBS="$saved_LIBS"
   ],
+  [aix*], [
+    saved_LIBS="$LIBS"
+    AC_SEARCH_LIBS([perfstat_cpu_total], [perfstat], [
+      AS_IF([test "x$ac_cv_search_perfstat_cpu_total" != "xnone required"], [
+        LIBBSD_LIBS="$LIBBSD_LIBS $ac_cv_search_perfstat_cpu_total"
+      ])
+    ])
+    LIBS="$saved_LIBS"
+  ],
 )
 
 # Checks for header files.
