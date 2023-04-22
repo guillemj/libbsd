@@ -180,7 +180,6 @@ dist_man_MANS = \
 	getbsize.3bsd \
 	getmode.3bsd \
 	getpeereid.3bsd \
-	getprogname.3bsd \
 	heapsort.3bsd \
 	humanize_number.3bsd \
 	le16dec.3bsd \
@@ -205,7 +204,6 @@ dist_man_MANS = \
 	setmode.3bsd \
 	setproctitle.3bsd \
 	setproctitle_init.3bsd \
-	setprogname.3bsd \
 	sl_add.3bsd \
 	sl_delete.3bsd \
 	sl_find.3bsd \
@@ -240,6 +238,13 @@ dist_man_MANS = \
 	wcslcat.3bsd \
 	wcslcpy.3bsd \
 	# EOL
+
+if NEED_PROGNAME
+dist_man_MANS += \
+	getprogname.3bsd \
+	setprogname.3bsd \
+	# EOL
+endif
 
 if NEED_MD5
 dist_man_MANS += \

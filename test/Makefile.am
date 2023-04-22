@@ -41,13 +41,16 @@ check_PROGRAMS = \
 	fgetln \
 	fparseln \
 	proctitle-init \
-	progname \
 	setmode \
 	strnstr \
 	strtonum \
 	vis \
 	vis-openbsd \
 	# EOL
+
+if NEED_PROGNAME
+check_PROGRAMS += progname
+endif
 
 if NEED_NLIST
 check_PROGRAMS += nlist

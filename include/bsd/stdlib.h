@@ -65,8 +65,10 @@ void arc4random_addrandom(unsigned char *dat, int datlen);
 
 int dehumanize_number(const char *str, int64_t *size);
 
+#if !defined(__APPLE__)
 const char *getprogname(void);
 void setprogname(const char *);
+#endif
 
 int heapsort(void *, size_t, size_t, int (*)(const void *, const void *));
 int mergesort(void *base, size_t nmemb, size_t size,

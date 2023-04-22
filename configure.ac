@@ -320,6 +320,7 @@ AC_CHECK_FUNCS([\
 
 need_arc4random=yes
 need_bsd_getopt=yes
+need_progname=yes
 need_md5=yes
 need_nlist=yes
 need_strl=yes
@@ -348,6 +349,7 @@ AS_CASE([$host_os],
     # there, so we can avoid providing these with no ABI breakage.
     need_arc4random=no
     need_bsd_getopt=no
+    need_progname=no
     need_transparent_libmd=no
     need_md5=no
     need_nlist=no
@@ -364,6 +366,7 @@ AM_CONDITIONAL([HAVE_GETENTROPY], [test "x$ac_cv_func_getentropy" = "xyes"])
 
 AM_CONDITIONAL([NEED_ARC4RANDOM], [test "x$need_arc4random" = "xyes"])
 AM_CONDITIONAL([NEED_BSD_GETOPT], [test "x$need_bsd_getopt" = "xyes"])
+AM_CONDITIONAL([NEED_PROGNAME], [test "x$need_progname" = "xyes"])
 AM_CONDITIONAL([NEED_TRANSPARENT_LIBMD], [test "x$need_transparent_libmd" = "xyes"])
 AM_CONDITIONAL([NEED_MD5], [test "x$need_md5" = "xyes"])
 AM_CONDITIONAL([NEED_NLIST], [test "x$need_nlist" = "xyes"])
