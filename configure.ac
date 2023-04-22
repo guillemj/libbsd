@@ -179,6 +179,7 @@ AC_CHECK_HEADERS([\
   pwd.h \
   grp.h \
   stdio_ext.h \
+  procinfo.h \
 ])
 
 # Checks for typedefs, structures, and compiler characteristics.

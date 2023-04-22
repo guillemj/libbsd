@@ -35,6 +35,9 @@
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
+#ifdef HAVE_PROCINFO_H
+#include <procinfo.h>
+#endif
 #ifdef _WIN32
 #include <Windows.h>
 #include <shlwapi.h>
