@@ -95,7 +95,6 @@ libbsd_la_SOURCES = \
 	local-link.h \
 	merge.c \
 	pidfile.c \
-	progname.c \
 	pwcache.c \
 	radixsort.c \
 	readpassphrase.c \
@@ -113,6 +112,12 @@ libbsd_la_SOURCES = \
 	unvis.c \
 	vis.c \
 	# EOL
+
+if NEED_PROGNAME
+libbsd_la_SOURCES += \
+	progname.c \
+	# EOL
+endif
 
 if NEED_BSD_GETOPT
 libbsd_la_SOURCES += \
