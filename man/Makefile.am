@@ -180,6 +180,7 @@ dist_man_MANS = \
 	getbsize.3bsd \
 	getmode.3bsd \
 	getpeereid.3bsd \
+	group_from_gid.3bsd \
 	heapsort.3bsd \
 	humanize_number.3bsd \
 	le16dec.3bsd \
@@ -195,6 +196,7 @@ dist_man_MANS = \
 	pidfile_open.3bsd \
 	pidfile_remove.3bsd \
 	pidfile_write.3bsd \
+	pwcache.3bsd \
 	queue.3bsd \
 	radixsort.3bsd \
 	readpassphrase.3bsd \
@@ -234,6 +236,7 @@ dist_man_MANS = \
 	timeval.3bsd \
 	tree.3bsd \
 	unvis.3bsd \
+	user_from_uid.3bsd \
 	vis.3bsd \
 	wcslcat.3bsd \
 	wcslcpy.3bsd \
@@ -271,13 +274,10 @@ dist_man_MANS += \
 	# EOL
 endif
 
-if NEED_PWCACHE
+if NEED_ID_FROM_NAME
 dist_man_MANS += \
-	pwcache.3bsd \
 	uid_from_user.3bsd \
-	user_from_uid.3bsd \
 	gid_from_group.3bsd \
-	group_from_gid.3bsd \
 	# EOL
 endif
 

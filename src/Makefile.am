@@ -96,6 +96,7 @@ libbsd_la_SOURCES = \
 	merge.c \
 	pidfile.c \
 	progname.c \
+	pwcache.c \
 	radixsort.c \
 	readpassphrase.c \
 	reallocarray.c \
@@ -160,12 +161,6 @@ endif
 if NEED_STRMODE
 libbsd_la_SOURCES += \
 	strmode.c \
-	# EOL
-endif
-
-if NEED_PWCACHE
-libbsd_la_SOURCES += \
-	pwcache.c \
 	# EOL
 endif
 

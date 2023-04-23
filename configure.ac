@@ -325,7 +325,7 @@ need_md5=yes
 need_nlist=yes
 need_strl=yes
 need_strmode=yes
-need_pwcache=yes
+need_id_from_name=yes
 need_fpurge=yes
 need_funopen=yes
 AS_CASE([$host_os],
@@ -355,7 +355,7 @@ AS_CASE([$host_os],
     need_nlist=no
     need_strl=no
     need_strmode=no
-    need_pwcache=no
+    need_id_from_name=no
     need_fpurge=no
     # On macOS we do not have fopencookie(), and cannot implement it.
     need_funopen=no
@@ -372,7 +372,7 @@ AM_CONDITIONAL([NEED_MD5], [test "x$need_md5" = "xyes"])
 AM_CONDITIONAL([NEED_NLIST], [test "x$need_nlist" = "xyes"])
 AM_CONDITIONAL([NEED_STRL], [test "x$need_strl" = "xyes"])
 AM_CONDITIONAL([NEED_STRMODE], [test "x$need_strmode" = "xyes"])
-AM_CONDITIONAL([NEED_PWCACHE], [test "x$need_pwcache" = "xyes"])
+AM_CONDITIONAL([NEED_ID_FROM_NAME], [test "x$need_id_from_name" = "xyes"])
 AM_CONDITIONAL([NEED_FPURGE], [test "x$need_fpurge" = "xyes"])
 AM_CONDITIONAL([NEED_FUNOPEN], [test "x$need_funopen" = "xyes"])
 AS_IF([test "x$need_funopen" = "xno" && \

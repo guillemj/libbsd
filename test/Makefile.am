@@ -41,6 +41,7 @@ check_PROGRAMS = \
 	fgetln \
 	fparseln \
 	proctitle-init \
+	pwcache \
 	setmode \
 	strnstr \
 	strtonum \
@@ -62,10 +63,6 @@ endif
 
 if NEED_STRMODE
 check_PROGRAMS += strmode
-endif
-
-if NEED_PWCACHE
-check_PROGRAMS += pwcache
 endif
 
 if NEED_FPURGE
