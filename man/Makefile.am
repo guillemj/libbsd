@@ -174,9 +174,9 @@ dist_man_MANS = \
 	fgetln.3bsd \
 	fgetwln.3bsd \
 	flopen.3bsd \
-	freezero.3bsd \
 	fmtcheck.3bsd \
 	fparseln.3bsd \
+	freezero.3bsd \
 	getbsize.3bsd \
 	getmode.3bsd \
 	getpeereid.3bsd \

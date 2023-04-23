@@ -81,11 +81,11 @@ libbsd_la_SOURCES = \
 	expand_number.c \
 	explicit_bzero.c \
 	fgetln.c \
-	freezero.c \
 	fgetwln.c \
 	flopen.c \
 	fmtcheck.c \
 	fparseln.c \
+	freezero.c \
 	getbsize.c \
 	getpeereid.c \
 	heapsort.c \
