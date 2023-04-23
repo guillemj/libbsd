@@ -112,8 +112,6 @@ libbsd_la_SOURCES = \
 	timeconv.c \
 	unvis.c \
 	vis.c \
-	wcslcat.c \
-	wcslcpy.c \
 	# EOL
 
 if NEED_BSD_GETOPT
@@ -155,6 +153,13 @@ if NEED_STRL
 libbsd_la_SOURCES += \
 	strlcat.c \
 	strlcpy.c \
+	# EOL
+endif
+
+if NEED_WCSL
+libbsd_la_SOURCES += \
+	wcslcat.c \
+	wcslcpy.c \
 	# EOL
 endif
 

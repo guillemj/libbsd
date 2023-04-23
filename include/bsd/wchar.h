@@ -50,8 +50,10 @@
 __BEGIN_DECLS
 wchar_t *fgetwln(FILE *stream, size_t *len);
 
+#if !defined(__APPLE__)
 size_t wcslcat(wchar_t *dst, const wchar_t *src, size_t size);
 size_t wcslcpy(wchar_t *dst, const wchar_t *src, size_t size);
+#endif
 __END_DECLS
 
 #endif

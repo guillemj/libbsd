@@ -238,8 +238,6 @@ dist_man_MANS = \
 	unvis.3bsd \
 	user_from_uid.3bsd \
 	vis.3bsd \
-	wcslcat.3bsd \
-	wcslcpy.3bsd \
 	# EOL
 
 if NEED_PROGNAME
@@ -265,6 +263,13 @@ if NEED_STRL
 dist_man_MANS += \
 	strlcat.3bsd \
 	strlcpy.3bsd \
+	# EOL
+endif
+
+if NEED_WCSL
+dist_man_MANS += \
+	wcslcat.3bsd \
+	wcslcpy.3bsd \
 	# EOL
 endif
 
