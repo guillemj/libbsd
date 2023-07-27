@@ -83,8 +83,12 @@ typedef struct gidc {
  * cache both hits and misses.
  */
 
+#ifndef HAVE_USER_FROM_UID
 static UIDC **uidtb;	/* uid to name cache */
+#endif
+#ifndef HAVE_GROUP_FROM_GID
 static GIDC **gidtb;	/* gid to name cache */
+#endif
 static UIDC **usrtb;	/* user name to uid cache */
 static GIDC **grptb;	/* group name to gid cache */
 
