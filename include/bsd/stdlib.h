@@ -51,7 +51,7 @@
 #include <stdint.h>
 
 __BEGIN_DECLS
-#if !defined(__APPLE__)
+#if !defined(__APPLE__) && !defined(__sun)
 #if !defined(__GLIBC__) || \
     !__GLIBC_PREREQ(2, 36) || \
     !defined(_DEFAULT_SOURCE)
