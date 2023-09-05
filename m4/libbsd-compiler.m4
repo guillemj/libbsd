@@ -1,7 +1,7 @@
 # Copyright © 2021 Guillem Jover <guillem@hadrons.org>
 
 # LIBBSD_CHECK_COMPILER_FLAG
-# -------------------------
+# --------------------------
 AC_DEFUN([LIBBSD_CHECK_COMPILER_FLAG], [
   AS_VAR_PUSHDEF([libbsd_varname_cache], [libbsd_cv_cflags_$1])
   AC_CACHE_CHECK([whether $CC accepts $1], [libbsd_varname_cache], [
