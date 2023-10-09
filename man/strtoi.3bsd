@@ -233,7 +233,7 @@ function first appeared in
 .Nx 7.0 .
 .Ox
 introduced the
-.Fn strtonum 3bsd
+.Xr strtonum 3bsd
 function for the same purpose, but the interface makes it impossible to
 properly differentiate illegal returns.
 .Sh BUGS

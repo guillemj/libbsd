@@ -154,9 +154,9 @@ function first appeared in
 was redesigned in
 .Nx 8.0
 as
-.Fn strtoi 3bsd
+.Xr strtoi 3bsd
 and
-.Fn strtou 3bsd .
+.Xr strtou 3bsd .
 .Sh CAVEATS
 The
 .Fn strtonum
@@ -186,6 +186,6 @@ To overcome the shortcomings of
 .Fn strtonum
 .Nx
 provides
-.Fn strtou 3bsd
+.Xr strtou 3bsd
 and
-.Fn strtoi 3bsd .
+.Xr strtoi 3bsd .

@@ -76,7 +76,7 @@ The package also provides a
 .Nm libbsd-ctor
 static library that can be used to inject automatic constructors into a
 program so that the
-.Fn setproctitle_init 3
+.Xr setproctitle_init 3
 function gets invoked automatically at startup time.
 This can be done with the
 .Xr pkgconf 1
@@ -140,9 +140,9 @@ This is the list of functions that provide multiple implementations:
 .It Fn strnunvis 3
 .Nx
 added
-.Fn strnvis 3
+.Xr strnvis 3
 and
-.Fn strnunvis 3
+.Xr strnunvis 3
 but unfortunately made it incompatible with the existing one in
 .Ox
 and Freedesktop's libbsd (the former having existed for over ten years).
@@ -184,7 +184,7 @@ An implementation has to choose between leaking buffers or being reentrant
 for a limited amount of streams (this implementation chose the latter with
 a limit of 32).
 Use
-.Fn getline 3
+.Xr getline 3
 instead, which is available in many systems and required by
 .St -p1003.1-2008 .
 .It Fn fgetwln 3
@@ -193,7 +193,7 @@ An implementation has to choose between leaking buffers or being reentrant
 for a limited amount of streams (this implementation chose the latter with
 a limit of 32).
 Use
-.Fn fgetwc 3
+.Xr fgetwc 3
 instead, which is available in many systems and required by
 .St -isoC-99
 and
@@ -201,7 +201,7 @@ and
 .It Fn funopen 3
 Unportable, requires assistance from the stdio layer or some hook framework.
 On GNU systems the
-.Fn fopencookie 3
+.Xr fopencookie 3
 function can be used.
 Otherwise the code needs to be prepared for neither of these functions being
 available.
@@ -240,16 +240,16 @@ This function is provided by
 2.26, and
 .Nm musl
 1.2.2.
-.It Fn arc4random 3
-.It Fn arc4random_buf 3
-.It Fn arc4random_uniform 3
+.It Xr arc4random 3
+.It Xr arc4random_buf 3
+.It Xr arc4random_uniform 3
 These functions are provided by
 .Nm glibc
 2.36.
 Note that it does not provide the
-.Fn arc4random_stir 3
+.Xr arc4random_stir 3
 and
-.Fn arc4random_addrandom 3
+.Xr arc4random_addrandom 3
 functions.
 .El
 .Sh SEE ALSO
