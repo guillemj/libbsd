@@ -1,3 +1,11 @@
+.vpath-tests:
+  script:
+    - ./autogen
+    - mkdir -p build-tree
+    - cd build-tree
+    - ../configure
+    - make check
+
 .unit-tests:
   script:
     - ./autogen && ./configure
@@ -29,6 +37,9 @@
   before_script:
     - apk add --no-cache git gcc make autoconf automake libtool
               bsd-compat-headers linux-headers libmd-dev musl-dev gcovr
+
+vpath-tests:debian:
+  extends: [.debian, .vpath-tests]
 
 unit-tests:debian:
   extends: [.debian, .unit-tests-asan]
