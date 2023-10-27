@@ -13,6 +13,7 @@
     - ./autogen && ./configure --disable-static
     - make check CFLAGS="--coverage -O0 -ggdb" LDFLAGS="--coverage -O0 -ggdb"
     - gcovr -s -e test/
+  coverage: /^TOTAL.*\s+(\d+\%)$/
 
 .debian:
   image: debian:latest
