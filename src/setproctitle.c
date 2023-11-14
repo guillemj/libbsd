@@ -284,7 +284,7 @@ setproctitle_impl(const char *fmt, ...)
 
 	if (nul < SPT.nul) {
 		*SPT.nul = '.';
-	} else if (nul == SPT.nul && &nul[1] < SPT.end) {
+	} else if (nul == SPT.nul && (nul + 1) < SPT.end) {
 		*SPT.nul = ' ';
 		*++nul = '\0';
 	}
