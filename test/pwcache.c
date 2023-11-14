@@ -50,8 +50,10 @@ main(int argc, char **argv)
 	assert(uname != NULL);
 
 	gr = getgrgid(0);
-	if (gr == NULL)
+	if (gr == NULL) {
+		free(uname);
 		return TEST_SKIP;
+	}
 	gname = strdup(gr->gr_name);
 	assert(gname != NULL);
 
