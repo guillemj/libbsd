@@ -14,7 +14,7 @@
 .\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 .\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 .\"
-.Dd $Mdocdate: May 31 2007 $
+.Dd $Mdocdate: January 7 2024 $
 .Dt strlcpy 3bsd
 .Os
 .Sh NAME
@@ -192,6 +192,7 @@ and
 functions first appeared in
 .Ox 2.4 ,
 and made their appearance in
-.Nx 1.4.3
+.Nx 1.4.3 ,
+.Fx 3.3
 and
-.Fx 3.3 .
+glibc 2.38.

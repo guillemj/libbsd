@@ -41,7 +41,8 @@
 #include <sys/types.h>
 
 __BEGIN_DECLS
-#ifndef __APPLE__
+#if !defined(__APPLE__) && \
+    (!defined(__GLIBC__) || !__GLIBC_PREREQ(2, 38) || !defined(_DEFAULT_SOURCE))
 size_t strlcpy(char *dst, const char *src, size_t siz);
 size_t strlcat(char *dst, const char *src, size_t siz);
 #endif

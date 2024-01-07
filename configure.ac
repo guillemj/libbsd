@@ -267,6 +267,11 @@ need_id_from_name=yes
 need_fpurge=yes
 need_funopen=yes
 AS_CASE([$host_os],
+  [*-gnu*], [
+    # On glibc >= 2.38, strlcpy() and strlcat() got added,
+    # so these could then be dropped on the next SOVERSION bump.
+    #need_strl=no
+  ],
   [*-musl*], [
     # On musl >= 0.5.0, strlcpy() and strlcat() were already implemented,
     # so these can then be dropped on the next SOVERSION bump.
