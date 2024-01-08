@@ -723,7 +723,7 @@ strvis(char *mbdst, const char *mbsrc, int flags)
  * existing one in OpenBSD and Freedesktop's libbsd (the former having existed
  * for over ten years). Despite this incompatibility being reported during
  * development (see http://gnats.netbsd.org/44977) they still shipped it.
- * Even more unfortunately FreeBSD and later MacOS picked up this incompatible
+ * Even more unfortunately FreeBSD and later macOS picked up this incompatible
  * implementation.
  *
  * Provide both implementations and default for now on the historical one to
