@@ -168,11 +168,10 @@ functions first appeared in
 .Sh BUGS
 The
 .Fn funopen
-function
-may not be portable to systems other than
-.Bx
-and glibc-based (as the libbsd implementation is only provided when the
-system has
+function may not be portable to systems other than
+.Bx ,
+glibc- and musl-based ones
+(as the libbsd implementation is only provided when the system has
 .Fn fopencookie
 available).
 .Pp

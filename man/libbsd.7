@@ -200,7 +200,7 @@ and
 .St -p1003.1-2001 .
 .It Xr funopen 3bsd
 Unportable, requires assistance from the stdio layer or some hook framework.
-On GNU systems the
+On glibc- and musl-based systems the
 .Xr fopencookie 3
 function can be used.
 Otherwise the code needs to be prepared for neither of these functions being
