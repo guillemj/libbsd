@@ -40,6 +40,12 @@ main(int argc, char *argv[])
 	fd = open("/dev/null", O_RDONLY);
 
 	fd_max = 1024;
+
+	/* First make sure we have a clean fd list. */
+	for (i = 4; i < fd_max; i++)
+		close(i);
+
+	/* Then initialize each even fd. */
 	for (i = 4; i < fd_max; i *= 2) {
 		int fd_new = dup2(fd, i);
 
