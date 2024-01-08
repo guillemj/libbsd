@@ -76,7 +76,7 @@ The package also provides a
 .Nm libbsd-ctor
 static library that can be used to inject automatic constructors into a
 program so that the
-.Xr setproctitle_init 3
+.Xr setproctitle_init 3bsd
 function gets invoked automatically at startup time.
 This can be done with the
 .Xr pkgconf 1
@@ -136,13 +136,13 @@ at build-time.
 This is the list of functions that provide multiple implementations:
 .Pp
 .Bl -tag -width 4m -compact
-.It Fn strnvis 3
-.It Fn strnunvis 3
+.It Xr strnvis 3bsd
+.It Xr strnunvis 3bsd
 .Nx
 added
-.Xr strnvis 3
+.Xr strnvis 3bsd
 and
-.Xr strnunvis 3
+.Xr strnunvis 3bsd
 but unfortunately made it incompatible with the existing one in
 .Ox
 and Freedesktop's libbsd (the former having existed for over ten years).
@@ -156,7 +156,7 @@ Provide both implementations and default for now to the historical one to
 avoid breakage, but we will switch to the
 .Nx
 one in a later release, which is internally consistent with the other
-.Xr vis 3
+.Xr vis 3bsd
 functions and is now more widespread.
 Define
 .Dv LIBBSD_NETBSD_VIS
@@ -178,7 +178,7 @@ or non-buggy way; or because there are better more portable replacements now.
 .Pp
 This is the list of currently deprecated macros and functions:
 .Bl -tag -width 4m
-.It Fn fgetln 3
+.It Xr fgetln 3bsd
 Unportable, requires assistance from the stdio layer.
 An implementation has to choose between leaking buffers or being reentrant
 for a limited amount of streams (this implementation chose the latter with
@@ -187,7 +187,7 @@ Use
 .Xr getline 3
 instead, which is available in many systems and required by
 .St -p1003.1-2008 .
-.It Fn fgetwln 3
+.It Xr fgetwln 3bsd
 Unportable, requires assistance from the stdio layer.
 An implementation has to choose between leaking buffers or being reentrant
 for a limited amount of streams (this implementation chose the latter with
@@ -198,7 +198,7 @@ instead, which is available in many systems and required by
 .St -isoC-99
 and
 .St -p1003.1-2001 .
-.It Fn funopen 3
+.It Xr funopen 3bsd
 Unportable, requires assistance from the stdio layer or some hook framework.
 On GNU systems the
 .Xr fopencookie 3
@@ -215,26 +215,26 @@ are present in all major
 for example.
 .Pp
 .Bl -tag -width 4m -compact
-.It Fn MD5Init 3
-.It Fn MD5Update 3
-.It Fn MD5Pad 3
-.It Fn MD5Final 3
-.It Fn MD5Transform 3
-.It Fn MD5End 3
-.It Fn MD5File 3
-.It Fn MD5FileChunk 3
-.It Fn MD5Data 3
+.It Xr MD5Init 3
+.It Xr MD5Update 3
+.It Xr MD5Pad 3
+.It Xr MD5Final 3
+.It Xr MD5Transform 3
+.It Xr MD5End 3
+.It Xr MD5File 3
+.It Xr MD5FileChunk 3
+.It Xr MD5Data 3
 The set of MD5 digest functions are now proxies for the implementations
 provided by the
 .Nm libmd
 companion library, so it is advised to switch to use that directly instead.
-.It Fn explicit_bzero 3
+.It Xr explicit_bzero 3bsd
 This function is provided by
 .Nm glibc
 2.25, and
 .Nm musl
 1.1.20.
-.It Fn reallocarray 3
+.It Xr reallocarray 3bsd
 This function is provided by
 .Nm glibc
 2.26, and
@@ -244,16 +244,16 @@ This function is provided by
 This function is provided by
 .Nm glibc
 2.34.
-.It Xr arc4random 3
-.It Xr arc4random_buf 3
-.It Xr arc4random_uniform 3
+.It Xr arc4random 3bsd
+.It Xr arc4random_buf 3bsd
+.It Xr arc4random_uniform 3bsd
 These functions are provided by
 .Nm glibc
 2.36.
 Note that it does not provide the
-.Xr arc4random_stir 3
+.Xr arc4random_stir 3bsd
 and
-.Xr arc4random_addrandom 3
+.Xr arc4random_addrandom 3bsd
 functions.
 .It Xr strlcpy 3bsd
 .It Xr strlcat 3bsd
