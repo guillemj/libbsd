@@ -22,5 +22,7 @@ strl
 strmode
 strnstr
 strtonum
+timeconv32
+timeconv64
 vis
 vis-openbsd

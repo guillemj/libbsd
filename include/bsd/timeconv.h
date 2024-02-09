@@ -58,4 +58,17 @@ time_t _long_to_time(long tlong);
 int _time_to_int(time_t t);
 time_t _int_to_time(int tint);
 
+#if LIBBSD_SYS_TIME_BITS == 32 && LIBBSD_SYS_HAS_TIME64
+#if defined _TIME_BITS &&  _TIME_BITS == 64
+time_t LIBBSD_REDIRECT(_time32_to_time, (int32_t t32), _time32_to_time_time64);
+int32_t LIBBSD_REDIRECT(_time_to_time32, (time_t t), _time_to_time32_time64);
+time_t LIBBSD_REDIRECT(_time64_to_time, (int64_t t64), _time64_to_time_time64);
+int64_t LIBBSD_REDIRECT(_time_to_time64, (time_t t), _time_to_time64_time64);
+long LIBBSD_REDIRECT(_time_to_long, (time_t t), _time_to_long_time64);
+time_t LIBBSD_REDIRECT(_long_to_time, (long tlong), _long_to_time_time64);
+int LIBBSD_REDIRECT(_time_to_int, (time_t t), _time_to_int_time64);
+time_t LIBBSD_REDIRECT(_int_to_time, (int tint), _int_to_time_time64);
+#endif
+#endif
+
 #endif /* LIBBSD_TIMECONV_H */

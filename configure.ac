@@ -29,6 +29,7 @@ user_CFLAGS=${CFLAGS-unset}
 # Checks for operating system services and capabilities.
 AC_USE_SYSTEM_EXTENSIONS
 AC_SYS_LARGEFILE
+LIBBSD_SYS_TIME64
 
 AM_PROG_AR
 LT_INIT

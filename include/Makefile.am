@@ -75,3 +75,14 @@ nobase_include_HEADERS += \
 	bsd/vis.h \
 	# EOL
 endif
+
+do_header_subst = $(AM_V_GEN) $(SED) \
+	-e 's:^//\(.define LIBBSD_SYS_TIME_BITS\).*:\1 $(LIBBSD_SYS_TIME_BITS):' \
+	-e 's:^//\(.define LIBBSD_SYS_HAS_TIME64\).*:\1 $(LIBBSD_SYS_HAS_TIME64):' \
+	# EOL
+
+install-data-hook:
+	$(do_header_subst) <$(DESTDIR)$(includedir)/bsd/sys/cdefs.h \
+	                   >$(DESTDIR)$(includedir)/bsd/sys/cdefs.h.new
+	mv  $(DESTDIR)$(includedir)/bsd/sys/cdefs.h.new \
+	    $(DESTDIR)$(includedir)/bsd/sys/cdefs.h

@@ -182,4 +182,12 @@ check_PROGRAMS += \
 	# EOL
 endif
 
+if LIBBSD_SYS_IS_TIME32
+check_PROGRAMS += timeconv32
+endif
+
+if LIBBSD_SYS_HAS_TIME64
+check_PROGRAMS += timeconv64
+endif
+
 TESTS = $(check_SCRIPTS) $(check_PROGRAMS)

@@ -305,4 +305,15 @@ LIBBSD_0.12.0 {
     vasprintf;
     asprintf;
 #endif
+
+#if LIBBSD_ABI_TIMECONV && LIBBSD_ABI_TIME64
+    _time32_to_time_time64;
+    _time_to_time32_time64;
+    _time64_to_time_time64;
+    _time_to_time64_time64;
+    _time_to_long_time64;
+    _long_to_time_time64;
+    _time_to_int_time64;
+    _int_to_time_time64;
+#endif
 } LIBBSD_0.11.0;

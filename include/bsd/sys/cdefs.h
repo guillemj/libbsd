@@ -86,6 +86,10 @@
 #define _SYS_CDEFS_H
 #endif
 
+/* Define the ABI for the current system. */
+//#define LIBBSD_SYS_TIME_BITS 0
+//#define LIBBSD_SYS_HAS_TIME64 0
+
 #define LIBBSD_CONCAT(x, y)	x ## y
 #define LIBBSD_STRING(x)	#x
 
