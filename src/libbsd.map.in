@@ -1,3 +1,5 @@
+#include "config.h"
+
 LIBBSD_0.0 {
   global:
     arc4random;

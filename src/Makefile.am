@@ -28,7 +28,7 @@ libbsd_la_included_sources = \
 
 CLEANFILES =
 EXTRA_DIST = \
-	libbsd.map \
+	libbsd.map.in \
 	libbsd.pc.in \
 	libbsd-ctor.pc.in \
 	libbsd-overlay.pc.in \
@@ -53,6 +53,7 @@ endif
 EXTRA_libbsd_la_DEPENDENCIES = \
 	$(libbsd_la_included_sources) \
 	libbsd.map \
+	libbsd.map.in \
 	# EOL
 libbsd_la_LIBADD = \
 	$(MD5_LIBS) \
@@ -64,7 +65,7 @@ libbsd_la_LDFLAGS = \
 	# EOL
 if HAVE_LINKER_VERSION_SCRIPT
 libbsd_la_LDFLAGS += \
-	-Wl,--version-script=$(srcdir)/libbsd.map \
+	-Wl,--version-script=libbsd.map \
 	# EOL
 else
 libbsd_la_LDFLAGS += \
@@ -194,11 +195,17 @@ endif
 
 DISTCLEANFILES = \
 	libbsd.sym \
+	libbsd.map \
 	# EOL
 
 libbsd_ctor_a_SOURCES = \
 	setproctitle_ctor.c \
 	# EOL
+
+# Generate the library map file with the pre-processor to selectively include
+# symbols depending on the host system, otherwise some linkers might fail.
+libbsd.map: libbsd.map.in
+	$(CPP) $(AM_CPPFLAGS) $(CPPFLAGS) -P - <$(srcdir)/libbsd.map.in >$@
 
 # Generate a simple libtool symbol export list to be used as a fallback if
 # there is no version script support.

@@ -11,6 +11,7 @@ ChangeLog
 *.gcda
 *.gcno
 *.sym
+*.map
 .dirstamp
 .deps/
 .libs/
