@@ -2,44 +2,71 @@
 
 LIBBSD_0.0 {
   global:
+#if LIBBSD_ABI_ARC4RANDOM
     arc4random;
+#endif
+#if LIBBSD_ABI_ARC4RANDOM_STIR
     arc4random_stir;
     arc4random_addrandom;
+#endif
 
+#if LIBBSD_ABI_BSD_GETOPT
     bsd_getopt;
     optreset;
+#endif
 
+#if LIBBSD_ABI_ERRC
     errc;
     warnc;
     verrc;
     vwarnc;
+#endif
 
+#if LIBBSD_ABI_FGETLN
     fgetln;
+#endif
+
+#if LIBBSD_ABI_FMTCHECK
     fmtcheck;
+#endif
+
+#if LIBBSD_ABI_SORT
     heapsort;
+#endif
+
+#if LIBBSD_ABI_HUMANIZE_NUMBER
     humanize_number;
+#endif
 
-    /* XXX: Already provided by glibc, remove. */
+#if LIBBSD_ABI_INET_NET_PTON
     inet_net_pton;
+#endif
 
+#if LIBBSD_ABI_PROGNAME
     getprogname;
     setprogname;
+#endif
 
+#if LIBBSD_ABI_STRL
     strlcpy;
     strlcat;
+#endif
 
+#if LIBBSD_ABI_ACCMODE
     setmode;
     getmode;
+#endif
 
+#if LIBBSD_ABI_VIS
     vis;
     strvis;
     strvisx;
     unvis;
     strunvis;
     strunvisx;
+#endif
 
-    /* The following functions are provided via the system libc or libmd
-     * implementations. */
+#if LIBBSD_ABI_MD5
     MD5Init;
     MD5Update;
     MD5Pad;
@@ -49,89 +76,138 @@ LIBBSD_0.0 {
     MD5File;
     MD5FileChunk;
     MD5Data;
+#endif
 
   local:
     *;
 };
 
 LIBBSD_0.1 {
+#if LIBBSD_ABI_STRMODE
     strmode;
+#endif
 
+#if LIBBSD_ABI_NLIST
     /* Private symbol, but libkvm uses it. */
     __fdnlist;
     nlist;
+#endif
 } LIBBSD_0.0;
 
 LIBBSD_0.2 {
+#if LIBBSD_ABI_STRTONUM
     strtonum;
+#endif
 
+#if LIBBSD_ABI_VIS
     strnvis;
     strnunvis;
+#endif
 
+#if LIBBSD_ABI_HUMANIZE_NUMBER
     dehumanize_number;
+#endif
 
+#if LIBBSD_ABI_READPASSPHRASE
     readpassphrase;
+#endif
 
+#if LIBBSD_ABI_FLOPEN
     flopen;
+#endif
 
+#if LIBBSD_ABI_PIDFILE
     pidfile_open;
     pidfile_write;
     pidfile_close;
     pidfile_remove;
+#endif
 
+#if LIBBSD_ABI_ARC4RANDOM
     arc4random_buf;
     arc4random_uniform;
+#endif
 } LIBBSD_0.1;
 
 LIBBSD_0.3 {
+#if LIBBSD_ABI_REALLOCF
     reallocf;
-    getpeereid;
+#endif
 
+#if LIBBSD_ABI_GETPEEREID
+    getpeereid;
+#endif
+
+#if LIBBSD_ABI_SORT
     mergesort;
     radixsort;
     sradixsort;
+#endif
 
+#if LIBBSD_ABI_FPURGE
     fpurge;
+#endif
 } LIBBSD_0.2;
 
 LIBBSD_0.4 {
+#if LIBBSD_ABI_CLOSEFROM
     closefrom;
+#endif
+
+#if LIBBSD_ABI_EXPAND_NUMBER
     expand_number;
+#endif
 } LIBBSD_0.3;
 
 LIBBSD_0.5 {
+#if LIBBSD_ABI_FGETLN
     fgetwln;
     fparseln;
+#endif
 
+#if LIBBSD_ABI_PROCTITLE
     /* Introduced in 0.2 as a stub, implemented in 0.5. */
     setproctitle;
+#endif
 
+#if LIBBSD_ABI_STRNSTR
     strnstr;
+#endif
 
+#if LIBBSD_ABI_WCSL
     wcslcat;
     wcslcpy;
+#endif
 } LIBBSD_0.4;
 
 LIBBSD_0.6 {
+#if LIBBSD_ABI_PROCTITLE
     /* Exported to cope with the constructor+dlopen+threads mess. */
     setproctitle_init;
+#endif
 } LIBBSD_0.5;
 
 LIBBSD_0.7 {
+#if LIBBSD_ABI_GETBSIZE
     getbsize;
+#endif
 
-    /* This symbol might not be present on some specific systems, such
-     * as musl based ones. It might need to be removed on SOVERSION bump,
-     * as it cannot be portabily implemented everywhere. */
+#if LIBBSD_ABI_FUNOPEN
     funopen;
+#endif
 
+#if LIBBSD_ABI_REALLOCARRAY
     reallocarray;
+#endif
 
+#if LIBBSD_ABI_STRINGLIST
     sl_init;
     sl_add;
     sl_free;
     sl_find;
+#endif
 
+#if LIBBSD_ABI_TIMECONV
     _time32_to_time;
     _time_to_time32;
     _time64_to_time;
@@ -140,20 +216,30 @@ LIBBSD_0.7 {
     _long_to_time;
     _time_to_int;
     _int_to_time;
+#endif
 } LIBBSD_0.6;
 
 LIBBSD_0.8 {
+#if LIBBSD_ABI_EXPLICIT_BZERO
     explicit_bzero;
+#endif
 } LIBBSD_0.7;
 
 LIBBSD_0.9 {
+#if LIBBSD_ABI_FLOPEN
     flopenat;
+#endif
 
+#if LIBBSD_ABI_PIDFILE
     pidfile_fileno;
+#endif
 
+#if LIBBSD_ABI_STRTOX
     strtoi;
     strtou;
+#endif
 
+#if LIBBSD_ABI_VIS
     nvis;
     snvis;
     stravis;
@@ -165,19 +251,21 @@ LIBBSD_0.9 {
     strsvis;
     strsvisx;
     svis;
+#endif
 } LIBBSD_0.8;
 
 LIBBSD_0.9.1 {
+#if LIBBSD_ABI_VIS
     /* The strnvis() and strnunvis() symbols changed prototype to match
      * the NetBSD implementation. Provided as versioned nodes in 0.9.1, and
      * exposed here explicitly so that we can redirect at compile-time. */
     strnvis_netbsd;
     strnunvis_netbsd;
+#endif
 } LIBBSD_0.9;
 
 LIBBSD_0.10.0 {
-    /* These BSD extensions are available on GNU systems, but not on other
-     * systems such as Windows or musl libc based ones. */
+#if LIBBSD_ABI_ERR
     vwarn;
     vwarnx;
     warn;
@@ -186,16 +274,28 @@ LIBBSD_0.10.0 {
     verrx;
     err;
     errx;
+#endif
 } LIBBSD_0.9.1;
 
 LIBBSD_0.11.0 {
+#if LIBBSD_ABI_VIS
     strnvisx;
+#endif
 
+#if LIBBSD_ABI_RECALLOCARRAY
     recallocarray;
-    freezero;
+#endif
 
+#if LIBBSD_ABI_FREEZERO
+    freezero;
+#endif
+
+#if LIBBSD_ABI_ID_FROM_NAME
     gid_from_group;
-    group_from_gid;
     uid_from_user;
+#endif
+#if LIBBSD_ABI_NAME_FROM_ID
     user_from_uid;
+    group_from_gid;
+#endif
 } LIBBSD_0.10.0;

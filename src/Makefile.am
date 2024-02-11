@@ -76,42 +76,15 @@ EXTRA_libbsd_la_DEPENDENCIES += \
 	# EOL
 endif
 libbsd_la_SOURCES = \
-	closefrom.c \
-	dehumanize_number.c \
-	expand_number.c \
-	explicit_bzero.c \
-	fgetln.c \
-	fgetwln.c \
-	flopen.c \
-	fmtcheck.c \
-	fparseln.c \
-	freezero.c \
-	getbsize.c \
-	getpeereid.c \
-	heapsort.c \
-	humanize_number.c \
-	inet_net_pton.c \
 	local-elf.h \
 	local-link.h \
-	merge.c \
-	pidfile.c \
-	pwcache.c \
-	radixsort.c \
-	readpassphrase.c \
-	reallocarray.c \
-	reallocf.c \
-	recallocarray.c \
-	setmode.c \
-	setproctitle.c \
-	stringlist.c \
-	strnstr.c \
-	strtoi.c \
-	strtonum.c \
-	strtou.c \
-	timeconv.c \
-	unvis.c \
-	vis.c \
 	# EOL
+
+if ABI_ACCMODE
+libbsd_la_SOURCES += \
+	setmode.c \
+	# EOL
+endif
 
 if ABI_ARC4RANDOM
 if !HAVE_GETENTROPY
@@ -136,6 +109,12 @@ libbsd_la_SOURCES += \
 	# EOL
 endif
 
+if ABI_CLOSEFROM
+libbsd_la_SOURCES += \
+	closefrom.c \
+	# EOL
+endif
+
 if ABI_ERR
 libbsd_la_SOURCES += \
 	err.c \
@@ -148,15 +127,78 @@ libbsd_la_SOURCES += \
 	# EOL
 endif
 
+if ABI_EXPAND_NUMBER
+libbsd_la_SOURCES += \
+	expand_number.c \
+	# EOL
+endif
+
+if ABI_EXPLICIT_BZERO
+libbsd_la_SOURCES += \
+	explicit_bzero.c \
+	# EOL
+endif
+
+if ABI_FGETLN
+libbsd_la_SOURCES += \
+	fgetln.c \
+	fgetwln.c \
+	fparseln.c \
+	# EOL
+endif
+
+if ABI_FLOPEN
+libbsd_la_SOURCES += \
+	flopen.c \
+	# EOL
+endif
+
+if ABI_FMTCHECK
+libbsd_la_SOURCES += \
+	fmtcheck.c \
+	# EOL
+endif
+
 if ABI_FPURGE
 libbsd_la_SOURCES += \
 	fpurge.c \
 	# EOL
 endif
 
+if ABI_FREEZERO
+libbsd_la_SOURCES += \
+	freezero.c \
+	# EOL
+endif
+
 if ABI_FUNOPEN
 libbsd_la_SOURCES += \
 	funopen.c \
+	# EOL
+endif
+
+if ABI_GETBSIZE
+libbsd_la_SOURCES += \
+	getbsize.c \
+	# EOL
+endif
+
+if ABI_GETPEEREID
+libbsd_la_SOURCES += \
+	getpeereid.c \
+	# EOL
+endif
+
+if ABI_HUMANIZE_NUMBER
+libbsd_la_SOURCES += \
+	dehumanize_number.c \
+	humanize_number.c \
+	# EOL
+endif
+
+if ABI_INET_NET_PTON
+libbsd_la_SOURCES += \
+	inet_net_pton.c \
 	# EOL
 endif
 
@@ -172,9 +214,65 @@ libbsd_la_SOURCES += \
 	# EOL
 endif
 
+if ABI_PIDFILE
+libbsd_la_SOURCES += \
+	pidfile.c \
+	# EOL
+endif
+
+if ABI_PROCTITLE
+libbsd_la_SOURCES += \
+	setproctitle.c \
+	# EOL
+endif
+
 if ABI_PROGNAME
 libbsd_la_SOURCES += \
 	progname.c \
+	# EOL
+endif
+
+if ABI_PWCACHE
+libbsd_la_SOURCES += \
+	pwcache.c \
+	# EOL
+endif
+
+if ABI_READPASSPHRASE
+libbsd_la_SOURCES += \
+	readpassphrase.c \
+	# EOL
+endif
+
+if ABI_REALLOCARRAY
+libbsd_la_SOURCES += \
+	reallocarray.c \
+	# EOL
+endif
+
+if ABI_REALLOCF
+libbsd_la_SOURCES += \
+	reallocf.c \
+	# EOL
+endif
+
+if ABI_RECALLOCARRAY
+libbsd_la_SOURCES += \
+	recallocarray.c \
+	# EOL
+endif
+
+if ABI_SORT
+libbsd_la_SOURCES += \
+	heapsort.c \
+	merge.c \
+	radixsort.c \
+	# EOL
+endif
+
+if ABI_STRINGLIST
+libbsd_la_SOURCES += \
+	stringlist.c \
 	# EOL
 endif
 
@@ -188,6 +286,38 @@ endif
 if ABI_STRMODE
 libbsd_la_SOURCES += \
 	strmode.c \
+	# EOL
+endif
+
+if ABI_STRNSTR
+libbsd_la_SOURCES += \
+	strnstr.c \
+	# EOL
+endif
+
+if ABI_STRTONUM
+libbsd_la_SOURCES += \
+	strtonum.c \
+	# EOL
+endif
+
+if ABI_STRTOX
+libbsd_la_SOURCES += \
+	strtoi.c \
+	strtou.c \
+	# EOL
+endif
+
+if ABI_TIMECONV
+libbsd_la_SOURCES += \
+	timeconv.c \
+	# EOL
+endif
+
+if ABI_VIS
+libbsd_la_SOURCES += \
+	unvis.c \
+	vis.c \
 	# EOL
 endif
 

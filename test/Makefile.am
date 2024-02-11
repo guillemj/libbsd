@@ -33,21 +33,14 @@ check_SCRIPTS = \
 
 check_PROGRAMS = \
 	overlay \
-	bzero \
-	closefrom \
 	endian \
-	explicit_bzero \
-	humanize \
-	fgetln \
-	fparseln \
-	proctitle-init \
-	pwcache \
-	setmode \
-	strnstr \
-	strtonum \
-	vis \
-	vis-openbsd \
 	# EOL
+
+if ABI_ACCMODE
+check_PROGRAMS += \
+	setmode \
+	# EOL
+endif
 
 if ABI_ARC4RANDOM
 if HAVE_LIBTESTU01
@@ -56,6 +49,25 @@ check_PROGRAMS += arc4random
 arc4random_LDADD = $(LDADD) $(TESTU01_LIBS)
 endif
 endif
+
+if ABI_CLOSEFROM
+check_PROGRAMS += \
+	closefrom \
+	# EOL
+endif
+
+if ABI_EXPLICIT_BZERO
+check_PROGRAMS += \
+	bzero \
+	explicit_bzero \
+	# EOL
+endif
+
+if ABI_FGETLN
+check_PROGRAMS += \
+	fgetln \
+	fparseln \
+	# EOL
 
 fgetln_SOURCES = \
 	test-stream.c \
@@ -70,6 +82,21 @@ fparseln_SOURCES = \
 	test-stream.h \
 	fparseln.c \
 	# EOL
+endif
+
+if ABI_FPURGE
+check_PROGRAMS += fpurge
+endif
+
+if ABI_FUNOPEN
+check_PROGRAMS += funopen
+endif
+
+if ABI_HUMANIZE_NUMBER
+check_PROGRAMS += \
+	humanize \
+	# EOL
+endif
 
 if ABI_FPURGE
 check_PROGRAMS += fpurge
@@ -92,6 +119,15 @@ if ABI_NLIST
 check_PROGRAMS += nlist
 endif
 
+if ABI_PROGNAME
+check_PROGRAMS += progname
+endif
+
+if ABI_PROCTITLE
+check_PROGRAMS += \
+	proctitle-init \
+	# EOL
+
 proctitle_init_SOURCES = \
 	proctitle.c \
 	# EOL
@@ -107,6 +143,13 @@ proctitle_LDFLAGS = \
 	$(top_builddir)/src/libbsd.la \
 	# EOL
 endif
+endif
+
+if ABI_PWCACHE
+check_PROGRAMS += \
+	pwcache \
+	# EOL
+endif
 
 if ABI_PROGNAME
 check_PROGRAMS += progname
@@ -118,6 +161,25 @@ endif
 
 if ABI_STRMODE
 check_PROGRAMS += strmode
+endif
+
+if ABI_STRNSTR
+check_PROGRAMS += \
+	strnstr \
+	# EOL
+endif
+
+if ABI_STRTONUM
+check_PROGRAMS += \
+	strtonum \
+	# EOL
+endif
+
+if ABI_VIS
+check_PROGRAMS += \
+	vis \
+	vis-openbsd \
+	# EOL
 endif
 
 TESTS = $(check_SCRIPTS) $(check_PROGRAMS)

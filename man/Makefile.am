@@ -143,11 +143,6 @@ dist_man_MANS = \
 	TAILQ_SWAP.3bsd \
 	TIMESPEC_TO_TIMEVAL.3bsd \
 	TIMEVAL_TO_TIMESPEC.3bsd \
-	arc4random.3bsd \
-	arc4random_addrandom.3bsd \
-	arc4random_buf.3bsd \
-	arc4random_stir.3bsd \
-	arc4random_uniform.3bsd \
 	be16dec.3bsd \
 	be16enc.3bsd \
 	be32dec.3bsd \
@@ -166,21 +161,6 @@ dist_man_MANS = \
 	bitstr_size.3bsd \
 	bitstring.3bsd \
 	byteorder.3bsd \
-	closefrom.3bsd \
-	dehumanize_number.3bsd \
-	expand_number.3bsd \
-	explicit_bzero.3bsd \
-	fgetln.3bsd \
-	fgetwln.3bsd \
-	flopen.3bsd \
-	fmtcheck.3bsd \
-	fparseln.3bsd \
-	freezero.3bsd \
-	getbsize.3bsd \
-	getmode.3bsd \
-	getpeereid.3bsd \
-	heapsort.3bsd \
-	humanize_number.3bsd \
 	le16dec.3bsd \
 	le16enc.3bsd \
 	le32dec.3bsd \
@@ -188,38 +168,7 @@ dist_man_MANS = \
 	le64dec.3bsd \
 	le64enc.3bsd \
 	libbsd.7 \
-	mergesort.3bsd \
-	pidfile.3bsd \
-	pidfile_close.3bsd \
-	pidfile_open.3bsd \
-	pidfile_remove.3bsd \
-	pidfile_write.3bsd \
-	pwcache.3bsd \
 	queue.3bsd \
-	radixsort.3bsd \
-	readpassphrase.3bsd \
-	reallocarray.3bsd \
-	reallocf.3bsd \
-	recallocarray.3bsd \
-	setmode.3bsd \
-	setproctitle.3bsd \
-	setproctitle_init.3bsd \
-	sl_add.3bsd \
-	sl_delete.3bsd \
-	sl_find.3bsd \
-	sl_free.3bsd \
-	sl_init.3bsd \
-	sradixsort.3bsd \
-	stringlist.3bsd \
-	strnstr.3bsd \
-	strnunvis.3bsd \
-	strnvis.3bsd \
-	strtoi.3bsd \
-	strtonum.3bsd \
-	strtou.3bsd \
-	strunvis.3bsd \
-	strvis.3bsd \
-	strvisx.3bsd \
 	timeradd.3bsd \
 	timerclear.3bsd \
 	timercmp.3bsd \
@@ -233,13 +182,66 @@ dist_man_MANS = \
 	timespecsub.3bsd \
 	timeval.3bsd \
 	tree.3bsd \
-	unvis.3bsd \
-	vis.3bsd \
 	# EOL
+
+if ABI_ACCMODE
+dist_man_MANS += \
+	getmode.3bsd \
+	setmode.3bsd \
+	# EOL
+endif
+
+if ABI_ARC4RANDOM
+dist_man_MANS += \
+	arc4random.3bsd \
+	arc4random_addrandom.3bsd \
+	arc4random_buf.3bsd \
+	arc4random_stir.3bsd \
+	arc4random_uniform.3bsd \
+	# EOL
+endif
+
+if ABI_CLOSEFROM
+dist_man_MANS += \
+	closefrom.3bsd \
+	# EOL
+endif
 
 if ABI_ERRC
 dist_man_MANS += \
 	errc.3bsd \
+	# EOL
+endif
+
+if ABI_EXPAND_NUMBER
+dist_man_MANS += \
+	expand_number.3bsd \
+	# EOL
+endif
+
+if ABI_EXPLICIT_BZERO
+dist_man_MANS += \
+	explicit_bzero.3bsd \
+	# EOL
+endif
+
+if ABI_FGETLN
+dist_man_MANS += \
+	fgetln.3bsd \
+	fgetwln.3bsd \
+	fparseln.3bsd \
+	# EOL
+endif
+
+if ABI_FLOPEN
+dist_man_MANS += \
+	flopen.3bsd \
+	# EOL
+endif
+
+if ABI_FMTCHECK
+dist_man_MANS += \
+	fmtcheck.3bsd \
 	# EOL
 endif
 
@@ -249,9 +251,34 @@ dist_man_MANS += \
 	# EOL
 endif
 
+if ABI_FREEZERO
+dist_man_MANS += \
+	freezero.3bsd \
+	# EOL
+endif
+
 if ABI_FUNOPEN
 dist_man_MANS += \
 	funopen.3bsd \
+	# EOL
+endif
+
+if ABI_GETBSIZE
+dist_man_MANS += \
+	getbsize.3bsd \
+	# EOL
+endif
+
+if ABI_GETPEEREID
+dist_man_MANS += \
+	getpeereid.3bsd \
+	# EOL
+endif
+
+if ABI_HUMANIZE_NUMBER
+dist_man_MANS += \
+	dehumanize_number.3bsd \
+	humanize_number.3bsd \
 	# EOL
 endif
 
@@ -267,6 +294,23 @@ dist_man_MANS += \
 	# EOL
 endif
 
+if ABI_PIDFILE
+dist_man_MANS += \
+	pidfile.3bsd \
+	pidfile_close.3bsd \
+	pidfile_open.3bsd \
+	pidfile_remove.3bsd \
+	pidfile_write.3bsd \
+	# EOL
+endif
+
+if ABI_PROCTITLE
+dist_man_MANS += \
+	setproctitle.3bsd \
+	setproctitle_init.3bsd \
+	# EOL
+endif
+
 if ABI_PROGNAME
 dist_man_MANS += \
 	getprogname.3bsd \
@@ -274,7 +318,9 @@ dist_man_MANS += \
 	# EOL
 endif
 
+if ABI_PWCACHE
 dist_man_MANS += \
+	pwcache.3bsd \
 	gid_from_group.3bsd \
 	uid_from_user.3bsd \
 	# EOL
@@ -283,6 +329,51 @@ if ABI_NAME_FROM_ID
 dist_man_MANS += \
 	group_from_gid.3bsd \
 	user_from_uid.3bsd \
+	# EOL
+endif
+endif
+
+if ABI_READPASSPHRASE
+dist_man_MANS += \
+	readpassphrase.3bsd \
+	# EOL
+endif
+
+if ABI_REALLOCARRAY
+dist_man_MANS += \
+	reallocarray.3bsd \
+	# EOL
+endif
+
+if ABI_REALLOCF
+dist_man_MANS += \
+	reallocf.3bsd \
+	# EOL
+endif
+
+if ABI_RECALLOCARRAY
+dist_man_MANS += \
+	recallocarray.3bsd \
+	# EOL
+endif
+
+if ABI_SORT
+dist_man_MANS += \
+	heapsort.3bsd \
+	mergesort.3bsd \
+	radixsort.3bsd \
+	sradixsort.3bsd \
+	# EOL
+endif
+
+if ABI_STRINGLIST
+dist_man_MANS += \
+	sl_add.3bsd \
+	sl_delete.3bsd \
+	sl_find.3bsd \
+	sl_free.3bsd \
+	sl_init.3bsd \
+	stringlist.3bsd \
 	# EOL
 endif
 
@@ -296,6 +387,37 @@ endif
 if ABI_STRMODE
 dist_man_MANS += \
 	strmode.3bsd \
+	# EOL
+endif
+
+if ABI_STRNSTR
+dist_man_MANS += \
+	strnstr.3bsd \
+	# EOL
+endif
+
+if ABI_STRTOX
+dist_man_MANS += \
+	strtoi.3bsd \
+	strtou.3bsd \
+	# EOL
+endif
+
+if ABI_STRTONUM
+dist_man_MANS += \
+	strtonum.3bsd \
+	# EOL
+endif
+
+if ABI_VIS
+dist_man_MANS += \
+	strnunvis.3bsd \
+	strnvis.3bsd \
+	strunvis.3bsd \
+	strvis.3bsd \
+	strvisx.3bsd \
+	unvis.3bsd \
+	vis.3bsd \
 	# EOL
 endif
 

@@ -12,22 +12,26 @@ nobase_include_HEADERS = \
 	bsd/netinet/ip_icmp.h \
 	bsd/bitstring.h \
 	bsd/bsd.h \
-	bsd/err.h \
-	bsd/getopt.h \
-	bsd/grp.h \
 	bsd/inttypes.h \
 	bsd/libutil.h \
-	bsd/pwd.h \
-	bsd/readpassphrase.h \
 	bsd/stdio.h \
 	bsd/stdlib.h \
 	bsd/string.h \
-	bsd/stringlist.h \
-	bsd/timeconv.h \
 	bsd/unistd.h \
-	bsd/vis.h \
 	bsd/wchar.h \
 	# EOL
+
+if ABI_ERR
+nobase_include_HEADERS += \
+	bsd/err.h \
+	# EOL
+endif
+
+if ABI_BSD_GETOPT
+nobase_include_HEADERS += \
+	bsd/getopt.h \
+	# EOL
+endif
 
 if ABI_MD5
 nobase_include_HEADERS += \
@@ -38,5 +42,36 @@ endif
 if ABI_NLIST
 nobase_include_HEADERS += \
 	bsd/nlist.h \
+	# EOL
+endif
+
+if ABI_READPASSPHRASE
+nobase_include_HEADERS += \
+	bsd/readpassphrase.h \
+	# EOL
+endif
+
+if ABI_PWCACHE
+nobase_include_HEADERS += \
+	bsd/grp.h \
+	bsd/pwd.h \
+	# EOL
+endif
+
+if ABI_STRINGLIST
+nobase_include_HEADERS += \
+	bsd/stringlist.h \
+	# EOL
+endif
+
+if ABI_TIMECONV
+nobase_include_HEADERS += \
+	bsd/timeconv.h \
+	# EOL
+endif
+
+if ABI_VIS
+nobase_include_HEADERS += \
+	bsd/vis.h \
 	# EOL
 endif

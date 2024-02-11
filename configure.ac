@@ -41,91 +41,225 @@ LIBBSD_LINKER_VERSION_SCRIPT
 
 is_windows=no
 
+abi_accmode=unknown
 abi_arc4random=unknown
+abi_arc4random_stir=unknown
 abi_bsd_getopt=unknown
+abi_closefrom=unknown
 abi_err=unknown
 abi_errc=unknown
+abi_expand_number=unknown
+abi_explicit_bzero=unknown
+abi_fgetln=unknown
+abi_flopen=unknown
+abi_fmtcheck=unknown
 abi_fpurge=unknown
+abi_freezero=unknown
 abi_funopen=unknown
+abi_getbsize=unknown
+abi_getpeereid=unknown
+abi_humanize_number=unknown
+abi_id_from_name=unknown
+abi_inet_net_pton=unknown
 abi_md5=unknown
 abi_name_from_id=unknown
 abi_nlist=unknown
+abi_pidfile=unknown
+abi_proctitle=unknown
 abi_progname=unknown
+abi_readpassphrase=unknown
+abi_reallocarray=unknown
+abi_reallocf=unknown
+abi_recallocarray=unknown
+abi_stringlist=unknown
+abi_sort=unknown
 abi_strl=unknown
 abi_strmode=unknown
+abi_strnstr=unknown
+abi_strtonum=unknown
+abi_strtox=unknown
+abi_timeconv=unknown
+abi_vis=unknown
 abi_wcsl=unknown
 
 AS_CASE([$host_os],
   [*-gnu*], [
-    # DROP: On glibc >= 2.36, parts the arc4random() API got added.
+    abi_accmode=yes
+    # DROP: On glibc >= 2.36.
     #abi_arc4random=no
     abi_arc4random=yes
+    abi_arc4random_stir=yes
     abi_bsd_getopt=yes
+    # DROP: On glibc >= 2.34.
+    #abi_closefrom=no
+    abi_closefrom=yes
     abi_err=no
     abi_errc=yes
+    abi_expand_number=yes
+    # DROP: On glibc >= 2.25.
+    #abi_explicit_bzero=no
+    abi_explicit_bzero=yes
+    abi_fgetln=yes
+    abi_flopen=yes
+    abi_fmtcheck=yes
     abi_fpurge=yes
+    abi_freezero=yes
     abi_funopen=yes
+    abi_getbsize=yes
+    abi_getpeereid=yes
+    abi_humanize_number=yes
+    abi_id_from_name=yes
+    # DROP: On glibc.
+    #abi_inet_net_pton=no
+    abi_inet_net_pton=yes
     # DROP: On libmd.
     #abi_md5=no
     abi_md5=yes
     abi_name_from_id=yes
     abi_nlist=yes
+    abi_pidfile=yes
+    abi_proctitle=yes
     abi_progname=yes
+    abi_readpassphrase=yes
+    # DROP: On glibc >= 2.26.
+    #abi_reallocarray=no
+    abi_reallocarray=yes
+    abi_reallocf=yes
+    abi_recallocarray=yes
+    abi_stringlist=yes
+    abi_sort=yes
     # DROP: On glibc >= 2.38.
     #abi_strl=no
     abi_strl=yes
     abi_strmode=yes
+    abi_strnstr=yes
+    abi_strtonum=yes
+    abi_strtox=yes
+    abi_timeconv=yes
+    # DROP: On libmd.
+    abi_transparent_libmd=yes
+    abi_vis=yes
     abi_wcsl=yes
   ],
   [*-musl*], [
+    abi_accmode=yes
     abi_arc4random=yes
+    abi_arc4random_stir=yes
     # DROP: On musl >= 0.9.7, optreset got implemented.
     #abi_bsd_getopt=no
     abi_bsd_getopt=yes
+    abi_closefrom=yes
     abi_err=no
     abi_errc=yes
+    abi_expand_number=yes
+    # DROP: On musl >= 1.1.20.
+    #abi_explicit_bzero=no
+    abi_explicit_bzero=yes
+    # DROP: On musl >= 0.9.4.
+    #abi_fgetln=no
+    abi_fgetln=yes
+    abi_flopen=yes
+    abi_fmtcheck=yes
     abi_fpurge=yes
+    abi_freezero=yes
     # On musl >= 1.1.19, fopencookie() got implemented, and because we were
     # checking for its presence to decide whether to build funopen(), it got
     # included in builds even when previously it had not been included, which
     # is partially an ABI issue, but given that disabling it now would be
     # worse, we'll ignore this as this is only a problem with downgrades. And
     # enable it explicitly
+    #abi_funopen=no
     abi_funopen=yes
+    abi_getbsize=yes
+    abi_getpeereid=yes
+    abi_humanize_number=yes
+    abi_id_from_name=yes
+    abi_inet_net_pton=yes
     # DROP: On libmd.
     #abi_md5=no
     abi_md5=yes
     abi_name_from_id=yes
     abi_nlist=yes
+    abi_pidfile=yes
+    abi_proctitle=yes
     abi_progname=yes
+    abi_readpassphrase=yes
+    # DROP: On musl >= 1.2.2.
+    #abi_reallocarray=no
+    abi_reallocarray=yes
+    abi_reallocf=ues
+    abi_recallocarray=yes
+    abi_stringlist=yes
+    abi_sort=yes
     # DROP: On musl >= 0.5.0, strlcpy() and strlcat() were already implemented.
     #abi_strl=no
     abi_strl=yes
     abi_strmode=yes
+    abi_strnstr=yes
+    abi_strtonum=yes
+    abi_strtox=yes
+    abi_timeconv=yes
+    # DROP: On libmd.
+    abi_transparent_libmd=yes
+    abi_vis=yes
     abi_wcsl=yes
   ],
   [darwin*], [
-    # On macOS these are provided by the system, and libbsd has never built
-    # there, so we can avoid providing these with no ABI breakage.
+    abi_accmode=no
     abi_arc4random=no
+    abi_arc4random_stir=no
     abi_bsd_getopt=no
+    abi_closefrom=yes
     abi_err=no
     abi_errc=no
+    abi_expand_number=yes
+    abi_explicit_bzero=yes
+    abi_fgetln=no
+    abi_flopen=yes
+    abi_fmtcheck=no
     abi_fpurge=no
+    abi_freezero=yes
     abi_funopen=no
+    abi_getbsize=yes
+    abi_getpeereid=no
+    abi_humanize_number=yes
+    abi_id_from_name=yes
+    abi_inet_net_pton=no
+    # On libmd.
     abi_md5=no
     abi_name_from_id=no
     abi_nlist=no
+    abi_pidfile=yes
+    abi_proctitle=yes
     abi_progname=no
+    abi_readpassphrase=no
+    abi_reallocarray=yes
+    abi_reallocf=no
+    abi_recallocarray=yes
+    abi_stringlist=no
+    abi_sort=no
     abi_strl=no
     abi_strmode=no
+    abi_strnstr=no
+    abi_strtonum=no
+    abi_strtox=yes
+    abi_timeconv=no
+    # On libmd.
     abi_transparent_libmd=no
+    abi_vis=no
     abi_wcsl=no
   ],
   [mingw*], [
     is_windows=yes
   ],
 )
+
+# Handle artificial ABI selections that are combinations of others.
+AS_IF([test "$abi_name_from_id" = "yes" || test "$abi_id_from_name" = "yes"], [
+  abi_pwcache=yes
+], [
+  abi_pwcache=no
+])
 
 AM_CONDITIONAL([OS_WINDOWS], [test "x$is_windows" = "xyes"])
 
@@ -308,19 +442,47 @@ AC_CHECK_FUNCS([\
 AM_CONDITIONAL([HAVE_GETENTROPY], [test "x$ac_cv_func_getentropy" = "xyes"])
 
 # ABI selection
+LIBBSD_SELECT_ABI([accmode], [setmode()/getmode()])
 LIBBSD_SELECT_ABI([arc4random], [arc4random() API])
+LIBBSD_SELECT_ABI([arc4random_stir], [arc4random_stir()/arc4random_addrandom()])
 LIBBSD_SELECT_ABI([bsd_getopt], [BSD getopt()])
+LIBBSD_SELECT_ABI([closefrom], [closefrom()])
 LIBBSD_SELECT_ABI([err], [err API])
 LIBBSD_SELECT_ABI([errc], [errc API])
+LIBBSD_SELECT_ABI([expand_number], [expand_number()])
+LIBBSD_SELECT_ABI([explicit_bzero], [explicit_bzero()])
+LIBBSD_SELECT_ABI([fgetln], [fgetln/fgetwln()])
+LIBBSD_SELECT_ABI([flopen], [flopen()/flopenat()])
+LIBBSD_SELECT_ABI([fmtcheck], [fmtcheck()])
 LIBBSD_SELECT_ABI([fpurge], [fpurge()])
+LIBBSD_SELECT_ABI([freezero], [freezero()])
 LIBBSD_SELECT_ABI([funopen], [funopen()])
+LIBBSD_SELECT_ABI([getbsize], [getbsize()])
+LIBBSD_SELECT_ABI([getpeereid], [getpeereid()])
+LIBBSD_SELECT_ABI([humanize_number], [humanize_number()/dehumanize_number()])
+LIBBSD_SELECT_ABI([id_from_name], [uid_from_user()/gid_from_user()])
+LIBBSD_SELECT_ABI([inet_net_pton], [inet_net_pton()])
 LIBBSD_SELECT_ABI([md5], [MD5 digest functions])
 LIBBSD_SELECT_ABI([name_from_id], [user_from_uid()/group_from_gid()])
 LIBBSD_SELECT_ABI([nlist], [nlist()])
+LIBBSD_SELECT_ABI([pidfile], [pidfile API])
+LIBBSD_SELECT_ABI([proctitle], [setproctitle() API])
 LIBBSD_SELECT_ABI([progname], [setprogname()/getprogname()])
+LIBBSD_SELECT_ABI([pwcache], [password cache API])
+LIBBSD_SELECT_ABI([readpassphrase], [readpassphrase()])
+LIBBSD_SELECT_ABI([reallocarray], [reallocarray()])
+LIBBSD_SELECT_ABI([reallocf], [reallocf()])
+LIBBSD_SELECT_ABI([recallocarray], [recallocarray()])
+LIBBSD_SELECT_ABI([stringlist], [stringlist sl_*() API])
+LIBBSD_SELECT_ABI([sort], [BSD sort functions])
 LIBBSD_SELECT_ABI([strl], [strlcpy()/strlcat()])
 LIBBSD_SELECT_ABI([strmode], [strmode()])
+LIBBSD_SELECT_ABI([strnstr], [strnstr()])
+LIBBSD_SELECT_ABI([strtonum], [strtonum()])
+LIBBSD_SELECT_ABI([strtox], [strtoi()/strtou()])
+LIBBSD_SELECT_ABI([timeconv], [timeconf.h API])
 LIBBSD_SELECT_ABI([transparent_libmd], [transparent libmd support])
+LIBBSD_SELECT_ABI([vis], [vis API])
 LIBBSD_SELECT_ABI([wcsl], [wcslcpy()/wcslcat()])
 
 AS_IF([test "x$abi_funopen" = "xno" && \
