@@ -113,30 +113,6 @@ libbsd_la_SOURCES = \
 	vis.c \
 	# EOL
 
-if NEED_ERR
-libbsd_la_SOURCES += \
-	err.c \
-	# EOL
-endif
-
-if NEED_ERRC
-libbsd_la_SOURCES += \
-	errc.c \
-	# EOL
-endif
-
-if NEED_PROGNAME
-libbsd_la_SOURCES += \
-	progname.c \
-	# EOL
-endif
-
-if NEED_BSD_GETOPT
-libbsd_la_SOURCES += \
-	bsd_getopt.c \
-	# EOL
-endif
-
 if NEED_ARC4RANDOM
 if !HAVE_GETENTROPY
 libbsd_la_SOURCES += \
@@ -154,35 +130,21 @@ libbsd_la_SOURCES += \
 	# EOL
 endif
 
-if NEED_MD5
+if NEED_BSD_GETOPT
 libbsd_la_SOURCES += \
-	md5.c \
+	bsd_getopt.c \
 	# EOL
 endif
 
-if NEED_NLIST
+if NEED_ERR
 libbsd_la_SOURCES += \
-	nlist.c \
+	err.c \
 	# EOL
 endif
 
-if NEED_STRL
+if NEED_ERRC
 libbsd_la_SOURCES += \
-	strlcat.c \
-	strlcpy.c \
-	# EOL
-endif
-
-if NEED_WCSL
-libbsd_la_SOURCES += \
-	wcslcat.c \
-	wcslcpy.c \
-	# EOL
-endif
-
-if NEED_STRMODE
-libbsd_la_SOURCES += \
-	strmode.c \
+	errc.c \
 	# EOL
 endif
 
@@ -195,6 +157,44 @@ endif
 if NEED_FUNOPEN
 libbsd_la_SOURCES += \
 	funopen.c \
+	# EOL
+endif
+
+if NEED_MD5
+libbsd_la_SOURCES += \
+	md5.c \
+	# EOL
+endif
+
+if NEED_NLIST
+libbsd_la_SOURCES += \
+	nlist.c \
+	# EOL
+endif
+
+if NEED_PROGNAME
+libbsd_la_SOURCES += \
+	progname.c \
+	# EOL
+endif
+
+if NEED_STRL
+libbsd_la_SOURCES += \
+	strlcat.c \
+	strlcpy.c \
+	# EOL
+endif
+
+if NEED_STRMODE
+libbsd_la_SOURCES += \
+	strmode.c \
+	# EOL
+endif
+
+if NEED_WCSL
+libbsd_la_SOURCES += \
+	wcslcat.c \
+	wcslcpy.c \
 	# EOL
 endif
 

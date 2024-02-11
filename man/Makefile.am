@@ -243,10 +243,15 @@ dist_man_MANS += \
 	# EOL
 endif
 
-if NEED_PROGNAME
+if NEED_FPURGE
 dist_man_MANS += \
-	getprogname.3bsd \
-	setprogname.3bsd \
+	fpurge.3bsd \
+	# EOL
+endif
+
+if NEED_FUNOPEN
+dist_man_MANS += \
+	funopen.3bsd \
 	# EOL
 endif
 
@@ -262,29 +267,16 @@ dist_man_MANS += \
 	# EOL
 endif
 
-if NEED_STRL
+if NEED_PROGNAME
 dist_man_MANS += \
-	strlcat.3bsd \
-	strlcpy.3bsd \
-	# EOL
-endif
-
-if NEED_WCSL
-dist_man_MANS += \
-	wcslcat.3bsd \
-	wcslcpy.3bsd \
-	# EOL
-endif
-
-if NEED_STRMODE
-dist_man_MANS += \
-	strmode.3bsd \
+	getprogname.3bsd \
+	setprogname.3bsd \
 	# EOL
 endif
 
 dist_man_MANS += \
-	uid_from_user.3bsd \
 	gid_from_group.3bsd \
+	uid_from_user.3bsd \
 	# EOL
 
 if NEED_NAME_FROM_ID
@@ -294,14 +286,22 @@ dist_man_MANS += \
 	# EOL
 endif
 
-if NEED_FPURGE
+if NEED_STRL
 dist_man_MANS += \
-	fpurge.3bsd \
+	strlcat.3bsd \
+	strlcpy.3bsd \
 	# EOL
 endif
 
-if NEED_FUNOPEN
+if NEED_STRMODE
 dist_man_MANS += \
-	funopen.3bsd \
+	strmode.3bsd \
+	# EOL
+endif
+
+if NEED_WCSL
+dist_man_MANS += \
+	wcslcat.3bsd \
+	wcslcpy.3bsd \
 	# EOL
 endif
