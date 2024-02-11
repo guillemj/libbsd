@@ -180,7 +180,6 @@ dist_man_MANS = \
 	getbsize.3bsd \
 	getmode.3bsd \
 	getpeereid.3bsd \
-	group_from_gid.3bsd \
 	heapsort.3bsd \
 	humanize_number.3bsd \
 	le16dec.3bsd \
@@ -236,7 +235,6 @@ dist_man_MANS = \
 	timeval.3bsd \
 	tree.3bsd \
 	unvis.3bsd \
-	user_from_uid.3bsd \
 	vis.3bsd \
 	# EOL
 
@@ -279,10 +277,15 @@ dist_man_MANS += \
 	# EOL
 endif
 
-if NEED_ID_FROM_NAME
 dist_man_MANS += \
 	uid_from_user.3bsd \
 	gid_from_group.3bsd \
+	# EOL
+
+if NEED_NAME_FROM_ID
+dist_man_MANS += \
+	group_from_gid.3bsd \
+	user_from_uid.3bsd \
 	# EOL
 endif
 
