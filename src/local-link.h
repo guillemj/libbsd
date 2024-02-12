@@ -47,7 +47,7 @@
 	extern __typeof__(symbol) alias __attribute__((__alias__(#symbol)))
 #endif
 
-#ifdef __ELF__
+#if defined(__ELF__) && !defined(__sun)
 #  if __has_attribute(symver)
 /* The symver attribute is supported since gcc 10.x. */
 #define libbsd_symver_default(symbol, alias, version) \
