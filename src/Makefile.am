@@ -103,6 +103,13 @@ libbsd_la_SOURCES += \
 	# EOL
 endif
 
+if ABI_ASPRINTF
+libbsd_la_SOURCES += \
+	asprintf.c \
+	vasprintf.c \
+	# EOL
+endif
+
 if ABI_BSD_GETOPT
 libbsd_la_SOURCES += \
 	bsd_getopt.c \

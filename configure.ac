@@ -44,6 +44,7 @@ is_windows=no
 abi_accmode=unknown
 abi_arc4random=unknown
 abi_arc4random_stir=unknown
+abi_asprintf=unknown
 abi_bsd_getopt=unknown
 abi_closefrom=unknown
 abi_err=unknown
@@ -89,6 +90,7 @@ AS_CASE([$host_os],
     #abi_arc4random=no
     abi_arc4random=yes
     abi_arc4random_stir=yes
+    abi_asprintf=no
     abi_bsd_getopt=yes
     # DROP: On glibc >= 2.34.
     #abi_closefrom=no
@@ -145,6 +147,7 @@ AS_CASE([$host_os],
     abi_accmode=yes
     abi_arc4random=yes
     abi_arc4random_stir=yes
+    abi_asprintf=no
     # DROP: On musl >= 0.9.7, optreset got implemented.
     #abi_bsd_getopt=no
     abi_bsd_getopt=yes
@@ -208,6 +211,7 @@ AS_CASE([$host_os],
     abi_accmode=no
     abi_arc4random=no
     abi_arc4random_stir=no
+    abi_asprintf=no
     abi_bsd_getopt=no
     abi_closefrom=yes
     abi_err=no
@@ -253,6 +257,7 @@ AS_CASE([$host_os],
     abi_accmode=yes
     abi_arc4random=no
     abi_arc4random_stir=no
+    abi_asprintf=no
     abi_bsd_getopt=yes
     abi_closefrom=no
     abi_err=no
@@ -465,6 +470,8 @@ LIBBSD_CHECK_PROGNAME
 LIBBSD_CHECK_REGISTER_ATFORK
 
 AC_CHECK_FUNCS([\
+  vasprintf \
+  asprintf \
   clearenv \
   dirfd \
   flock \
@@ -490,6 +497,7 @@ AM_CONDITIONAL([HAVE_GETENTROPY], [test "x$ac_cv_func_getentropy" = "xyes"])
 LIBBSD_SELECT_ABI([accmode], [setmode()/getmode()])
 LIBBSD_SELECT_ABI([arc4random], [arc4random() API])
 LIBBSD_SELECT_ABI([arc4random_stir], [arc4random_stir()/arc4random_addrandom()])
+LIBBSD_SELECT_ABI([asprintf], [vasprintf()/asprintf()])
 LIBBSD_SELECT_ABI([bsd_getopt], [BSD getopt()])
 LIBBSD_SELECT_ABI([closefrom], [closefrom()])
 LIBBSD_SELECT_ABI([err], [err API])

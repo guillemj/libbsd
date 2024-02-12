@@ -299,3 +299,10 @@ LIBBSD_0.11.0 {
     group_from_gid;
 #endif
 } LIBBSD_0.10.0;
+
+LIBBSD_0.12.0 {
+#if LIBBSD_ABI_ASPRINTF
+    vasprintf;
+    asprintf;
+#endif
+} LIBBSD_0.11.0;

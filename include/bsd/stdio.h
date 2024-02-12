@@ -1,5 +1,5 @@
 /*
- * Copyright © 2004-2005, 2009, 2011-2013 Guillem Jover <guillem@hadrons.org>
+ * Copyright © 2004-2024 Guillem Jover <guillem@hadrons.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -44,8 +44,18 @@
 #include <bsd/sys/cdefs.h>
 #endif
 #include <sys/types.h>
+#if defined(_AIX)
+#include <stdarg.h>
+#endif
 
 __BEGIN_DECLS
+#if defined(_AIX)
+int asprintf(char **strp, char const *fmt, ...)
+	__printflike(2, 3);
+int vasprintf(char **strp, char const *fmt, va_list args)
+	__printflike(2, 0);
+#endif
+
 const char *fmtcheck(const char *, const char *);
 
 /* XXX: The function requires cooperation from the system libc to store the
