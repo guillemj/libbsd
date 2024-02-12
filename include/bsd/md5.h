@@ -24,8 +24,10 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#ifndef _AIX
 #ifdef LIBBSD_OVERLAY
 #include_next <md5.h>
 #else
 #include <md5.h>
+#endif
 #endif

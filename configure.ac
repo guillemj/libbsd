@@ -299,6 +299,52 @@ AS_CASE([$host_os],
     abi_vis=yes
     abi_wcsl=yes
   ],
+  [aix*], [
+    abi_accmode=yes
+    abi_arc4random=yes
+    abi_arc4random_stir=yes
+    abi_asprintf=yes
+    abi_bsd_getopt=yes
+    abi_closefrom=yes
+    abi_err=yes
+    abi_errc=yes
+    abi_expand_number=yes
+    abi_explicit_bzero=yes
+    abi_fgetln=yes
+    abi_flopen=yes
+    abi_fmtcheck=yes
+    abi_fpurge=no
+    abi_freezero=yes
+    abi_funopen=no
+    abi_getbsize=yes
+    abi_getpeereid=yes
+    abi_humanize_number=yes
+    abi_id_from_name=yes
+    abi_inet_net_pton=no
+    # On libmd.
+    abi_md5=no
+    abi_name_from_id=yes
+    abi_nlist=no
+    abi_pidfile=yes
+    abi_proctitle=yes
+    abi_progname=yes
+    abi_readpassphrase=yes
+    abi_reallocarray=yes
+    abi_reallocf=yes
+    abi_recallocarray=yes
+    abi_stringlist=yes
+    abi_sort=yes
+    abi_strl=yes
+    abi_strmode=yes
+    abi_strnstr=yes
+    abi_strtonum=yes
+    abi_strtox=yes
+    abi_timeconv=yes
+    # On libmd.
+    abi_transparent_libmd=no
+    abi_vis=yes
+    abi_wcsl=yes
+  ],
   [mingw*], [
     is_windows=yes
   ],
