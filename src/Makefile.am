@@ -113,7 +113,7 @@ libbsd_la_SOURCES = \
 	vis.c \
 	# EOL
 
-if NEED_ARC4RANDOM
+if ABI_ARC4RANDOM
 if !HAVE_GETENTROPY
 libbsd_la_SOURCES += \
 	getentropy.c \
@@ -130,75 +130,75 @@ libbsd_la_SOURCES += \
 	# EOL
 endif
 
-if NEED_BSD_GETOPT
+if ABI_BSD_GETOPT
 libbsd_la_SOURCES += \
 	bsd_getopt.c \
 	# EOL
 endif
 
-if NEED_ERR
+if ABI_ERR
 libbsd_la_SOURCES += \
 	err.c \
 	# EOL
 endif
 
-if NEED_ERRC
+if ABI_ERRC
 libbsd_la_SOURCES += \
 	errc.c \
 	# EOL
 endif
 
-if NEED_FPURGE
+if ABI_FPURGE
 libbsd_la_SOURCES += \
 	fpurge.c \
 	# EOL
 endif
 
-if NEED_FUNOPEN
+if ABI_FUNOPEN
 libbsd_la_SOURCES += \
 	funopen.c \
 	# EOL
 endif
 
-if NEED_MD5
+if ABI_MD5
 libbsd_la_SOURCES += \
 	md5.c \
 	# EOL
 endif
 
-if NEED_NLIST
+if ABI_NLIST
 libbsd_la_SOURCES += \
 	nlist.c \
 	# EOL
 endif
 
-if NEED_PROGNAME
+if ABI_PROGNAME
 libbsd_la_SOURCES += \
 	progname.c \
 	# EOL
 endif
 
-if NEED_STRL
+if ABI_STRL
 libbsd_la_SOURCES += \
 	strlcat.c \
 	strlcpy.c \
 	# EOL
 endif
 
-if NEED_STRMODE
+if ABI_STRMODE
 libbsd_la_SOURCES += \
 	strmode.c \
 	# EOL
 endif
 
-if NEED_WCSL
+if ABI_WCSL
 libbsd_la_SOURCES += \
 	wcslcat.c \
 	wcslcpy.c \
 	# EOL
 endif
 
-if NEED_TRANSPARENT_LIBMD
+if ABI_TRANSPARENT_LIBMD
 CLEANFILES += \
 	format.ld \
 	# EOL
@@ -223,7 +223,7 @@ libbsd.map: libbsd.map.in
 libbsd.sym: libbsd.map
 	$(AM_V_GEN) $(SED) -ne 's/^[[:space:]]\{1,\}\([A-Za-z0-9_]\{1,\}\);/\1/p' libbsd.map >$@
 
-if NEED_TRANSPARENT_LIBMD
+if ABI_TRANSPARENT_LIBMD
 TRANSPARENT_LIBMD_DEPENDS = format.ld
 
 format.ld:
@@ -240,7 +240,7 @@ install-exec-hook: $(TRANSPARENT_LIBMD_DEPENDS)
 		mv $(DESTDIR)$(libdir)/libbsd*.so.* \
 		   $(DESTDIR)$(runtimelibdir)/; \
 	fi
-if NEED_TRANSPARENT_LIBMD
+if ABI_TRANSPARENT_LIBMD
 # The "GNU ld script" magic is required so that GNU ldconfig does not complain
 # about an unknown format file.
 	soname=`readlink $(DESTDIR)$(libdir)/libbsd.so`; \

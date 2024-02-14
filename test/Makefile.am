@@ -49,7 +49,7 @@ check_PROGRAMS = \
 	vis-openbsd \
 	# EOL
 
-if NEED_ARC4RANDOM
+if ABI_ARC4RANDOM
 if HAVE_LIBTESTU01
 check_PROGRAMS += arc4random
 
@@ -71,24 +71,24 @@ fparseln_SOURCES = \
 	fparseln.c \
 	# EOL
 
-if NEED_FPURGE
+if ABI_FPURGE
 check_PROGRAMS += fpurge
 endif
 
-if NEED_FUNOPEN
+if ABI_FUNOPEN
 check_PROGRAMS += funopen
 endif
 
-if NEED_MD5
+if ABI_MD5
 check_PROGRAMS += md5
 
-if NEED_TRANSPARENT_LIBMD
+if ABI_TRANSPARENT_LIBMD
 # On the installed system this is handled via the ld script.
 md5_LDADD = $(LDADD) $(MD5_LIBS)
 endif
 endif
 
-if NEED_NLIST
+if ABI_NLIST
 check_PROGRAMS += nlist
 endif
 
@@ -108,15 +108,15 @@ proctitle_LDFLAGS = \
 	# EOL
 endif
 
-if NEED_PROGNAME
+if ABI_PROGNAME
 check_PROGRAMS += progname
 endif
 
-if NEED_STRL
+if ABI_STRL
 check_PROGRAMS += strl
 endif
 
-if NEED_STRMODE
+if ABI_STRMODE
 check_PROGRAMS += strmode
 endif
 

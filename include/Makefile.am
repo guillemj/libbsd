@@ -29,13 +29,13 @@ nobase_include_HEADERS = \
 	bsd/wchar.h \
 	# EOL
 
-if NEED_MD5
+if ABI_MD5
 nobase_include_HEADERS += \
 	bsd/md5.h \
 	# EOL
 endif
 
-if NEED_NLIST
+if ABI_NLIST
 nobase_include_HEADERS += \
 	bsd/nlist.h \
 	# EOL

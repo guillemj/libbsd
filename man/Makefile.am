@@ -237,37 +237,37 @@ dist_man_MANS = \
 	vis.3bsd \
 	# EOL
 
-if NEED_ERRC
+if ABI_ERRC
 dist_man_MANS += \
 	errc.3bsd \
 	# EOL
 endif
 
-if NEED_FPURGE
+if ABI_FPURGE
 dist_man_MANS += \
 	fpurge.3bsd \
 	# EOL
 endif
 
-if NEED_FUNOPEN
+if ABI_FUNOPEN
 dist_man_MANS += \
 	funopen.3bsd \
 	# EOL
 endif
 
-if NEED_MD5
+if ABI_MD5
 dist_man_MANS += \
 	md5.3bsd \
 	# EOL
 endif
 
-if NEED_NLIST
+if ABI_NLIST
 dist_man_MANS += \
 	nlist.3bsd \
 	# EOL
 endif
 
-if NEED_PROGNAME
+if ABI_PROGNAME
 dist_man_MANS += \
 	getprogname.3bsd \
 	setprogname.3bsd \
@@ -279,27 +279,27 @@ dist_man_MANS += \
 	uid_from_user.3bsd \
 	# EOL
 
-if NEED_NAME_FROM_ID
+if ABI_NAME_FROM_ID
 dist_man_MANS += \
 	group_from_gid.3bsd \
 	user_from_uid.3bsd \
 	# EOL
 endif
 
-if NEED_STRL
+if ABI_STRL
 dist_man_MANS += \
 	strlcat.3bsd \
 	strlcpy.3bsd \
 	# EOL
 endif
 
-if NEED_STRMODE
+if ABI_STRMODE
 dist_man_MANS += \
 	strmode.3bsd \
 	# EOL
 endif
 
-if NEED_WCSL
+if ABI_WCSL
 dist_man_MANS += \
 	wcslcat.3bsd \
 	wcslcpy.3bsd \

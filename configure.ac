@@ -38,61 +38,61 @@ LIBBSD_LINKER_VERSION_SCRIPT
 
 is_windows=no
 
-need_arc4random=yes
-need_bsd_getopt=yes
-need_err=yes
-need_errc=yes
-need_fpurge=yes
-need_funopen=yes
-need_md5=yes
-need_name_from_id=yes
-need_nlist=yes
-need_progname=yes
-need_strl=yes
-need_strmode=yes
-need_wcsl=yes
+abi_arc4random=no
+abi_bsd_getopt=no
+abi_err=no
+abi_errc=no
+abi_fpurge=no
+abi_funopen=no
+abi_md5=no
+abi_name_from_id=no
+abi_nlist=no
+abi_progname=no
+abi_strl=no
+abi_strmode=no
+abi_wcsl=no
 
 AS_CASE([$host_os],
   [*-gnu*], [
+    abi_errc=yes
     # On glibc >= 2.38, strlcpy() and strlcat() got added,
     # so these could then be dropped on the next SOVERSION bump.
-    #need_strl=no
-    need_err=no
+    #abi_strl=no
   ],
   [*-musl*], [
     # On musl >= 0.9.7, optreset got implemented, so bsd_getopt() can then
     # be dropped on the next SOVERSION bump.
-    #need_bsd_getopt=no
-    need_err=no
+    #abi_bsd_getopt=no
+    abi_err=no
     # On musl >= 1.1.19, fopencookie() got implemented, and because we were
     # checking for its presence to decide whether to build funopen(), it got
     # included in builds even when previously it had not been included, which
     # is partially an ABI issue, but given that disabling it now would be
     # worse, we'll ignore this as this is only a problem with downgrades. And
     # enable it explicitly
-    need_funopen=yes
+    abi_funopen=yes
     # On musl >= 0.5.0, strlcpy() and strlcat() were already implemented,
     # so these can then be dropped on the next SOVERSION bump.
-    #need_strl=no
+    #abi_strl=no
   ],
   [darwin*], [
     # On macOS these are provided by the system, and libbsd has never built
     # there, so we can avoid providing these with no ABI breakage.
-    need_arc4random=no
-    need_bsd_getopt=no
-    need_err=no
-    need_errc=no
-    need_fpurge=no
+    abi_arc4random=no
+    abi_bsd_getopt=no
+    abi_err=no
+    abi_errc=no
+    abi_fpurge=no
     # On macOS we do not have fopencookie(), and cannot implement it.
-    need_funopen=no
-    need_md5=no
-    need_name_from_id=no
-    need_nlist=no
-    need_progname=no
-    need_strl=no
-    need_strmode=no
-    need_transparent_libmd=no
-    need_wcsl=no
+    abi_funopen=no
+    abi_md5=no
+    abi_name_from_id=no
+    abi_nlist=no
+    abi_progname=no
+    abi_strl=no
+    abi_strmode=no
+    abi_transparent_libmd=no
+    abi_wcsl=no
   ],
   [mingw*], [
     is_windows=yes
@@ -169,17 +169,17 @@ AM_CONDITIONAL([HAVE_LIBTESTU01],
   [test "x$ac_cv_lib_testu01_unif01_CreateExternGenBits" = "xyes"])
 
 saved_LIBS="$LIBS"
-AS_IF([test "$need_md5" = "yes"], [
+AS_IF([test "$abi_md5" = "yes"], [
   AC_SEARCH_LIBS([MD5Update], [md], [
     AS_IF([test "x$ac_cv_search_MD5Update" != "xnone required"], [
       MD5_LIBS="$MD5_LIBS $ac_cv_search_MD5Update"
-      need_transparent_libmd=yes
+      abi_transparent_libmd=yes
     ])
   ], [
     AC_MSG_ERROR([cannot find required MD5 functions in libc or libmd])
   ])
 ])
-AS_IF([test "$need_arc4random" = "yes"], [
+AS_IF([test "$abi_arc4random" = "yes"], [
   AC_CHECK_FUNCS([getentropy])
 
   AS_IF([test "$ac_cv_func_getentropy" != "yes"], [
@@ -279,21 +279,23 @@ AC_CHECK_FUNCS([\
 
 AM_CONDITIONAL([HAVE_GETENTROPY], [test "x$ac_cv_func_getentropy" = "xyes"])
 
-AM_CONDITIONAL([NEED_ARC4RANDOM], [test "x$need_arc4random" = "xyes"])
-AM_CONDITIONAL([NEED_BSD_GETOPT], [test "x$need_bsd_getopt" = "xyes"])
-AM_CONDITIONAL([NEED_ERR], [test "x$need_err" = "xyes"])
-AM_CONDITIONAL([NEED_ERRC], [test "x$need_errc" = "xyes"])
-AM_CONDITIONAL([NEED_PROGNAME], [test "x$need_progname" = "xyes"])
-AM_CONDITIONAL([NEED_TRANSPARENT_LIBMD], [test "x$need_transparent_libmd" = "xyes"])
-AM_CONDITIONAL([NEED_MD5], [test "x$need_md5" = "xyes"])
-AM_CONDITIONAL([NEED_NLIST], [test "x$need_nlist" = "xyes"])
-AM_CONDITIONAL([NEED_STRL], [test "x$need_strl" = "xyes"])
-AM_CONDITIONAL([NEED_WCSL], [test "x$need_wcsl" = "xyes"])
-AM_CONDITIONAL([NEED_STRMODE], [test "x$need_strmode" = "xyes"])
-AM_CONDITIONAL([NEED_NAME_FROM_ID], [test "x$need_name_from_id" = "xyes"])
-AM_CONDITIONAL([NEED_FPURGE], [test "x$need_fpurge" = "xyes"])
-AM_CONDITIONAL([NEED_FUNOPEN], [test "x$need_funopen" = "xyes"])
-AS_IF([test "x$need_funopen" = "xno" && \
+# ABI selection
+AM_CONDITIONAL([ABI_ARC4RANDOM], [test "x$abi_arc4random" = "xyes"])
+AM_CONDITIONAL([ABI_BSD_GETOPT], [test "x$abi_bsd_getopt" = "xyes"])
+AM_CONDITIONAL([ABI_ERR], [test "x$abi_err" = "xyes"])
+AM_CONDITIONAL([ABI_ERRC], [test "x$abi_errc" = "xyes"])
+AM_CONDITIONAL([ABI_PROGNAME], [test "x$abi_progname" = "xyes"])
+AM_CONDITIONAL([ABI_TRANSPARENT_LIBMD], [test "x$abi_transparent_libmd" = "xyes"])
+AM_CONDITIONAL([ABI_MD5], [test "x$abi_md5" = "xyes"])
+AM_CONDITIONAL([ABI_NLIST], [test "x$abi_nlist" = "xyes"])
+AM_CONDITIONAL([ABI_STRL], [test "x$abi_strl" = "xyes"])
+AM_CONDITIONAL([ABI_WCSL], [test "x$abi_wcsl" = "xyes"])
+AM_CONDITIONAL([ABI_STRMODE], [test "x$abi_strmode" = "xyes"])
+AM_CONDITIONAL([ABI_NAME_FROM_ID], [test "x$abi_name_from_id" = "xyes"])
+AM_CONDITIONAL([ABI_FPURGE], [test "x$abi_fpurge" = "xyes"])
+AM_CONDITIONAL([ABI_FUNOPEN], [test "x$abi_funopen" = "xyes"])
+
+AS_IF([test "x$abi_funopen" = "xno" && \
        test "x$ac_cv_func_funopen" != "xyes" && \
        test "x$ac_cv_func_fopencookie" = "xyes"], [
   AC_MSG_WARN([[can implement funopen() now based on newly added fopencooke(), report upstream]])
