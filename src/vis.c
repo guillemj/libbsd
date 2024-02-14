@@ -739,7 +739,7 @@ strnvis_openbsd(char *mbdst, const char *mbsrc, size_t dlen, int flags)
 {
 	return istrsenvisxl(mbdst, &dlen, mbsrc, flags, "", NULL);
 }
-libbsd_symver_default(strnvis, strnvis_openbsd, LIBBSD_0.2);
+libbsd_symver_default(strnvis_openbsd, strnvis, LIBBSD_0.2);
 
 int
 strnvis_netbsd(char *, size_t, const char *, int);
@@ -748,7 +748,7 @@ strnvis_netbsd(char *mbdst, size_t dlen, const char *mbsrc, int flags)
 {
 	return istrsenvisxl(mbdst, &dlen, mbsrc, flags, "", NULL);
 }
-libbsd_symver_variant(strnvis, strnvis_netbsd, LIBBSD_0.9.1);
+libbsd_symver_variant(strnvis_netbsd, strnvis, LIBBSD_0.9.1);
 
 int
 stravis(char **mbdstp, const char *mbsrc, int flags)

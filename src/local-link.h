@@ -38,47 +38,47 @@
 #endif
 
 #if defined(__APPLE__)
-#define libbsd_strong_alias(alias, symbol) \
+#define libbsd_strong_alias(symbol, alias) \
 	__asm__(".globl _" #alias); \
 	__asm__(".set _" #alias ", _" #symbol); \
 	extern __typeof(symbol) alias
 #elif !defined(_MSC_VER)
-#define libbsd_strong_alias(alias, symbol) \
+#define libbsd_strong_alias(symbol, alias) \
 	extern __typeof__(symbol) alias __attribute__((__alias__(#symbol)))
 #endif
 
 #ifdef __ELF__
 #  if __has_attribute(symver)
 /* The symver attribute is supported since gcc 10.x. */
-#define libbsd_symver_default(alias, symbol, version) \
+#define libbsd_symver_default(symbol, alias, version) \
 	extern __typeof__(symbol) symbol \
 		__attribute__((__symver__(#alias "@@" #version)))
-#define libbsd_symver_variant(alias, symbol, version) \
+#define libbsd_symver_variant(symbol, alias, version) \
 	extern __typeof__(symbol) symbol \
 		__attribute__((__symver__(#alias "@" #version)))
 
-#define libbsd_symver_weak(alias, symbol, version) \
+#define libbsd_symver_weak(symbol, alias, version) \
 	extern __typeof__(symbol) symbol \
 		__attribute__((__symver__(#alias "@" #version), __weak__))
 #  else
-#define libbsd_symver_default(alias, symbol, version) \
+#define libbsd_symver_default(symbol, alias, version) \
 	__asm__(".symver " #symbol "," #alias "@@" #version)
 
-#define libbsd_symver_variant(alias, symbol, version) \
+#define libbsd_symver_variant(symbol, alias, version) \
 	__asm__(".symver " #symbol "," #alias "@" #version)
 
-#define libbsd_symver_weak(alias, symbol, version) \
-	libbsd_symver_variant(alias, symbol, version); \
+#define libbsd_symver_weak(symbol, alias, version) \
+	libbsd_symver_variant(symbol, alias, version); \
 	extern __typeof__(symbol) alias \
 		__attribute__((__weak__))
 #  endif
 #else
-#define libbsd_symver_default(alias, symbol, version) \
-	libbsd_strong_alias(alias, symbol)
+#define libbsd_symver_default(symbol, alias, version) \
+	libbsd_strong_alias(symbol, alias)
 
-#define libbsd_symver_variant(alias, symbol, version)
+#define libbsd_symver_variant(symbol, alias, version)
 
-#define libbsd_symver_weak(alias, symbol, version)
+#define libbsd_symver_weak(symbol, alias, version)
 #endif
 
 #endif
