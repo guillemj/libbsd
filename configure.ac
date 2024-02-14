@@ -35,35 +35,56 @@ LT_INIT
 LIBBSD_LINKER_VERSION_SCRIPT
 
 ## Select library ABI to expose.
+#
+# The systems have DROP comments for interfaces that could be dropped on
+# the next SOVERSION bump.
 
 is_windows=no
 
-abi_arc4random=no
-abi_bsd_getopt=no
-abi_err=no
-abi_errc=no
-abi_fpurge=no
-abi_funopen=no
-abi_md5=no
-abi_name_from_id=no
-abi_nlist=no
-abi_progname=no
-abi_strl=no
-abi_strmode=no
-abi_wcsl=no
+abi_arc4random=unknown
+abi_bsd_getopt=unknown
+abi_err=unknown
+abi_errc=unknown
+abi_fpurge=unknown
+abi_funopen=unknown
+abi_md5=unknown
+abi_name_from_id=unknown
+abi_nlist=unknown
+abi_progname=unknown
+abi_strl=unknown
+abi_strmode=unknown
+abi_wcsl=unknown
 
 AS_CASE([$host_os],
   [*-gnu*], [
+    # DROP: On glibc >= 2.36, parts the arc4random() API got added.
+    #abi_arc4random=no
+    abi_arc4random=yes
+    abi_bsd_getopt=yes
+    abi_err=no
     abi_errc=yes
-    # On glibc >= 2.38, strlcpy() and strlcat() got added,
-    # so these could then be dropped on the next SOVERSION bump.
+    abi_fpurge=yes
+    abi_funopen=yes
+    # DROP: On libmd.
+    #abi_md5=no
+    abi_md5=yes
+    abi_name_from_id=yes
+    abi_nlist=yes
+    abi_progname=yes
+    # DROP: On glibc >= 2.38.
     #abi_strl=no
+    abi_strl=yes
+    abi_strmode=yes
+    abi_wcsl=yes
   ],
   [*-musl*], [
-    # On musl >= 0.9.7, optreset got implemented, so bsd_getopt() can then
-    # be dropped on the next SOVERSION bump.
+    abi_arc4random=yes
+    # DROP: On musl >= 0.9.7, optreset got implemented.
     #abi_bsd_getopt=no
+    abi_bsd_getopt=yes
     abi_err=no
+    abi_errc=yes
+    abi_fpurge=yes
     # On musl >= 1.1.19, fopencookie() got implemented, and because we were
     # checking for its presence to decide whether to build funopen(), it got
     # included in builds even when previously it had not been included, which
@@ -71,9 +92,17 @@ AS_CASE([$host_os],
     # worse, we'll ignore this as this is only a problem with downgrades. And
     # enable it explicitly
     abi_funopen=yes
-    # On musl >= 0.5.0, strlcpy() and strlcat() were already implemented,
-    # so these can then be dropped on the next SOVERSION bump.
+    # DROP: On libmd.
+    #abi_md5=no
+    abi_md5=yes
+    abi_name_from_id=yes
+    abi_nlist=yes
+    abi_progname=yes
+    # DROP: On musl >= 0.5.0, strlcpy() and strlcat() were already implemented.
     #abi_strl=no
+    abi_strl=yes
+    abi_strmode=yes
+    abi_wcsl=yes
   ],
   [darwin*], [
     # On macOS these are provided by the system, and libbsd has never built
@@ -83,7 +112,6 @@ AS_CASE([$host_os],
     abi_err=no
     abi_errc=no
     abi_fpurge=no
-    # On macOS we do not have fopencookie(), and cannot implement it.
     abi_funopen=no
     abi_md5=no
     abi_name_from_id=no
@@ -280,20 +308,20 @@ AC_CHECK_FUNCS([\
 AM_CONDITIONAL([HAVE_GETENTROPY], [test "x$ac_cv_func_getentropy" = "xyes"])
 
 # ABI selection
-AM_CONDITIONAL([ABI_ARC4RANDOM], [test "x$abi_arc4random" = "xyes"])
-AM_CONDITIONAL([ABI_BSD_GETOPT], [test "x$abi_bsd_getopt" = "xyes"])
-AM_CONDITIONAL([ABI_ERR], [test "x$abi_err" = "xyes"])
-AM_CONDITIONAL([ABI_ERRC], [test "x$abi_errc" = "xyes"])
-AM_CONDITIONAL([ABI_PROGNAME], [test "x$abi_progname" = "xyes"])
-AM_CONDITIONAL([ABI_TRANSPARENT_LIBMD], [test "x$abi_transparent_libmd" = "xyes"])
-AM_CONDITIONAL([ABI_MD5], [test "x$abi_md5" = "xyes"])
-AM_CONDITIONAL([ABI_NLIST], [test "x$abi_nlist" = "xyes"])
-AM_CONDITIONAL([ABI_STRL], [test "x$abi_strl" = "xyes"])
-AM_CONDITIONAL([ABI_WCSL], [test "x$abi_wcsl" = "xyes"])
-AM_CONDITIONAL([ABI_STRMODE], [test "x$abi_strmode" = "xyes"])
-AM_CONDITIONAL([ABI_NAME_FROM_ID], [test "x$abi_name_from_id" = "xyes"])
-AM_CONDITIONAL([ABI_FPURGE], [test "x$abi_fpurge" = "xyes"])
-AM_CONDITIONAL([ABI_FUNOPEN], [test "x$abi_funopen" = "xyes"])
+LIBBSD_SELECT_ABI([arc4random], [arc4random() API])
+LIBBSD_SELECT_ABI([bsd_getopt], [BSD getopt()])
+LIBBSD_SELECT_ABI([err], [err API])
+LIBBSD_SELECT_ABI([errc], [errc API])
+LIBBSD_SELECT_ABI([fpurge], [fpurge()])
+LIBBSD_SELECT_ABI([funopen], [funopen()])
+LIBBSD_SELECT_ABI([md5], [MD5 digest functions])
+LIBBSD_SELECT_ABI([name_from_id], [user_from_uid()/group_from_gid()])
+LIBBSD_SELECT_ABI([nlist], [nlist()])
+LIBBSD_SELECT_ABI([progname], [setprogname()/getprogname()])
+LIBBSD_SELECT_ABI([strl], [strlcpy()/strlcat()])
+LIBBSD_SELECT_ABI([strmode], [strmode()])
+LIBBSD_SELECT_ABI([transparent_libmd], [transparent libmd support])
+LIBBSD_SELECT_ABI([wcsl], [wcslcpy()/wcslcat()])
 
 AS_IF([test "x$abi_funopen" = "xno" && \
        test "x$ac_cv_func_funopen" != "xyes" && \

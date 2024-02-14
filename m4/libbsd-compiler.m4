@@ -70,3 +70,19 @@ int main() { return rc; }
   AM_CONDITIONAL([BUILD_LIBBSD_CTOR],
     [test "$libbsd_cv_gnu_init_array_support" = yes])
 ])
+
+# LIBBSD_SELECT_ABI(name, desc)
+# -----------------
+AC_DEFUN([LIBBSD_SELECT_ABI], [
+  AS_IF([test -z "$AS_TR_SH([abi_$1])"], [
+    AC_MSG_ERROR([missing ABI selection for $1])
+  ], [test "$AS_TR_SH([abi_$1])" = "unknown"], [
+    AC_MSG_ERROR([unknown ABI selection for $1])
+  ], [test "$AS_TR_SH([abi_$1])" = "yes"], [
+    AC_DEFINE(AS_TR_CPP([LIBBSD_ABI_$1]), [1], [Provide ABI for $2])
+  ], [
+    AC_DEFINE(AS_TR_CPP([LIBBSD_ABI_$1]), [0])
+  ])
+  AM_CONDITIONAL(AS_TR_CPP([ABI_$1]),
+    [test "x$AS_TR_SH([abi_$1])" = "xyes"])
+])
