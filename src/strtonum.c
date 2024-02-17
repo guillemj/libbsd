@@ -1,4 +1,4 @@
-/*	$NetBSD: strtonum.c,v 1.5 2018/01/04 20:57:29 kamil Exp $	*/
+/*	$NetBSD: strtonum.c,v 1.7 2024/01/20 16:13:39 christos Exp $	*/
 /*-
  * Copyright (c) 2014 The NetBSD Foundation, Inc.
  * All rights reserved.
@@ -42,21 +42,33 @@ strtonum(const char *nptr, long long minval, long long maxval,
 	int e;
 	long long rv;
 	const char *resp;
+	char *eptr;
 
 	if (errstr == NULL)
 		errstr = &resp;
 
-	rv = (long long)strtoi(nptr, NULL, 10, minval, maxval, &e);
+	if (minval > maxval)
+		goto out;
 
-	if (e == 0) {
+	rv = (long long)strtoi(nptr, &eptr, 10, minval, maxval, &e);
+
+	switch (e) {
+	case 0:
 		*errstr = NULL;
 		return rv;
+	case ECANCELED:
+	case ENOTSUP:
+		goto out;
+	case ERANGE:
+		if (*eptr)
+			goto out;
+		*errstr = rv == maxval ? "too large" : "too small";
+		return 0;
+	default:
+		abort();
 	}
 
-	if (e == ERANGE)
-		*errstr = (rv == maxval ? "too large" : "too small");
-	else
-		*errstr = "invalid";
-
+out:
+	*errstr = "invalid";
 	return 0;
 }

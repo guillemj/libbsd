@@ -1,4 +1,4 @@
-/*	$NetBSD: _strtoi.h,v 1.2 2015/01/18 17:55:22 christos Exp $	*/
+/*	$NetBSD: _strtoi.h,v 1.3 2024/01/20 16:13:39 christos Exp $	*/
 
 /*-
  * Copyright (c) 1990, 1993
@@ -32,7 +32,7 @@
  * NetBSD: src/lib/libc/locale/_wcstoul.h,v 1.2 2003/08/07 16:43:03 agc Exp
  *
  * Created by Kamil Rytarowski, based on ID:
- * NetBSD: src/common/lib/libc/stdlib/_strtoul.h,v 1.7 2013/05/17 12:55:56 joe…
+ * NetBSD: src/common/lib/libc/stdlib/_strtoul.h,v 1.7 2013/05/17 12:55:56 joerg Exp
  */
 
 #include <sys/cdefs.h>
@@ -73,25 +73,25 @@ strtoi(const char *__restrict nptr,
 	*rstatus = errno;
 	errno = serrno;
 
-	if (*rstatus == 0) {
-		/* No digits were found */
-		if (nptr == *endptr)
-			*rstatus = ECANCELED;
-		/* There are further characters after number */
-		else if (**endptr != '\0')
-			*rstatus = ENOTSUP;
-	}
+	/* No digits were found */
+	if (*rstatus == 0 && nptr == *endptr)
+		*rstatus = ECANCELED;
 
 	if (im < lo) {
 		if (*rstatus == 0)
 			*rstatus = ERANGE;
 		return lo;
 	}
+
 	if (im > hi) {
 		if (*rstatus == 0)
 			*rstatus = ERANGE;
 		return hi;
 	}
+
+	/* There are further characters after number */
+	if (*rstatus == 0 && **endptr != '\0')
+		*rstatus = ENOTSUP;
 
 	return im;
 }
