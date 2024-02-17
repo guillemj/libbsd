@@ -1,5 +1,6 @@
 /*
- * Copyright © 2019 Guillem Jover <guillem@hadrons.org>
+ * Copyright © 2006 Robert Millan
+ * Copyright © 2011, 2019 Guillem Jover <guillem@hadrons.org>
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -25,79 +26,50 @@
  */
 
 #include <err.h>
-#include <errno.h>
 #include <string.h>
 #include <stdarg.h>
 #include <stdlib.h>
 #include <stdio.h>
 
 void
-vwarn(const char *format, va_list ap)
-{
-	vwarnc(errno, format, ap);
-}
-
-void
-warn(const char *format, ...)
-{
-	va_list ap;
-
-	va_start(ap, format);
-	vwarnc(errno, format, ap);
-	va_end(ap);
-}
-
-void
-vwarnx(const char *format, va_list ap)
+vwarnc(int code, const char *format, va_list ap)
 {
 	fprintf(stderr, "%s: ", getprogname());
-	if (format)
+	if (format) {
 		vfprintf(stderr, format, ap);
-	fprintf(stderr, "\n");
+		fprintf(stderr, ": ");
+	}
+	fprintf(stderr, "%s\n", strerror(code));
 }
 
 void
-warnx(const char *format, ...)
+warnc(int code, const char *format, ...)
 {
 	va_list ap;
 
 	va_start(ap, format);
-	vwarnx(format, ap);
+	vwarnc(code, format, ap);
 	va_end(ap);
 }
 
 void
-verr(int status, const char *format, va_list ap)
-{
-	verrc(status, errno, format, ap);
-}
-
-void
-err(int status, const char *format, ...)
-{
-	va_list ap;
-
-	va_start(ap, format);
-	verrc(status, errno, format, ap);
-	va_end(ap);
-}
-
-void
-verrx(int eval, const char *format, va_list ap)
+verrc(int status, int code, const char *format, va_list ap)
 {
 	fprintf(stderr, "%s: ", getprogname());
-	if (format)
+	if (format) {
 		vfprintf(stderr, format, ap);
-	fprintf(stderr, "\n");
-	exit(eval);
+		fprintf(stderr, ": ");
+	}
+	fprintf(stderr, "%s\n", strerror(code));
+	exit(status);
 }
 
 void
-errx(int eval, const char *format, ...)
+errc(int status, int code, const char *format, ...)
 {
 	va_list ap;
 
 	va_start(ap, format);
-	verrx(eval, format, ap);
+	verrc(status, code, format, ap);
 	va_end(ap);
 }

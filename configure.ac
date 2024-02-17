@@ -257,6 +257,8 @@ AC_CHECK_FUNCS([\
 
 need_arc4random=yes
 need_bsd_getopt=yes
+need_err=yes
+need_errc=yes
 need_progname=yes
 need_md5=yes
 need_nlist=yes
@@ -271,6 +273,7 @@ AS_CASE([$host_os],
     # On glibc >= 2.38, strlcpy() and strlcat() got added,
     # so these could then be dropped on the next SOVERSION bump.
     #need_strl=no
+    need_err=no
   ],
   [*-musl*], [
     # On musl >= 0.5.0, strlcpy() and strlcat() were already implemented,
@@ -279,6 +282,7 @@ AS_CASE([$host_os],
     # On musl >= 0.9.7, optreset got implemented, so bsd_getopt() can then
     # be dropped on the next SOVERSION bump.
     #need_bsd_getopt=no
+    need_err=no
     # On musl >= 1.1.19, fopencookie() got implemented, and because we were
     # checking for its presence to decide whether to build funopen(), it got
     # included in builds even when previously it had not been included, which
@@ -292,6 +296,8 @@ AS_CASE([$host_os],
     # there, so we can avoid providing these with no ABI breakage.
     need_arc4random=no
     need_bsd_getopt=no
+    need_err=no
+    need_errc=no
     need_progname=no
     need_transparent_libmd=no
     need_md5=no
@@ -310,6 +316,8 @@ AM_CONDITIONAL([HAVE_GETENTROPY], [test "x$ac_cv_func_getentropy" = "xyes"])
 
 AM_CONDITIONAL([NEED_ARC4RANDOM], [test "x$need_arc4random" = "xyes"])
 AM_CONDITIONAL([NEED_BSD_GETOPT], [test "x$need_bsd_getopt" = "xyes"])
+AM_CONDITIONAL([NEED_ERR], [test "x$need_err" = "xyes"])
+AM_CONDITIONAL([NEED_ERRC], [test "x$need_errc" = "xyes"])
 AM_CONDITIONAL([NEED_PROGNAME], [test "x$need_progname" = "xyes"])
 AM_CONDITIONAL([NEED_TRANSPARENT_LIBMD], [test "x$need_transparent_libmd" = "xyes"])
 AM_CONDITIONAL([NEED_MD5], [test "x$need_md5" = "xyes"])

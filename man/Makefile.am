@@ -168,7 +168,6 @@ dist_man_MANS = \
 	byteorder.3bsd \
 	closefrom.3bsd \
 	dehumanize_number.3bsd \
-	errc.3bsd \
 	expand_number.3bsd \
 	explicit_bzero.3bsd \
 	fgetln.3bsd \
@@ -237,6 +236,12 @@ dist_man_MANS = \
 	unvis.3bsd \
 	vis.3bsd \
 	# EOL
+
+if NEED_ERRC
+dist_man_MANS += \
+	errc.3bsd \
+	# EOL
+endif
 
 if NEED_PROGNAME
 dist_man_MANS += \

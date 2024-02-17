@@ -78,7 +78,6 @@ endif
 libbsd_la_SOURCES = \
 	closefrom.c \
 	dehumanize_number.c \
-	err.c \
 	expand_number.c \
 	explicit_bzero.c \
 	fgetln.c \
@@ -113,6 +112,18 @@ libbsd_la_SOURCES = \
 	unvis.c \
 	vis.c \
 	# EOL
+
+if NEED_ERR
+libbsd_la_SOURCES += \
+	err.c \
+	# EOL
+endif
+
+if NEED_ERRC
+libbsd_la_SOURCES += \
+	errc.c \
+	# EOL
+endif
 
 if NEED_PROGNAME
 libbsd_la_SOURCES += \
