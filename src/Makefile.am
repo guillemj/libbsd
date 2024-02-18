@@ -216,7 +216,7 @@ libbsd_ctor_a_SOURCES = \
 # Generate the library map file with the pre-processor to selectively include
 # symbols depending on the host system, otherwise some linkers might fail.
 libbsd.map: libbsd.map.in
-	$(CPP) $(AM_CPPFLAGS) $(CPPFLAGS) -P - <$(srcdir)/libbsd.map.in >$@
+	$(AM_V_GEN) $(CPP) $(AM_CPPFLAGS) $(CPPFLAGS) -P - <$(srcdir)/libbsd.map.in >$@
 
 # Generate a simple libtool symbol export list to be used as a fallback if
 # there is no version script support.
