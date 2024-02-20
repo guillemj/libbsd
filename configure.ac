@@ -44,7 +44,7 @@ need_err=yes
 need_errc=yes
 need_fpurge=yes
 need_funopen=yes
-need_md5=yes
+need_md5=no
 need_name_from_id=yes
 need_nlist=yes
 need_progname=yes
@@ -169,20 +169,28 @@ AM_CONDITIONAL([HAVE_LIBTESTU01],
   [test "x$ac_cv_lib_testu01_unif01_CreateExternGenBits" = "xyes"])
 
 saved_LIBS="$LIBS"
-AC_SEARCH_LIBS([MD5Update], [md], [
-  AS_IF([test "x$ac_cv_search_MD5Update" != "xnone required"], [
-    MD5_LIBS="$MD5_LIBS $ac_cv_search_MD5Update"
-    need_transparent_libmd=yes
+AS_IF([test "$need_md5" = "yes"], [
+  AC_SEARCH_LIBS([MD5Update], [md], [
+    AS_IF([test "x$ac_cv_search_MD5Update" != "xnone required"], [
+      MD5_LIBS="$MD5_LIBS $ac_cv_search_MD5Update"
+      need_transparent_libmd=yes
+    ])
+  ], [
+    AC_MSG_ERROR([cannot find required MD5 functions in libc or libmd])
   ])
-], [
-  AC_MSG_ERROR([cannot find required MD5 functions in libc or libmd])
 ])
-AC_SEARCH_LIBS([SHA512Update], [md], [
-  AS_IF([test "x$ac_cv_search_SHA512Update" != "xnone required"], [
-    LIBBSD_LIBS="$LIBBSD_LIBS $ac_cv_search_SHA512Update"
+AS_IF([test "$need_arc4random" = "yes"], [
+  AC_CHECK_FUNCS([getentropy])
+
+  AS_IF([test "$ac_cv_func_getentropy" != "yes"], [
+    AC_SEARCH_LIBS([SHA512Update], [md], [
+      AS_IF([test "x$ac_cv_search_SHA512Update" != "xnone required"], [
+        LIBBSD_LIBS="$SHA512_LIBS $ac_cv_search_SHA512Update"
+      ])
+    ], [
+      AC_MSG_ERROR([cannot find required SHA-2 functions in libc or libmd])
+    ])
   ])
-], [
-  AC_MSG_ERROR([cannot find required SHA-2 functions in libc or libmd])
 ])
 LIBS="$saved_LIBS"
 
