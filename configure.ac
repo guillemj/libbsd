@@ -34,12 +34,71 @@ AM_PROG_AR
 LT_INIT
 LIBBSD_LINKER_VERSION_SCRIPT
 
+## Select library ABI to expose.
+
 is_windows=no
+
+need_arc4random=yes
+need_bsd_getopt=yes
+need_err=yes
+need_errc=yes
+need_fpurge=yes
+need_funopen=yes
+need_md5=yes
+need_name_from_id=yes
+need_nlist=yes
+need_progname=yes
+need_strl=yes
+need_strmode=yes
+need_wcsl=yes
+
 AS_CASE([$host_os],
+  [*-gnu*], [
+    # On glibc >= 2.38, strlcpy() and strlcat() got added,
+    # so these could then be dropped on the next SOVERSION bump.
+    #need_strl=no
+    need_err=no
+  ],
+  [*-musl*], [
+    # On musl >= 0.9.7, optreset got implemented, so bsd_getopt() can then
+    # be dropped on the next SOVERSION bump.
+    #need_bsd_getopt=no
+    need_err=no
+    # On musl >= 1.1.19, fopencookie() got implemented, and because we were
+    # checking for its presence to decide whether to build funopen(), it got
+    # included in builds even when previously it had not been included, which
+    # is partially an ABI issue, but given that disabling it now would be
+    # worse, we'll ignore this as this is only a problem with downgrades. And
+    # enable it explicitly
+    need_funopen=yes
+    # On musl >= 0.5.0, strlcpy() and strlcat() were already implemented,
+    # so these can then be dropped on the next SOVERSION bump.
+    #need_strl=no
+  ],
+  [darwin*], [
+    # On macOS these are provided by the system, and libbsd has never built
+    # there, so we can avoid providing these with no ABI breakage.
+    need_arc4random=no
+    need_bsd_getopt=no
+    need_err=no
+    need_errc=no
+    need_fpurge=no
+    # On macOS we do not have fopencookie(), and cannot implement it.
+    need_funopen=no
+    need_md5=no
+    need_name_from_id=no
+    need_nlist=no
+    need_progname=no
+    need_strl=no
+    need_strmode=no
+    need_transparent_libmd=no
+    need_wcsl=no
+  ],
   [mingw*], [
     is_windows=yes
   ],
 )
+
 AM_CONDITIONAL([OS_WINDOWS], [test "x$is_windows" = "xyes"])
 
 # Checks for programs.
@@ -209,63 +268,6 @@ AC_CHECK_FUNCS([\
   user_from_uid \
   group_from_gid \
 ])
-
-need_arc4random=yes
-need_bsd_getopt=yes
-need_err=yes
-need_errc=yes
-need_progname=yes
-need_md5=yes
-need_nlist=yes
-need_strl=yes
-need_wcsl=yes
-need_strmode=yes
-need_name_from_id=yes
-need_fpurge=yes
-need_funopen=yes
-AS_CASE([$host_os],
-  [*-gnu*], [
-    # On glibc >= 2.38, strlcpy() and strlcat() got added,
-    # so these could then be dropped on the next SOVERSION bump.
-    #need_strl=no
-    need_err=no
-  ],
-  [*-musl*], [
-    # On musl >= 0.5.0, strlcpy() and strlcat() were already implemented,
-    # so these can then be dropped on the next SOVERSION bump.
-    #need_strl=no
-    # On musl >= 0.9.7, optreset got implemented, so bsd_getopt() can then
-    # be dropped on the next SOVERSION bump.
-    #need_bsd_getopt=no
-    need_err=no
-    # On musl >= 1.1.19, fopencookie() got implemented, and because we were
-    # checking for its presence to decide whether to build funopen(), it got
-    # included in builds even when previously it had not been included, which
-    # is partially an ABI issue, but given that disabling it now would be
-    # worse, we'll ignore this as this is only a problem with downgrades. And
-    # enable it explicitly
-    need_funopen=yes
-  ],
-  [darwin*], [
-    # On macOS these are provided by the system, and libbsd has never built
-    # there, so we can avoid providing these with no ABI breakage.
-    need_arc4random=no
-    need_bsd_getopt=no
-    need_err=no
-    need_errc=no
-    need_progname=no
-    need_transparent_libmd=no
-    need_md5=no
-    need_nlist=no
-    need_strl=no
-    need_wcsl=no
-    need_strmode=no
-    need_name_from_id=no
-    need_fpurge=no
-    # On macOS we do not have fopencookie(), and cannot implement it.
-    need_funopen=no
-  ],
-)
 
 AM_CONDITIONAL([HAVE_GETENTROPY], [test "x$ac_cv_func_getentropy" = "xyes"])
 
