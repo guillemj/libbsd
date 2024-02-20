@@ -221,14 +221,14 @@ libbsd.map: libbsd.map.in
 # Generate a simple libtool symbol export list to be used as a fallback if
 # there is no version script support.
 libbsd.sym: libbsd.map
-	$(AM_V_GEN) $(SED) -ne 's/^[[:space:]]\{1,\}\([A-Za-z0-9_]\{1,\}\);/\1/p' libbsd.map > $@
+	$(AM_V_GEN) $(SED) -ne 's/^[[:space:]]\{1,\}\([A-Za-z0-9_]\{1,\}\);/\1/p' libbsd.map >$@
 
 if NEED_TRANSPARENT_LIBMD
 TRANSPARENT_LIBMD_DEPENDS = format.ld
 
 format.ld:
 	$(CC) -shared -nostdlib -nostartfiles -x assembler /dev/null -o $@.so
-	$(OBJDUMP) -f $@.so | sed -n 's/.*file format \(.*\)/OUTPUT_FORMAT(\1)/;T;p' > $@
+	$(OBJDUMP) -f $@.so | sed -n 's/.*file format \(.*\)/OUTPUT_FORMAT(\1)/;T;p' >$@
 	rm -f $@.so
 endif
 
