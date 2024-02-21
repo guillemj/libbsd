@@ -61,7 +61,7 @@ libbsd_la_LIBADD = \
 	# EOL
 libbsd_la_LDFLAGS = \
 	-no-undefined \
-	-version-number $(LIBBSD_ABI) \
+	-version-number $(SOVERSION) \
 	# EOL
 if HAVE_LINKER_VERSION_SCRIPT
 libbsd_la_LDFLAGS += \
