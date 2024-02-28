@@ -357,6 +357,11 @@ AS_IF([test "$abi_name_from_id" = "yes" || test "$abi_id_from_name" = "yes"], [
 ], [
   abi_pwcache=no
 ])
+AS_IF([test "$abi_err" = "yes" || test "$abi_errc" = "yes"], [
+  abi_err_h=yes
+], [
+  abi_err_h=no
+])
 
 AM_CONDITIONAL([OS_WINDOWS], [test "x$is_windows" = "xyes"])
 
@@ -547,6 +552,7 @@ LIBBSD_SELECT_ABI([arc4random_stir], [arc4random_stir()/arc4random_addrandom()])
 LIBBSD_SELECT_ABI([asprintf], [vasprintf()/asprintf()])
 LIBBSD_SELECT_ABI([bsd_getopt], [BSD getopt()])
 LIBBSD_SELECT_ABI([closefrom], [closefrom()])
+LIBBSD_SELECT_ABI([err_h], [err.h header])
 LIBBSD_SELECT_ABI([err], [err API])
 LIBBSD_SELECT_ABI([errc], [errc API])
 LIBBSD_SELECT_ABI([expand_number], [expand_number()])

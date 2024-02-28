@@ -21,7 +21,7 @@ nobase_include_HEADERS = \
 	bsd/wchar.h \
 	# EOL
 
-if ABI_ERR
+if ABI_ERR_H
 nobase_include_HEADERS += \
 	bsd/err.h \
 	# EOL
