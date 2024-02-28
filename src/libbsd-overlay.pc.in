@@ -9,4 +9,5 @@ Version: @VERSION@
 URL: https://libbsd.freedesktop.org/
 Libs: -L${libdir} -lbsd
 Libs.private: @LIBBSD_LIBS@ @MD5_LIBS@
+# We use -isystem instead of -I due the overlay via #include_next usage.
 Cflags: -isystem ${includedir}/bsd -DLIBBSD_OVERLAY
