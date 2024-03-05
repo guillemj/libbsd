@@ -58,6 +58,7 @@ strtonum(const char *nptr, long long minval, long long maxval,
 		return rv;
 	case ECANCELED:
 	case ENOTSUP:
+	case EINVAL:
 		goto out;
 	case ERANGE:
 		if (*eptr)
