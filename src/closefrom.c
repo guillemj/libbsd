@@ -153,6 +153,9 @@ closefrom_procfs(int lowfd)
 		const char *errstr;
 		int fd;
 
+		if (dent->d_name[0] == '.')
+			continue;
+
 		fd = strtonum(dent->d_name, lowfd, INT_MAX, &errstr);
 		if (errstr != NULL || fd == dirfd(dirp))
 			continue;
