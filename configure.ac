@@ -85,7 +85,7 @@ abi_vis=unknown
 abi_wcsl=unknown
 
 AS_CASE([$host_os],
-  [*-gnu*], [
+  [*-gnu* | gnu*], [
     abi_accmode=yes
     # DROP: On glibc >= 2.36.
     #abi_arc4random=no
