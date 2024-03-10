@@ -208,6 +208,9 @@ endif
 if ABI_ERRC
 dist_man_MANS += \
 	errc.3bsd \
+	verrc.3bsd \
+	vwarnc.3bsd \
+	warnc.3bsd \
 	# EOL
 endif
 
