@@ -42,6 +42,8 @@ LIBBSD_LINKER_VERSION_SCRIPT
 
 is_windows=no
 
+api_time_macros=unknown
+
 abi_accmode=unknown
 abi_arc4random=unknown
 abi_arc4random_stir=unknown
@@ -86,6 +88,8 @@ abi_wcsl=unknown
 
 AS_CASE([$host_os],
   [*-gnu* | gnu*], [
+    api_time_macros=no
+
     abi_accmode=yes
     # DROP: On glibc >= 2.36.
     #abi_arc4random=no
@@ -145,6 +149,8 @@ AS_CASE([$host_os],
     abi_wcsl=yes
   ],
   [*-musl*], [
+    api_time_macros=no
+
     abi_accmode=yes
     abi_arc4random=yes
     abi_arc4random_stir=yes
@@ -209,6 +215,8 @@ AS_CASE([$host_os],
     abi_wcsl=yes
   ],
   [darwin*], [
+    api_time_macros=no
+
     abi_accmode=no
     abi_arc4random=no
     abi_arc4random_stir=no
@@ -255,6 +263,8 @@ AS_CASE([$host_os],
     abi_wcsl=no
   ],
   [solaris2*], [
+    api_time_macros=yes
+
     abi_accmode=yes
     abi_arc4random=no
     abi_arc4random_stir=no
@@ -301,6 +311,8 @@ AS_CASE([$host_os],
     abi_wcsl=yes
   ],
   [aix*], [
+    api_time_macros=yes
+
     abi_accmode=yes
     abi_arc4random=yes
     abi_arc4random_stir=yes
@@ -544,6 +556,9 @@ AC_CHECK_FUNCS([\
 ])
 
 AM_CONDITIONAL([HAVE_GETENTROPY], [test "x$ac_cv_func_getentropy" = "xyes"])
+
+# API selection
+LIBBSD_SELECT_API([time_macros], [time struct conversion macros])
 
 # ABI selection
 LIBBSD_SELECT_ABI([accmode], [setmode()/getmode()])

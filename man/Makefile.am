@@ -141,8 +141,6 @@ dist_man_MANS = \
 	TAILQ_PREV.3bsd \
 	TAILQ_REMOVE.3bsd \
 	TAILQ_SWAP.3bsd \
-	TIMESPEC_TO_TIMEVAL.3bsd \
-	TIMEVAL_TO_TIMESPEC.3bsd \
 	be16dec.3bsd \
 	be16enc.3bsd \
 	be32dec.3bsd \
@@ -181,6 +179,13 @@ dist_man_MANS = \
 	timespecsub.3bsd \
 	tree.3bsd \
 	# EOL
+
+if API_TIME_MACROS
+dist_man_MANS += \
+	TIMESPEC_TO_TIMEVAL.3bsd \
+	TIMEVAL_TO_TIMESPEC.3bsd \
+	# EOL
+endif
 
 if ABI_ACCMODE
 dist_man_MANS += \
