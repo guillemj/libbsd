@@ -33,17 +33,29 @@
 #include <fcntl.h>
 #include <nlist.h>
 
+#if defined(__has_attribute)
+#if __has_attribute(__retain__)
+#define ATTRIBUTE_RETAIN __attribute__((__retain__))
+#else
+#define ATTRIBUTE_RETAIN
+#endif
+#endif
+
 static int data_prv_init = 50;
 extern int data_pub_init;
 extern int data_pub_uninit[2048];
 extern int *data_pub_ptr;
 
+/* GCC's __has_attribute has odd behavior for retain: https://gcc.gnu.org/PR99587 */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wattributes"
 int *data_pub_ptr = &data_prv_init;
-int data_pub_init __attribute__((__used__)) = 10;
-int data_pub_uninit[2048] __attribute__((__used__));
+int data_pub_init ATTRIBUTE_RETAIN __attribute__((__used__)) = 10;
+int data_pub_uninit[2048] ATTRIBUTE_RETAIN __attribute__((__used__));
 
 extern int
-func_pub(void) __attribute__((__used__)) ;
+func_pub(void) ATTRIBUTE_RETAIN __attribute__((__used__));
+#pragma GCC diagnostic pop
 
 int
 func_pub(void)
