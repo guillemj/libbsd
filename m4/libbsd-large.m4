@@ -43,7 +43,17 @@ AC_DEFUN([LIBBSD_SYS_TIME64], [
   ])
   LIBBSD_SELECT_ABI([time64], [explicit time64 time_t support])
 
-  AS_IF([test $ac_cv_sys_file_offset_bits -eq 64 && \
+  AC_CHECK_SIZEOF([off_t], [], [[
+#define _FILE_OFFSET_BITS 64
+#include <sys/types.h>
+]])
+  AS_IF([test $ac_cv_sizeof_off_t = 8], [
+    libbsd_sys_has_lfs=1
+  ], [
+    libbsd_sys_has_lfs=0
+  ])
+
+  AS_IF([test $libbsd_sys_has_lfs -eq 1 && \
          test $libbsd_sys_time_bits -eq 32 && \
          test $ac_cv_sizeof_time_t -eq 8], [
     AC_DEFINE([_TIME_BITS], [64], [Enable 64-bit time_t support])
