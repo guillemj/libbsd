@@ -33,11 +33,11 @@ Source Repository
 
 The primary repository can be browsed at:
 
-  <https://cgit.freedesktop.org/libbsd>
+  <https://gitlab.freedesktop.org/libbsd/libbsd>
 
 and cloned from:
 
-  <https://anongit.freedesktop.org/git/libbsd>
+  <https://gitlab.freedesktop.org/libbsd/libbsd.git>
 
 
 Building from git source
