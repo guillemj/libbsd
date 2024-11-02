@@ -99,6 +99,12 @@
 #define LIBBSD_GCC_VERSION 0
 #endif
 
+#if LIBBSD_GCC_VERSION >= 0x0300 || __has_attribute(__unused__)
+# define LIBBSD_UNUSED __attribute__((__unused__))
+#else
+# define LIBBSD_UNUSED
+#endif
+
 #if LIBBSD_GCC_VERSION >= 0x0405 || __has_attribute(__deprecated__)
 #define LIBBSD_DEPRECATED(x) __attribute__((__deprecated__(x)))
 #elif LIBBSD_GCC_VERSION >= 0x0301
@@ -150,11 +156,7 @@
  * Disable for now. */
 #if 0
 #ifndef __unused
-# if LIBBSD_GCC_VERSION >= 0x0300
-#  define __unused __attribute__((__unused__))
-# else
-#  define __unused
-# endif
+# define __unused LIBBSD_UNUSED
 #endif
 #endif
 
