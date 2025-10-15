@@ -210,6 +210,19 @@ dist_man_MANS += \
 	# EOL
 endif
 
+if ABI_ERR
+dist_man_MANS += \
+	err.3bsd \
+	verr.3bsd \
+	errx.3bsd \
+	verrx.3bsd \
+	warn.3bsd \
+	vwarn.3bsd \
+	warnx.3bsd \
+	vwarnx.3bsd \
+	# EOL
+endif
+
 if ABI_ERRC
 dist_man_MANS += \
 	errc.3bsd \

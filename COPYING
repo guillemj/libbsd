@@ -31,6 +31,7 @@ Files:
  include/bsd/timeconv.h
  include/bsd/vis.h
  man/bitstring.3bsd
+ man/err.3bsd
  man/errc.3bsd
  man/explicit_bzero.3bsd
  man/fgetln.3bsd
