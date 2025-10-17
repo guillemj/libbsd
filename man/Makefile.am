@@ -244,6 +244,12 @@ dist_man_MANS += \
 	# EOL
 endif
 
+if ABI_EXPLICIT_MEMSET
+dist_man_MANS += \
+	explicit_memset.3bsd \
+	# EOL
+endif
+
 if ABI_FGETLN
 dist_man_MANS += \
 	fgetln.3bsd \

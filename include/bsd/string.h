@@ -56,6 +56,10 @@ void strmode(mode_t mode, char *str);
     !defined(_DEFAULT_SOURCE)
 void explicit_bzero(void *buf, size_t len);
 #endif
+
+#if !defined(__NetBSD__)
+void *explicit_memset(void *buf, int c, size_t len);
+#endif
 __END_DECLS
 
 #endif

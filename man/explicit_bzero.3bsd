@@ -67,6 +67,7 @@ function, but will not be removed by a compiler's dead store optimization
 pass, making it useful for clearing sensitive memory such as a password.
 .Sh SEE ALSO
 .Xr bzero 3 ,
+.Xr explicit_memset 3bsd ,
 .Xr memset 3 ,
 .Xr swab 3
 .Sh HISTORY

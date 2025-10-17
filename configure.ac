@@ -54,6 +54,7 @@ abi_err=unknown
 abi_errc=unknown
 abi_expand_number=unknown
 abi_explicit_bzero=unknown
+abi_explicit_memset=unknown
 abi_fgetln=unknown
 abi_flopen=unknown
 abi_fmtcheck=unknown
@@ -106,6 +107,7 @@ AS_CASE([$host_os],
     # DROP: On glibc >= 2.25.
     #abi_explicit_bzero=no
     abi_explicit_bzero=yes
+    abi_explicit_memset=yes
     abi_fgetln=yes
     abi_flopen=yes
     abi_fmtcheck=yes
@@ -165,6 +167,7 @@ AS_CASE([$host_os],
     # DROP: On musl >= 1.1.20.
     #abi_explicit_bzero=no
     abi_explicit_bzero=yes
+    abi_explicit_memset=yes
     # DROP: On musl >= 0.9.4.
     #abi_fgetln=no
     abi_fgetln=yes
@@ -227,6 +230,7 @@ AS_CASE([$host_os],
     abi_errc=no
     abi_expand_number=yes
     abi_explicit_bzero=yes
+    abi_explicit_memset=yes
     abi_fgetln=no
     abi_flopen=yes
     abi_fmtcheck=no
@@ -275,6 +279,7 @@ AS_CASE([$host_os],
     abi_errc=yes
     abi_expand_number=yes
     abi_explicit_bzero=yes
+    abi_explicit_memset=yes
     abi_fgetln=yes
     abi_flopen=yes
     abi_fmtcheck=no
@@ -323,6 +328,7 @@ AS_CASE([$host_os],
     abi_errc=yes
     abi_expand_number=yes
     abi_explicit_bzero=yes
+    abi_explicit_memset=yes
     abi_fgetln=yes
     abi_flopen=yes
     abi_fmtcheck=yes
@@ -572,6 +578,7 @@ LIBBSD_SELECT_ABI([err], [err API])
 LIBBSD_SELECT_ABI([errc], [errc API])
 LIBBSD_SELECT_ABI([expand_number], [expand_number()])
 LIBBSD_SELECT_ABI([explicit_bzero], [explicit_bzero()])
+LIBBSD_SELECT_ABI([explicit_memset], [explicit_memset()])
 LIBBSD_SELECT_ABI([fgetln], [fgetln/fgetwln()])
 LIBBSD_SELECT_ABI([flopen], [flopen()/flopenat()])
 LIBBSD_SELECT_ABI([fmtcheck], [fmtcheck()])

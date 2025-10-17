@@ -164,6 +164,7 @@ License: libutil-David-Nugent
 Files:
  include/bsd/stringlist.h
  man/arc4random.3bsd
+ man/explicit_memset.3bsd
  man/fmtcheck.3bsd
  man/humanize_number.3bsd
  man/stringlist.3bsd
@@ -363,6 +364,7 @@ License: Expat
 Files:
  src/chacha_private.h
  src/explicit_bzero.c
+ src/explicit_memset.c
 Copyright:
  None
 License: public-domain

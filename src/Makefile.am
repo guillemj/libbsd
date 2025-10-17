@@ -146,6 +146,12 @@ libbsd_la_SOURCES += \
 	# EOL
 endif
 
+if ABI_EXPLICIT_MEMSET
+libbsd_la_SOURCES += \
+	explicit_memset.c \
+	# EOL
+endif
+
 if ABI_FGETLN
 libbsd_la_SOURCES += \
 	fgetln.c \

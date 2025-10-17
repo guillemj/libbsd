@@ -317,3 +317,9 @@ LIBBSD_0.12.0 {
     _int_to_time_time64;
 #endif
 } LIBBSD_0.11.0;
+
+LIBBSD_0.13.0 {
+#if LIBBSD_ABI_EXPLICIT_MEMSET
+    explicit_memset;
+#endif
+} LIBBSD_0.12.0;
