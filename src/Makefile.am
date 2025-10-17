@@ -152,6 +152,12 @@ libbsd_la_SOURCES += \
 	# EOL
 endif
 
+if ABI_CONSTTIME_MEMEQUAL
+libbsd_la_SOURCES += \
+	consttime_memequal.c \
+	# EOL
+endif
+
 if ABI_FGETLN
 libbsd_la_SOURCES += \
 	fgetln.c \

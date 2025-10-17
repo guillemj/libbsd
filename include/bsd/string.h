@@ -59,6 +59,8 @@ void explicit_bzero(void *buf, size_t len);
 
 #if !defined(__NetBSD__)
 void *explicit_memset(void *buf, int c, size_t len);
+
+int consttime_memequal(const void *buf1, const void *buf2, size_t len);
 #endif
 __END_DECLS
 

@@ -50,6 +50,7 @@ abi_arc4random_stir=unknown
 abi_asprintf=unknown
 abi_bsd_getopt=unknown
 abi_closefrom=unknown
+abi_consttime_memequal=unknown
 abi_err=unknown
 abi_errc=unknown
 abi_expand_number=unknown
@@ -101,6 +102,7 @@ AS_CASE([$host_os],
     # DROP: On glibc >= 2.34.
     #abi_closefrom=no
     abi_closefrom=yes
+    abi_consttime_memequal=yes
     abi_err=no
     abi_errc=yes
     abi_expand_number=yes
@@ -161,6 +163,7 @@ AS_CASE([$host_os],
     #abi_bsd_getopt=no
     abi_bsd_getopt=yes
     abi_closefrom=yes
+    abi_consttime_memequal=yes
     abi_err=no
     abi_errc=yes
     abi_expand_number=yes
@@ -226,6 +229,7 @@ AS_CASE([$host_os],
     abi_asprintf=no
     abi_bsd_getopt=no
     abi_closefrom=yes
+    abi_consttime_memequal=yes
     abi_err=no
     abi_errc=no
     abi_expand_number=yes
@@ -275,6 +279,7 @@ AS_CASE([$host_os],
     abi_asprintf=no
     abi_bsd_getopt=yes
     abi_closefrom=no
+    abi_consttime_memequal=yes
     abi_err=no
     abi_errc=yes
     abi_expand_number=yes
@@ -324,6 +329,7 @@ AS_CASE([$host_os],
     abi_asprintf=yes
     abi_bsd_getopt=yes
     abi_closefrom=yes
+    abi_consttime_memequal=yes
     abi_err=yes
     abi_errc=yes
     abi_expand_number=yes
@@ -573,6 +579,7 @@ LIBBSD_SELECT_ABI([arc4random_stir], [arc4random_stir()/arc4random_addrandom()])
 LIBBSD_SELECT_ABI([asprintf], [vasprintf()/asprintf()])
 LIBBSD_SELECT_ABI([bsd_getopt], [BSD getopt()])
 LIBBSD_SELECT_ABI([closefrom], [closefrom()])
+LIBBSD_SELECT_ABI([consttime_memequal], [consttime_memequal()])
 LIBBSD_SELECT_ABI([err_h], [err.h header])
 LIBBSD_SELECT_ABI([err], [err API])
 LIBBSD_SELECT_ABI([errc], [errc API])

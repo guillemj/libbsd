@@ -322,4 +322,8 @@ LIBBSD_0.13.0 {
 #if LIBBSD_ABI_EXPLICIT_MEMSET
     explicit_memset;
 #endif
+
+#if LIBBSD_ABI_CONSTTIME_MEMEQUAL
+    consttime_memequal;
+#endif
 } LIBBSD_0.12.0;

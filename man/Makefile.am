@@ -250,6 +250,12 @@ dist_man_MANS += \
 	# EOL
 endif
 
+if ABI_CONSTTIME_MEMEQUAL
+dist_man_MANS += \
+	consttime_memequal.3bsd \
+	# EOL
+endif
+
 if ABI_FGETLN
 dist_man_MANS += \
 	fgetln.3bsd \
