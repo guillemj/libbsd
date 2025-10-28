@@ -437,8 +437,8 @@ AS_IF([test "$user_CFLAGS" = unset], [
   CFLAGS="$CFLAGS $LIBBSD_COMPILER_FLAGS"
 
   AC_ARG_ENABLE([sanitize],
-    [AS_HELP_STRING([--enable-sanitize], [enable compiler sanitizer support])],
-  [
+    [AS_HELP_STRING([--enable-sanitize], [enable compiler sanitizer support])])
+  AS_IF([test "x$enable_sanitize" = "xyes"], [
     LIBBSD_COMPILER_FLAGS=''
     LIBBSD_CHECK_COMPILER_FLAG([-fsanitize=address])
     LIBBSD_CHECK_COMPILER_FLAG([-fsanitize=leak])
