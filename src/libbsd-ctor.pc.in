@@ -7,6 +7,8 @@ Name: libbsd-ctor
 Description: Automatic constructor functions for libbsd
 Version: @VERSION@
 URL: https://libbsd.freedesktop.org/
+Maintainer: <@PACKAGE_BUGREPORT@>
+License: BSD-3-Clause
 Cflags: -I${includedir}
 Libs: -L${libdir} -Wl,-z,nodlopen -Wl,-u,libbsd_init_func -lbsd-ctor
 Requires: libbsd

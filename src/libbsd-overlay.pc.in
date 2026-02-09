@@ -7,6 +7,8 @@ Name: libbsd
 Description: Utility functions from BSD systems (overlay)
 Version: @VERSION@
 URL: https://libbsd.freedesktop.org/
+Maintainer: <@PACKAGE_BUGREPORT@>
+License: BSD-3-Clause and BSD-2-Clause and libutil-David-Nugent and Beerware and MIT and ISC
 Libs: -L${libdir} -lbsd
 Libs.private: @LIBBSD_LIBS@ @MD5_LIBS@
 # We use -isystem instead of -I due the overlay via #include_next usage.
