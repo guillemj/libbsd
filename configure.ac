@@ -12,7 +12,7 @@ AM_INIT_AUTOMAKE(
   [foreign]
   [nostdinc]
   [subdir-objects]
-  [no-dist-gzip dist-xz]
+  [tar-ustar no-dist-gzip dist-xz]
 )
 AM_SILENT_RULES([yes])
 
