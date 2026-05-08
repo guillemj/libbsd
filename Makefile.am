@@ -14,6 +14,9 @@ EXTRA_DIST = \
 	get-version \
 	# EOL
 
+TAR_OPTIONS = --owner=0 --group=0
+export TAR_OPTIONS
+
 dist-hook:
 	echo $(VERSION) >$(distdir)/.dist-version
 	if [ -d .git ]; then \
