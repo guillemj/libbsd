@@ -232,9 +232,11 @@ companion library, so it is advised to switch to use that directly instead.
 .It Xr explicit_bzero 3bsd
 This function is provided by
 .Nm glibc
-2.25, and
+2.25,
 .Nm musl
-1.1.20.
+1.1.20, and
+.Nm uclibc
+1.0.47.
 Use
 .Xr memset_explicit 3
 when available as that is specified by
@@ -242,9 +244,11 @@ when available as that is specified by
 .It Xr reallocarray 3bsd
 This function is provided by
 .Nm glibc
-2.26, and
+2.26,
 .Nm musl
 1.2.2,
+.Nm uclibc-ng
+1.0.47,
 and specified by
 .St -p1003.1-2024 .
 .It Xr closefrom 3bsd
@@ -252,23 +256,31 @@ This function is provided by
 .Nm glibc
 2.34.
 .It Xr arc4random 3bsd
+This function is provided by
+.Nm glibc
+2.36, and
+.Nm uclibc
+0.9.29.
+.It Xr arc4random_addrandom 3bsd
+This function is provided by
+.Nm uclibc
+0.9.29.
 .It Xr arc4random_buf 3bsd
 .It Xr arc4random_uniform 3bsd
 These functions are provided by
 .Nm glibc
 2.36.
-Note that it does not provide the
-.Xr arc4random_stir 3bsd
-and
-.Xr arc4random_addrandom 3bsd
-functions.
 .It Xr strlcpy 3bsd
 .It Xr strlcat 3bsd
 These functions are provided by
 .Nm glibc
-2.38, and
+2.38,
 .Nm musl
 0.5.0,
+.Nm uclibc
+0.9.13,
+.Nm uclibc-ng
+1.0.0,
 and specified by
 .St -p1003.1-2024 .
 .El
