@@ -360,8 +360,8 @@ License: Expat
  USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 Files:
- src/explicit_bzero.c
  src/chacha_private.h
+ src/explicit_bzero.c
 Copyright:
  None
 License: public-domain
