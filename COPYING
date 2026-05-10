@@ -112,8 +112,8 @@ License: BSD-3-clause-author
 Files:
  man/timeradd.3bsd
 Copyright:
- 2009 Jukka Ruohonen <jruohonen@iki.fi>
  1999 Kelly Yancey <kbyanc@posi.net>
+ 2009 Jukka Ruohonen <jruohonen@iki.fi>
 License: BSD-3-clause-John-Birrell
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions
@@ -290,20 +290,18 @@ Files:
  test/explicit_bzero.c
  test/strtonum.c
 Copyright:
- 2004 Ted Unangst and Todd Miller
  1996 David Mazieres <dm@uun.org>
  1998, 2000-2002, 2004-2005, 2007, 2010, 2012-2015
      Todd C. Miller <Todd.Miller@courtesan.com>
  2004 Ted Unangst
- 2004 Otto Moerbeek <otto@drijf.net>
+ 2004, 2008, 2010-2011, 2016-2017 Otto Moerbeek <otto@drijf.net>
  2008 Damien Miller <djm@openbsd.org>
- 2008, 2010-2011, 2016-2017 Otto Moerbeek <otto@drijf.net>
  2013 Markus Friedl <markus@openbsd.org>
  2014 Bob Beck <beck@obtuse.com>
  2014 Brent Cook <bcook@openbsd.org>
+ 2014 Google Inc.
  2014 Pawel Jakub Dawidek <pjd@FreeBSD.org>
  2014 Theo de Raadt <deraadt@openbsd.org>
- 2014 Google Inc.
  2015 Michael Felt <aixtools@gmail.com>
  2015, 2022 Guillem Jover <guillem@hadrons.org>
 License: ISC
