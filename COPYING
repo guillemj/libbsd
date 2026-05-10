@@ -70,7 +70,8 @@ Copyright:
      The Regents of the University of California.
  Copyright © 1992 Keith Muller.
  Copyright © 2001 Mike Barcroft <mike@FreeBSD.org>
- .
+ Copyright © UNIX System Laboratories, Inc.
+Comment:
  Some code is derived from software contributed to Berkeley by
  the American National Standards Committee X3, on Information
  Processing Systems.
@@ -90,11 +91,9 @@ Copyright:
  Some code is derived from software contributed to Berkeley by
  Chris Torek.
  .
- Copyright © UNIX System Laboratories, Inc.
- All or some portions of this file are derived from material licensed
- to the University of California by American Telephone and Telegraph
- Co. or Unix System Laboratories, Inc. and are reproduced herein with
- the permission of UNIX System Laboratories, Inc.
+ Some code is derived from material licensed to the University of California by
+ American Telephone and Telegraph Co. or Unix System Laboratories, Inc. and
+ are reproduced herein with the permission of UNIX System Laboratories, Inc.
 License: BSD-3-clause-Regents
 
 Files:
@@ -178,7 +177,7 @@ Copyright:
      The NetBSD Foundation, Inc.
  Copyright © 2013 John-Mark Gurney <jmg@FreeBSD.org>
  Copyright © 2014 The NetBSD Foundation, Inc.
- .
+Comment:
  Some code was derived from software contributed to The NetBSD Foundation
  by Taylor R. Campbell.
  .
