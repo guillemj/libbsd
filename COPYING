@@ -66,8 +66,8 @@ Files:
  src/strtou.c
  src/unvis.c
 Copyright:
- 1980, 1982, 1986, 1989-1994 The Regents of the University of California.
- 1992 Keith Muller.
+ 1980, 1982, 1986, 1989-1994 The Regents of the University of California
+ 1992 Keith Muller
  2001 Mike Barcroft <mike@FreeBSD.org>
  UNIX System Laboratories, Inc.
 Comment:
@@ -98,14 +98,14 @@ License: BSD-3-clause-Regents
 Files:
  src/vis.c
 Copyright:
- 1989, 1993 The Regents of the University of California.
+ 1989, 1993 The Regents of the University of California
  1999, 2005 The NetBSD Foundation, Inc.
 License: BSD-3-clause-Regents and BSD-2-clause-NetBSD
 
 Files:
  include/bsd/libutil.h
 Copyright:
- 1996 Peter Wemm <peter@FreeBSD.org>.
+ 1996 Peter Wemm <peter@FreeBSD.org>
  2002 Networks Associates Technology, Inc.
 License: BSD-3-clause-author
 
@@ -211,8 +211,8 @@ Files:
  src/reallocf.c
  src/timeconv.c
 Copyright:
- 1998, M. Warner Losh <imp@freebsd.org>
- 2001 Dima Dorfman.
+ 1998 M. Warner Losh <imp@freebsd.org>
+ 2001 Dima Dorfman
  2001 FreeBSD Inc.
  2002 Thomas Moestl <tmm@FreeBSD.org>
  2002 Mike Barcroft <mike@FreeBSD.org>
@@ -258,7 +258,7 @@ Files:
  man/tree.3bsd
  src/fparseln.c
 Copyright:
- 1997 Christos Zoulas.
+ 1997 Christos Zoulas
  2002 Niels Provos <provos@citi.umich.edu>
 License: BSD-2-clause-author
 
@@ -322,7 +322,7 @@ License: ISC
 Files:
  src/inet_net_pton.c
 Copyright:
- 1996 by Internet Software Consortium.
+ 1996 Internet Software Consortium
 License: ISC-Original
  Permission to use, copy, modify, and distribute this software for any
  purpose with or without fee is hereby granted, provided that the above
