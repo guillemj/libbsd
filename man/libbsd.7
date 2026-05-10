@@ -60,10 +60,10 @@ The includes in this case should be the usual system ones, such as
 .In unistd.h .
 .Pp
 The other way to use the library is to use the namespaced headers,
-which is a discouraged way, being less portable as it makes using
+which is discouraged, being less portable as it makes using
 .Nm libbsd
-mandatory and it will not work on BSD-based systems, and requires
-modifying original BSD code.
+mandatory so it will not work on BSD-based systems,
+and requires modifying original BSD code.
 This can be done with the
 .Xr pkgconf 1
 library named
@@ -73,7 +73,8 @@ The includes in this case should be namespaced with
 such as
 .In bsd/unistd.h .
 .Pp
-The package also provides a
+On systems that have the required functionality,
+the package also provides a
 .Nm libbsd-ctor
 static library that can be used to inject automatic constructors into a
 program so that the
@@ -123,7 +124,14 @@ be prefixed with
 .Pp
 The following is a
 .Pa libbsd
-specific convenience header, that includes some of the extended headers.
+specific convenience header,
+that itself includes some of the extended headers,
+but its use is discouraged.
+In particular,
+its use in source code is strongly discouraged as it reduces portability.
+If it needs to be used then its expected use is with the compiler
+.Ar -include bsd/bsd.h
+option as a quick portability aid or workaround.
 It only works in non-overlay mode.
 .Pp
 .Bl -tag -width 4m -compact
