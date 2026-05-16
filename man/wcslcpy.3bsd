@@ -77,6 +77,7 @@ and
 functions first appeared in
 .Ox 3.8 ,
 .Nx 1.6 ,
-.Fx 5.0
+.Fx 5.0 ,
+.Dx 2.1 ,
 and
-.Dx 2.1 .
+.St -p1003.1-2024 .

@@ -234,12 +234,18 @@ This function is provided by
 2.25, and
 .Nm musl
 1.1.20.
+Use
+.Xr memset_explicit 3
+when available as that is specified by
+.St -isoC-2023 .
 .It Xr reallocarray 3bsd
 This function is provided by
 .Nm glibc
 2.26, and
 .Nm musl
-1.2.2.
+1.2.2,
+and specified by
+.St -p1003.1-2024 .
 .It Xr closefrom 3bsd
 This function is provided by
 .Nm glibc
@@ -261,7 +267,9 @@ These functions are provided by
 .Nm glibc
 2.38, and
 .Nm musl
-0.5.0.
+0.5.0,
+and specified by
+.St -p1003.1-2024 .
 .El
 .Sh SEE ALSO
 .Xr arc4random 3bsd ,

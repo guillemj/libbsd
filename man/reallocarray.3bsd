@@ -283,8 +283,10 @@ The
 .Fn reallocarray
 function appeared in
 .Ox 5.6 ,
-.Dx 5.5
-and glibc 2.26.
+.Dx 5.5 ,
+glibc 2.26,
+and
+.St -p1003.1-2024 .
 .Pp
 The
 .Fn recallocarray

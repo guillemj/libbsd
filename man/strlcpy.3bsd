@@ -194,5 +194,6 @@ functions first appeared in
 and made their appearance in
 .Nx 1.4.3 ,
 .Fx 3.3
+glibc 2.38,
 and
-glibc 2.38.
+.St -p1003.1-2024 .
