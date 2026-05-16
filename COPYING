@@ -143,7 +143,7 @@ Files:
  man/setproctitle.3bsd
 Copyright:
  1995 Peter Wemm <peter@FreeBSD.org>
-License: BSD-5-clause-Peter-Wemm
+License: libutil-David-Nugent
  Redistribution and use in source and binary forms, with or without
  modification, is permitted provided that the following conditions
  are met:
