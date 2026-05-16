@@ -16,7 +16,7 @@ Files:
  src/fgetln.c
  src/progname.c
 Copyright:
- 2005, 2008-2012, 2019 Guillem Jover <guillem@hadrons.org>
+ 2005-2019 Guillem Jover <guillem@hadrons.org>
  2005 Hector Garcia Alvarez
  2005 Aurelien Jarno
  2006 Robert Millan
@@ -66,7 +66,7 @@ Files:
  src/strtou.c
  src/unvis.c
 Copyright:
- 1980, 1982, 1986, 1989-1994 The Regents of the University of California
+ 1980-1994 The Regents of the University of California
  1992 Keith Muller
  2001 Mike Barcroft <mike@FreeBSD.org>
  UNIX System Laboratories, Inc.
@@ -98,8 +98,8 @@ License: BSD-3-clause-Regents
 Files:
  src/vis.c
 Copyright:
- 1989, 1993 The Regents of the University of California
- 1999, 2005 The NetBSD Foundation, Inc.
+ 1989-1993 The Regents of the University of California
+ 1999-2005 The NetBSD Foundation, Inc.
 License: BSD-3-clause-Regents and BSD-2-clause-NetBSD
 
 Files:
@@ -172,7 +172,7 @@ Files:
  src/stringlist.c
  src/strtonum.c
 Copyright:
- 1994, 1997-2000, 2002, 2008, 2010, 2014 The NetBSD Foundation, Inc.
+ 1994-2014 The NetBSD Foundation, Inc.
  2013 John-Mark Gurney <jmg@FreeBSD.org>
  2014 The NetBSD Foundation, Inc.
 Comment:
@@ -291,10 +291,9 @@ Files:
  test/strtonum.c
 Copyright:
  1996 David Mazieres <dm@uun.org>
- 1998, 2000-2002, 2004-2005, 2007, 2010, 2012-2015
-     Todd C. Miller <Todd.Miller@courtesan.com>
+ 1998-2015 Todd C. Miller <Todd.Miller@courtesan.com>
  2004 Ted Unangst
- 2004, 2008, 2010-2011, 2016-2017 Otto Moerbeek <otto@drijf.net>
+ 2004-2017 Otto Moerbeek <otto@drijf.net>
  2008 Damien Miller <djm@openbsd.org>
  2013 Markus Friedl <markus@openbsd.org>
  2014 Bob Beck <beck@obtuse.com>
@@ -303,7 +302,7 @@ Copyright:
  2014 Pawel Jakub Dawidek <pjd@FreeBSD.org>
  2014 Theo de Raadt <deraadt@openbsd.org>
  2015 Michael Felt <aixtools@gmail.com>
- 2015, 2022 Guillem Jover <guillem@hadrons.org>
+ 2015-2022 Guillem Jover <guillem@hadrons.org>
 License: ISC
  Permission to use, copy, modify, and distribute this software for any
  purpose with or without fee is hereby granted, provided that the above
