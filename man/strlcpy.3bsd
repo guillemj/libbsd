@@ -17,6 +17,7 @@
 .Dd $Mdocdate: January 7 2024 $
 .Dt strlcpy 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm strlcpy ,
 .Nm strlcat

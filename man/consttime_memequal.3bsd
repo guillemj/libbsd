@@ -30,6 +30,7 @@
 .Dd March 23, 2015
 .Dt consttime_memequal 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm consttime_memequal
 .Nd compare byte strings for equality without timing leaks

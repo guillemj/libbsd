@@ -33,6 +33,7 @@
 .Dd June 7, 2010
 .Dt timeradd 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm timeradd ,
 .Nm timersub ,

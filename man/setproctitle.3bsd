@@ -23,6 +23,7 @@
 .Dd December 7, 2022
 .Dt setproctitle 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm setproctitle
 .Nd set process title

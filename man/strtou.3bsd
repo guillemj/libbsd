@@ -39,6 +39,7 @@
 .Dd January 20, 2024
 .Dt strtou 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm strtou
 .Nd convert a string value to an uintmax_t integer

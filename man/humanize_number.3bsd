@@ -30,6 +30,7 @@
 .Dd February 9, 2008
 .Dt humanize_number 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm dehumanize_number ,
 .Nm humanize_number

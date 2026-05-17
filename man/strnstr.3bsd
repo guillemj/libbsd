@@ -36,6 +36,7 @@
 .Dd October 11, 2001
 .Dt strstr 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm strnstr
 .Nd locate a substring in a string

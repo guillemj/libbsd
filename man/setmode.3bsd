@@ -33,6 +33,7 @@
 .Dd January 4, 2009
 .Dt setmode 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm getmode ,
 .Nm setmode

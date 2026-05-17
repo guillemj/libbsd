@@ -35,6 +35,7 @@
 .Dd September 30, 2003
 .Dt heapsort 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm heapsort , mergesort
 .Nd sort functions

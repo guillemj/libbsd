@@ -29,6 +29,7 @@
 .Dd May 6, 2010
 .Dt stringlist 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm stringlist ,
 .Nm sl_init ,

@@ -35,6 +35,7 @@
 .Dd September 26, 2009
 .Dt reallocf 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm reallocf
 .Nd general purpose memory allocation functions

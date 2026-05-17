@@ -35,6 +35,7 @@
 .Dd $Mdocdate: September 14 2019 $
 .Dt reallocarray 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm reallocarray ,
 .Nm recallocarray ,

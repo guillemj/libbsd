@@ -31,6 +31,7 @@
 .Dd September 8, 2016
 .Dt queue 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm SLIST_CLASS_ENTRY ,
 .Nm SLIST_CLASS_HEAD ,

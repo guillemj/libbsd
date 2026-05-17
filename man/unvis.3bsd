@@ -32,6 +32,7 @@
 .Dd March 12, 2011
 .Dt unvis 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm unvis ,
 .Nm strunvis ,

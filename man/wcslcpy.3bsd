@@ -38,6 +38,7 @@
 .Dd March 4, 2009
 .Dt wcslcpy 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm wcslcat ,
 .Nm wcslcpy ,

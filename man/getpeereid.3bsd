@@ -28,6 +28,7 @@
 .Dd July 15, 2001
 .Dt getpeereid 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm getpeereid
 .Nd get the effective credentials of a UNIX-domain peer

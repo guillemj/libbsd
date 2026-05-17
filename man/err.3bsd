@@ -30,6 +30,7 @@
 .Dd $Mdocdate: October 24 2021 $
 .Dt err 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm err ,
 .Nm verr ,

@@ -30,6 +30,7 @@
 .Dd $Mdocdate: April 23 2014 $
 .Dt errc 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm errc ,
 .Nm verrc ,

@@ -34,6 +34,7 @@
 .Dd $Mdocdate: November 4 2015 $
 .Dt fpurge 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm fpurge
 .Nd flush a stream

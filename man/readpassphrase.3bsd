@@ -21,6 +21,7 @@
 .Dd $Mdocdate: March 6 2014 $
 .Dt readpassphrase 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm readpassphrase
 .Nd get a passphrase from the user

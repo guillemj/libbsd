@@ -32,6 +32,7 @@
 .Dd $Mdocdate: January 22 2014 $
 .Dt explicit_bzero 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm explicit_bzero
 .Nd write zeroes to a byte string

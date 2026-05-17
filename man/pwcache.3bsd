@@ -30,6 +30,7 @@
 .Dd $Mdocdate: September 13 2018 $
 .Dt user_from_uid 3
 .Os
+.nr HY 0
 .Sh NAME
 .Nm user_from_uid ,
 .Nm uid_from_user ,

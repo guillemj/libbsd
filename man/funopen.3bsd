@@ -33,6 +33,7 @@
 .Dd March 19, 2004
 .Dt funopen 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm funopen ,
 .Nm fropen ,

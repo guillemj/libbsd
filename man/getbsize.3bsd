@@ -31,6 +31,7 @@
 .Dd November 16, 2012
 .Dt getbsize 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm getbsize
 .Nd get preferred block size

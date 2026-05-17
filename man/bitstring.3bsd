@@ -33,6 +33,7 @@
 .Dd July 19, 1993
 .Dt bitstring 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm bit_alloc ,
 .Nm bit_clear ,

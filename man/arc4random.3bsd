@@ -30,6 +30,7 @@
 .Dd November 16, 2014
 .Dt arc4random 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm arc4random ,
 .Nm arc4random_uniform ,

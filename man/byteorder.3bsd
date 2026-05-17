@@ -27,6 +27,7 @@
 .Dd April 29, 2002
 .Dt byteorder 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm be16enc , be16dec , be32enc , be32dec , be64enc , be64dec ,
 .Nm le16enc , le16dec , le32enc , le32dec , le64enc , le64dec

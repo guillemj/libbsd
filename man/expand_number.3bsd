@@ -28,6 +28,7 @@
 .Dd August 15, 2010
 .Dt expand_number 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm expand_number
 .Nd format a number from human readable form

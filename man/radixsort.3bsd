@@ -32,6 +32,7 @@
 .Dd January 27, 1994
 .Dt radixsort 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm radixsort ,
 .Nm sradixsort

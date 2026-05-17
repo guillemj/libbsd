@@ -28,6 +28,7 @@
 .Dd June 12, 2009
 .Dt closefrom 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm closefrom
 .Nd delete open file descriptors

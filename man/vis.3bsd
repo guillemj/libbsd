@@ -32,6 +32,7 @@
 .Dd April 22, 2017
 .Dt vis 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm vis ,
 .Nm nvis ,

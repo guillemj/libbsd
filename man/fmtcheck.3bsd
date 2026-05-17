@@ -29,6 +29,7 @@
 .Dd June 14, 2014
 .Dt fmtcheck 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm fmtcheck
 .Nd sanitizes user-supplied printf(3)-style format string

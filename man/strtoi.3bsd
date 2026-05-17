@@ -39,6 +39,7 @@
 .Dd January 20, 2024
 .Dt strtoi 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm strtoi
 .Nd convert a string value to an intmax_t integer

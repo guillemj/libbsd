@@ -28,6 +28,7 @@
 .Dd July 28, 2017
 .Dt flopen 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm flopen ,
 .Nm flopenat

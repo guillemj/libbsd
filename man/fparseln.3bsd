@@ -25,6 +25,7 @@
 .Dd November 30, 2002
 .Dt fparseln 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm fparseln
 .Nd return the next logical line from a stream

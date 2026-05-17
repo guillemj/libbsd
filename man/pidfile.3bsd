@@ -27,6 +27,7 @@
 .Dd February 8, 2012
 .Dt pidfile 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm pidfile_open ,
 .Nm pidfile_write ,

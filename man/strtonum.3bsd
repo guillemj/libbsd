@@ -18,6 +18,7 @@
 .Dd January 18, 2015
 .Dt strtonum 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm strtonum
 .Nd reliably convert string value to an integer

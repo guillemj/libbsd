@@ -30,6 +30,7 @@
 .Dd November 1, 2024
 .Dt explicit_memset 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm explicit_memset
 .Nd guarantee writing a byte to a byte string

@@ -25,6 +25,7 @@
 .Dd August 03, 2022
 .Dt getprogname 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm getprogname ,
 .Nm setprogname

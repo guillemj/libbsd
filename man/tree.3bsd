@@ -26,6 +26,7 @@
 .Dd May 10, 2019
 .Dt tree 3bsd
 .Os
+.nr HY 0
 .Sh NAME
 .Nm SPLAY_PROTOTYPE ,
 .Nm SPLAY_GENERATE ,
