@@ -24,7 +24,7 @@
   coverage: /^TOTAL.*\s+(\d+\%)$/
 
 .debian:
-  image: debian:latest
+  image: debian:unstable
   stage: test
   before_script:
     - apt-get update -qq
