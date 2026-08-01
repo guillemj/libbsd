@@ -30,8 +30,10 @@ if [ -f .dist-version ]; then
   # Get the version from the file distributed in the tarball.
   version=$(cat .dist-version)
 elif [ -d .git ]; then
-  # Ger the version from the git repository.
-  version=$(git describe --abbrev=4 HEAD 2>/dev/null)
+  # Get the version from the git repository.
+  # --always avoids an empty string (which breaks configure.ac) when no
+  # tags are reachable, e.g. in a shallow CI clone.
+  version=$(git describe --always --abbrev=4 HEAD 2>/dev/null)
 
   # Check if we are on a dirty checkout.
   git update-index --refresh -q >/dev/null
