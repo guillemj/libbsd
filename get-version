@@ -26,10 +26,20 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+error()
+{
+  echo "get-version: error: $*" 1>&2
+  exit 1
+}
+
 if [ -f .dist-version ]; then
   # Get the version from the file distributed in the tarball.
   version=$(cat .dist-version)
 elif [ -d .git ] || [ -f .git ]; then
+  if ! command -v git >/dev/null; then
+    error "cannot get project version, git checkout but git program not found"
+  fi
+
   # Get the version from the git repository.
   # --always avoids an empty string (which breaks configure.ac) when no
   # tags are reachable, e.g. in a shallow CI clone.
@@ -42,8 +52,7 @@ elif [ -d .git ] || [ -f .git ]; then
     version="$version-dirty"
   fi
 else
-  echo "error: cannot get project version." 1>&2
-  exit 1
+  error "cannot get project version, not a git checkout nor a distribution tarball"
 fi
 
 # Use printf to avoid the trailing new line that m4_esyscmd would not handle.
